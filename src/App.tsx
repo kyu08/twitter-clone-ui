@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
 
-const App = () => <div>hoge</div>;
+const App = () => <div>this is domain branch.</div>;
 
 export default App;
