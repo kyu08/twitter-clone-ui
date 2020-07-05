@@ -255,6 +255,8 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/prefer-interface': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
+
 
     // airbnb
     'no-restricted-syntax': [
