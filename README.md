@@ -1,44 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Twitter の clone app(UI)
 
-## Available Scripts
+# やることの流れ
 
-In the project directory, you can run:
+- [x]  仕様を決める(どういった機能が欲しいのか)
+- [ ]  ユースケースからドメインオブジェクトのデータ構造・振る舞いを定義していく。分析のためにユースケース図・シーケンス図・クラス図などを使ったり。
+- [ ]  domain まわりのコードを書いていく。
+- [ ]  コンポーネント設計
+- [ ]  フロントつくっていく(最初はインメモリで)
 
-### `yarn start`
+↓これ以降はフロントできたらまた考える
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ]  バックエンド設計
+- [ ]  ER図書いたり？
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# 仕様(機能要件)
 
-### `yarn test`
+## UI
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- mobile のUIを再現する
+- timeline, 通知, プロフィールページ をつくる
 
-### `yarn build`
+## initial release で実装したい
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### tweet
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- tweet を投稿できる
+- favo れる
+- retweet できる
+- timeline がある
+- reply できる
+- 自分の tweet を削除できる
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### user
 
-### `yarn eject`
+- ログインできる
+- プロフィールページが存在して機能する
+- ユーザー名を編集できる
+- user 画像が設定できる
+- header 画像が設定できる
+- follow できる
+- 自分の follower がみれる
+- 自分の following がみれる
+- bio の表示ができる
+- bio の編集ができる
+- 通知が見れる
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## いつか実装しよう
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 画像の投稿・表示ができる
+- 動画の投稿・再生
+- 下書き機能
+- スレッド機能
+- DM 機能
+- 鍵アカ
+- ブロック機能
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# どの辺が技術的挑戦要素？
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- UI をちゃんと作る(ネイティブ app の UI を再現する)
+- DDD 実践
+- ちゃんとデプロイもする
+- ちゃんとしたweb app をひととおり自分で作る
+- DB 設計(正規化)
+- TypeScript で API サーバを書く(API 設計)(Scala 学ぶ？)
+- バックエンドも動けば OK じゃなくて拡張性の高い設計をする
