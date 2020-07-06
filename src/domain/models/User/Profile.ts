@@ -9,7 +9,6 @@ import UserImage from './UserImage';
 import HeaderImage from './HeaderImage';
 
 export default class Profile implements IProfile {
-  // todo add each validation
   readonly bio: Bio;
 
   readonly birthday: Birthday;
