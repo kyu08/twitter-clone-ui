@@ -3,6 +3,7 @@ import { TODO } from '../../../util/Util';
 import Bio from './Bio';
 import Site from './Site';
 import ScreenName from './ScreenName';
+import UserName from './UserName';
 
 export default class Profile implements IProfile {
   // todo add each validation
@@ -17,7 +18,7 @@ export default class Profile implements IProfile {
 
   readonly site: Site;
 
-  readonly userName: TODO<'UserName'>;
+  readonly userName: UserName;
 
   readonly userImage: TODO<'UserImage'>;
 

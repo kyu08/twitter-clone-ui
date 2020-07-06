@@ -3,6 +3,7 @@ import { IProfile } from '../../domain/models/User/IProfile';
 import Bio from '../../domain/models/User/Bio';
 import Site from '../../domain/models/User/Site';
 import ScreenName from '../../domain/models/User/ScreenName';
+import UserName from '../../domain/models/User/UserName';
 
 export default class UserApplicationService {
   static test() {
@@ -11,8 +12,8 @@ export default class UserApplicationService {
       birthday: 'jpoge',
       headerImage: 'jpoge',
       site: new Site('hoge'),
-      screenName: new ScreenName('tartriouthweriuhu'),
-      userName: 'jpoge',
+      screenName: new ScreenName('tarthu'),
+      userName: new UserName('123'),
       userImage: 'jpoge',
       website: 'jpoge',
     };

@@ -2,6 +2,7 @@ import { TODO } from '../../../util/Util';
 import Bio from './Bio';
 import Site from './Site';
 import ScreenName from './ScreenName';
+import UserName from './UserName';
 
 export interface IProfile {
   readonly bio: Bio;
@@ -10,7 +11,7 @@ export interface IProfile {
   readonly site: Site;
   // @hoge の hoge の部分
   readonly screenName: ScreenName;
-  readonly userName: TODO<'UserName'>;
+  readonly userName: UserName;
   readonly userImage: TODO<'UserImage'>;
   readonly website: TODO<'Website'>;
 }
