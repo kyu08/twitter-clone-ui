@@ -1,5 +1,6 @@
 import { IUser } from './IUser';
 import { TODO } from '../../../util/Util';
+import Profile from './Profile';
 
 export class User implements IUser {
   readonly userId: TODO<'userId'>;
@@ -8,7 +9,7 @@ export class User implements IUser {
 
   readonly follower: TODO<'follower'>;
 
-  readonly profile: TODO<'profile'>;
+  readonly profile: Profile;
 
   constructor(props: IUser) {
     const { follower, following, profile, userId } = props;
