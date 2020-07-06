@@ -4,13 +4,13 @@ import Site from './Site';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
+import Birthday from './Birthday';
 
 export interface IProfile {
   readonly bio: Bio;
-  readonly birthday: TODO<'Birthday'>;
+  readonly birthday: Birthday;
   readonly headerImage: TODO<'HeaderImage'>;
   readonly site: Site;
-  // @hoge の hoge の部分
   readonly screenName: ScreenName;
   readonly userName: UserName;
   readonly userImage: TODO<'UserImage'>;
