@@ -5,8 +5,9 @@ import Site from '../../domain/models/User/Site';
 import ScreenName from '../../domain/models/User/ScreenName';
 import UserName from '../../domain/models/User/UserName';
 import Website from '../../domain/models/User/Website';
-import Year from '../../domain/models/User/Yaer';
+import Year from '../../domain/models/User/Year';
 import Month from '../../domain/models/User/Month';
+import Day from '../../domain/models/User/Day';
 
 export default class UserApplicationService {
   static test() {
@@ -21,7 +22,7 @@ export default class UserApplicationService {
     //   website: new Website('hogehoge.com'),
     // };
     // const hoge = new Profile(props);
-    const hoge = new Month(8);
+    const hoge = new Day(30);
     console.log(hoge);
   }
 }
