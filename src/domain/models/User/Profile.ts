@@ -25,7 +25,7 @@ export default class Profile implements IProfile {
       bio,
       birthday,
       headerImage,
-      location,
+      site,
       screenName,
       userImage,
       userName,
@@ -34,7 +34,7 @@ export default class Profile implements IProfile {
     this.bio = bio;
     this.birthday = birthday;
     this.headerImage = headerImage;
-    this.location = location;
+    this.site = site;
     this.screenName = screenName;
     this.userImage = userImage;
     this.userName = userName;
