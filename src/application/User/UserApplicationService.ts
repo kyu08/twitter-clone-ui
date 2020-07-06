@@ -2,6 +2,7 @@ import Profile from '../../domain/models/User/Profile';
 import { IProfile } from '../../domain/models/User/IProfile';
 import Bio from '../../domain/models/User/Bio';
 import Site from '../../domain/models/User/Site';
+import ScreenName from '../../domain/models/User/ScreenName';
 
 export default class UserApplicationService {
   static test() {
@@ -10,7 +11,7 @@ export default class UserApplicationService {
       birthday: 'jpoge',
       headerImage: 'jpoge',
       site: new Site('hoge'),
-      screenName: 'jpoge',
+      screenName: new ScreenName('tartriouthweriuhu'),
       userName: 'jpoge',
       userImage: 'jpoge',
       website: 'jpoge',
