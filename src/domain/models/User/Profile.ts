@@ -2,6 +2,7 @@ import { IProfile } from './IProfile';
 import { TODO } from '../../../util/Util';
 import Bio from './Bio';
 import Site from './Site';
+import ScreenName from './ScreenName';
 
 export default class Profile implements IProfile {
   // todo add each validation
@@ -11,10 +12,10 @@ export default class Profile implements IProfile {
 
   readonly headerImage: TODO<'HeaderImage'>;
 
-  readonly site: Site;
-
   // @hoge の hoge の部分
-  readonly screenName: TODO<'ScreenName'>;
+  readonly screenName: ScreenName;
+
+  readonly site: Site;
 
   readonly userName: TODO<'UserName'>;
 
@@ -27,8 +28,8 @@ export default class Profile implements IProfile {
       bio,
       birthday,
       headerImage,
-      site,
       screenName,
+      site,
       userImage,
       userName,
       website,
@@ -36,8 +37,8 @@ export default class Profile implements IProfile {
     this.bio = bio;
     this.birthday = birthday;
     this.headerImage = headerImage;
-    this.site = site;
     this.screenName = screenName;
+    this.site = site;
     this.userImage = userImage;
     this.userName = userName;
     this.website = website;
