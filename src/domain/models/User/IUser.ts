@@ -1,4 +1,5 @@
 import { TODO } from '../../../util/Util';
+import Profile from './Profile';
 
 // todo value object 使おう
 export interface IUser {
@@ -6,5 +7,5 @@ export interface IUser {
   readonly userId: TODO<'userId'>;
   readonly following: Set<TODO<'userId'>>;
   readonly follower: Set<TODO<'userId'>>;
-  readonly profile: TODO<'profile'>;
+  readonly profile: Profile;
 }
