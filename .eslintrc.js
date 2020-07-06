@@ -233,7 +233,7 @@ module.exports = {
     // eslint official
     'linebreak-style': ['error', 'unix'],
     'newline-before-return': 'error',
-    'no-console': 'warn',
+    'no-console': 'off',
     'no-continue': 'off',
     quotes: ['error', 'single', {avoidEscape: true}],
     'require-yield': 'error',
