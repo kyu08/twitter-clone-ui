@@ -4,6 +4,7 @@ import Bio from '../../domain/models/User/Bio';
 import Site from '../../domain/models/User/Site';
 import ScreenName from '../../domain/models/User/ScreenName';
 import UserName from '../../domain/models/User/UserName';
+import Website from '../../domain/models/User/Website';
 
 export default class UserApplicationService {
   static test() {
@@ -15,12 +16,9 @@ export default class UserApplicationService {
       screenName: new ScreenName('tarthu'),
       userName: new UserName('123'),
       userImage: 'jpoge',
-      website: 'jpoge',
+      website: new Website('hogehoge.com'),
     };
     const hoge = new Profile(props);
     console.log(hoge);
-
-    const bio = new Bio('hoge');
-    console.log(bio);
   }
 }

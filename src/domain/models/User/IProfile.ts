@@ -3,6 +3,7 @@ import Bio from './Bio';
 import Site from './Site';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
+import Website from './Website';
 
 export interface IProfile {
   readonly bio: Bio;
@@ -13,5 +14,5 @@ export interface IProfile {
   readonly screenName: ScreenName;
   readonly userName: UserName;
   readonly userImage: TODO<'UserImage'>;
-  readonly website: TODO<'Website'>;
+  readonly website: Website;
 }
