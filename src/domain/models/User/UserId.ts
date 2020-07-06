@@ -5,8 +5,8 @@ interface IUserId {
 export default class UserId implements IUserId {
   readonly userId: number;
 
+  // todo validation どうやれば、、不要、、？
   constructor(userId: number) {
-    // if (userId.length < )
     this.userId = userId;
   }
 }
