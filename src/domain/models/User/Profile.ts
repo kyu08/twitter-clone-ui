@@ -1,5 +1,4 @@
 import { IProfile } from './IProfile';
-import { TODO } from '../../../util/Util';
 import Bio from './Bio';
 import Site from './Site';
 import ScreenName from './ScreenName';
@@ -7,6 +6,7 @@ import UserName from './UserName';
 import Website from './Website';
 import Birthday from './Birthday';
 import UserImage from './UserImage';
+import HeaderImage from './HeaderImage';
 
 export default class Profile implements IProfile {
   // todo add each validation
@@ -14,7 +14,7 @@ export default class Profile implements IProfile {
 
   readonly birthday: Birthday;
 
-  readonly headerImage: TODO<'HeaderImage'>;
+  readonly headerImage: HeaderImage;
 
   readonly screenName: ScreenName;
 
