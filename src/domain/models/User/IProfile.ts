@@ -1,10 +1,12 @@
 import { TODO } from '../../../util/Util';
+import Bio from './Bio';
+import Site from './Site';
 
 export interface IProfile {
-  readonly bio: TODO<'Bio'>;
+  readonly bio: Bio;
   readonly birthday: TODO<'Birthday'>;
   readonly headerImage: TODO<'HeaderImage'>;
-  readonly location: TODO<'Location'>;
+  readonly site: Site;
   // @hoge の hoge の部分
   readonly screenName: TODO<'ScreenName'>;
   readonly userName: TODO<'UserName'>;
