@@ -1,6 +1,11 @@
 import React from 'react';
 import './App.css';
+import UserApplicationService from './application/User/UserApplicationService';
 
-const App = () => <div>this is domain branch.</div>;
+const App = () => {
+  UserApplicationService.test();
+
+  return <div>hoge</div>;
+};
 
 export default App;
