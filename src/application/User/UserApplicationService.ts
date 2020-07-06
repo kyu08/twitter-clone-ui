@@ -1,4 +1,5 @@
-import Day from '../../domain/models/User/Day';
+import UserImage from '../../domain/models/User/UserImage';
+import HeaderImage from '../../domain/models/User/HeaderImage';
 
 export default class UserApplicationService {
   static test() {
@@ -13,7 +14,7 @@ export default class UserApplicationService {
     //   website: new Website('hogehoge.com'),
     // };
     // const hoge = new Profile(props);
-    const hoge = new Day(30);
+    const hoge = new HeaderImage('hoge');
     console.log(hoge);
   }
 }
