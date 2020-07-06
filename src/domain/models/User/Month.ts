@@ -12,10 +12,10 @@ export default class Month implements IMonth {
   }
 
   static isInvalid(month: number): boolean {
-    const UPPER_LIMIT = 12;
     const LOWER_LIMIT = 1;
-    const isNotMonth = month > UPPER_LIMIT || month < LOWER_LIMIT;
+    const UPPER_LIMIT = 12;
+    const isInvalidRange = month < LOWER_LIMIT || month > UPPER_LIMIT;
 
-    return isNotMonth || !Number.isInteger(month);
+    return isInvalidRange || !Number.isInteger(month);
   }
 }
