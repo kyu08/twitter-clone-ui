@@ -6,6 +6,7 @@ import ScreenName from '../../domain/models/User/ScreenName';
 import UserName from '../../domain/models/User/UserName';
 import Website from '../../domain/models/User/Website';
 import Year from '../../domain/models/User/Yaer';
+import Month from '../../domain/models/User/Month';
 
 export default class UserApplicationService {
   static test() {
@@ -20,7 +21,7 @@ export default class UserApplicationService {
     //   website: new Website('hogehoge.com'),
     // };
     // const hoge = new Profile(props);
-    const hoge = new Year(2020);
+    const hoge = new Month(8);
     console.log(hoge);
   }
 }
