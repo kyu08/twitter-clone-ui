@@ -5,6 +5,7 @@ import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
 import Birthday from './Birthday';
+import UserImage from './UserImage';
 
 export interface IProfile {
   readonly bio: Bio;
@@ -13,6 +14,6 @@ export interface IProfile {
   readonly site: Site;
   readonly screenName: ScreenName;
   readonly userName: UserName;
-  readonly userImage: TODO<'UserImage'>;
+  readonly userImage: UserImage;
   readonly website: Website;
 }

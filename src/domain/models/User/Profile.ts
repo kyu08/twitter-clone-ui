@@ -6,6 +6,7 @@ import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
 import Birthday from './Birthday';
+import UserImage from './UserImage';
 
 export default class Profile implements IProfile {
   // todo add each validation
@@ -21,7 +22,7 @@ export default class Profile implements IProfile {
 
   readonly userName: UserName;
 
-  readonly userImage: TODO<'UserImage'>;
+  readonly userImage: UserImage;
 
   readonly website: Website;
 

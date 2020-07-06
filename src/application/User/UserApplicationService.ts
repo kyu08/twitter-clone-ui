@@ -1,12 +1,3 @@
-import Profile from '../../domain/models/User/Profile';
-import { IProfile } from '../../domain/models/User/IProfile';
-import Bio from '../../domain/models/User/Bio';
-import Site from '../../domain/models/User/Site';
-import ScreenName from '../../domain/models/User/ScreenName';
-import UserName from '../../domain/models/User/UserName';
-import Website from '../../domain/models/User/Website';
-import Year from '../../domain/models/User/Year';
-import Month from '../../domain/models/User/Month';
 import Day from '../../domain/models/User/Day';
 
 export default class UserApplicationService {
