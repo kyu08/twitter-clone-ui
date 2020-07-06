@@ -1,8 +1,8 @@
-import { MAX_BIO_LENGTH } from '../../../util/Util';
-
 interface IBio {
   readonly bio: string;
 }
+
+const MAX_BIO_LENGTH = 10;
 
 export default class Bio implements IBio {
   readonly bio: string;
