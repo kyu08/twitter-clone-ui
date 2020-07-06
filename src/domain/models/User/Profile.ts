@@ -1,15 +1,17 @@
 import { IProfile } from './IProfile';
 import { TODO } from '../../../util/Util';
+import Bio from './Bio';
+import Site from './Site';
 
 export default class Profile implements IProfile {
   // todo add each validation
-  readonly bio: TODO<'Bio'>;
+  readonly bio: Bio;
 
   readonly birthday: TODO<'Birthday'>;
 
   readonly headerImage: TODO<'HeaderImage'>;
 
-  readonly location: TODO<'Location'>;
+  readonly site: Site;
 
   // @hoge の hoge の部分
   readonly screenName: TODO<'ScreenName'>;
