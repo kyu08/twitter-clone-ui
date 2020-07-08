@@ -1,4 +1,5 @@
 import UserId from '../User/UserId';
+import { TODO } from '../../../util/Util';
 
 // 識別子 を先頭としてそれ以降はアルファベット順にしてみた。
 interface IAbstractTweet {
@@ -26,7 +27,9 @@ export abstract class AbstractTweet implements IAbstractTweet {
 
   readonly updatedAt: Date;
 
-  protected constructor(props: IAbstractTweet) {
+  protected constructor(
+    props: TODO<'TweetProps'> | TODO<'RetweetProps'> | TODO<'ReplyProps'>,
+  ) {
     const {
       retweetMap,
       content,
@@ -48,13 +51,15 @@ export abstract class AbstractTweet implements IAbstractTweet {
   // todo 実装したいメソッド
   // 抽象メソッド -> like / unlike , retweet / unRetweet メソッド
   // 各具象クラスのメソッド -> returnLikedTweet / returnUnlikedTweet
-  abstract like(): {};
 
-  abstract cancelLike(): {};
+  // todo この : けすと error になるのなんで
+  abstract like(): any;
 
-  abstract retweet(): {};
+  abstract cancelLike(): any;
 
-  abstract cancelRetweet(): {};
+  abstract retweet(): any;
 
-  abstract returnUpdatedInstance(): {};
+  abstract cancelRetweet(): any;
+
+  abstract returnUpdatedInstance(): any;
 }
