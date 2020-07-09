@@ -3,6 +3,7 @@ import UserId from '../User/UserId';
 import TweetId from './TweetId';
 import RetweetMap from './RetweetMap';
 import Content from './Content';
+import LikeSet from './LikeSet';
 
 interface Tweetprops {
   readonly tweetId: TweetId;

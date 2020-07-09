@@ -2,6 +2,7 @@ import TweetId from './TweetId';
 import UserId from '../User/UserId';
 import RetweetMap from './RetweetMap';
 import Content from './Content';
+import LikeSet from './LikeSet';
 
 export interface IAbstractTweet {
   readonly tweetId: TweetId;
