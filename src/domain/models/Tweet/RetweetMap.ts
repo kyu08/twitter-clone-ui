@@ -23,7 +23,7 @@ export default class RetweetMap implements IRetweetMap {
   }
 
   retweet(userId: UserId): RetweetMap {
-    const copy = _.cloneDeep(this.get());
+    const copy = _.cloneDeep(this.getRetweetMap());
     const date = new Date();
     const newProps = copy.set(userId, date);
 
@@ -32,14 +32,14 @@ export default class RetweetMap implements IRetweetMap {
 
   cancelRetweet(userId: UserId): RetweetMap {
     // todo 判定本当に必要なのか検討
-    if (!this.get().has(userId)) return this;
-    const copy = _.cloneDeep(this.get());
+    if (!this.getRetweetMap().has(userId)) return this;
+    const copy = _.cloneDeep(this.getRetweetMap());
     const newProps = copy.delete(userId);
 
     return new RetweetMap(newProps);
   }
 
-  private get(): Map<UserId, Date> {
+  private getRetweetMap(): Map<UserId, Date> {
     return this.retweetMap;
   }
 }
