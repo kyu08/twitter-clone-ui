@@ -41,15 +41,3 @@ export default class Tweet extends AbstractTweet {
     console.log(1);
   }
 }
-
-const props = {
-  tweetId: 0,
-  userId: 0,
-  content: 0,
-  retweetMap: 0,
-  likeSet: 0,
-  createdAt: 0,
-  updatedAt: 0,
-};
-const tweet = new Tweet(props);
-console.log(tweet);
