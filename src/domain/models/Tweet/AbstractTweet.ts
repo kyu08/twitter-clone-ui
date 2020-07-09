@@ -2,6 +2,8 @@ import UserId from '../User/UserId';
 import { TODO } from '../../../util/Util';
 import TweetId from './TweetId';
 import { IAbstractTweet } from './IAbstractTweet';
+import Content from './Content';
+import RetweetMap from './RetweetMap';
 
 export abstract class AbstractTweet implements IAbstractTweet {
   readonly tweetId: TweetId;
