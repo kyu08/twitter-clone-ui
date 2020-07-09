@@ -1,16 +1,7 @@
 import UserId from '../User/UserId';
 import { TODO } from '../../../util/Util';
-
-// 識別子 を先頭としてそれ以降はアルファベット順にしてみた。
-interface IAbstractTweet {
-  readonly tweetId: TweetId;
-  readonly userId: UserId;
-  readonly content: Content;
-  readonly retweetMap: RetweetMap;
-  readonly likeSet: LikeSet;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
-}
+import TweetId from './TweetId';
+import { IAbstractTweet } from './IAbstractTweet';
 
 export abstract class AbstractTweet implements IAbstractTweet {
   readonly tweetId: TweetId;
