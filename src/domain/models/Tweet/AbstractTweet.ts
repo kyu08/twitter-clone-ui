@@ -17,8 +17,9 @@ export abstract class AbstractTweet implements IAbstractTweet {
 
   readonly likeSet: LikeSet;
 
-  readonly createdAt: Date;
+  readonly tweetedAt: Date;
 
+  // timeline の表示ロジックにもよるけどたぶんいらない気がする
   readonly updatedAt: Date;
 
   protected constructor(
@@ -38,7 +39,7 @@ export abstract class AbstractTweet implements IAbstractTweet {
     this.content = content;
     this.retweetMap = retweetMap;
     this.likeSet = likeSet;
-    this.createdAt = createdAt;
+    this.tweetedAt = createdAt;
     this.updatedAt = updatedAt;
   }
 
