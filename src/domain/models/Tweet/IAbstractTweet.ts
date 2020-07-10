@@ -5,6 +5,7 @@ import Content from './Content';
 import LikeSet from './LikeSet';
 
 export interface AbstractTweetProps {
+  // protedted にできるやつはしよう
   readonly tweetId: TweetId;
   readonly userId: UserId;
   readonly content: Content;
