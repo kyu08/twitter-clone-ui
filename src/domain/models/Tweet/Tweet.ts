@@ -10,7 +10,6 @@ export default class Tweet extends AbstractTweet {
   }
 
   like(userId: UserId): AbstractTweet {
-    console.log(userId);
     const likeSet = this.likeSet.like(userId);
     const props = { ...this, likeSet };
 
