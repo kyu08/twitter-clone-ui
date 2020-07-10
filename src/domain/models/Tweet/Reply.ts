@@ -1,6 +1,7 @@
 import { AbstractTweet } from './AbstractTweet';
 import { AbstractTweetProps, IAbstractTweet } from './IAbstractTweet';
 import TweetId from './TweetId';
+import UserId from '../User/UserId';
 
 interface ReplyProps extends AbstractTweetProps {
   readonly replyTo: TweetId;
@@ -19,8 +20,11 @@ export default class Reply extends AbstractTweet implements IReply {
     this.replyTo = replyTo;
   }
 
-  like(): any {
-    console.log(1);
+  like(userId: UserId): AbstractTweet {
+    const likeSet = this.likeSet.like(userId);
+    const props = { ...this, likeSet };
+
+    return new Reply(props);
   }
 
   cancelLike(): any {

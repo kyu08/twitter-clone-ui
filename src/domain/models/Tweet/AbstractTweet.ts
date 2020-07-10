@@ -47,8 +47,7 @@ export abstract class AbstractTweet implements IAbstractTweet {
   // 抽象メソッド -> like / unlike , retweet / unRetweet メソッド
   // 各具象クラスのメソッド -> returnLikedTweet / returnUnlikedTweet
 
-  // todo この : けすと error になるのなんで
-  abstract like(): any;
+  abstract like(userId: UserId): AbstractTweet;
 
   abstract cancelLike(): any;
 

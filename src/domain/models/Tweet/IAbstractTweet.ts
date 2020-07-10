@@ -16,7 +16,7 @@ export interface AbstractTweetProps {
 }
 
 export interface IAbstractTweet extends AbstractTweetProps {
-  like(): any;
+  like(userId: UserId): IAbstractTweet;
   cancelLike(): any;
   retweet(): any;
   cancelRetweet(): any;
