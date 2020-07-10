@@ -4,7 +4,7 @@ import RetweetMap from './RetweetMap';
 import Content from './Content';
 import LikeSet from './LikeSet';
 
-export interface IAbstractTweet {
+export interface AbstractTweetProps {
   readonly tweetId: TweetId;
   readonly userId: UserId;
   readonly content: Content;
@@ -12,4 +12,12 @@ export interface IAbstractTweet {
   readonly likeSet: LikeSet;
   readonly createdAt: Date;
   readonly updatedAt: Date;
+}
+
+export interface IAbstractTweet extends AbstractTweetProps {
+  like(): any;
+  cancelLike(): any;
+  retweet(): any;
+  cancelRetweet(): any;
+  returnUpdatedInstance(): any;
 }
