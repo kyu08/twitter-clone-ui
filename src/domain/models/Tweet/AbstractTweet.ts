@@ -49,7 +49,7 @@ export abstract class AbstractTweet implements IAbstractTweet {
 
   abstract like(userId: UserId): AbstractTweet;
 
-  abstract cancelLike(): any;
+  abstract cancelLike(userId: UserId): AbstractTweet;
 
   abstract retweet(): any;
 

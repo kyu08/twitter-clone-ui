@@ -16,8 +16,11 @@ export default class Tweet extends AbstractTweet {
     return new Tweet(props);
   }
 
-  cancelLike(): any {
-    console.log(1);
+  cancelLike(userId: UserId): AbstractTweet {
+    const likeSet = this.likeSet.cancelLike(userId);
+    const props = { ...this, likeSet };
+
+    return new Tweet(props);
   }
 
   retweet(): any {
