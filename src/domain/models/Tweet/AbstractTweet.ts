@@ -26,20 +26,20 @@ export abstract class AbstractTweet implements IAbstractTweet {
     props: TODO<'TweetProps'> | TODO<'RetweetProps'> | TODO<'ReplyProps'>,
   ) {
     const {
-      retweetMap,
-      content,
-      createdAt,
-      likeSet,
       tweetId,
-      updatedAt,
       userId,
+      content,
+      retweetMap,
+      likeSet,
+      tweetedAt,
+      updatedAt,
     } = props;
     this.tweetId = tweetId;
     this.userId = userId;
     this.content = content;
     this.retweetMap = retweetMap;
     this.likeSet = likeSet;
-    this.tweetedAt = createdAt;
+    this.tweetedAt = tweetedAt;
     this.updatedAt = updatedAt;
   }
 
