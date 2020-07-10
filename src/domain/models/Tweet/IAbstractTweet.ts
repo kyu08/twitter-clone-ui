@@ -10,7 +10,7 @@ export interface AbstractTweetProps {
   readonly content: Content;
   readonly retweetMap: RetweetMap;
   readonly likeSet: LikeSet;
-  readonly createdAt: Date;
+  readonly tweetedAt: Date;
   readonly updatedAt: Date;
 }
 
