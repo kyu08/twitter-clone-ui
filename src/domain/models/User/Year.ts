@@ -10,7 +10,7 @@ export default class Year implements IYear {
     this.year = year;
   }
 
-  static isInvalid(year: number): boolean {
+  private static isInvalid(year: number): boolean {
     const now = new Date();
     const LOWER_LIMIT = 1900;
     const UPPER_LIMIT = now.getFullYear();
