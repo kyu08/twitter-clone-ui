@@ -17,10 +17,11 @@ export default class LikeSet implements ILikeSet {
     // note! ここの = [] 自信ない
     likeSetProp: Set<UserId> | TODO<'setProps(JSON.parseしたやつ)'> = [],
   ) {
-    if (likeSetProp instanceof Set) this.likeSet = likeSetProp;
-
-    // note! ここ動く自信あまりない
-    this.likeSet = new Set(likeSetProp);
+    if (likeSetProp instanceof Set) {
+      this.likeSet = likeSetProp;
+    } else {
+      this.likeSet = new Set(likeSetProp);
+    }
   }
 
   like(userId: UserId): LikeSet {
