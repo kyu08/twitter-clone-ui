@@ -5,6 +5,8 @@ import { TODO } from '../../../util/Util';
 interface IRetweetMap {
   // todo ここ Date だと不十分？ 値オブジェクト作った方がいい？
   readonly retweetMap: Map<UserId, Date>;
+  retweet(userId: UserId): RetweetMap;
+  cancelRetweet(userId: UserId): RetweetMap;
 }
 
 export default class RetweetMap implements IRetweetMap {
@@ -22,6 +24,10 @@ export default class RetweetMap implements IRetweetMap {
     this.retweetMap = new Map(retweetMapProp);
   }
 
+  private getRetweetMap(): Map<UserId, Date> {
+    return this.retweetMap;
+  }
+
   retweet(userId: UserId): RetweetMap {
     const copy = _.cloneDeep(this.getRetweetMap());
     const date = new Date();
@@ -37,9 +43,5 @@ export default class RetweetMap implements IRetweetMap {
     const newProps = copy.delete(userId);
 
     return new RetweetMap(newProps);
-  }
-
-  private getRetweetMap(): Map<UserId, Date> {
-    return this.retweetMap;
   }
 }
