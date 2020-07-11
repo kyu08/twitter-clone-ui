@@ -73,4 +73,11 @@ export default class Profile implements IProfile {
 
     return new Profile(updatedProps);
   }
+
+  updateUserName(userNameString: string): Profile {
+    const userName = new UserName(userNameString);
+    const updatedProps = { ...this, userName };
+
+    return new Profile(updatedProps);
+  }
 }

@@ -19,4 +19,5 @@ export interface IUser {
   returnUpdatedInstance<T extends keyof IUser>(key: T, value: IUser[T]): IUser;
   updateUserLocation(userLocationString: string): IUser;
   updateWebsite(webSiteString: string): IUser;
+  updateUserName(userNameString: string): IUser;
 }
