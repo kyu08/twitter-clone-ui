@@ -13,7 +13,6 @@ type IReply = ReplyProps & IAbstractTweet;
 export default class Reply extends AbstractTweet implements IReply {
   readonly replyTo: TweetId;
 
-  // eslint-disable-next-line no-useless-constructor
   constructor(props: ReplyProps) {
     super(props);
     const { replyTo } = props;
