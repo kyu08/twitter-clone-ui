@@ -23,7 +23,6 @@ export default class LikeSet implements ILikeSet {
   }
 
   cancelLike(userId: UserId): LikeSet {
-    // todo 判定本当に必要なのか検討
     if (!this.getLikeSet().has(userId)) return this;
     const copy = _.cloneDeep(this.getLikeSet());
 
