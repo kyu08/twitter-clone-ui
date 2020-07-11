@@ -1,13 +1,7 @@
 import * as _ from 'lodash';
-import UserId from '../User/UserId/UserId';
-import { TODO } from '../../../util/Util';
-
-interface IRetweetMap {
-  // todo ここ Date だと不十分？ 値オブジェクト作った方がいい？
-  readonly retweetMap: Map<UserId, Date>;
-  retweet(userId: UserId): RetweetMap;
-  cancelRetweet(userId: UserId): RetweetMap;
-}
+import UserId from '../../User/UserId/UserId';
+import { TODO } from '../../../../util/Util';
+import { IRetweetMap } from './IRetweetMap';
 
 export default class RetweetMap implements IRetweetMap {
   readonly retweetMap: Map<UserId, Date>;

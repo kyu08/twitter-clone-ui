@@ -1,12 +1,6 @@
 import * as _ from 'lodash';
-import UserId from '../User/UserId/UserId';
-
-interface ILikeSet {
-  // todo ここ Date だと不十分？ 値オブジェクト作った方がいい？
-  readonly likeSet: Set<UserId>;
-  like(userId: UserId): LikeSet;
-  cancelLike(userId: UserId): LikeSet;
-}
+import UserId from '../../User/UserId/UserId';
+import { ILikeSet } from './ILikeSet';
 
 export default class LikeSet implements ILikeSet {
   readonly likeSet: Set<UserId>;

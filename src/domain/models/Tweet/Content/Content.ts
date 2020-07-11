@@ -1,6 +1,4 @@
-interface IContent {
-  readonly content: string;
-}
+import { IContent } from './IContent';
 
 export default class Content implements IContent {
   readonly content: string;

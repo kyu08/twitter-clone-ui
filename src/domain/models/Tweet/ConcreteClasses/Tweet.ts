@@ -1,6 +1,6 @@
-import { AbstractTweet } from './AbstractTweet';
-import { AbstractTweetProps } from './IAbstractTweet';
-import UserId from '../User/UserId/UserId';
+import { AbstractTweet } from '../AbstractTweet';
+import { AbstractTweetProps } from '../IAbstractTweet';
+import UserId from '../../User/UserId/UserId';
 
 // todo SingleTweet とかにする？
 export default class Tweet extends AbstractTweet {

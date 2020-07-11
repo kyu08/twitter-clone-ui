@@ -1,8 +1,8 @@
-import TweetId from './TweetId';
+import TweetId from './TweetId/TweetId';
 import UserId from '../User/UserId/UserId';
-import RetweetMap from './RetweetMap';
-import Content from './Content';
-import LikeSet from './LikeSet';
+import RetweetMap from './RetweetMap/RetweetMap';
+import Content from './Content/Content';
+import LikeSet from './LikeSet/LikeSet';
 
 export interface AbstractTweetProps {
   // protedted にできるやつはしよう

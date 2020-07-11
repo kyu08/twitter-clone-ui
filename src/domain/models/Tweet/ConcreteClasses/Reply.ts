@@ -1,7 +1,7 @@
-import { AbstractTweet } from './AbstractTweet';
-import { AbstractTweetProps, IAbstractTweet } from './IAbstractTweet';
-import TweetId from './TweetId';
-import UserId from '../User/UserId/UserId';
+import { AbstractTweet } from '../AbstractTweet';
+import { AbstractTweetProps, IAbstractTweet } from '../IAbstractTweet';
+import TweetId from '../TweetId/TweetId';
+import UserId from '../../User/UserId/UserId';
 
 interface ReplyProps extends AbstractTweetProps {
   readonly replyTo: TweetId;

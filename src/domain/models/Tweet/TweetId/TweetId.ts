@@ -1,6 +1,4 @@
-interface ITweetId {
-  readonly tweetId: string;
-}
+import { ITweetId } from './ITweetId';
 
 export default class TweetId implements ITweetId {
   readonly tweetId: string;
