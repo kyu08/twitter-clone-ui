@@ -12,10 +12,8 @@ interface UserProps {
 }
 
 export class User implements IUser {
-  // todo まだ中身実装してない
   readonly follower: Follower;
 
-  // todo まだ中身実装してない
   readonly following: Following;
 
   // todo あとImage系の実装
