@@ -1,8 +1,5 @@
-import UserId from './UserId';
-
-interface IFollowing {
-  readonly following: Set<UserId>;
-}
+import UserId from '../UserId/UserId';
+import { IFollowing } from './IFollowing';
 
 export default class Following implements IFollowing {
   readonly following: Set<UserId>;

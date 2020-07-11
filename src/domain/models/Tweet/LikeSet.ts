@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import UserId from '../User/UserId';
+import UserId from '../User/UserId/UserId';
 
 interface ILikeSet {
   // todo ここ Date だと不十分？ 値オブジェクト作った方がいい？

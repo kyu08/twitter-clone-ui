@@ -1,6 +1,4 @@
-interface IUserId {
-  readonly userId: number;
-}
+import { IUserId } from './IUserId';
 
 export default class UserId implements IUserId {
   readonly userId: number;

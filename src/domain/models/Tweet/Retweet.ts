@@ -1,6 +1,6 @@
 import { AbstractTweet } from './AbstractTweet';
 import { AbstractTweetProps, IAbstractTweet } from './IAbstractTweet';
-import UserId from '../User/UserId';
+import UserId from '../User/UserId/UserId';
 
 interface RetweetProps extends AbstractTweetProps {
   readonly userId: UserId;

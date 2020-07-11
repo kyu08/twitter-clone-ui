@@ -1,8 +1,5 @@
-import UserId from './UserId';
-
-interface IFollower {
-  readonly follower: Set<UserId>;
-}
+import UserId from '../UserId/UserId';
+import { IFollower } from './IFollower';
 
 export default class Follower implements IFollower {
   readonly follower: Set<UserId>;

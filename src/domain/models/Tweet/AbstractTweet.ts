@@ -1,4 +1,4 @@
-import UserId from '../User/UserId';
+import UserId from '../User/UserId/UserId';
 import { TODO } from '../../../util/Util';
 import TweetId from './TweetId';
 import { IAbstractTweet } from './IAbstractTweet';

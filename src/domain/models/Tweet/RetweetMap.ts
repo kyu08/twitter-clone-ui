@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import UserId from '../User/UserId';
+import UserId from '../User/UserId/UserId';
 import { TODO } from '../../../util/Util';
 
 interface IRetweetMap {
