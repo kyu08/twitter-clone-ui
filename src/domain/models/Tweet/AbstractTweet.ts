@@ -7,6 +7,7 @@ import RetweetMap from './RetweetMap/RetweetMap';
 import LikeSet from './LikeSet/LikeSet';
 
 export abstract class AbstractTweet implements IAbstractTweet {
+  // protedted にできるやつはしよう
   readonly tweetId: TweetId;
 
   readonly userId: UserId;
@@ -51,9 +52,9 @@ export abstract class AbstractTweet implements IAbstractTweet {
 
   abstract cancelLike(userId: UserId): AbstractTweet;
 
-  abstract retweet(): any;
+  abstract retweet(userId: UserId): AbstractTweet;
 
-  abstract cancelRetweet(): any;
+  abstract cancelRetweet(userId: UserId): AbstractTweet;
 
   abstract returnUpdatedInstance(): any;
 }

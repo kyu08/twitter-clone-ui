@@ -37,12 +37,18 @@ export default class Retweet extends AbstractTweet implements IRetweet {
     return new Retweet(props);
   }
 
-  retweet(): any {
-    console.log(1);
+  retweet(userId: UserId): Retweet {
+    const retweetMap = this.retweetMap.retweet(userId);
+    const props = { ...this, retweetMap };
+
+    return new Retweet(props);
   }
 
-  cancelRetweet(): any {
-    console.log(1);
+  cancelRetweet(userId: UserId): Retweet {
+    const retweetMap = this.retweetMap.cancelRetweet(userId);
+    const props = { ...this, retweetMap };
+
+    return new Retweet(props);
   }
 
   returnUpdatedInstance(): any {

@@ -34,12 +34,18 @@ export default class Reply extends AbstractTweet implements IReply {
     return new Reply(props);
   }
 
-  retweet(): any {
-    console.log(1);
+  retweet(userId: UserId): Reply {
+    const retweetMap = this.retweetMap.retweet(userId);
+    const props = { ...this, retweetMap };
+
+    return new Reply(props);
   }
 
-  cancelRetweet(): any {
-    console.log(1);
+  cancelRetweet(userId: UserId): Reply {
+    const retweetMap = this.retweetMap.cancelRetweet(userId);
+    const props = { ...this, retweetMap };
+
+    return new Reply(props);
   }
 
   returnUpdatedInstance(): any {

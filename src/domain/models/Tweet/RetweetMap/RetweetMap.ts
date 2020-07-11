@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import UserId from '../../User/UserId/UserId';
 import { TODO } from '../../../../util/Util';
+// eslint-disable-next-line import/no-cycle
 import { IRetweetMap } from './IRetweetMap';
 
 export default class RetweetMap implements IRetweetMap {
@@ -34,8 +35,8 @@ export default class RetweetMap implements IRetweetMap {
     // todo 判定本当に必要なのか検討
     if (!this.getRetweetMap().has(userId)) return this;
     const copy = _.cloneDeep(this.getRetweetMap());
-    const newProps = copy.delete(userId);
+    copy.delete(userId);
 
-    return new RetweetMap(newProps);
+    return new RetweetMap(copy);
   }
 }

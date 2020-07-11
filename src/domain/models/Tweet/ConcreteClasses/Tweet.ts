@@ -9,26 +9,32 @@ export default class Tweet extends AbstractTweet {
     super(props);
   }
 
-  like(userId: UserId): AbstractTweet {
+  like(userId: UserId): Tweet {
     const likeSet = this.likeSet.like(userId);
     const props = { ...this, likeSet };
 
     return new Tweet(props);
   }
 
-  cancelLike(userId: UserId): AbstractTweet {
+  cancelLike(userId: UserId): Tweet {
     const likeSet = this.likeSet.cancelLike(userId);
     const props = { ...this, likeSet };
 
     return new Tweet(props);
   }
 
-  retweet(): any {
-    console.log(1);
+  retweet(userId: UserId): Tweet {
+    const retweetMap = this.retweetMap.retweet(userId);
+    const props = { ...this, retweetMap };
+
+    return new Tweet(props);
   }
 
-  cancelRetweet(): any {
-    console.log(1);
+  cancelRetweet(userId: UserId): Tweet {
+    const retweetMap = this.retweetMap.cancelRetweet(userId);
+    const props = { ...this, retweetMap };
+
+    return new Tweet(props);
   }
 
   returnUpdatedInstance(): any {
