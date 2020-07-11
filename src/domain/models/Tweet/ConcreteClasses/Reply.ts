@@ -47,8 +47,4 @@ export default class Reply extends AbstractTweet implements IReply {
 
     return new Reply(props);
   }
-
-  returnUpdatedInstance(): any {
-    console.log(1);
-  }
 }

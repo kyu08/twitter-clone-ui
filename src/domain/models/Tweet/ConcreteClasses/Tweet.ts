@@ -36,8 +36,4 @@ export default class Tweet extends AbstractTweet {
 
     return new Tweet(props);
   }
-
-  returnUpdatedInstance(): any {
-    console.log(1);
-  }
 }

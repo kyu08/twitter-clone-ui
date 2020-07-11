@@ -55,6 +55,4 @@ export abstract class AbstractTweet implements IAbstractTweet {
   abstract retweet(userId: UserId): AbstractTweet;
 
   abstract cancelRetweet(userId: UserId): AbstractTweet;
-
-  abstract returnUpdatedInstance(): any;
 }

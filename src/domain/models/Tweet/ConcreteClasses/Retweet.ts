@@ -50,8 +50,4 @@ export default class Retweet extends AbstractTweet implements IRetweet {
 
     return new Retweet(props);
   }
-
-  returnUpdatedInstance(): any {
-    console.log(1);
-  }
 }
