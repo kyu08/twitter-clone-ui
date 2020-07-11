@@ -11,4 +11,6 @@ export interface IUser {
   readonly userId: UserId;
   follow(userId: UserId): IUser;
   unFollow(userId: UserId): IUser;
+  followed(userId: UserId): IUser;
+  unFollowed(userId: UserId): IUser;
 }

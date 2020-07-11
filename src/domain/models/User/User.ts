@@ -53,4 +53,18 @@ export class User implements IUser {
 
     return new User(props);
   }
+
+  followed(userId: UserId): User {
+    const follower = this.getFollower().followed(userId);
+    const props = { ...this, follower };
+
+    return new User(props);
+  }
+
+  unFollowed(userId: UserId): User {
+    const follower = this.getFollower().unFollowed(userId);
+    const props = { ...this, follower };
+
+    return new User(props);
+  }
 }
