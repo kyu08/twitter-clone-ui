@@ -26,6 +26,7 @@ export interface IProfile {
   updateUserLocation(userLocationString: string): IProfile;
   updateWebsite(webSiteString: string): IProfile;
   updateUserName(userNameString: string): IProfile;
+  // todo メソッド実装する
   // updateScreenName(): IProfile;
   // updateHeaderImage(): IProfile;
   // updateUserImage(): IProfile;
