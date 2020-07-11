@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 import UserId from '../UserId/UserId';
-// eslint-disable-next-line import/no-cycle
 import { IFollowing } from './IFollowing';
 import { deleteFromSet } from '../../../../util/Util';
 
