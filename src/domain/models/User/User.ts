@@ -4,6 +4,13 @@ import UserId from './UserId/UserId';
 import Following from './Following/Following';
 import Follower from './Follower/Follower';
 
+interface UserProps {
+  readonly follower: Follower;
+  readonly following: Following;
+  readonly profile: Profile;
+  readonly userId: UserId;
+}
+
 export class User implements IUser {
   // todo まだ中身実装してない
   readonly follower: Follower;
@@ -17,7 +24,7 @@ export class User implements IUser {
   // todo まだ中身実装してない
   readonly userId: UserId;
 
-  constructor(props: IUser) {
+  constructor(props: UserProps) {
     const { follower, following, profile, userId } = props;
     this.follower = follower;
     this.following = following;
