@@ -3,19 +3,20 @@ import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
-import Birthday from './Birthday';
+import Birthday, { IBirthday } from './Birthday';
 import UserImage from './UserImage';
 import HeaderImage from './HeaderImage';
 
 export interface ProfileProps {
-  readonly bio: Bio;
-  readonly birthday: Birthday;
-  readonly headerImage: HeaderImage;
-  // UserLocation とかでもいいかもね
-  readonly userLocation: UserLocation;
   readonly screenName: ScreenName;
   readonly userName: UserName;
+  // imageURL にする？
+  readonly headerImage: HeaderImage;
+  // imageURL にする？
   readonly userImage: UserImage;
+  readonly bio: Bio;
+  readonly birthday: Birthday;
+  readonly userLocation: UserLocation;
   readonly website: Website;
 }
 
