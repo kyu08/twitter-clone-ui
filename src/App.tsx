@@ -4,7 +4,8 @@ import { TweetApplicationService } from './application/Tweet/TweetApplicationSer
 import UserApplicationService from './application/User/UserApplicationService';
 
 const App = () => {
-  TweetApplicationService.test();
+  // TweetApplicationService.test();
+  UserApplicationService.test();
 
   return <div>hoge</div>;
 };

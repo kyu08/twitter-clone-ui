@@ -1,7 +1,10 @@
 import HeaderImage from '../../domain/models/User/Profile/HeaderImage';
 import Bio from '../../domain/models/User/Profile/Bio';
-import { IProfile } from '../../domain/models/User/Profile/IProfile';
-import Site from '../../domain/models/User/Profile/Site';
+import {
+  IProfile,
+  ProfileProps,
+} from '../../domain/models/User/Profile/IProfile';
+import UserLocation from '../../domain/models/User/Profile/UserLocation';
 import ScreenName from '../../domain/models/User/Profile/ScreenName';
 import UserName from '../../domain/models/User/Profile/UserName';
 import Website from '../../domain/models/User/Profile/Website';
@@ -23,11 +26,11 @@ export default class UserApplicationService {
       month: new Month(1),
       year: new Year(1919),
     };
-    const props: IProfile = {
+    const props: ProfileProps = {
       bio: new Bio('hoeg'),
       birthday: new Birthday(birthdayProps),
       headerImage: new HeaderImage('hoge'),
-      site: new Site('hoge'),
+      userLocation: new UserLocation('hoge'),
       screenName: new ScreenName('tarthu'),
       userName: new UserName('123'),
       userImage: new UserImage('userimage'),
@@ -42,7 +45,9 @@ export default class UserApplicationService {
     };
     const user = new User(userProps);
     const userIdB = new UserId(23);
-    const userUpdated = user.follow(userIdB);
+    const userUpdated = user.followed(userIdB);
+    const userUnFollowed = userUpdated.unFollowed(userIdB);
     console.log(userUpdated);
+    console.log(userUnFollowed);
   }
 }
