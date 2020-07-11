@@ -7,7 +7,7 @@ import Birthday from './Birthday';
 import UserImage from './UserImage';
 import HeaderImage from './HeaderImage';
 
-export interface IProfile {
+export interface ProfileProps {
   readonly bio: Bio;
   readonly birthday: Birthday;
   readonly headerImage: HeaderImage;
@@ -16,4 +16,8 @@ export interface IProfile {
   readonly userName: UserName;
   readonly userImage: UserImage;
   readonly website: Website;
+}
+
+export interface IProfile {
+  // methods
 }

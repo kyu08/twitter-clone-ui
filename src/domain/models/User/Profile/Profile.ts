@@ -1,4 +1,4 @@
-import { IProfile } from './IProfile';
+import { IProfile, ProfileProps } from './IProfile';
 import Bio from './Bio';
 import Site from './Site';
 import ScreenName from './ScreenName';
@@ -25,7 +25,7 @@ export default class Profile implements IProfile {
 
   readonly website: Website;
 
-  constructor(props: IProfile) {
+  constructor(props: ProfileProps) {
     const {
       bio,
       birthday,
