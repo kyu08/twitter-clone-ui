@@ -47,8 +47,15 @@ export default class Profile implements IProfile {
   }
 
   updateBio(bioString: string): Profile {
-    const bio = Bio.editBio(bioString);
+    const bio = new Bio(bioString);
     const updatedProps = { ...this, bio };
+
+    return new Profile(updatedProps);
+  }
+
+  updateBirthday(birthdayProps: IBirthday): Profile {
+    const birthday = new Birthday(birthdayProps);
+    const updatedProps = { ...this, birthday };
 
     return new Profile(updatedProps);
   }

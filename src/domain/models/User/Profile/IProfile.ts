@@ -22,7 +22,7 @@ export interface ProfileProps {
 
 export interface IProfile {
   updateBio(bioString: string): IProfile;
-  // updateBirthday(): IProfile;
+  updateBirthday(birthdayProps: IBirthday): IProfile;
   // updateHeaderImage(): IProfile;
   // updateSite(): IProfile;
   // update(): IProfile;
