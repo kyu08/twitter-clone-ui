@@ -46,4 +46,11 @@ export class User implements IUser {
 
     return new User(props);
   }
+
+  unFollow(userId: UserId): User {
+    const following = this.getFollowing().unFollow(userId);
+    const props = { ...this, following };
+
+    return new User(props);
+  }
 }
