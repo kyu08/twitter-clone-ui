@@ -26,8 +26,8 @@ export class TweetApplicationService {
     const tweet = new Tweet(props);
     const userA = new UserId(1234);
     // const userB = new UserId(12344);
-    const tweetB = tweet.retweet(userA);
-    const tweetC = tweetB.cancelRetweet(userA);
+    const tweetB = tweet.like(userA);
+    const tweetC = tweetB.cancelLike(userA);
     console.log(tweetB);
     // const tweetC = tweetB.cancelLike(userA);
     console.log(tweetC);

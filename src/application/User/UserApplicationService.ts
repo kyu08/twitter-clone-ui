@@ -1,31 +1,48 @@
-// import UserImage from '../../domain/models/User/UserImage';
-import HeaderImage from '../../domain/models/User/HeaderImage';
-import Tweet from '../../domain/models/Tweet/Tweet';
-import Content from '../../domain/models/Tweet/Content';
+import HeaderImage from '../../domain/models/User/Profile/HeaderImage';
+import Bio from '../../domain/models/User/Profile/Bio';
+import { IProfile } from '../../domain/models/User/Profile/IProfile';
+import Site from '../../domain/models/User/Profile/Site';
+import ScreenName from '../../domain/models/User/Profile/ScreenName';
+import UserName from '../../domain/models/User/Profile/UserName';
+import Website from '../../domain/models/User/Profile/Website';
+import Profile from '../../domain/models/User/Profile/Profile';
+import UserImage from '../../domain/models/User/Profile/UserImage';
+import Day from '../../domain/models/User/Profile/Birthday/Day';
+import Month from '../../domain/models/User/Profile/Birthday/Month';
+import Year from '../../domain/models/User/Profile/Birthday/Year';
+import Birthday from '../../domain/models/User/Profile/Birthday';
+import Follower from '../../domain/models/User/Follower/Follower';
+import Following from '../../domain/models/User/Following/Following';
+import { User } from '../../domain/models/User/User';
+import UserId from '../../domain/models/User/UserId/UserId';
 
 export default class UserApplicationService {
   static test() {
-    // const props: IProfile = {
-    //   bio: new Bio('hoeg'),
-    //   birthday: 'jpoge',
-    //   headerImage: 'jpoge',
-    //   site: new Site('hoge'),
-    //   screenName: new ScreenName('tarthu'),
-    //   userName: new UserName('123'),
-    //   userImage: 'jpoge',
-    //   website: new Website('hogehoge.com'),
-    // };
-    // const hoge = new Profile(props);
-    // const props = {
-    //   tweetId: 0,
-    //   userId: 0,
-    //   content: 0,
-    //   retweetMap: 0,
-    //   likeSet: 0,
-    //   createdAt: 0,
-    //   updatedAt: 0,
-    // };
-    // const tweet = new Tweet(props);
-    // console.log(tweet);
+    const birthdayProps = {
+      day: new Day(15),
+      month: new Month(1),
+      year: new Year(1919),
+    };
+    const props: IProfile = {
+      bio: new Bio('hoeg'),
+      birthday: new Birthday(birthdayProps),
+      headerImage: new HeaderImage('hoge'),
+      site: new Site('hoge'),
+      screenName: new ScreenName('tarthu'),
+      userName: new UserName('123'),
+      userImage: new UserImage('userimage'),
+      website: new Website('hogehoge.com'),
+    };
+    const profile = new Profile(props);
+    const userProps = {
+      follower: new Follower(new Set()),
+      following: new Following(new Set()),
+      profile,
+      userId: new UserId(123123),
+    };
+    const user = new User(userProps);
+    const userIdB = new UserId(23);
+    const userUpdated = user.follow(userIdB);
+    console.log(userUpdated);
   }
 }
