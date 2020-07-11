@@ -1,6 +1,8 @@
 import * as _ from 'lodash';
 import UserId from '../../User/UserId/UserId';
+// eslint-disable-next-line import/no-cycle
 import { ILikeSet } from './ILikeSet';
+import { deleteFromSet } from '../../../../util/Util';
 
 export default class LikeSet implements ILikeSet {
   readonly likeSet: Set<UserId>;
@@ -24,21 +26,10 @@ export default class LikeSet implements ILikeSet {
 
   cancelLike(userId: UserId): LikeSet {
     if (!this.getLikeSet().has(userId)) return this;
-    const copy = _.cloneDeep(this.getLikeSet());
+    const copiedLikeSet = _.cloneDeep(this.getLikeSet());
+    const updatedLikeSet = deleteFromSet(copiedLikeSet, userId);
 
-    // todo ↓これも
-    const userIdFound = Array.from(copy.values()).find(
-      (e) => e.userId === userId.userId,
-    );
-    if (userIdFound) copy.delete(userIdFound);
-
-    // todo ↓これもあまり綺麗でない
-    // for (const value of copy.values()) {
-    //   if (value.userId === userId.userId) copy.delete(value);
-    //   break;
-    // }
-
-    return new LikeSet(copy);
+    return new LikeSet(updatedLikeSet);
   }
 
   private getLikeSet(): Set<UserId> {
