@@ -59,4 +59,11 @@ export default class Profile implements IProfile {
 
     return new Profile(updatedProps);
   }
+
+  updateUserLocation(userLocationString: string): Profile {
+    const userLocation = new UserLocation(userLocationString);
+    const updatedProps = { ...this, userLocation };
+
+    return new Profile(updatedProps);
+  }
 }

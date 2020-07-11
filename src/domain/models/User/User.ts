@@ -80,6 +80,12 @@ export class User implements IUser {
     return this.returnUpdatedInstance('profile', profile);
   }
 
+  updateUserLocation(userLocationString: string): User {
+    const profile = this.getProfile().updateUserLocation(userLocationString);
+
+    return this.returnUpdatedInstance('profile', profile);
+  }
+
   returnUpdatedInstance<T extends keyof User>(key: T, value: User[T]): User {
     return new User({ ...this, ...{ [key]: value } });
   }

@@ -23,11 +23,10 @@ export interface ProfileProps {
 export interface IProfile {
   updateBio(bioString: string): IProfile;
   updateBirthday(birthdayProps: IBirthday): IProfile;
+  updateUserLocation(userLocationString: string): IProfile;
+  // updateWebsite(): IProfile;
+  // updateUserName(): IProfile;
+  // updateScreenName(): IProfile;
   // updateHeaderImage(): IProfile;
-  // updateSite(): IProfile;
-  // update(): IProfile;
-  // update(): IProfile;
-  // update(): IProfile;
-  // update(): IProfile;
-  // update(): IProfile;
+  // updateUserImage(): IProfile;
 }

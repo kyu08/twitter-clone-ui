@@ -17,4 +17,5 @@ export interface IUser {
   updateBio(bioString: string): IUser;
   updateBirthday(birthdayProps: IBirthday): IUser;
   returnUpdatedInstance<T extends keyof IUser>(key: T, value: IUser[T]): IUser;
+  updateUserLocation(userLocationString: string): IUser;
 }
