@@ -86,6 +86,12 @@ export class User implements IUser {
     return this.returnUpdatedInstance('profile', profile);
   }
 
+  updateWebsite(webSiteString: string): User {
+    const profile = this.getProfile().updateWebsite(webSiteString);
+
+    return this.returnUpdatedInstance('profile', profile);
+  }
+
   returnUpdatedInstance<T extends keyof User>(key: T, value: User[T]): User {
     return new User({ ...this, ...{ [key]: value } });
   }

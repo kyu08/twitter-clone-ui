@@ -24,7 +24,7 @@ export interface IProfile {
   updateBio(bioString: string): IProfile;
   updateBirthday(birthdayProps: IBirthday): IProfile;
   updateUserLocation(userLocationString: string): IProfile;
-  // updateWebsite(): IProfile;
+  updateWebsite(webSiteString: string): IProfile;
   // updateUserName(): IProfile;
   // updateScreenName(): IProfile;
   // updateHeaderImage(): IProfile;

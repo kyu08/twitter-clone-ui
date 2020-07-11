@@ -66,4 +66,11 @@ export default class Profile implements IProfile {
 
     return new Profile(updatedProps);
   }
+
+  updateWebsite(webSiteString: string): Profile {
+    const website = new Website(webSiteString);
+    const updatedProps = { ...this, website };
+
+    return new Profile(updatedProps);
+  }
 }
