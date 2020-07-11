@@ -5,6 +5,8 @@ export default class TweetId implements ITweetId {
 
   constructor(tweetId: string) {
     // todo どうやって一意な id 発行しよう、、、
+    // そういうAPIを作ればいいか
+    // フロントからはIdなしで送ってバックエンドでidつけることもできるけどそれはエンティティみがないよね〜
     this.tweetId = tweetId;
   }
 }
