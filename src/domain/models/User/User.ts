@@ -24,4 +24,19 @@ export class User implements IUser {
     this.profile = profile;
     this.userId = userId;
   }
+
+  private getFollower(): Follower {
+    return this.follower;
+  }
+
+  private getFollowing(): Following {
+    return this.following;
+  }
+
+  follow(userId: UserId): User {
+    const following = this.getFollowing().follow(userId);
+    const props = { ...this, following };
+
+    return new User(props);
+  }
 }
