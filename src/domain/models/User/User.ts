@@ -3,6 +3,7 @@ import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import Following from './Following/Following';
 import Follower from './Follower/Follower';
+import { IBirthday } from './Profile/Birthday';
 
 interface UserProps {
   readonly follower: Follower;
@@ -38,31 +39,48 @@ export class User implements IUser {
     return this.following;
   }
 
+  private getProfile(): Profile {
+    return this.profile;
+  }
+
+  // 共通化したい〜〜〜
   follow(userId: UserId): User {
     const following = this.getFollowing().follow(userId);
-    const props = { ...this, following };
 
-    return new User(props);
+    return this.returnUpdatedInstance('following', following);
   }
 
   unFollow(userId: UserId): User {
     const following = this.getFollowing().unFollow(userId);
-    const props = { ...this, following };
 
-    return new User(props);
+    return this.returnUpdatedInstance('following', following);
   }
 
   followed(userId: UserId): User {
     const follower = this.getFollower().followed(userId);
-    const props = { ...this, follower };
 
-    return new User(props);
+    return this.returnUpdatedInstance('follower', follower);
   }
 
   unFollowed(userId: UserId): User {
     const follower = this.getFollower().unFollowed(userId);
-    const props = { ...this, follower };
 
-    return new User(props);
+    return this.returnUpdatedInstance('follower', follower);
+  }
+
+  updateBio(bioString: string): User {
+    const profile = this.getProfile().updateBio(bioString);
+
+    return this.returnUpdatedInstance('profile', profile);
+  }
+
+  updateBirthday(birthdayProps: IBirthday): User {
+    const profile = this.getProfile().updateBirthday(birthdayProps);
+
+    return this.returnUpdatedInstance('profile', profile);
+  }
+
+  returnUpdatedInstance<T extends keyof User>(key: T, value: User[T]): User {
+    return new User({ ...this, ...{ [key]: value } });
   }
 }
