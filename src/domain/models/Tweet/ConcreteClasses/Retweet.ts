@@ -30,8 +30,11 @@ export default class Retweet extends AbstractTweet implements IRetweet {
     return new Retweet(props);
   }
 
-  cancelLike(): any {
-    console.log(1);
+  cancelLike(userId: UserId): AbstractTweet {
+    const likeSet = this.likeSet.cancelLike(userId);
+    const props = { ...this, likeSet };
+
+    return new Retweet(props);
   }
 
   retweet(): any {

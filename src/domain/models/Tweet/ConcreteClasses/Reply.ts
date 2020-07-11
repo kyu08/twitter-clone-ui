@@ -27,8 +27,11 @@ export default class Reply extends AbstractTweet implements IReply {
     return new Reply(props);
   }
 
-  cancelLike(): any {
-    console.log(1);
+  cancelLike(userId: UserId): AbstractTweet {
+    const likeSet = this.likeSet.cancelLike(userId);
+    const props = { ...this, likeSet };
+
+    return new Reply(props);
   }
 
   retweet(): any {
