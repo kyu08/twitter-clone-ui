@@ -1,11 +1,23 @@
-import { TODO } from '../../../util/Util';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
+import UserId from './UserId/UserId';
+import Following from './Following/Following';
+import Follower from './Follower/Follower';
+import { IBirthday } from './Profile/Birthday';
 
-// todo value object 使おう
 export interface IUser {
-  // todo userId どうやって生成しよう
-  readonly userId: TODO<'userId'>;
-  readonly following: Set<TODO<'userId'>>;
-  readonly follower: Set<TODO<'userId'>>;
+  // todo follow method と同時に followed method を実行したいけどどこでやろうね
+  readonly follower: Follower;
+  readonly following: Following;
   readonly profile: Profile;
+  readonly userId: UserId;
+  follow(userId: UserId): IUser;
+  unFollow(userId: UserId): IUser;
+  followed(userId: UserId): IUser;
+  unFollowed(userId: UserId): IUser;
+  updateBio(bioString: string): IUser;
+  updateBirthday(birthdayProps: IBirthday): IUser;
+  returnUpdatedInstance<T extends keyof IUser>(key: T, value: IUser[T]): IUser;
+  updateUserLocation(userLocationString: string): IUser;
+  updateWebsite(webSiteString: string): IUser;
+  updateUserName(userNameString: string): IUser;
 }

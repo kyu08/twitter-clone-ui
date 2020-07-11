@@ -1,8 +1,8 @@
-import Year from './Year';
-import Month from './Month';
-import Day from './Day';
+import Year from './Birthday/Year';
+import Month from './Birthday/Month';
+import Day from './Birthday/Day';
 
-interface IBirthday {
+export interface IBirthday {
   readonly year: Year;
   readonly month: Month;
   readonly day: Day;

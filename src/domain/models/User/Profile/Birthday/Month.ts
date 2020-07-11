@@ -11,7 +11,7 @@ export default class Month implements IMonth {
     this.month = month;
   }
 
-  static isInvalid(month: number): boolean {
+  private static isInvalid(month: number): boolean {
     const LOWER_LIMIT = 1;
     const UPPER_LIMIT = 12;
     const isInvalidRange = month < LOWER_LIMIT || month > UPPER_LIMIT;
