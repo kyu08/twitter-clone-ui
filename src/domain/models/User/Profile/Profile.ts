@@ -45,4 +45,11 @@ export default class Profile implements IProfile {
     this.userName = userName;
     this.website = website;
   }
+
+  updateBio(bioString: string): Profile {
+    const bio = Bio.editBio(bioString);
+    const updatedProps = { ...this, bio };
+
+    return new Profile(updatedProps);
+  }
 }

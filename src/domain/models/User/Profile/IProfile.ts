@@ -20,7 +20,7 @@ export interface ProfileProps {
 }
 
 export interface IProfile {
-  // updateBio(): IProfile;
+  updateBio(bioString: string): IProfile;
   // updateBirthday(): IProfile;
   // updateHeaderImage(): IProfile;
   // updateSite(): IProfile;

@@ -11,4 +11,8 @@ export default class Bio implements IBio {
     if (bio.length > MAX_BIO_LENGTH) throw new Error('Bio Length Error!');
     this.bio = bio;
   }
+
+  static editBio(bio: string): Bio {
+    return new Bio(bio);
+  }
 }
