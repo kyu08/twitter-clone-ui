@@ -1,6 +1,6 @@
 import { IProfile, ProfileProps } from './IProfile';
 import Bio from './Bio';
-import Site from './Site';
+import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
@@ -17,7 +17,7 @@ export default class Profile implements IProfile {
 
   readonly screenName: ScreenName;
 
-  readonly site: Site;
+  readonly userLocation: UserLocation;
 
   readonly userName: UserName;
 
@@ -31,7 +31,7 @@ export default class Profile implements IProfile {
       birthday,
       headerImage,
       screenName,
-      site,
+      userLocation,
       userImage,
       userName,
       website,
@@ -40,7 +40,7 @@ export default class Profile implements IProfile {
     this.birthday = birthday;
     this.headerImage = headerImage;
     this.screenName = screenName;
-    this.site = site;
+    this.userLocation = userLocation;
     this.userImage = userImage;
     this.userName = userName;
     this.website = website;

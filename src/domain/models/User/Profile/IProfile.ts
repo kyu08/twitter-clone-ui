@@ -1,5 +1,5 @@
 import Bio from './Bio';
-import Site from './Site';
+import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
@@ -11,7 +11,8 @@ export interface ProfileProps {
   readonly bio: Bio;
   readonly birthday: Birthday;
   readonly headerImage: HeaderImage;
-  readonly site: Site;
+  // UserLocation とかでもいいかもね
+  readonly userLocation: UserLocation;
   readonly screenName: ScreenName;
   readonly userName: UserName;
   readonly userImage: UserImage;
@@ -19,5 +20,13 @@ export interface ProfileProps {
 }
 
 export interface IProfile {
-  // methods
+  // updateBio(): IProfile;
+  // updateBirthday(): IProfile;
+  // updateHeaderImage(): IProfile;
+  // updateSite(): IProfile;
+  // update(): IProfile;
+  // update(): IProfile;
+  // update(): IProfile;
+  // update(): IProfile;
+  // update(): IProfile;
 }
