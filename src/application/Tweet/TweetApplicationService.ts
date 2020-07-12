@@ -32,4 +32,16 @@ export class TweetApplicationService {
     // const tweetC = tweetB.cancelLike(userA);
     console.log(tweetC);
   }
+
+  // todo
+  //  user 登録
+  //  ログイン
+  //  ログアウト
+  //  profile 変更系
+  //  follow 系
+  //
+
+  static updateUserName(userNameString: string): void {
+    // something
+  }
 }
