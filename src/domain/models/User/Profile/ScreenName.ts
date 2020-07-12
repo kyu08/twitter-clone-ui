@@ -10,7 +10,7 @@ export default class ScreenName implements IScreenName {
   // memo 一意な値であることを保証しないといけないんよな〜
   constructor(screenName: string) {
     if (screenName.length > MAX_SCREEN_NAME_LENGTH)
-      throw new Error('ScreenName Length Error!');
+      throw new Error('ScreenName Length Error!( > 10 )');
     this.screenName = screenName;
   }
 }
