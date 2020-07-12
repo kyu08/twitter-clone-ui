@@ -1,8 +1,10 @@
 import UserId from '../../domain/models/User/UserId/UserId';
 import { TODO } from '../../util/Util';
 import InMemoryUserRepository from '../../inMemory/InMemoryUserRepository';
+import { IUser } from '../../domain/models/User/IUser';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
+// 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
   static readonly userRepository = new InMemoryUserRepository();
 
@@ -18,5 +20,9 @@ export default class UserApplicationService {
 
   static findUserByUserId(userId: UserId): TODO<'うまくいったのかどうか'> {
     return this.userRepository.getUserByUserId(userId);
+  }
+
+  static updateUserName(user: IUser, userNameString: string): IUser {
+    return user.updateUserName(userNameString);
   }
 }
