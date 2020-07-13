@@ -1,3 +1,7 @@
 .TweetContentContainer {
-    /*hoge*/
+    margin: 5px 0px;
+}
+
+.TweetButtonsWrapper {
+    display: flex;
 }
