@@ -1,4 +1,8 @@
 .Tweet {
-    border: 1px #B3424A solid;
     display: flex;
+    margin: 0 10px;
+}
+
+.TweetContainer {
+    border-bottom: 1px #8899A6 solid;
 }

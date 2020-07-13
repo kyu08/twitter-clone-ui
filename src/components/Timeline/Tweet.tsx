@@ -6,11 +6,13 @@ import { TweetContentContainer } from './Tweet/TweetContentContainer';
 
 export const Tweet: React.FC<{}> = () => {
   return (
-    <div className={classes.Tweet}>
-      <UserImageContainer />
-      <div className="TweetRightContainer">
-        <TweetInformationContainer />
-        <TweetContentContainer />
+    <div className={classes.TweetContainer}>
+      <div className={classes.Tweet}>
+        <UserImageContainer />
+        <div className="TweetRightContainer">
+          <TweetInformationContainer />
+          <TweetContentContainer />
+        </div>
       </div>
     </div>
   );
