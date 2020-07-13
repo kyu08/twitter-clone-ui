@@ -9,7 +9,7 @@ export default class UserLocation implements IUserLocation {
 
   constructor(userLocation: string) {
     if (userLocation.length > MAX_USER_LOCATION_LENGTH)
-      throw new Error('UserLocation Length error!!');
+      throw new Error('UserLocation Length error!!( > 10 )');
     this.userLocation = userLocation;
   }
 }
