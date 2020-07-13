@@ -1,3 +1,11 @@
 .TweetInformationContainer {
-    /*hoge*/
+    font-size: 17px;
+    display: flex;
+    margin: 5px 0px;
+}
+
+.TweetOptionButtonWrapper {
+    float: right;
+    border: 1px #B3424A solid;
+    width: 30px;
 }
