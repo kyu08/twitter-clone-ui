@@ -4,12 +4,15 @@ import Following from './Following/Following';
 import Follower from './Follower/Follower';
 import { IBirthday } from './Profile/Birthday';
 
-export interface IUser {
-  // todo follow method と同時に followed method を実行したいけどどこでやろうね
+export interface UserProps {
   readonly follower: Follower;
   readonly following: Following;
   readonly profile: Profile;
   readonly userId: UserId;
+}
+
+export interface IUser extends UserProps {
+  // todo follow method と同時に followed method を実行したいけどどこでやろうね
   follow(userId: UserId): IUser;
   unFollow(userId: UserId): IUser;
   followed(userId: UserId): IUser;

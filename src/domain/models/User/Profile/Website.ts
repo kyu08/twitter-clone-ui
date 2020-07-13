@@ -9,7 +9,7 @@ export default class Website implements IWebsite {
 
   constructor(website: string) {
     if (website.length > MAX_WEBSITE_LENGTH)
-      throw new Error('Website Length Error!');
+      throw new Error('Website Length Error!( > 30 )');
     this.website = website;
   }
 }
