@@ -1,5 +1,6 @@
 .TweetContentContainer {
-    margin: 5px 0px;
+    margin: 5px 0;
+    font-size: 15px;
 }
 
 .TweetButtonsWrapper {
