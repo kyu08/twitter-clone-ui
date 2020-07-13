@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { Timeline } from '../components/Timeline';
+import { Header } from '../components/Common/Header';
+import { Footer } from '../components/Common/Footer';
+import { Timeline } from '../components/Timeline/Timeline';
 import classes from './Container.module.css';
 
 export const Container: React.FC<{}> = () => {

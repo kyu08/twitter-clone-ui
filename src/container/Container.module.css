@@ -1,4 +1,5 @@
-/*!*これいらないかも*!*/
-/*.Container {*/
-/*    height: 100%;*/
-/*}*/
+/* NOTE Container Component がスタイルを持つのは多分不適切*/
+.Container {
+    background-color: #152238;
+    color: white;
+}
