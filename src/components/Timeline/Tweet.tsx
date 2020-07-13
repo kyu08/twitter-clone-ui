@@ -8,9 +8,11 @@ export const Tweet: React.FC<{}> = () => {
   return (
     <div className={classes.Tweet}>
       <UserImageContainer />
-      <TweetInformationContainer />
-      <TweetContentContainer />
-      this is tweet.
+      <div className="TweetRightContainer">
+        <TweetInformationContainer />
+        <TweetContentContainer />
+        this is tweet.
+      </div>
     </div>
   );
 };
