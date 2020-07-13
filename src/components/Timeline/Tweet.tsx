@@ -11,7 +11,6 @@ export const Tweet: React.FC<{}> = () => {
       <div className="TweetRightContainer">
         <TweetInformationContainer />
         <TweetContentContainer />
-        this is tweet.
       </div>
     </div>
   );
