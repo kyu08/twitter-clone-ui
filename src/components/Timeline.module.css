@@ -1,3 +1,11 @@
+.TimelineContainer {
+    height: 86vh;
+    width: 375px;
+    border: 1px #B3424A solid;
+}
+
 .Timeline {
+    height: 100%;
+    width: 375px;
     border: 1px #B3424A solid;
 }
