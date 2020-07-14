@@ -11,7 +11,6 @@ export const TweetInformationContainer: React.FC<{}> = () => {
       <UserName userName="ねこ" />
       <ScreenName screenName="i_am_cat" />
       <HowLongAgo howLongAgo={10} />
-      {/* todo ↓こいつは右揃え */}
       <div className={classes.TweetOptionButtonWrapper}>
         <TweetMenuButton buttonTitle="+" />
       </div>

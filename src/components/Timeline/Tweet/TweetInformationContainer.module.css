@@ -7,5 +7,5 @@
 .TweetOptionButtonWrapper {
     float: right;
     border: 1px #B3424A solid;
-    width: 30px;
+    margin-left: auto;
 }
