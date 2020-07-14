@@ -2,16 +2,18 @@ import * as React from 'react';
 import classes from './TweetButtonContainer.module.css';
 import { TweetMenuButton } from '../Common/TweetMenuButton';
 
-interface Hoge {
-  buttonTitle: any;
+interface TweetButtonContainerProps {
+  buttonIcon: any;
 }
 
-export const TweetButtonContainer: React.FC<Hoge> = (props) => {
-  const { buttonTitle } = props;
+export const TweetButtonContainer: React.FC<TweetButtonContainerProps> = (
+  props,
+) => {
+  const { buttonIcon } = props;
 
   return (
     <div className={classes.TweetButtonContainer}>
-      <TweetMenuButton buttonTitle={buttonTitle} />
+      <TweetMenuButton buttonIcon={buttonIcon} />
     </div>
   );
 };

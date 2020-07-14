@@ -1,11 +1,9 @@
 .TweetInformationContainer {
     font-size: 15px;
     display: flex;
-    margin: 5px 0;
+    margin-top: 3px;
 }
 
 .TweetOptionButtonWrapper {
-    float: right;
-    border: 1px #B3424A solid;
     margin-left: auto;
 }
