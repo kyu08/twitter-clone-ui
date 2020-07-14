@@ -8,5 +8,5 @@ interface TweetContentProps {
 export const TweetContent: React.FC<TweetContentProps> = (props) => {
   const { content } = props;
 
-  return <div className={classes.TweetContent}>{content}</div>;
+  return <span className={classes.TweetContent}>{content}</span>;
 };
