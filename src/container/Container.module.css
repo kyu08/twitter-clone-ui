@@ -2,4 +2,5 @@
 .Container {
     background-color: #152238;
     color: white;
+    overflow: hidden;
 }
