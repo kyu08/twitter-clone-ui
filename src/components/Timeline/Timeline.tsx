@@ -8,6 +8,12 @@ export const Timeline: React.FC<{}> = () => {
       <Tweet />
       <Tweet />
       <Tweet />
+      <Tweet />
+      <Tweet />
+      <Tweet />
+      <Tweet />
+      <Tweet />
+      <Tweet />
     </div>
   );
 };

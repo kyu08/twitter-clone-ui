@@ -1,9 +1,9 @@
 .TimelineContainer {
     height: 86vh;
     width: 100%;
+    overflow: scroll;
 }
 
-.Timeline {
-    height: 100%;
-    width: 100%;
+.TimelineContainer::-webkit-scrollbar {
+    display: none;
 }
