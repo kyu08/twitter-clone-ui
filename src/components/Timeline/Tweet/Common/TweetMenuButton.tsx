@@ -5,7 +5,6 @@ interface TweetMenuButtonProp {
   buttonIcon: any;
 }
 
-// todo prop は命名微妙
 export const TweetMenuButton: React.FC<TweetMenuButtonProp> = (props) => {
   const { buttonIcon } = props;
 
