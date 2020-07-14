@@ -6,13 +6,13 @@ import { TweetButtonContainer } from './TweetContentContainer/TweetButtonContain
 export const TweetContentContainer: React.FC<{}> = () => {
   return (
     <div className={classes.TweetContentContainer}>
-      <TweetContent content="にゃ〜ん" />
+      <TweetContent content="hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_aaaaaaaaaaaaaaaaaaaahoge_" />
       <div className={classes.TweetButtonsWrapper}>
-        {/* todo map で書く*/}
-        <TweetButtonContainer buttonTitle="Reply" />
-        <TweetButtonContainer buttonTitle="RT" />
-        <TweetButtonContainer buttonTitle="Like" />
-        <TweetButtonContainer buttonTitle="Share" />
+        {/* todo map で書く?*/}
+        <TweetButtonContainer buttonTitle="R" />
+        <TweetButtonContainer buttonTitle="R" />
+        <TweetButtonContainer buttonTitle="L" />
+        <TweetButtonContainer buttonTitle="S" />
       </div>
     </div>
   );
