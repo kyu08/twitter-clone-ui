@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ExpandLessOutlinedIcon from '@material-ui/icons/ExpandLessOutlined';
+import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 import classes from './TweetInformationContainer.module.css';
 import { UserName } from './TweetInformationContainer/UserName';
 import { ScreenName } from './TweetInformationContainer/ScreenName';
@@ -13,7 +13,7 @@ export const TweetInformationContainer: React.FC<{}> = () => {
       <ScreenName screenName="i_am_cat" />
       <HowLongAgo howLongAgo={10} />
       <div className={classes.TweetOptionButtonWrapper}>
-        <TweetMenuButton buttonIcon={<ExpandLessOutlinedIcon />} />
+        <TweetMenuButton buttonIcon={<ExpandMoreOutlinedIcon />} />
       </div>
     </div>
   );
