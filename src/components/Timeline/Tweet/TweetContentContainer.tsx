@@ -5,26 +5,27 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import classes from './TweetContentContainer.module.css';
 import { TweetContent } from './TweetContentContainer/TweetContent';
-import { TweetButtonContainer } from './TweetContentContainer/TweetButtonContainer';
+import { TweetButton } from './TweetContentContainer/TweetButton';
+import { TweetButtonIcon } from './TweetContentContainer/TweetButtonIcon';
 
 export const TweetContentContainer: React.FC<{}> = () => {
   return (
     <div className={classes.TweetContentContainer}>
       <TweetContent content="hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_aaaaaaaaaaaaaaaaaaaahoge_" />
       <div className={classes.TweetButtonsWrapper}>
-        {/* todo map で書く?*/}
-        <TweetButtonContainer
+        <TweetButton
           buttonIcon={<ChatBubbleOutlineOutlinedIcon fontSize="small" />}
+          tweetButtonNumber={123}
         />
-        <TweetButtonContainer
+        <TweetButton
           buttonIcon={<RepeatOutlinedIcon fontSize="small" />}
+          tweetButtonNumber={123}
         />
-        <TweetButtonContainer
+        <TweetButton
           buttonIcon={<FavoriteBorderOutlinedIcon fontSize="small" />}
+          tweetButtonNumber={123}
         />
-        <TweetButtonContainer
-          buttonIcon={<ShareOutlinedIcon fontSize="small" />}
-        />
+        <TweetButtonIcon buttonIcon={<ShareOutlinedIcon fontSize="small" />} />
       </div>
     </div>
   );

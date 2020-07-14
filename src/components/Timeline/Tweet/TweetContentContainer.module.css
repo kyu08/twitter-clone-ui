@@ -3,6 +3,11 @@
 }
 
 .TweetButtonsWrapper {
+    color: #8899A6;
     display: flex;
     justify-content: space-between;
+}
+
+.TweetButton {
+    display: flex;
 }

@@ -1,14 +1,12 @@
 import * as React from 'react';
-import classes from './TweetButtonContainer.module.css';
+import classes from './TweetButtonIcon.module.css';
 import { TweetMenuButton } from '../Common/TweetMenuButton';
 
 interface TweetButtonContainerProps {
   buttonIcon: any;
 }
 
-export const TweetButtonContainer: React.FC<TweetButtonContainerProps> = (
-  props,
-) => {
+export const TweetButtonIcon: React.FC<TweetButtonContainerProps> = (props) => {
   const { buttonIcon } = props;
 
   return (
