@@ -4,7 +4,7 @@ import TweetId from '../../domain/models/Tweet/TweetId/TweetId';
 import UserId from '../../domain/models/User/UserId/UserId';
 import Content from '../../domain/models/Tweet/Content/Content';
 import RetweetMap from '../../domain/models/Tweet/RetweetMap/RetweetMap';
-import { TODO } from '../../util/Util';
+import Reply from '../../domain/models/Tweet/ConcreteClasses/Reply';
 
 export class TweetApplicationService {
   static test() {
@@ -15,6 +15,7 @@ export class TweetApplicationService {
     const likeSet = new LikeSet();
     const tweetedAt = new Date();
     const updatedAt = new Date();
+    const replyTo = tweetId;
     const props = {
       tweetId,
       userId,
@@ -23,8 +24,9 @@ export class TweetApplicationService {
       likeSet,
       tweetedAt,
       updatedAt,
+      replyTo,
     };
-    const tweet = new Tweet(props);
+    const tweet = new Reply(props);
     const userA = new UserId(1234);
     // const userB = new UserId(12344);
     const tweetB = tweet.like(userA);

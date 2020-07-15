@@ -6,24 +6,26 @@ import Content from './Content/Content';
 import RetweetMap from './RetweetMap/RetweetMap';
 import LikeSet from './LikeSet/LikeSet';
 
-export abstract class AbstractTweet implements IAbstractTweet {
+export abstract class AbstractTweet {
+  // export abstract class AbstractTweet implements IAbstractTweet {
   // protedted にできるやつはしよう
-  readonly tweetId: TweetId;
+  protected readonly tweetId: TweetId;
 
-  readonly userId: UserId;
+  protected readonly userId: UserId;
 
-  readonly content: Content;
+  protected readonly content: Content;
 
-  readonly retweetMap: RetweetMap;
+  protected readonly retweetMap: RetweetMap;
 
-  readonly likeSet: LikeSet;
+  protected readonly likeSet: LikeSet;
 
-  readonly tweetedAt: Date;
+  protected readonly tweetedAt: Date;
 
   // timeline の表示ロジックにもよるけどたぶんいらない気がする
-  readonly updatedAt: Date;
+  protected readonly updatedAt: Date;
 
   protected constructor(
+    // todo AbstractTweet やな
     props: TODO<'TweetProps'> | TODO<'RetweetProps'> | TODO<'ReplyProps'>,
   ) {
     const {

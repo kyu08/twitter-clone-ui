@@ -1,11 +1,12 @@
 import { AbstractTweet } from '../AbstractTweet';
-import { AbstractTweetProps } from '../IAbstractTweet';
 import UserId from '../../User/UserId/UserId';
+import { AbstractTweetProps } from '../IAbstractTweet';
 
 // todo SingleTweet とかにする？
 export default class Tweet extends AbstractTweet {
+  // constructor(props: AbstractTweetProps) {
   // eslint-disable-next-line no-useless-constructor
-  constructor(props: AbstractTweetProps) {
+  constructor(props: AbstractTweetProps | Partial<AbstractTweet>) {
     super(props);
   }
 

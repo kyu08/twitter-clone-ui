@@ -5,13 +5,13 @@ import Content from './Content/Content';
 import LikeSet from './LikeSet/LikeSet';
 
 export interface AbstractTweetProps {
-  readonly tweetId: TweetId;
-  readonly userId: UserId;
-  readonly content: Content;
-  readonly retweetMap: RetweetMap;
-  readonly likeSet: LikeSet;
-  readonly tweetedAt: Date;
-  readonly updatedAt: Date;
+  tweetId: TweetId;
+  userId: UserId;
+  content: Content;
+  retweetMap: RetweetMap;
+  likeSet: LikeSet;
+  tweetedAt: Date;
+  updatedAt: Date;
 }
 
 export interface IAbstractTweet extends AbstractTweetProps {
