@@ -1,0 +1,8 @@
+/* NOTE Container Component がスタイルを持つのは多分不適切*/
+.Container {
+    background-color: #152238;
+    color: white;
+    overflow: hidden;
+    max-width: 375px;
+    margin: 0 auto;
+}
