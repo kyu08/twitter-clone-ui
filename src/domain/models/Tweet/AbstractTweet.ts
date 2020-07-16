@@ -1,5 +1,4 @@
 import UserId from '../User/UserId/UserId';
-import { TODO } from '../../../util/Util';
 import TweetId from './TweetId/TweetId';
 import Content from './Content/Content';
 import RetweetMap from './RetweetMap/RetweetMap';
@@ -23,10 +22,7 @@ export abstract class AbstractTweet {
   // timeline の表示ロジックにもよるけどたぶんいらない気がする
   readonly updatedAt: Date;
 
-  protected constructor(
-    // todo props: AbstractTweet やな
-    props: AbstractTweetProps,
-  ) {
+  protected constructor(props: AbstractTweetProps) {
     const {
       tweetId,
       userId,
