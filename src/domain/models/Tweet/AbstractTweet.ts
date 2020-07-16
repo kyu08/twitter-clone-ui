@@ -1,32 +1,31 @@
 import UserId from '../User/UserId/UserId';
 import { TODO } from '../../../util/Util';
 import TweetId from './TweetId/TweetId';
-import { IAbstractTweet } from './IAbstractTweet';
 import Content from './Content/Content';
 import RetweetMap from './RetweetMap/RetweetMap';
 import LikeSet from './LikeSet/LikeSet';
+import { AbstractTweetProps } from './IAbstractTweet';
 
 export abstract class AbstractTweet {
-  // export abstract class AbstractTweet implements IAbstractTweet {
-  // protedted にできるやつはしよう
-  protected readonly tweetId: TweetId;
+  // todo protected にできない
+  readonly tweetId: TweetId;
 
-  protected readonly userId: UserId;
+  readonly userId: UserId;
 
-  protected readonly content: Content;
+  readonly content: Content;
 
-  protected readonly retweetMap: RetweetMap;
+  readonly retweetMap: RetweetMap;
 
-  protected readonly likeSet: LikeSet;
+  readonly likeSet: LikeSet;
 
-  protected readonly tweetedAt: Date;
+  readonly tweetedAt: Date;
 
   // timeline の表示ロジックにもよるけどたぶんいらない気がする
-  protected readonly updatedAt: Date;
+  readonly updatedAt: Date;
 
   protected constructor(
-    // todo AbstractTweet やな
-    props: TODO<'TweetProps'> | TODO<'RetweetProps'> | TODO<'ReplyProps'>,
+    // todo props: AbstractTweet やな
+    props: AbstractTweetProps,
   ) {
     const {
       tweetId,
@@ -45,10 +44,6 @@ export abstract class AbstractTweet {
     this.tweetedAt = tweetedAt;
     this.updatedAt = updatedAt;
   }
-
-  // todo 実装したいメソッド
-  // 抽象メソッド -> like / unlike , retweet / unRetweet メソッド
-  // 各具象クラスのメソッド -> returnLikedTweet / returnUnlikedTweet
 
   abstract like(userId: UserId): AbstractTweet;
 

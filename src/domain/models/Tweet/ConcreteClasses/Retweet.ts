@@ -1,10 +1,9 @@
 import { AbstractTweet } from '../AbstractTweet';
 import { AbstractTweetProps, IAbstractTweet } from '../IAbstractTweet';
 import UserId from '../../User/UserId/UserId';
-import { TODO } from '../../../../util/Util';
 
-interface RetweetProps {
-  hogehoge: UserId;
+interface RetweetProps extends AbstractTweetProps {
+  retweetedBy: UserId;
   retweetedAt: Date;
 }
 
@@ -12,15 +11,15 @@ interface RetweetProps {
 type IRetweet = RetweetProps & IAbstractTweet;
 
 export default class Retweet extends AbstractTweet {
-  private readonly hogehoge: UserId;
+  readonly retweetedBy: UserId;
 
-  private readonly retweetedAt: Date;
+  readonly retweetedAt: Date;
 
   // eslint-disable-next-line no-useless-constructor
-  constructor(props: TODO<'AbstractTweetProps'> & RetweetProps) {
+  constructor(props: RetweetProps) {
     super(props);
-    const { hogehoge, retweetedAt } = props;
-    this.hogehoge = hogehoge;
+    const { retweetedBy, retweetedAt } = props;
+    this.retweetedBy = retweetedBy;
     this.retweetedAt = retweetedAt;
   }
 

@@ -2,26 +2,16 @@ import { AbstractTweet } from '../AbstractTweet';
 import TweetId from '../TweetId/TweetId';
 import UserId from '../../User/UserId/UserId';
 import { AbstractTweetProps } from '../IAbstractTweet';
-import Content from '../Content/Content';
-import RetweetMap from '../RetweetMap/RetweetMap';
-import LikeSet from '../LikeSet/LikeSet';
 
-interface ReplyProps {
-  tweetId: TweetId;
-  userId: UserId;
-  content: Content;
-  retweetMap: RetweetMap;
-  likeSet: LikeSet;
-  tweetedAt: Date;
-  updatedAt: Date;
+interface ReplyProps extends AbstractTweetProps {
   replyTo: TweetId;
 }
 
 export default class Reply extends AbstractTweet {
-  private readonly replyTo: TweetId;
+  // todo private にできない (AbstractTweet の properties も protected にしたい)
+  readonly replyTo: TweetId;
 
-  constructor(props: ReplyProps | Partial<Reply>) {
-    // constructor(props: ReplyProps | Partial<Reply>) {
+  constructor(props: ReplyProps) {
     super(props);
     const { replyTo } = props;
     this.replyTo = replyTo;
