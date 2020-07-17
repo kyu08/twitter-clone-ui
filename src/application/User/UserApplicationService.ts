@@ -2,6 +2,7 @@ import UserId from '../../domain/models/User/UserId/UserId';
 import { TODO } from '../../util/Util';
 import InMemoryUserRepository from '../../inMemory/InMemoryUserRepository';
 import { IUserRepository } from '../../domain/models/User/IUserRepository';
+import { BirthdayProps } from '../../domain/models/User/Profile/Birthday';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
@@ -52,6 +53,12 @@ export default class UserApplicationService {
   static updateUserLocation(userId: UserId, userLocationString: string): void {
     const user = UserApplicationService.findUserByUserId(userId);
     const updatedUser = user.updateUserLocation(userLocationString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static updateBirthday(userId: UserId, birthdayProps: BirthdayProps): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateBirthday(birthdayProps);
     UserApplicationService.userRepository.save(updatedUser);
   }
 }

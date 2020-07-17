@@ -4,9 +4,12 @@ import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
-import Birthday, { IBirthday } from './Birthday';
+import Birthday, { BirthdayProps, IBirthday } from './Birthday';
 import UserImage from './UserImage';
 import HeaderImage from './HeaderImage';
+import Day from './Birthday/Day';
+import Year from './Birthday/Year';
+import Month from './Birthday/Month';
 
 export default class Profile implements IProfile {
   readonly screenName: ScreenName;
@@ -53,8 +56,14 @@ export default class Profile implements IProfile {
     return new Profile(updatedProps);
   }
 
-  updateBirthday(birthdayProps: IBirthday): Profile {
-    const birthday = new Birthday(birthdayProps);
+  updateBirthday(birthdayProps: BirthdayProps): Profile {
+    const { day, month, year } = birthdayProps;
+    const props: IBirthday = {
+      day: new Day(day),
+      month: new Month(month),
+      year: new Year(year),
+    };
+    const birthday = new Birthday(props);
     const updatedProps = { ...this, birthday };
 
     return new Profile(updatedProps);

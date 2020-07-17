@@ -8,6 +8,12 @@ export interface IBirthday {
   readonly day: Day;
 }
 
+export interface BirthdayProps {
+  year: number;
+  month: number;
+  day: number;
+}
+
 export default class Birthday implements IBirthday {
   readonly year: Year;
 
