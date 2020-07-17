@@ -22,8 +22,9 @@ export default class UserFactory {
     const props = {
       bio: profile.bio.bio,
       day: profile.birthday.day.day,
-      follower: follower.follower,
-      following: following.following,
+      // todo この中身を UserIdにしないといけないから！
+      follower: new Set(follower.follower),
+      following: new Set(following.following),
       headerImage: profile.headerImage.headerImage,
       month: profile.birthday.month.month,
       screenName: profile.screenName.screenName,
