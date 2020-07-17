@@ -1,4 +1,4 @@
-import { IUser, UserProps } from '../domain/models/User/IUser';
+import { IUser } from '../domain/models/User/IUser';
 import Follower from '../domain/models/User/Follower/Follower';
 import Following from '../domain/models/User/Following/Following';
 import Profile from '../domain/models/User/Profile/Profile';
