@@ -1,7 +1,6 @@
 import UserId from '../../domain/models/User/UserId/UserId';
 import { TODO } from '../../util/Util';
 import InMemoryUserRepository from '../../inMemory/InMemoryUserRepository';
-import { IUser } from '../../domain/models/User/IUser';
 import { IUserRepository } from '../../domain/models/User/IUserRepository';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
@@ -41,6 +40,12 @@ export default class UserApplicationService {
   static updateBio(userId: UserId, bioString: string): void {
     const user = UserApplicationService.findUserByUserId(userId);
     const updatedUser = user.updateBio(bioString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static updateWebsite(userId: UserId, websiteString: string): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateWebsite(websiteString);
     UserApplicationService.userRepository.save(updatedUser);
   }
 }
