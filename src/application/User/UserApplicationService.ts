@@ -61,4 +61,22 @@ export default class UserApplicationService {
     const updatedUser = user.updateBirthday(birthdayProps);
     UserApplicationService.userRepository.save(updatedUser);
   }
+
+  static follow(currentUserId: UserId, targetUserId: UserId): void {
+    const currentUser = UserApplicationService.findUserByUserId(currentUserId);
+    const targetUser = UserApplicationService.findUserByUserId(targetUserId);
+    const currentUserUpdated = currentUser.follow(targetUserId);
+    const targetUserUpdated = targetUser.followed(currentUserId);
+    UserApplicationService.userRepository.save(currentUserUpdated);
+    UserApplicationService.userRepository.save(targetUserUpdated);
+  }
+
+  static unFollow(currentUserId: UserId, targetUserId: UserId): void {
+    const currentUser = UserApplicationService.findUserByUserId(currentUserId);
+    const targetUser = UserApplicationService.findUserByUserId(targetUserId);
+    const currentUserUpdated = currentUser.unFollow(targetUserId);
+    const targetUserUpdated = targetUser.unFollowed(currentUserId);
+    UserApplicationService.userRepository.save(currentUserUpdated);
+    UserApplicationService.userRepository.save(targetUserUpdated);
+  }
 }
