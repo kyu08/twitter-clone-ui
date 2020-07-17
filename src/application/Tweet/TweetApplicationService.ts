@@ -1,4 +1,3 @@
-import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
 import LikeSet from '../../domain/models/Tweet/LikeSet/LikeSet';
 import TweetId from '../../domain/models/Tweet/TweetId/TweetId';
 import UserId from '../../domain/models/User/UserId/UserId';
