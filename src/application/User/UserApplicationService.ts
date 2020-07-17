@@ -18,7 +18,7 @@ export default class UserApplicationService {
   //  follow 系
   //
 
-  static findUserByUserId(userId: UserId): TODO<'うまくいったのかどうか'> {
+  static findUserByUserId(userId: UserId): TODO<'User'> {
     return this.userRepository.getUserByUserId(userId);
   }
 
