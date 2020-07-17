@@ -31,18 +31,16 @@ export default class UserApplicationService {
     return this.userRepository.getUserByUserId(userId);
   }
 
+  // todo パラメータごとにsaveメソッドを分けるかどうかはバックエンドと相談(とりあえずわけずにいく)
   static updateUserName(userId: UserId, userNameString: string): void {
     const user = UserApplicationService.findUserByUserId(userId);
     const updatedUser = user.updateUserName(userNameString);
-    // todo パラメータごとにsaveメソッドを分けるかどうかはバックエンドと相談(とりあえずわけずにいく)
     UserApplicationService.userRepository.save(updatedUser);
   }
 
-  static updateBio(userId: UserId, bioString: string): IUser {
+  static updateBio(userId: UserId, bioString: string): void {
     const user = UserApplicationService.findUserByUserId(userId);
     const updatedUser = user.updateBio(bioString);
     UserApplicationService.userRepository.save(updatedUser);
-
-    return updatedUser;
   }
 }
