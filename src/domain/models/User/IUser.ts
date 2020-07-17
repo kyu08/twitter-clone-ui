@@ -12,7 +12,7 @@ export interface UserProps {
 }
 
 export interface IUser extends UserProps {
-  // todo follow method と同時に followed method を実行したいけどどこでやろうね
+  // todo follow method と同時に followed method を実行したいけどどこでやろうね -> UserApplicationService でやる
   follow(userId: UserId): IUser;
   unFollow(userId: UserId): IUser;
   followed(userId: UserId): IUser;
