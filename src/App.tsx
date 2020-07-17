@@ -9,7 +9,7 @@ const App = () => {
   InMemoryUserRepository.initializeLocalStorage();
   const userId = new UserId(2);
   const user = UserApplicationService.findUserByUserId(userId);
-  UserApplicationService.updateWebsite(userId, 'website');
+  UserApplicationService.updateUserLocation(userId, 'tokyoooo');
   const userUpdated = UserApplicationService.findUserByUserId(userId);
   console.log(user.profile);
   console.log(userUpdated.profile);

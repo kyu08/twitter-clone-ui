@@ -48,4 +48,10 @@ export default class UserApplicationService {
     const updatedUser = user.updateWebsite(websiteString);
     UserApplicationService.userRepository.save(updatedUser);
   }
+
+  static updateUserLocation(userId: UserId, userLocationString: string): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateUserLocation(userLocationString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
 }
