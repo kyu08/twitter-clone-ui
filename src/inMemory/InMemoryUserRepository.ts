@@ -77,7 +77,6 @@ export default class InMemoryUserRepository implements IUserRepository {
     const userMapCopy = _.cloneDeep(userMap);
     userMapCopy.set(userId, user);
     InMemoryUserRepository.saveUserMap(userMapCopy);
-    console.log(`saved (userId: ${userId.userId})`);
   }
 
   private static saveUserMap(userMap: Map<UserId, IUser>): void {
