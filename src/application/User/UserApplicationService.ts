@@ -26,23 +26,22 @@ export default class UserApplicationService {
   //   UserApplicationService.userRepository.save(user);
   // }
 
+  // todo login 中のユーザーの情報しかもってこれないようにする
   static findUserByUserId(userId: UserId): TODO<'User'> {
     return this.userRepository.getUserByUserId(userId);
   }
 
-  static updateUserName(userId: UserId, userNameString: string): IUser {
+  static updateUserName(userId: UserId, userNameString: string): void {
     const user = UserApplicationService.findUserByUserId(userId);
-    // const updatedUser = user.updateUserName(userNameString);
+    const updatedUser = user.updateUserName(userNameString);
     // todo パラメータごとにsaveメソッドを分けるかどうかはバックエンドと相談(とりあえずわけずにいく)
-    // UserApplicationService.userRepository.save(updatedUser);
-
-    return user.updateUserName(userNameString);
+    UserApplicationService.userRepository.save(updatedUser);
   }
 
   static updateBio(userId: UserId, bioString: string): IUser {
     const user = UserApplicationService.findUserByUserId(userId);
     const updatedUser = user.updateBio(bioString);
-    // UserApplicationService.userRepository.save(updatedUser);
+    UserApplicationService.userRepository.save(updatedUser);
 
     return updatedUser;
   }

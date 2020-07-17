@@ -23,4 +23,5 @@ export interface IUser extends UserProps {
   updateUserLocation(userLocationString: string): IUser;
   updateWebsite(webSiteString: string): IUser;
   updateUserName(userNameString: string): IUser;
+  getUserId(): UserId;
 }
