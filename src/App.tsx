@@ -8,11 +8,16 @@ import InMemoryUserRepository from './inMemory/InMemoryUserRepository';
 const App = () => {
   InMemoryUserRepository.initializeLocalStorage();
   const userId = new UserId(2);
+  const userIdB = new UserId(3);
   const user = UserApplicationService.findUserByUserId(userId);
-  UserApplicationService.updateUserLocation(userId, 'tokyoooo');
+  const userB = UserApplicationService.findUserByUserId(userIdB);
+  UserApplicationService.follow(userId, userIdB);
   const userUpdated = UserApplicationService.findUserByUserId(userId);
-  console.log(user.profile);
-  console.log(userUpdated.profile);
+  const userBUpdated = UserApplicationService.findUserByUserId(userIdB);
+  console.log(user);
+  console.log(userB);
+  console.log(userUpdated);
+  console.log(userBUpdated);
 
   return <Container />;
 };
