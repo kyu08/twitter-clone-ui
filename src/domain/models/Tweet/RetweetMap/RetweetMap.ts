@@ -5,6 +5,7 @@ import { TODO } from '../../../../util/Util';
 import { IRetweetMap } from './IRetweetMap';
 
 export default class RetweetMap implements IRetweetMap {
+  // todo key はプリミティブにした方がいいかも
   readonly retweetMap: Map<UserId, Date>;
 
   // 1. 新しい Tweet 用の空の Map を作成する
