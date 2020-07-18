@@ -15,13 +15,15 @@ import UserName from './Profile/UserName';
 import Website from './Profile/Website';
 import Year from './Profile/Birthday/Year';
 import { IProps, IUserProps } from '../../../inMemory/InMemoryUsers';
+import { IUser } from './IUser';
 
 export default class UserFactory {
   static toInstanceUserId(set: any[]): Set<UserId> {
     // todo ださいきがする
-    if (JSON.stringify(set) === '{}') return new Set();
+    if (JSON.stringify(set) === '{}' || JSON.stringify(set) === '[]')
+      return new Set();
     const setProps = set.map((u) => {
-      return new UserId(u);
+      return new UserId(u.userId);
     });
 
     return new Set(setProps);
@@ -69,7 +71,7 @@ export default class UserFactory {
     };
   }
 
-  static create(props: IUserProps) {
+  static create(props: IUserProps): IUser {
     const {
       bio,
       day,
