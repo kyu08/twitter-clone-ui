@@ -14,7 +14,18 @@ export default class Following implements IFollowing {
     return this.following;
   }
 
+  private isUserIdExist(userId: UserId): boolean {
+    const following = this.getFollowing();
+    let isExist = false;
+    following.forEach((u) => {
+      if (u.userId === userId.userId) isExist = true;
+    });
+
+    return isExist;
+  }
+
   follow(userId: UserId): Following {
+    if (this.isUserIdExist(userId)) return this;
     const copy = _.cloneDeep(this.getFollowing());
     copy.add(userId);
 

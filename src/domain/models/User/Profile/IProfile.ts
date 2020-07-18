@@ -3,7 +3,7 @@ import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
-import Birthday, { IBirthday } from './Birthday';
+import Birthday, { BirthdayProps } from './Birthday';
 import UserImage from './UserImage';
 import HeaderImage from './HeaderImage';
 
@@ -22,7 +22,7 @@ export interface ProfileProps {
 
 export interface IProfile {
   updateBio(bioString: string): IProfile;
-  updateBirthday(birthdayProps: IBirthday): IProfile;
+  updateBirthday(birthdayProps: BirthdayProps): IProfile;
   updateUserLocation(userLocationString: string): IProfile;
   updateWebsite(webSiteString: string): IProfile;
   updateUserName(userNameString: string): IProfile;

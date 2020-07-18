@@ -1,24 +1,91 @@
-import { User } from '../domain/models/User/User';
+import * as _ from 'lodash';
 import UserId from '../domain/models/User/UserId/UserId';
 import { IUser } from '../domain/models/User/IUser';
 import { TODO } from '../util/Util';
 import { IUserRepository } from '../domain/models/User/IUserRepository';
-import { inMemoryUsers } from './InMemoryUsers';
+import { inMemoryUserMap } from './InMemoryUsers';
+import UserFactory from '../domain/models/User/UserFactory';
 
 export default class InMemoryUserRepository implements IUserRepository {
-  getUserByUserId(userId: UserId): IUser {
-    const props = inMemoryUsers.find((e) => e.userId.userId === userId.userId);
-    if (props === undefined) throw new Error('user undefined');
+  private static returnUserMap(): Map<number, IUser> {
+    const usersJSON = localStorage.getItem('userMap');
+    if (!usersJSON) throw Error('There is no userMapInLS');
+    const usersJSONParsed = JSON.parse(usersJSON);
 
-    return new User(props);
+    return InMemoryUserRepository.instantiateUsersFromJSON(usersJSONParsed);
   }
 
-  // update(
-  //   user: IUser,
-  // ): TODO<
-  //   'httpResponseBodyかなあ？いったんIUserをreturnする仕様でいいかな...'
-  // > {
-  //   // ここに具体的なAPI fetch
-  //   // 失敗した場合は container component から 失敗フラグを渡す？(optional stateにしといたやつ？)
-  // }
+  static SetToArray(userMap: Map<number, any>): Map<number, any> {
+    userMap.forEach((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.following.following = Array.from(user.following.following);
+      user.follower.follower = Array.from(user.follower.follower);
+    });
+
+    return userMap;
+  }
+
+  private static MapToArray(userMap: Map<number, IUser>): string {
+    const userMapSetArray = InMemoryUserRepository.SetToArray(userMap);
+    const userMapArray = Array.from(userMapSetArray);
+
+    return JSON.stringify(userMapArray);
+  }
+
+  // LS に 初期値を set
+  static initializeLocalStorage(): void {
+    const userMapInLocalStorage = localStorage.getItem('userMap');
+    if (!userMapInLocalStorage) {
+      const userMap = inMemoryUserMap;
+      const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
+      localStorage.setItem('userMap', userMapJSON);
+    }
+  }
+
+  // LS からもってきた値を User インスタンス化して UserMap をかえす
+  private static instantiateUsersFromJSON(
+    users: TODO<'usersParsed'>[],
+  ): Map<number, IUser> {
+    const map = new Map();
+
+    users.forEach((u) => {
+      const { userId } = new UserId(u[0]);
+      const props = UserFactory.createUserPropsFromJSON(u[1]);
+
+      // todo ここで follow系 Set もいじる(UserId にして new Set()する)
+      const user = UserFactory.create(props);
+      map.set(userId, user);
+    });
+
+    return map;
+  }
+
+  getUserByUserId(userId: UserId): IUser {
+    const userMap = InMemoryUserRepository.returnUserMap();
+    let user: IUser;
+    userMap.forEach((userInUserMap, userIdInUserMap) => {
+      if (userIdInUserMap === userId.userId) user = userInUserMap;
+    });
+
+    // todo ここなんとかする
+    // @ts-ignore
+    if (user === undefined) throw new Error('user undefined');
+
+    return user;
+  }
+
+  // NOTE LocalStorage に User 情報(Id, PWはのぞく)を保存する。
+  // NOTE ID, PW は別途 LS に保存する？
+  save(user: IUser): void {
+    const { userId } = user.getUserId();
+    const userMap = InMemoryUserRepository.returnUserMap();
+    const userMapCopy = _.cloneDeep(userMap);
+    userMapCopy.set(userId, user);
+    InMemoryUserRepository.saveUserMap(userMapCopy);
+  }
+
+  private static saveUserMap(userMap: Map<number, IUser>): void {
+    const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
+    localStorage.setItem('userMap', userMapJSON);
+  }
 }

@@ -1,4 +1,4 @@
-import { IUser, UserProps } from '../domain/models/User/IUser';
+import { IUser } from '../domain/models/User/IUser';
 import Follower from '../domain/models/User/Follower/Follower';
 import Following from '../domain/models/User/Following/Following';
 import Profile from '../domain/models/User/Profile/Profile';
@@ -16,7 +16,23 @@ import Day from '../domain/models/User/Profile/Birthday/Day';
 import Month from '../domain/models/User/Profile/Birthday/Month';
 import Year from '../domain/models/User/Profile/Birthday/Year';
 
-interface IProps {
+export interface IProps {
+  day: number;
+  month: number;
+  year: number;
+  bio: string;
+  headerImage: string;
+  userLocation: string;
+  screenName: string;
+  userName: string;
+  userImage: string;
+  website: string;
+  follower: Set<UserId>;
+  following: Set<UserId>;
+  userId: number;
+}
+
+export interface IUserProps {
   day: Day;
   month: Month;
   year: Year;
@@ -32,7 +48,7 @@ interface IProps {
   userId: UserId;
 }
 
-const userFactory = (props: IProps) => {
+const userFactory = (props: IUserProps) => {
   const {
     bio,
     day,
@@ -112,3 +128,9 @@ const userC = userFactory({
 });
 
 export const inMemoryUsers: IUser[] = [userA, userB, userC];
+
+export const inMemoryUserMap: Map<number, IUser> = new Map([
+  [userA.userId.userId, userA],
+  [userB.userId.userId, userB],
+  [userC.userId.userId, userC],
+]);

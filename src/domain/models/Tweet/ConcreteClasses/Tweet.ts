@@ -1,14 +1,14 @@
 import { AbstractTweet } from '../AbstractTweet';
-import { AbstractTweetProps } from '../IAbstractTweet';
 import UserId from '../../User/UserId/UserId';
+import { AbstractTweetProps } from '../IAbstractTweet';
 
-// todo SingleTweet とかにする？
 export default class Tweet extends AbstractTweet {
   // eslint-disable-next-line no-useless-constructor
   constructor(props: AbstractTweetProps) {
     super(props);
   }
 
+  // todo delete method 実装する
   like(userId: UserId): Tweet {
     const likeSet = this.likeSet.like(userId);
     const props = { ...this, likeSet };

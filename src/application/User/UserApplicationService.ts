@@ -1,10 +1,14 @@
 import UserId from '../../domain/models/User/UserId/UserId';
 import { TODO } from '../../util/Util';
 import InMemoryUserRepository from '../../inMemory/InMemoryUserRepository';
+import { IUserRepository } from '../../domain/models/User/IUserRepository';
+import { BirthdayProps } from '../../domain/models/User/Profile/Birthday';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
+// 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
-  static readonly userRepository = new InMemoryUserRepository();
+  // todo InMemory <-> Production でさしかえる
+  static readonly userRepository: IUserRepository = new InMemoryUserRepository();
 
   //
   // todo
@@ -12,11 +16,65 @@ export default class UserApplicationService {
   //  user 登録
   //  ログイン
   //  ログアウト
-  //  profile 変更系
-  //  follow 系
   //
 
-  static findUserByUserId(userId: UserId): TODO<'うまくいったのかどうか'> {
+  // signUp(userProps: any): any {
+  //   const props = UserFactory.createProps(userProps);
+  //   const user = UserFactory.create(props);
+  //   UserApplicationService.userRepository.save(user);
+  // }
+
+  // todo login 中のユーザーの情報しかもってこれないようにする
+  static findUserByUserId(userId: UserId): TODO<'User'> {
     return this.userRepository.getUserByUserId(userId);
+  }
+
+  // todo パラメータごとにsaveメソッドを分けるかどうかはバックエンドと相談(とりあえずわけずにいく)
+  static updateUserName(userId: UserId, userNameString: string): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateUserName(userNameString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static updateBio(userId: UserId, bioString: string): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateBio(bioString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static updateWebsite(userId: UserId, websiteString: string): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateWebsite(websiteString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static updateUserLocation(userId: UserId, userLocationString: string): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateUserLocation(userLocationString);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static updateBirthday(userId: UserId, birthdayProps: BirthdayProps): void {
+    const user = UserApplicationService.findUserByUserId(userId);
+    const updatedUser = user.updateBirthday(birthdayProps);
+    UserApplicationService.userRepository.save(updatedUser);
+  }
+
+  static follow(currentUserId: UserId, targetUserId: UserId): void {
+    const currentUser = UserApplicationService.findUserByUserId(currentUserId);
+    const targetUser = UserApplicationService.findUserByUserId(targetUserId);
+    const currentUserUpdated = currentUser.follow(targetUserId);
+    const targetUserUpdated = targetUser.followed(currentUserId);
+    UserApplicationService.userRepository.save(currentUserUpdated);
+    UserApplicationService.userRepository.save(targetUserUpdated);
+  }
+
+  static unFollow(currentUserId: UserId, targetUserId: UserId): void {
+    const currentUser = UserApplicationService.findUserByUserId(currentUserId);
+    const targetUser = UserApplicationService.findUserByUserId(targetUserId);
+    const currentUserUpdated = currentUser.unFollow(targetUserId);
+    const targetUserUpdated = targetUser.unFollowed(currentUserId);
+    UserApplicationService.userRepository.save(currentUserUpdated);
+    UserApplicationService.userRepository.save(targetUserUpdated);
   }
 }

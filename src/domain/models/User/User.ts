@@ -3,7 +3,7 @@ import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import Following from './Following/Following';
 import Follower from './Follower/Follower';
-import { IBirthday } from './Profile/Birthday';
+import { BirthdayProps } from './Profile/Birthday';
 
 interface UserProps {
   readonly follower: Follower;
@@ -74,7 +74,7 @@ export class User implements IUser {
     return this.returnUpdatedInstance('profile', profile);
   }
 
-  updateBirthday(birthdayProps: IBirthday): User {
+  updateBirthday(birthdayProps: BirthdayProps): User {
     const profile = this.getProfile().updateBirthday(birthdayProps);
 
     return this.returnUpdatedInstance('profile', profile);
@@ -93,12 +93,16 @@ export class User implements IUser {
   }
 
   updateUserName(userNameString: string): User {
-    const profile = this.getProfile().updateWebsite(userNameString);
+    const profile = this.getProfile().updateUserName(userNameString);
 
     return this.returnUpdatedInstance('profile', profile);
   }
 
   returnUpdatedInstance<T extends keyof User>(key: T, value: User[T]): User {
     return new User({ ...this, ...{ [key]: value } });
+  }
+
+  getUserId(): UserId {
+    return this.userId;
   }
 }

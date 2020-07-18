@@ -3,34 +3,34 @@ import { AbstractTweetProps, IAbstractTweet } from '../IAbstractTweet';
 import UserId from '../../User/UserId/UserId';
 
 interface RetweetProps extends AbstractTweetProps {
-  readonly userId: UserId;
-  readonly retweetedAt: Date;
+  retweetedBy: UserId;
+  retweetedAt: Date;
 }
 
 // memo Retweet に独自メソッドを実装する場合は interface RetweetMethods extends IAbstractTweet{ // methods } ってやる
 type IRetweet = RetweetProps & IAbstractTweet;
 
-export default class Retweet extends AbstractTweet implements IRetweet {
-  readonly userId: UserId;
+export default class Retweet extends AbstractTweet {
+  readonly retweetedBy: UserId;
 
   readonly retweetedAt: Date;
 
   // eslint-disable-next-line no-useless-constructor
   constructor(props: RetweetProps) {
     super(props);
-    const { userId, retweetedAt } = props;
-    this.userId = userId;
+    const { retweetedBy, retweetedAt } = props;
+    this.retweetedBy = retweetedBy;
     this.retweetedAt = retweetedAt;
   }
 
-  like(userId: UserId): AbstractTweet {
+  like(userId: UserId): Retweet {
     const likeSet = this.likeSet.like(userId);
     const props = { ...this, likeSet };
 
     return new Retweet(props);
   }
 
-  cancelLike(userId: UserId): AbstractTweet {
+  cancelLike(userId: UserId): Retweet {
     const likeSet = this.likeSet.cancelLike(userId);
     const props = { ...this, likeSet };
 

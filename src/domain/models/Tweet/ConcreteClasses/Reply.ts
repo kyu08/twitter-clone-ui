@@ -1,16 +1,14 @@
 import { AbstractTweet } from '../AbstractTweet';
-import { AbstractTweetProps, IAbstractTweet } from '../IAbstractTweet';
 import TweetId from '../TweetId/TweetId';
 import UserId from '../../User/UserId/UserId';
+import { AbstractTweetProps } from '../IAbstractTweet';
 
 interface ReplyProps extends AbstractTweetProps {
-  readonly replyTo: TweetId;
+  replyTo: TweetId;
 }
 
-// memo Reply に独自メソッドを実装する場合は interface ReplyMethods extends IAbstractTweet{ // methods } ってやる
-type IReply = ReplyProps & IAbstractTweet;
-
-export default class Reply extends AbstractTweet implements IReply {
+export default class Reply extends AbstractTweet {
+  // todo private にできない (AbstractTweet の properties も protected にしたい)
   readonly replyTo: TweetId;
 
   constructor(props: ReplyProps) {
@@ -19,14 +17,14 @@ export default class Reply extends AbstractTweet implements IReply {
     this.replyTo = replyTo;
   }
 
-  like(userId: UserId): AbstractTweet {
+  like(userId: UserId): Reply {
     const likeSet = this.likeSet.like(userId);
     const props = { ...this, likeSet };
 
     return new Reply(props);
   }
 
-  cancelLike(userId: UserId): AbstractTweet {
+  cancelLike(userId: UserId): Reply {
     const likeSet = this.likeSet.cancelLike(userId);
     const props = { ...this, likeSet };
 

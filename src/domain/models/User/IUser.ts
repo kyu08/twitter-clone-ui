@@ -2,7 +2,7 @@ import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import Following from './Following/Following';
 import Follower from './Follower/Follower';
-import { IBirthday } from './Profile/Birthday';
+import { BirthdayProps } from './Profile/Birthday';
 
 export interface UserProps {
   readonly follower: Follower;
@@ -12,15 +12,16 @@ export interface UserProps {
 }
 
 export interface IUser extends UserProps {
-  // todo follow method と同時に followed method を実行したいけどどこでやろうね
+  // todo follow method と同時に followed method を実行したいけどどこでやろうね -> UserApplicationService でやる
   follow(userId: UserId): IUser;
   unFollow(userId: UserId): IUser;
   followed(userId: UserId): IUser;
   unFollowed(userId: UserId): IUser;
   updateBio(bioString: string): IUser;
-  updateBirthday(birthdayProps: IBirthday): IUser;
+  updateBirthday(birthdayProps: BirthdayProps): IUser;
   returnUpdatedInstance<T extends keyof IUser>(key: T, value: IUser[T]): IUser;
   updateUserLocation(userLocationString: string): IUser;
   updateWebsite(webSiteString: string): IUser;
   updateUserName(userNameString: string): IUser;
+  getUserId(): UserId;
 }
