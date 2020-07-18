@@ -17,14 +17,27 @@ import Year from './Profile/Birthday/Year';
 import { IProps, IUserProps } from '../../../inMemory/InMemoryUsers';
 
 export default class UserFactory {
+  static toInstanceUserId(set: any[]): Set<UserId> {
+    // todo ださいきがする
+    if (JSON.stringify(set) === '{}') return new Set();
+    const setProps = set.map((u) => {
+      return new UserId(u);
+    });
+
+    return new Set(setProps);
+  }
+
   static createUserPropsFromJSON(propsJSON: any): IUserProps {
     const { follower, following, userId, profile } = propsJSON;
+    const followerParsed = UserFactory.toInstanceUserId(follower.follower);
+    const followingParsed = UserFactory.toInstanceUserId(following.following);
+
     const props = {
       bio: profile.bio.bio,
       day: profile.birthday.day.day,
       // todo この中身を UserIdにしないといけないから！
-      follower: new Set(follower.follower),
-      following: new Set(following.following),
+      follower: followerParsed,
+      following: followingParsed,
       headerImage: profile.headerImage.headerImage,
       month: profile.birthday.month.month,
       screenName: profile.screenName.screenName,
