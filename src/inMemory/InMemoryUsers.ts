@@ -129,8 +129,8 @@ const userC = userFactory({
 
 export const inMemoryUsers: IUser[] = [userA, userB, userC];
 
-export const inMemoryUserMap: Map<UserId, IUser> = new Map([
-  [userA.userId, userA],
-  [userB.userId, userB],
-  [userC.userId, userC],
+export const inMemoryUserMap: Map<number, IUser> = new Map([
+  [userA.userId.userId, userA],
+  [userB.userId.userId, userB],
+  [userC.userId.userId, userC],
 ]);

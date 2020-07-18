@@ -7,7 +7,7 @@ import { inMemoryUserMap } from './InMemoryUsers';
 import UserFactory from '../domain/models/User/UserFactory';
 
 export default class InMemoryUserRepository implements IUserRepository {
-  private static returnUserMap(): Map<UserId, IUser> {
+  private static returnUserMap(): Map<number, IUser> {
     const usersJSON = localStorage.getItem('userMap');
     if (!usersJSON) throw Error('There is no userMapInLS');
     const usersJSONParsed = JSON.parse(usersJSON);
@@ -15,7 +15,7 @@ export default class InMemoryUserRepository implements IUserRepository {
     return InMemoryUserRepository.instantiateUsersFromJSON(usersJSONParsed);
   }
 
-  static SetToArray(userMap: Map<UserId, any>): Map<UserId, any> {
+  static SetToArray(userMap: Map<number, any>): Map<number, any> {
     userMap.forEach((user) => {
       // eslint-disable-next-line no-param-reassign
       user.following.following = Array.from(user.following.following);
@@ -25,16 +25,19 @@ export default class InMemoryUserRepository implements IUserRepository {
     return userMap;
   }
 
+  private static MapToArray(userMap: Map<number, IUser>): string {
+    const userMapSetArray = InMemoryUserRepository.SetToArray(userMap);
+    const userMapArray = Array.from(userMapSetArray);
+
+    return JSON.stringify(userMapArray);
+  }
+
   // LS に 初期値を set
   static initializeLocalStorage(): void {
-    // todo これでできるか自信ない
     const userMapInLocalStorage = localStorage.getItem('userMap');
     if (!userMapInLocalStorage) {
       const userMap = inMemoryUserMap;
-      // todo Set オブジェクトも Array にする
-      const userMapSetArray = InMemoryUserRepository.SetToArray(userMap);
-      const userMapArray = Array.from(userMapSetArray);
-      const userMapJSON = JSON.stringify(userMapArray);
+      const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
       localStorage.setItem('userMap', userMapJSON);
     }
   }
@@ -42,12 +45,14 @@ export default class InMemoryUserRepository implements IUserRepository {
   // LS からもってきた値を User インスタンス化して UserMap をかえす
   private static instantiateUsersFromJSON(
     users: TODO<'usersParsed'>[],
-  ): Map<UserId, IUser> {
+  ): Map<number, IUser> {
     const map = new Map();
 
     users.forEach((u) => {
-      const userId = new UserId(u[0].userId);
+      const { userId } = new UserId(u[0]);
       const props = UserFactory.createUserPropsFromJSON(u[1]);
+
+      // todo ここで follow系 Set もいじる(UserId にして new Set()する)
       const user = UserFactory.create(props);
       map.set(userId, user);
     });
@@ -59,7 +64,7 @@ export default class InMemoryUserRepository implements IUserRepository {
     const userMap = InMemoryUserRepository.returnUserMap();
     let user: IUser;
     userMap.forEach((userInUserMap, userIdInUserMap) => {
-      if (userIdInUserMap.userId === userId.userId) user = userInUserMap;
+      if (userIdInUserMap === userId.userId) user = userInUserMap;
     });
 
     // todo ここなんとかする
@@ -72,16 +77,15 @@ export default class InMemoryUserRepository implements IUserRepository {
   // NOTE LocalStorage に User 情報(Id, PWはのぞく)を保存する。
   // NOTE ID, PW は別途 LS に保存する？
   save(user: IUser): void {
-    const userId = user.getUserId();
+    const { userId } = user.getUserId();
     const userMap = InMemoryUserRepository.returnUserMap();
     const userMapCopy = _.cloneDeep(userMap);
     userMapCopy.set(userId, user);
     InMemoryUserRepository.saveUserMap(userMapCopy);
   }
 
-  private static saveUserMap(userMap: Map<UserId, IUser>): void {
-    const userMapArray = Array.from(userMap);
-    const userMapJSON = JSON.stringify(userMapArray);
+  private static saveUserMap(userMap: Map<number, IUser>): void {
+    const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
     localStorage.setItem('userMap', userMapJSON);
   }
 }
