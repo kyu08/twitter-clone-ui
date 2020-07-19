@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { Home } from './Home';
 import { Login } from './Login';
+import classes from './RootComponent.module.css';
 
 export const RootComponent: React.FC<{}> = () => {
   const [isLogin, setIsLogin] = React.useState<boolean>(false);
@@ -10,5 +11,9 @@ export const RootComponent: React.FC<{}> = () => {
     if (userIdInLocalStorage) setIsLogin(true);
   }, []);
 
-  return <>{isLogin ? <Home /> : <Login />}</>;
+  return (
+    <div className={classes.RootComponent}>
+      {isLogin ? <Home /> : <Login />}
+    </div>
+  );
 };
