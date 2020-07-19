@@ -1,15 +1,17 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
+import { InvalidLogin } from './InvalidLogin';
 
 export const LoginForm: React.FC<{}> = () => {
   const [userId, setUserId] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isInvalidLogin, setIsInvalidLogin] = React.useState(false);
 
   const authorize = (id: string, pw: string): boolean => {
     // todo repository にといあわせ？
     console.log(id, pw);
 
-    return true;
+    return false;
   };
 
   const login = () => {
@@ -21,9 +23,11 @@ export const LoginForm: React.FC<{}> = () => {
       // todo LS に UserId を set
       localStorage.setItem('userId', 'hogehoge');
       window.location.href = '/home';
+
+      return;
     }
     // todo ID or PW が間違っています を表示
-    console.log('ID or PW が間違っています');
+    setIsInvalidLogin(true);
   };
 
   const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +40,7 @@ export const LoginForm: React.FC<{}> = () => {
 
   return (
     <>
+      {isInvalidLogin && <InvalidLogin />}
       <div className={classes.LoginForm}>
         {/* todo 外部に送信する場合はformタグの方が良い？ */}
         <div className={classes.InputLabel}>ユーザ名</div>
