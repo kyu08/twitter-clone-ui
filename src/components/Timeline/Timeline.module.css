@@ -1,9 +1,10 @@
-.TimelineContainer {
+.Timeline {
+    /* todo 86vh ださい */
     height: 86vh;
     width: 100%;
     overflow: scroll;
 }
 
-.TimelineContainer::-webkit-scrollbar {
+.Timeline::-webkit-scrollbar {
     display: none;
 }

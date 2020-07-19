@@ -19,6 +19,7 @@ export default class InMemoryUserRepository implements IUserRepository {
     userMap.forEach((user) => {
       // eslint-disable-next-line no-param-reassign
       user.following.following = Array.from(user.following.following);
+      // eslint-disable-next-line no-param-reassign
       user.follower.follower = Array.from(user.follower.follower);
     });
 
