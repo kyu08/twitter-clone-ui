@@ -2,5 +2,14 @@ import * as React from 'react';
 import classes from './Header.module.css';
 
 export const Header: React.FC<{}> = () => {
-  return <div className={classes.Header}>Header</div>;
+  const logout = () => {
+    window.location.href = '/login';
+  };
+
+  return (
+    <div className={classes.Header}>
+      Header
+      <button onClick={() => logout()}>logout</button>
+    </div>
+  );
 };
