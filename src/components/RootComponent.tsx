@@ -4,14 +4,20 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { Home } from './Home';
 import { Login } from './Login';
 import classes from './RootComponent.module.css';
+import Store from '../Store';
 
-export const RootComponent: React.FC<{}> = () => {
+export const RootComponent: React.FC = () => {
+  const store = Store.useStore();
+
   const [isLogin, setIsLogin] = React.useState<boolean>(false);
 
   useEffect(() => {
-    // todo LS へのアクセスはなしにしてグローバルステートにいれよう
-    const userIdInLocalStorage = localStorage.getItem('userId');
-    if (userIdInLocalStorage) setIsLogin(true);
+    // todo LS は repo 経由でやる
+    const screenNameInLocalStorage = localStorage.getItem('screenName');
+    if (screenNameInLocalStorage) {
+      setIsLogin(true);
+      store.set('screenName')(screenNameInLocalStorage);
+    }
   }, []);
 
   return (

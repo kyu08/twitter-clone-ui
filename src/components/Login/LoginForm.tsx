@@ -3,36 +3,35 @@ import classes from './LoginForm.module.css';
 import { InvalidLogin } from './InvalidLogin';
 
 export const LoginForm: React.FC<{}> = () => {
-  const [userId, setUserId] = React.useState('');
+  const [screenName, setScreenName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isInvalidLogin, setIsInvalidLogin] = React.useState(false);
 
   const authorize = (id: string, pw: string): boolean => {
-    // todo repository にといあわせ？
+    // todo repository にといあわせ
     console.log(id, pw);
 
-    return false;
+    return true;
   };
 
   const login = () => {
     // todo idpw があってるかサーバに問合せ
-    const isAuthorized = authorize(userId, password);
+    const isAuthorized = authorize(screenName, password);
 
-    // なんか書いた方がいいおまじないがあったけど忘れた
     if (isAuthorized) {
-      // todo LS へのアクセスはなしにしてグローバルステートにいれよう
       // todo LS に set するのも, global state に set するのも Container component からもらったコールバック関数を使うようにしよう
-      localStorage.setItem('userId', 'hogehoge');
+      // todo repository 経由でアクセス
+      // todo effect を使うと set の変更内容と LS を同期させることができる？？
+      localStorage.setItem('screenName', screenName);
       window.location.href = '/home';
 
       return;
     }
-    // todo ID or PW が間違っています を表示
     setIsInvalidLogin(true);
   };
 
-  const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserId(e.currentTarget.value);
+  const handleScreenNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setScreenName(e.currentTarget.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +46,9 @@ export const LoginForm: React.FC<{}> = () => {
         <div className={classes.InputLabel}>ユーザ名</div>
         <input
           type="text"
-          value={userId}
+          value={screenName}
           className={classes.LoginInput}
-          onChange={(e) => handleUserIdChange(e)}
+          onChange={(e) => handleScreenNameChange(e)}
         />
       </div>
       <div className={classes.LoginForm}>
