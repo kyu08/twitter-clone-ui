@@ -20,7 +20,8 @@ export const LoginForm: React.FC<{}> = () => {
 
     // なんか書いた方がいいおまじないがあったけど忘れた
     if (isAuthorized) {
-      // todo LS に UserId を set
+      // todo LS へのアクセスはなしにしてグローバルステートにいれよう
+      // todo LS に set するのも, global state に set するのも Container component からもらったコールバック関数を使うようにしよう
       localStorage.setItem('userId', 'hogehoge');
       window.location.href = '/home';
 
