@@ -9,6 +9,7 @@ export const RootComponent: React.FC<{}> = () => {
   const [isLogin, setIsLogin] = React.useState<boolean>(false);
 
   useEffect(() => {
+    // todo LS へのアクセスはなしにしてグローバルステートにいれよう
     const userIdInLocalStorage = localStorage.getItem('userId');
     if (userIdInLocalStorage) setIsLogin(true);
   }, []);
