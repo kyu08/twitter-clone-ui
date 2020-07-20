@@ -5,6 +5,7 @@ import { TODO } from '../util/Util';
 import { IUserRepository } from '../domain/models/User/IUserRepository';
 import { inMemoryUserMap } from './InMemoryUsers';
 import UserFactory from '../domain/models/User/UserFactory';
+import { ScreenNamePasswordMap } from './InMemoryScreenNamePassword';
 
 export default class InMemoryUserRepository implements IUserRepository {
   private static returnUserMap(): Map<number, IUser> {
@@ -15,15 +16,9 @@ export default class InMemoryUserRepository implements IUserRepository {
     return InMemoryUserRepository.instantiateUsersFromJSON(usersJSONParsed);
   }
 
-  static SetToArray(userMap: Map<number, any>): Map<number, any> {
-    userMap.forEach((user) => {
-      // eslint-disable-next-line no-param-reassign
-      user.following.following = Array.from(user.following.following);
-      // eslint-disable-next-line no-param-reassign
-      user.follower.follower = Array.from(user.follower.follower);
-    });
-
-    return userMap;
+  private static saveUserMap(userMap: Map<number, IUser>): void {
+    const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
+    localStorage.setItem('userMap', userMapJSON);
   }
 
   private static MapToArray(userMap: Map<number, IUser>): string {
@@ -31,16 +26,6 @@ export default class InMemoryUserRepository implements IUserRepository {
     const userMapArray = Array.from(userMapSetArray);
 
     return JSON.stringify(userMapArray);
-  }
-
-  // LS に 初期値を set
-  static initializeLocalStorage(): void {
-    const userMapInLocalStorage = localStorage.getItem('userMap');
-    if (!userMapInLocalStorage) {
-      const userMap = inMemoryUserMap;
-      const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
-      localStorage.setItem('userMap', userMapJSON);
-    }
   }
 
   // LS からもってきた値を User インスタンス化して UserMap をかえす
@@ -59,6 +44,27 @@ export default class InMemoryUserRepository implements IUserRepository {
     });
 
     return map;
+  }
+
+  static SetToArray(userMap: Map<number, any>): Map<number, any> {
+    userMap.forEach((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.following.following = Array.from(user.following.following);
+      // eslint-disable-next-line no-param-reassign
+      user.follower.follower = Array.from(user.follower.follower);
+    });
+
+    return userMap;
+  }
+
+  // LS に 初期値を set
+  static initializeLocalStorage(): void {
+    const userMapInLocalStorage = localStorage.getItem('userMap');
+    if (!userMapInLocalStorage) {
+      const userMap = inMemoryUserMap;
+      const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
+      localStorage.setItem('userMap', userMapJSON);
+    }
   }
 
   getUserByUserId(userId: UserId): IUser {
@@ -85,8 +91,16 @@ export default class InMemoryUserRepository implements IUserRepository {
     InMemoryUserRepository.saveUserMap(userMapCopy);
   }
 
-  private static saveUserMap(userMap: Map<number, IUser>): void {
-    const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
-    localStorage.setItem('userMap', userMapJSON);
+  isAuthorized(screenName: string, password: string): boolean {
+    const screenNamePasswordMap = ScreenNamePasswordMap;
+    const passwordExpected = screenNamePasswordMap.get(screenName);
+    console.log(passwordExpected, password);
+    if (passwordExpected === undefined || passwordExpected !== password)
+      console.log('invalid access.');
+
+    return false;
+    console.log('loged in.');
+
+    return true;
   }
 }

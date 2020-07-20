@@ -77,4 +77,8 @@ export default class UserApplicationService {
     UserApplicationService.userRepository.save(currentUserUpdated);
     UserApplicationService.userRepository.save(targetUserUpdated);
   }
+
+  static isAuthorized(screenName: string, password: string): boolean {
+    return this.userRepository.isAuthorized(screenName, password);
+  }
 }
