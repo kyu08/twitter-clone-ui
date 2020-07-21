@@ -1,44 +1,25 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
 import { InvalidLogin } from './InvalidLogin';
-import UserApplicationService from '../../application/User/UserApplicationService';
-import Store from '../../Store';
 
-export const LoginForm: React.FC<{}> = () => {
-  const [screenName, setScreenName] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [isInvalidLogin, setIsInvalidLogin] = React.useState(false);
-  const store = Store.useStore();
+type Props = {
+  isInvalidLogin: boolean;
+  screenName: string;
+  handleScreenNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  password: string;
+  handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  login(): void;
+};
 
-  const authorize = (
-    screenNameEntered: string,
-    passwordEntered: string,
-  ): boolean => {
-    return UserApplicationService.isAuthorized(
-      screenNameEntered,
-      passwordEntered,
-    );
-  };
-
-  const login = () => {
-    const isAuthorized = authorize(screenName, password);
-    if (isAuthorized) {
-      // todo これは コールバック関数でやる
-      store.set('screenName')(screenName);
-      window.location.href = '/home';
-
-      return;
-    }
-    setIsInvalidLogin(true);
-  };
-
-  const handleScreenNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setScreenName(e.currentTarget.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
+export const LoginForm: React.FC<Props> = (props) => {
+  const {
+    isInvalidLogin,
+    screenName,
+    handleScreenNameChange,
+    password,
+    handlePasswordChange,
+    login,
+  } = props;
 
   return (
     <>
