@@ -81,8 +81,6 @@ export default class InMemoryUserRepository implements IUserRepository {
     return user;
   }
 
-  // NOTE LocalStorage に User 情報(Id, PWはのぞく)を保存する。
-  // NOTE ID, PW は別途 LS に保存する？
   save(user: IUser): void {
     const { userId } = user.getUserId();
     const userMap = InMemoryUserRepository.returnUserMap();
