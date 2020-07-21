@@ -1,21 +1,24 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
 import { InvalidLogin } from './InvalidLogin';
+import UserApplicationService from '../../application/User/UserApplicationService';
 
 export const LoginForm: React.FC<{}> = () => {
   const [screenName, setScreenName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isInvalidLogin, setIsInvalidLogin] = React.useState(false);
 
-  const authorize = (id: string, pw: string): boolean => {
-    // todo repository にといあわせ
-    console.log(id, pw);
-
-    return true;
+  const authorize = (
+    screenNameEntered: string,
+    passwordEntered: string,
+  ): boolean => {
+    return UserApplicationService.isAuthorized(
+      screenNameEntered,
+      passwordEntered,
+    );
   };
 
   const login = () => {
-    // todo idpw があってるかサーバに問合せ
     const isAuthorized = authorize(screenName, password);
 
     if (isAuthorized) {

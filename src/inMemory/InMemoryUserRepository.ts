@@ -94,12 +94,12 @@ export default class InMemoryUserRepository implements IUserRepository {
   isAuthorized(screenName: string, password: string): boolean {
     const screenNamePasswordMap = ScreenNamePasswordMap;
     const passwordExpected = screenNamePasswordMap.get(screenName);
-    console.log(passwordExpected, password);
-    if (passwordExpected === undefined || passwordExpected !== password)
+    if (passwordExpected === undefined || passwordExpected !== password) {
       console.log('invalid access.');
 
-    return false;
-    console.log('loged in.');
+      return false;
+    }
+    console.log('logged in.');
 
     return true;
   }
