@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import { useDebugValue } from 'react';
 import UserId from '../domain/models/User/UserId/UserId';
 import { IUser } from '../domain/models/User/IUser';
 import { TODO } from '../util/Util';
@@ -102,5 +103,13 @@ export default class InMemoryUserRepository implements IUserRepository {
     console.log('logged in.');
 
     return true;
+  }
+
+  setScreenNameToLocalStorage(screenName: string): void {
+    localStorage.setItem('screenName', screenName);
+  }
+
+  getScreenNameFromLocalStorage(): string | null {
+    return localStorage.getItem('screenName');
   }
 }

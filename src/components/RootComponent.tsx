@@ -5,19 +5,19 @@ import { Home } from './Home';
 import { Login } from './Login';
 import classes from './RootComponent.module.css';
 import Store from '../Store';
+import { IUserRepository } from '../domain/models/User/IUserRepository';
+import InMemoryUserRepository from '../inMemory/InMemoryUserRepository';
 
 export const RootComponent: React.FC = () => {
   const store = Store.useStore();
-
   const [isLogin, setIsLogin] = React.useState<boolean>(false);
+  const userRepository: IUserRepository = new InMemoryUserRepository();
 
   useEffect(() => {
-    // todo LS は repo 経由でやる
-    const screenNameInLocalStorage = localStorage.getItem('screenName');
-    if (screenNameInLocalStorage) {
-      setIsLogin(true);
-      store.set('screenName')(screenNameInLocalStorage);
-    }
+    const screenNameInLocalStorage = userRepository.getScreenNameFromLocalStorage();
+    if (!screenNameInLocalStorage) return;
+    setIsLogin(true);
+    store.set('screenName')(screenNameInLocalStorage);
   }, []);
 
   return (
