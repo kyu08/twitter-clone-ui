@@ -4,7 +4,7 @@ import UserApplicationService from './application/User/UserApplicationService';
 import UserId from './domain/models/User/UserId/UserId';
 import InMemoryUserRepository from './inMemory/InMemoryUserRepository';
 import Store from './Store';
-import { RootComponent } from './components/RootComponent';
+import { Container } from './Container/Container';
 
 const App = () => {
   InMemoryUserRepository.initializeLocalStorage();
@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <Store.Container>
-      <RootComponent />
+      <Container />
     </Store.Container>
   );
 };
