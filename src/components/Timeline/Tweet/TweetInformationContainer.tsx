@@ -6,12 +6,20 @@ import { ScreenName } from './TweetInformationContainer/ScreenName';
 import { HowLongAgo } from './TweetInformationContainer/HowLongAgo';
 import { TweetMenuButton } from './Common/TweetMenuButton';
 
-export const TweetInformationContainer: React.FC<{}> = () => {
+type Props = {
+  userName: string;
+  screenName: string;
+  howLongAgo: string;
+};
+
+export const TweetInformationContainer: React.FC<Props> = (props) => {
+  const { howLongAgo, screenName, userName } = props;
+
   return (
     <div className={classes.TweetInformationContainer}>
-      <UserName userName="ねこ" />
-      <ScreenName screenName="i_am_cat" />
-      <HowLongAgo howLongAgo={10} />
+      <UserName userName={userName} />
+      <ScreenName screenName={screenName} />
+      <HowLongAgo howLongAgo={howLongAgo} />
       <div className={classes.TweetOptionButtonWrapper}>
         <TweetMenuButton buttonIcon={<ExpandMoreOutlinedIcon />} />
       </div>

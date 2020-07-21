@@ -6,6 +6,7 @@ import { LoginForm } from './Login/LoginForm';
 import UserApplicationService from '../application/User/UserApplicationService';
 import Store from '../Store';
 
+// this is container component.
 export const Login: React.FC<{}> = () => {
   const [screenName, setScreenName] = React.useState('');
   const [password, setPassword] = React.useState('');
