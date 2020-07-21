@@ -1,3 +1,5 @@
+// todo Container component っぽい名前に変える？
+
 import * as React from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
