@@ -7,4 +7,5 @@ export interface IUserRepository {
   isAuthorized(screenName: string, password: string): boolean;
   setScreenNameToLocalStorage(screenName: string): void;
   getScreenNameFromLocalStorage(): string | null;
+  removeScreenNameFromLocalStorage(): void;
 }

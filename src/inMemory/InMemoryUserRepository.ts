@@ -109,4 +109,8 @@ export default class InMemoryUserRepository implements IUserRepository {
   getScreenNameFromLocalStorage(): string | null {
     return localStorage.getItem('screenName');
   }
+
+  removeScreenNameFromLocalStorage(): void {
+    localStorage.removeItem('screenName');
+  }
 }

@@ -8,6 +8,7 @@ const userRepository: IUserRepository = new InMemoryUserRepository();
 const effects: StoreEffects = (store) => {
   store.on('screenName').subscribe((screenName) => {
     if (!screenName) {
+      userRepository.removeScreenNameFromLocalStorage();
       throw new Error('ScreenName is undefined.');
     }
     userRepository.setScreenNameToLocalStorage(screenName);
