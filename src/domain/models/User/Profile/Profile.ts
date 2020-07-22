@@ -11,6 +11,7 @@ import Day from './Birthday/Day';
 import Year from './Birthday/Year';
 import Month from './Birthday/Month';
 
+// note userImage, bio, userLocation, website optional にするかも
 export default class Profile implements IProfile {
   readonly screenName: ScreenName;
 
