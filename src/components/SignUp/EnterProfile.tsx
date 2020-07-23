@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Message } from '../Login/Message';
 import classes from '../Login/LoginForm.module.css';
 import { InputContainer } from '../Common/InputContainer';
+import { SelectDate } from './SelectDate';
 
 type Props = {
   message: string;
@@ -22,6 +23,26 @@ export const EnterProfile: React.FC<Props> = (props) => {
     next,
   } = props;
 
+  const [year, setYear] = React.useState(2020);
+  const [month, setMonth] = React.useState(1);
+  const [day, setDay] = React.useState(1);
+
+  const isLeapYear = (y: number): boolean => {
+    return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
+  };
+
+  const lastDay = (y: number, m: number): number => {
+    if (isLeapYear(y) && m === 2) return 29;
+
+    const lastDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    return lastDays[m - 1];
+  };
+
+  const isValidDate = (y: number, m: number, d: number): boolean => {
+    return d <= lastDay(y, m);
+  };
+
   return (
     <>
       <Message message={message} />
@@ -40,7 +61,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
             handleChangeValue={handleScreenNameChange}
           />
           生年月日コンポーネントつくる
-          {/* https://stackoverflow.com/questions/5812220/how-to-validate-a-date*/}
+          <SelectDate />
           <input
             type="submit"
             className={classes.SubmitButton}
