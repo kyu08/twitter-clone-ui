@@ -1,14 +1,23 @@
 .InputContainer {
-    margin: 10px auto;
-    width: 315px;
-    background-color: rgb(118, 118, 118);
+    margin: 20px auto;
+    width: 100%;
+    background-color: rgb(25, 39, 52);
+    border-bottom: solid 2px rgb(136, 153, 166);
 }
 
 .InputLabel {
     padding-left: 10px;
+    color: rgb(136, 153, 166);
+    font-family: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
 }
 
 .LoginInput {
+    color: white;
+    font-size: 18px;
+    padding: 0;
     height: 29px;
     width: 100%;
+    background-color: rgb(25, 39, 52);
+    border: none;
 }

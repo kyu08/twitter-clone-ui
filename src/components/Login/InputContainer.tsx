@@ -13,13 +13,15 @@ export const InputContainer: React.FC<Props> = (props) => {
 
   return (
     <div className={classes.InputContainer}>
-      <div className={classes.InputLabel}>{labelTitle}</div>
-      <input
-        type={inputType}
-        value={value}
-        className={classes.LoginInput}
-        onChange={(e) => handleChangeValue(e)}
-      />
+      <label className={classes.InputLabel}>
+        {labelTitle}
+        <input
+          type={inputType}
+          value={value}
+          className={classes.LoginInput}
+          onChange={(e) => handleChangeValue(e)}
+        />
+      </label>
     </div>
   );
 };
