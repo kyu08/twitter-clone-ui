@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
 import { InvalidLogin } from './InvalidLogin';
+import { InputContainer } from './InputContainer';
 
 type Props = {
   isInvalidLogin: boolean;
@@ -25,24 +26,18 @@ export const LoginForm: React.FC<Props> = (props) => {
     <>
       {isInvalidLogin && <InvalidLogin />}
       <form>
-        <div className={classes.LoginForm}>
-          <div className={classes.InputLabel}>ユーザ名</div>
-          <input
-            type="text"
-            value={screenName}
-            className={classes.LoginInput}
-            onChange={(e) => handleScreenNameChange(e)}
-          />
-        </div>
-        <div className={classes.LoginForm}>
-          <div className={classes.InputLabel}>パスワード</div>
-          <input
-            type="password"
-            value={password}
-            className={classes.LoginInput}
-            onChange={(e) => handlePasswordChange(e)}
-          />
-        </div>
+        <InputContainer
+          labelTitle="ユーザ名"
+          inputType="text"
+          value={screenName}
+          handleChangeValue={handleScreenNameChange}
+        />
+        <InputContainer
+          labelTitle="パスワード"
+          inputType="password"
+          value={password}
+          handleChangeValue={handlePasswordChange}
+        />
         <div className={classes.ButtonContainer}>
           <input
             type="submit"
