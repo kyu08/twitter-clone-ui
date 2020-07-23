@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Header } from './Common/Header';
+import { Header } from './Timeline/Common/Header';
 import { Timeline } from './Timeline/Timeline';
-import { Footer } from './Common/Footer';
+import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
 
 // this is container component.
