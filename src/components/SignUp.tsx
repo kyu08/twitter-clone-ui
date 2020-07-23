@@ -8,7 +8,8 @@ type Props = {
 };
 
 export const SignUp: React.FC<Props> = (props) => {
-  // ここで SignUpPage の切り替えを行う
+  // ここで state 使って SignUpPage の切り替えを行う
+  // ユーザが入力した値は state で保持しておく
   const { isLogin } = props;
 
   return (
