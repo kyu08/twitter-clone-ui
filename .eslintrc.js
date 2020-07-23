@@ -235,6 +235,8 @@ module.exports = {
     'newline-before-return': 'error',
     'no-console': 'off',
     'no-continue': 'off',
+    'class-methods-use-this': 'off',
+
     quotes: ['error', 'single', {avoidEscape: true}],
     'require-yield': 'error',
     semi: ['error', 'always'],

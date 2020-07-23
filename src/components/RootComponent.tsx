@@ -1,25 +1,39 @@
 import * as React from 'react';
-import { useEffect } from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 import { Home } from './Home';
 import { Login } from './Login';
 import classes from './RootComponent.module.css';
+import { SignUp } from './SignUp';
 
-export const RootComponent: React.FC<{}> = () => {
-  const [isLogin, setIsLogin] = React.useState<boolean>(false);
+type Props = {
+  isLogin: boolean;
+  setIsLogin(boolean: boolean): void;
+};
 
-  useEffect(() => {
-    // todo LS へのアクセスはなしにしてグローバルステートにいれよう
-    const userIdInLocalStorage = localStorage.getItem('userId');
-    if (userIdInLocalStorage) setIsLogin(true);
-  }, []);
+export const RootComponent: React.FC<Props> = (props) => {
+  const { isLogin, setIsLogin } = props;
 
   return (
     <div className={classes.RootComponent}>
       <BrowserRouter>
-        <Route path="/login" component={Login} />
-        <Route path="/home" component={Home} />
-        {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
+        <Switch>
+          <Route
+            exact
+            path="/signup"
+            render={() => <SignUp isLogin={isLogin} />}
+          />
+          <Route
+            exact
+            path="/login"
+            render={() => <Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
+          <Route
+            exact
+            path="/home"
+            render={() => <Home isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
+          {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
+        </Switch>
       </BrowserRouter>
     </div>
   );

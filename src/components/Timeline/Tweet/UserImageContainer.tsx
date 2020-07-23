@@ -1,6 +1,12 @@
 import * as React from 'react';
 import classes from './UserImageContainer.module.css';
 
-export const UserImageContainer: React.FC<{}> = () => {
-  return <div className={classes.UserImageContainer}>UserImage</div>;
+type Props = {
+  userImage: string;
+};
+
+export const UserImageContainer: React.FC<Props> = (props) => {
+  const { userImage } = props;
+
+  return <div className={classes.UserImageContainer}>{userImage}</div>;
 };

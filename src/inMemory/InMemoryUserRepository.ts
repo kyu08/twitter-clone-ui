@@ -81,8 +81,6 @@ export default class InMemoryUserRepository implements IUserRepository {
     return user;
   }
 
-  // NOTE LocalStorage に User 情報(Id, PWはのぞく)を保存する。
-  // NOTE ID, PW は別途 LS に保存する？
   save(user: IUser): void {
     const { userId } = user.getUserId();
     const userMap = InMemoryUserRepository.returnUserMap();
@@ -94,13 +92,25 @@ export default class InMemoryUserRepository implements IUserRepository {
   isAuthorized(screenName: string, password: string): boolean {
     const screenNamePasswordMap = ScreenNamePasswordMap;
     const passwordExpected = screenNamePasswordMap.get(screenName);
-    console.log(passwordExpected, password);
-    if (passwordExpected === undefined || passwordExpected !== password)
+    if (passwordExpected === undefined || passwordExpected !== password) {
       console.log('invalid access.');
 
-    return false;
-    console.log('loged in.');
+      return false;
+    }
+    console.log('logged in.');
 
     return true;
+  }
+
+  setScreenNameToLocalStorage(screenName: string): void {
+    localStorage.setItem('screenName', screenName);
+  }
+
+  getScreenNameFromLocalStorage(): string | null {
+    return localStorage.getItem('screenName');
+  }
+
+  removeScreenNameFromLocalStorage(): void {
+    localStorage.removeItem('screenName');
   }
 }

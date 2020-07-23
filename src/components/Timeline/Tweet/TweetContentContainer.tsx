@@ -8,22 +8,31 @@ import { TweetContent } from './TweetContentContainer/TweetContent';
 import { TweetButton } from './TweetContentContainer/TweetButton';
 import { TweetButtonIcon } from './TweetContentContainer/TweetButtonIcon';
 
-export const TweetContentContainer: React.FC<{}> = () => {
+type Props = {
+  replyNumber: number;
+  retweetNumber: number;
+  likeNumber: number;
+  content: string;
+};
+
+export const TweetContentContainer: React.FC<Props> = (props) => {
+  const { likeNumber, replyNumber, retweetNumber, content } = props;
+
   return (
     <div className={classes.TweetContentContainer}>
-      <TweetContent content="hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_hoge_aaaaaaaaaaaaaaaaaaaahoge_" />
+      <TweetContent content={content} />
       <div className={classes.TweetButtonsWrapper}>
         <TweetButton
           buttonIcon={<ChatBubbleOutlineOutlinedIcon fontSize="small" />}
-          tweetButtonNumber={123}
+          tweetButtonNumber={replyNumber}
         />
         <TweetButton
           buttonIcon={<RepeatOutlinedIcon fontSize="small" />}
-          tweetButtonNumber={123}
+          tweetButtonNumber={retweetNumber}
         />
         <TweetButton
           buttonIcon={<FavoriteBorderOutlinedIcon fontSize="small" />}
-          tweetButtonNumber={123}
+          tweetButtonNumber={likeNumber}
         />
         <TweetButtonIcon buttonIcon={<ShareOutlinedIcon fontSize="small" />} />
       </div>
