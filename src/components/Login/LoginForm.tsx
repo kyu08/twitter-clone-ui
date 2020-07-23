@@ -1,10 +1,8 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
-import { InvalidLogin } from './InvalidLogin';
 import { InputContainer } from './InputContainer';
 
 type Props = {
-  isInvalidLogin: boolean;
   screenName: string;
   handleScreenNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
   password: string;
@@ -14,7 +12,6 @@ type Props = {
 
 export const LoginForm: React.FC<Props> = (props) => {
   const {
-    isInvalidLogin,
     screenName,
     handleScreenNameChange,
     password,
@@ -24,7 +21,6 @@ export const LoginForm: React.FC<Props> = (props) => {
 
   return (
     <>
-      {isInvalidLogin && <InvalidLogin />}
       <form>
         <InputContainer
           labelTitle="ユーザ名"

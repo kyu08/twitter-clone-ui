@@ -17,5 +17,9 @@ export const Container: React.FC = () => {
     store.set('screenName')(screenNameInLocalStorage);
   }, []);
 
-  return <RootComponent isLogin={isLogin} />;
+  return (
+    <>
+      <RootComponent isLogin={isLogin} setIsLogin={setIsLogin} />
+    </>
+  );
 };

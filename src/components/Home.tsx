@@ -1,23 +1,30 @@
 import * as React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Header } from './Timeline/Common/Header';
 import { Timeline } from './Timeline/Timeline';
 import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
 
+type Props = {
+  isLogin: boolean;
+  setIsLogin(boolean: boolean): void;
+};
+
 // this is container component.
-export const Home: React.FC<{}> = () => {
+export const Home: React.FC<Props> = (props) => {
+  const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
 
+  // なんでここなら window.location.href が動いたんだろう
   const logout = (): void => {
-    // effect によって LocalStorage.removeItem('screenName') される
     store.set('screenName')(undefined);
-    window.location.href = '/home';
+    setIsLogin(false);
   };
 
   return (
     <>
+      {!isLogin && <Redirect to="/" />}
       <Header logout={logout} />
-      {/* ここの中身を分岐 */}
       <Timeline />
       <Footer />
     </>

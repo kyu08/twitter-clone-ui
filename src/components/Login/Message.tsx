@@ -1,6 +1,12 @@
 import * as React from 'react';
 import classes from './Message.module.css';
 
-export const Message: React.FC<{}> = () => {
-  return <div className={classes.Message}>Twitterにログイン</div>;
+type Props = {
+  message: string;
+};
+
+export const Message: React.FC<Props> = (props) => {
+  const { message } = props;
+
+  return <div className={classes.Message}>{message}</div>;
 };

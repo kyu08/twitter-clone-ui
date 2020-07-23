@@ -9,7 +9,8 @@ const effects: StoreEffects = (store) => {
   store.on('screenName').subscribe((screenName) => {
     if (!screenName) {
       userRepository.removeScreenNameFromLocalStorage();
-      throw new Error('ScreenName is undefined.');
+
+      return;
     }
     userRepository.setScreenNameToLocalStorage(screenName);
   });
