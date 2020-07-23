@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
-import { InputContainer } from './InputContainer';
+import { InputContainer } from '../Common/InputContainer';
 import { LinkToSignUp } from './LinkToSignUp';
 
 type Props = {

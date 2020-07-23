@@ -13,6 +13,7 @@ type Props = {
   isLogin: boolean;
 };
 
+// todo container と presentation にわけよう
 // this is container component.
 export const Login: React.FC<Props> = (props) => {
   const { setIsLogin, isLogin } = props;
