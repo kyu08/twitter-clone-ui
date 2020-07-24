@@ -11,7 +11,7 @@ type Props = {
   screenName: string;
   handleUserNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
   handleScreenNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
-  next(e: React.MouseEvent<HTMLInputElement>): void;
+  goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   isValidUserName: boolean;
   isValidDate: boolean;
   isValidScreenName: boolean;
@@ -34,7 +34,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
     screenName,
     handleUserNameChange,
     handleScreenNameChange,
-    next,
+    goToNextPage,
     isValidDate,
     isValidUserName,
     isValidScreenName,
@@ -98,7 +98,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
             type="submit"
             className={classes.SubmitButton}
             value="次へ"
-            onClick={(e) => next(e)}
+            onClick={(e) => goToNextPage(e)}
             disabled={!canGoNextPage}
           />
         </form>

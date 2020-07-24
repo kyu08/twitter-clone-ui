@@ -4,6 +4,7 @@ import { Logo } from './Login/Logo';
 import classes from './SignUp.module.css';
 import { EnterProfile } from './SignUp/EnterProfile';
 import { EnterUserImage } from './SignUp/EnterUserImage';
+import { EnterBio } from './SignUp/EnterBio';
 
 type Props = {
   isLogin: boolean;
@@ -12,7 +13,7 @@ type Props = {
 // todo container と presentation にわけよう
 export const SignUp: React.FC<Props> = (props) => {
   const { isLogin } = props;
-  const [pageNumber, setPageNumber] = React.useState(1);
+  const [pageNumber, setPageNumber] = React.useState(2);
 
   const [userName, setUserName] = React.useState('');
   const [screenName, setScreenName] = React.useState('');
@@ -23,6 +24,20 @@ export const SignUp: React.FC<Props> = (props) => {
   const [isValidUserName, setIsValidUserName] = React.useState(true);
   const [isValidScreenName, setIsValidScreenName] = React.useState(true);
   const [canGoNextPage, setCanGoNextPage] = React.useState(false);
+
+  // common
+
+  const goToNextPage = (e: React.MouseEvent<HTMLInputElement>): void => {
+    e.preventDefault();
+    setPageNumber(pageNumber + 1);
+  };
+
+  const backToPreviousPage = (e: React.MouseEvent<HTMLInputElement>): void => {
+    e.preventDefault();
+    setPageNumber(pageNumber - 1);
+  };
+
+  // for EnterUserImage.tsx
 
   const isLeapYear = (y: number): boolean => {
     return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
@@ -85,12 +100,6 @@ export const SignUp: React.FC<Props> = (props) => {
     judgeCanGoNextPage({ isRightScreenName: isValid });
   };
 
-  const next = (e: React.MouseEvent<HTMLInputElement>): void => {
-    e.preventDefault();
-    console.log(userName, screenName);
-    setPageNumber(pageNumber + 1);
-  };
-
   const handleChangeDay = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const dayEntered = Number(e.currentTarget.value);
     setDay(dayEntered);
@@ -124,7 +133,9 @@ export const SignUp: React.FC<Props> = (props) => {
     return [...Array(arrayLength).keys()].map((e) => e + 1900);
   };
 
-  const newVar = (
+  // for EnterUserImage.tsx
+
+  return (
     <>
       <>
         {isLogin && <Redirect to="/" />}
@@ -137,7 +148,7 @@ export const SignUp: React.FC<Props> = (props) => {
               userName={userName}
               handleScreenNameChange={handleChangeScreenName}
               handleUserNameChange={handleChangeUserName}
-              next={next}
+              goToNextPage={goToNextPage}
               isValidDate={isValidDate()}
               isValidUserName={isValidUserName}
               isValidScreenName={isValidScreenName}
@@ -154,21 +165,19 @@ export const SignUp: React.FC<Props> = (props) => {
             />
           )}
           {pageNumber === 2 && (
-            // <div>aaaa</div>
-            <EnterUserImage />
-            // <EnterProfile
-            //   message="プロフィール画像を選ぶ 2/3"
-            //   screenName={screenName}
-            //   userName={userName}
-            //   handleScreenNameChange={handleScreenNameChange}
-            //   handleUserNameChange={handleUserNameChange}
-            //   next={next}
-            // />
+            <EnterUserImage
+              backToPreviousPage={backToPreviousPage}
+              goToNextPage={goToNextPage}
+            />
+          )}
+          {pageNumber === 3 && (
+            <EnterBio
+              goToNextPage={goToNextPage}
+              backToPreviousPage={backToPreviousPage}
+            />
           )}
         </div>
       </>
     </>
   );
-
-  return newVar;
 };
