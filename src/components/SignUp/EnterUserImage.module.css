@@ -24,3 +24,24 @@
     justify-content: space-between;
     margin: 10px 0
 }
+
+.DefaultUserImage {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+}
+
+.InputLabel {
+    position:absolute;
+    top: 40%;
+    left: 46%;
+}
+
+.FileInputContainer {
+    position: relative;
+    text-align: center;
+}
+
+.FileInput {
+    display: none;
+}
