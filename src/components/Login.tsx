@@ -6,7 +6,7 @@ import { Message } from './Login/Message';
 import { LoginForm } from './Login/LoginForm';
 import UserApplicationService from '../application/User/UserApplicationService';
 import Store from '../Store';
-import { InvalidLogin } from './Login/InvalidLogin';
+import { AlertMessage } from './Login/AlertMessage';
 
 type Props = {
   setIsLogin(boolean: boolean): void;
@@ -51,7 +51,9 @@ export const Login: React.FC<Props> = (props) => {
       <div className={classes.Login}>
         <Logo />
         <Message message="Twitterにログイン" />
-        {isInvalidLogin && <InvalidLogin />}
+        {isInvalidLogin && (
+          <AlertMessage alertMessage="入力されたユーザー名やパスワードが正しくありません。確認してからやりなおしてください。" />
+        )}
         <LoginForm
           login={login}
           screenName={screenName}

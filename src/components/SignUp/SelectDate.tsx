@@ -1,23 +1,40 @@
 import * as React from 'react';
+import classes from './SelectDate.module.css';
 
-export const SelectDate: React.FC = () => {
-  const [day, setDay] = React.useState(1);
+type Props = {
+  labelTitle: string;
+  optionArray: number[];
+  handleChange(e: React.ChangeEvent<HTMLSelectElement>): void;
+  optionNumber: number;
+};
 
-  const handleChangeDay = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-    const dayEntered = Number(e.currentTarget.value);
-    setDay(dayEntered);
-    console.log(dayEntered);
-  };
+export const SelectDate: React.FC<Props> = (props) => {
+  const { labelTitle, optionArray, handleChange, optionNumber } = props;
+  // const [day, setDay] = React.useState(1);
+
+  // const handleChangeDay = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+  //   const dayEntered = Number(e.currentTarget.value);
+  //   setDay(dayEntered);
+  // };
 
   return (
-    <select value={day} onChange={(e) => handleChangeDay(e)}>
-      {/* eslint-disable-next-line no-shadow */}
-      {[30, 31].map((day, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <option value={day} key={index}>
-          {day}
-        </option>
-      ))}
-    </select>
+    <div className={classes.InputContainer}>
+      <label className={classes.InputLabel}>
+        {labelTitle}
+        <select
+          className={classes.BirthdaySelector}
+          value={optionNumber}
+          onChange={(e) => handleChange(e)}
+        >
+          {/* eslint-disable-next-line no-shadow */}
+          {optionArray.map((option, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <option value={option} key={index}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
   );
 };
