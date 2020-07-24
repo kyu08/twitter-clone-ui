@@ -1,25 +1,10 @@
-.LoginForm {
-    margin: 10px auto;
-    width: 315px;
-    background-color: rgb(118, 118, 118);
-}
-
-.InputLabel {
-    padding-left: 10px;
-}
-
-.LoginInput {
-    height: 29px;
-    width: 100%;
-}
-
 .ButtonContainer {
     margin: 20px auto;
     width: 315px;
 }
 
 .SubmitButton {
-    width: 100%;
+    width: 49%;
     height: 50px;
     font-size: 15px;
     font-weight: bold;
@@ -27,4 +12,15 @@
     background-color: #1DA1F2;
     color: white;
     border: none;
+}
+
+.SubmitButton[disabled]{
+    background: rgb(31,96,142);
+    color: rgb(136, 153, 166);
+}
+
+.SelectorContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0
 }

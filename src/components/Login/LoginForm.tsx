@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
-import { InputContainer } from './InputContainer';
+import { InputContainer } from '../Common/InputContainer';
+import { LinkToSignUp } from './LinkToSignUp';
 
 type Props = {
   screenName: string;
@@ -21,28 +22,29 @@ export const LoginForm: React.FC<Props> = (props) => {
 
   return (
     <>
-      <form>
-        <InputContainer
-          labelTitle="ユーザ名"
-          inputType="text"
-          value={screenName}
-          handleChangeValue={handleScreenNameChange}
-        />
-        <InputContainer
-          labelTitle="パスワード"
-          inputType="password"
-          value={password}
-          handleChangeValue={handlePasswordChange}
-        />
-        <div className={classes.ButtonContainer}>
+      <div className={classes.ButtonContainer}>
+        <form>
+          <InputContainer
+            labelTitle="ユーザ名"
+            inputType="text"
+            value={screenName}
+            handleChangeValue={handleScreenNameChange}
+          />
+          <InputContainer
+            labelTitle="パスワード"
+            inputType="password"
+            value={password}
+            handleChangeValue={handlePasswordChange}
+          />
           <input
             type="submit"
             className={classes.SubmitButton}
             value="ログイン"
             onClick={() => login()}
           />
-        </div>
-      </form>
+          <LinkToSignUp />
+        </form>
+      </div>
     </>
   );
 };

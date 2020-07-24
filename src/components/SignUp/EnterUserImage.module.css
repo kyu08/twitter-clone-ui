@@ -1,0 +1,47 @@
+.ButtonContainer {
+    margin: 20px auto;
+    width: 315px;
+}
+
+.SubmitButton {
+    width: 49%;
+    height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 60px;
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+}
+
+.SubmitButton[disabled]{
+    background: rgb(31,96,142);
+    color: rgb(136, 153, 166);
+}
+
+.SelectorContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0
+}
+
+.DefaultUserImage {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+}
+
+.InputLabel {
+    position:absolute;
+    top: 40%;
+    left: 46%;
+}
+
+.FileInputContainer {
+    position: relative;
+    text-align: center;
+}
+
+.FileInput {
+    display: none;
+}

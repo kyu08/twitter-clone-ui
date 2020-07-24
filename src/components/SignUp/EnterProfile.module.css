@@ -28,3 +28,12 @@
     color: white;
     border: none;
 }
+
+.SubmitButton[disabled]{
+    background: rgb(31,96,142);
+    color: rgb(136, 153, 166);
+}
+
+.SelectorContainer {
+    display: flex;
+}
