@@ -6,7 +6,6 @@ import { SelectDate } from './SelectDate';
 import { AlertMessage } from '../Login/AlertMessage';
 
 type Props = {
-  message: string;
   userName: string;
   screenName: string;
   handleUserNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
@@ -29,7 +28,6 @@ type Props = {
 
 export const EnterProfile: React.FC<Props> = (props) => {
   const {
-    message,
     userName,
     screenName,
     handleUserNameChange,
@@ -49,6 +47,8 @@ export const EnterProfile: React.FC<Props> = (props) => {
     handleChangeDay,
     handleChangeYear,
   } = props;
+
+  const message = 'アカウントを作成 1/4';
 
   return (
     <>

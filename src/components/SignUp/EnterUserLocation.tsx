@@ -28,7 +28,7 @@ export const EnterUserLocation: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Message message="User Locationを入力してください 4/3" />
+      <Message message="User Locationを入力してください 4/4" />
       <div className={classes.ButtonContainer}>
         {!isValidUserLocation && <AlertMessage alertMessage={alertMessage} />}
         <InputContainer

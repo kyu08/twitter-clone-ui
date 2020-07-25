@@ -23,7 +23,7 @@ export const EnterUserImage: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Message message="プロフォール画像を選ぶ 2/3" />
+      <Message message="プロフォール画像を選ぶ 2/4" />
       <div className={classes.ButtonContainer}>
         <div className={classes.FileInputContainer}>
           <img src={userImage} className={classes.DefaultUserImage} />

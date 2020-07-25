@@ -27,7 +27,7 @@ export const EnterBio: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Message message="自己紹介を入力してください 3/3" />
+      <Message message="自己紹介を入力してください 3/4" />
       <div className={classes.ButtonContainer}>
         {!isValidBio && <AlertMessage alertMessage={alertMessage} />}
         <InputContainer

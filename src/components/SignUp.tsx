@@ -9,6 +9,7 @@ import DefaultUserImage from './SignUp/user-image.png';
 import { MAX_BIO_LENGTH } from '../domain/models/User/Profile/Bio';
 import { EnterUserLocation } from './SignUp/EnterUserLocation';
 import { MAX_USER_LOCATION_LENGTH } from '../domain/models/User/Profile/UserLocation';
+import { Confirm } from './SignUp/Confirm';
 
 type Props = {
   isLogin: boolean;
@@ -17,7 +18,9 @@ type Props = {
 // todo container と presentation にわけよう
 export const SignUp: React.FC<Props> = (props) => {
   const { isLogin } = props;
-  const [pageNumber, setPageNumber] = React.useState(3);
+
+  // Common
+  const [pageNumber, setPageNumber] = React.useState(1);
 
   // EnterProfile
   const [userName, setUserName] = React.useState('');
@@ -43,8 +46,9 @@ export const SignUp: React.FC<Props> = (props) => {
   const [isValidUserLocation, setIsValidUserLocation] = React.useState(true);
   const [canGoToPage5, setCanGoToPage5] = React.useState(false);
 
-  // common
+  // Functions
 
+  // Common
   const goToNextPage = (e: React.MouseEvent<HTMLInputElement>): void => {
     e.preventDefault();
     setPageNumber(pageNumber + 1);
@@ -56,7 +60,6 @@ export const SignUp: React.FC<Props> = (props) => {
   };
 
   // for EnterUserImage.tsx
-
   const isLeapYear = (y: number): boolean => {
     return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
   };
@@ -152,7 +155,6 @@ export const SignUp: React.FC<Props> = (props) => {
   };
 
   // for EnterUserImage.tsx
-
   const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     // @ts-ignore
@@ -165,7 +167,6 @@ export const SignUp: React.FC<Props> = (props) => {
   };
 
   // for EnterBio.tsx
-
   const handleChangeBio = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const bioEntering = e.currentTarget.value;
     setBio(bioEntering);
@@ -180,7 +181,6 @@ export const SignUp: React.FC<Props> = (props) => {
   };
 
   // EnterUserLocation
-
   const handleChangeUserLocation = (
     e: React.ChangeEvent<HTMLInputElement>,
   ): void => {
@@ -208,7 +208,6 @@ export const SignUp: React.FC<Props> = (props) => {
           {pageNumber === 1 && (
             <EnterProfile
               // TODO ↓ 減らそう
-              message="アカウントを作成 1/3"
               screenName={screenName}
               userName={userName}
               handleScreenNameChange={handleChangeScreenName}
@@ -255,6 +254,20 @@ export const SignUp: React.FC<Props> = (props) => {
               canGoToPage5={canGoToPage5}
               handleChangeUserLocation={handleChangeUserLocation}
               isValidUserLocation={isValidUserLocation}
+              userLocation={userLocation}
+            />
+          )}
+          {pageNumber === 5 && (
+            <Confirm
+              backToPreviousPage={backToPreviousPage}
+              goToNextPage={goToNextPage}
+              bio={bio}
+              userImage={userImage}
+              year={year}
+              day={day}
+              month={month}
+              userName={userName}
+              screenName={screenName}
               userLocation={userLocation}
             />
           )}
