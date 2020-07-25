@@ -6,6 +6,7 @@ import { EnterProfile } from './SignUp/EnterProfile';
 import { EnterUserImage } from './SignUp/EnterUserImage';
 import { EnterBio } from './SignUp/EnterBio';
 import DefaultUserImage from './SignUp/user-image.png';
+import { MAX_BIO_LENGTH } from '../domain/models/User/Profile/Bio';
 
 type Props = {
   isLogin: boolean;
@@ -14,7 +15,7 @@ type Props = {
 // todo container と presentation にわけよう
 export const SignUp: React.FC<Props> = (props) => {
   const { isLogin } = props;
-  const [pageNumber, setPageNumber] = React.useState(2);
+  const [pageNumber, setPageNumber] = React.useState(3);
 
   // EnterProfile
   const [userName, setUserName] = React.useState('');
@@ -151,6 +152,25 @@ export const SignUp: React.FC<Props> = (props) => {
     };
   };
 
+  // for EnterBio.tsx
+
+  const [bio, setBio] = React.useState('');
+  const [isValidBio, setIsValidBio] = React.useState(true);
+  const [canGoToPage4, setCanGoToPage4] = React.useState(false);
+
+  const handleChangeBio = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const bioEntering = e.currentTarget.value;
+    setBio(bioEntering);
+    let isValid;
+    if (bioEntering.length > 0 && bioEntering.length < MAX_BIO_LENGTH) {
+      isValid = true;
+    } else {
+      isValid = false;
+    }
+    setIsValidBio(isValid);
+    setCanGoToPage4(isValid);
+  };
+
   return (
     <>
       <>
@@ -193,6 +213,10 @@ export const SignUp: React.FC<Props> = (props) => {
             <EnterBio
               goToNextPage={goToNextPage}
               backToPreviousPage={backToPreviousPage}
+              bio={bio}
+              canGoToPage4={canGoToPage4}
+              handleChangeBio={handleChangeBio}
+              isValidBio={isValidBio}
             />
           )}
         </div>
