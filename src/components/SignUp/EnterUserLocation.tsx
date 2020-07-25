@@ -3,38 +3,39 @@ import { Message } from '../Login/Message';
 import classes from './EnterBio.module.css';
 import { AlertMessage } from '../Login/AlertMessage';
 import { InputContainer } from '../Common/InputContainer';
-import { MAX_BIO_LENGTH } from '../../domain/models/User/Profile/Bio';
+import { MAX_USER_LOCATION_LENGTH } from '../../domain/models/User/Profile/UserLocation';
 
 type Props = {
+  isValidUserLocation: boolean;
+  userLocation: string;
+  handleChangeUserLocation(e: React.ChangeEvent<HTMLInputElement>): void;
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   backToPreviousPage(e: React.MouseEvent<HTMLInputElement>): void;
-  isValidBio: boolean;
-  bio: string;
-  handleChangeBio(e: React.ChangeEvent<HTMLInputElement>): void;
-  canGoToPage4: boolean;
+  canGoToPage5: boolean;
 };
 
-export const EnterBio: React.FC<Props> = (props) => {
+export const EnterUserLocation: React.FC<Props> = (props) => {
   const {
     backToPreviousPage,
-    bio,
-    canGoToPage4,
+    canGoToPage5,
     goToNextPage,
-    handleChangeBio,
-    isValidBio,
+    handleChangeUserLocation,
+    isValidUserLocation,
+    userLocation,
   } = props;
-  const alertMessage = `自己紹介は1~${MAX_BIO_LENGTH}文字で入力してください`;
+
+  const alertMessage = `User Locationは1~${MAX_USER_LOCATION_LENGTH}文字で入力してください`;
 
   return (
     <div>
-      <Message message="自己紹介を入力してください 3/4" />
+      <Message message="User Locationを入力してください 4/4" />
       <div className={classes.ButtonContainer}>
-        {!isValidBio && <AlertMessage alertMessage={alertMessage} />}
+        {!isValidUserLocation && <AlertMessage alertMessage={alertMessage} />}
         <InputContainer
-          labelTitle="自己紹介"
+          labelTitle="UserLocation"
           inputType="text"
-          value={bio}
-          handleChangeValue={handleChangeBio}
+          value={userLocation}
+          handleChangeValue={handleChangeUserLocation}
         />
         <div className={classes.SelectorContainer}>
           <input
@@ -48,7 +49,7 @@ export const EnterBio: React.FC<Props> = (props) => {
             className={classes.SubmitButton}
             value="次へ"
             onClick={(e) => goToNextPage(e)}
-            disabled={!canGoToPage4}
+            disabled={!canGoToPage5}
           />
         </div>
       </div>

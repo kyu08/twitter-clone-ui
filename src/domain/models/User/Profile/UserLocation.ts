@@ -2,7 +2,7 @@ interface IUserLocation {
   readonly userLocation: string;
 }
 
-const MAX_USER_LOCATION_LENGTH = 10;
+export const MAX_USER_LOCATION_LENGTH = 10;
 
 export default class UserLocation implements IUserLocation {
   readonly userLocation: string;

@@ -2,32 +2,34 @@ import * as React from 'react';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import { Message } from '../Login/Message';
 import classes from './EnterUserImage.module.css';
-import DefaultUserImage from './user-image.png';
 
 type Props = {
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   backToPreviousPage(e: React.MouseEvent<HTMLInputElement>): void;
+  userImage: any;
+  selectImage(e: React.ChangeEvent<HTMLInputElement>): void;
+  canGoToPage3: boolean;
 };
 
 export const EnterUserImage: React.FC<Props> = (props) => {
-  const { backToPreviousPage, goToNextPage } = props;
-  const [userImage, setUserImage] = React.useState(DefaultUserImage);
-
-  const test = (e: any) => {
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      // @ts-ignore
-      setUserImage(event.target.result);
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
+  const {
+    backToPreviousPage,
+    canGoToPage3,
+    goToNextPage,
+    selectImage,
+    userImage,
+  } = props;
 
   return (
     <div>
-      <Message message="プロフォール画像を選ぶ 2/3" />
+      <Message message="プロフォール画像を選ぶ 2/4" />
       <div className={classes.ButtonContainer}>
         <div className={classes.FileInputContainer}>
-          <img src={userImage} className={classes.DefaultUserImage} />
+          <img
+            src={userImage}
+            className={classes.DefaultUserImage}
+            alt="UserImage preview"
+          />
           <label className={classes.InputLabel}>
             <AddAPhotoOutlinedIcon />
             <input
@@ -35,7 +37,8 @@ export const EnterUserImage: React.FC<Props> = (props) => {
               type="file"
               id="upload_chat"
               name="file"
-              onChange={(e) => test(e)}
+              accept="image/png, image/jpeg"
+              onChange={(e) => selectImage(e)}
             />
           </label>
         </div>
@@ -45,14 +48,13 @@ export const EnterUserImage: React.FC<Props> = (props) => {
             className={classes.SubmitButton}
             value="戻る"
             onClick={(e) => backToPreviousPage(e)}
-            // disabled={!canGoNextPage}
           />
           <input
             type="submit"
             className={classes.SubmitButton}
             value="次へ"
             onClick={(e) => goToNextPage(e)}
-            // disabled={!canGoNextPage}
+            disabled={!canGoToPage3}
           />
         </div>
       </div>
