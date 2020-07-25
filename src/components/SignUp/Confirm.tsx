@@ -50,7 +50,6 @@ export const Confirm: React.FC<Props> = (props) => {
       <div>
         <img src={userImage} alt="UserImage preview" />
       </div>
-
       <div className={classes.SelectorContainer}>
         <input
           type="submit"
@@ -62,7 +61,7 @@ export const Confirm: React.FC<Props> = (props) => {
           type="submit"
           className={classes.SubmitButton}
           value="登録"
-          onClick={() => console.log('とくろくする関数')}
+          onClick={() => console.log('とくろくする関数をここにアレする')}
         />
       </div>
     </>
