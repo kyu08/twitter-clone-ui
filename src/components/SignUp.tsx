@@ -7,6 +7,8 @@ import { EnterUserImage } from './SignUp/EnterUserImage';
 import { EnterBio } from './SignUp/EnterBio';
 import DefaultUserImage from './SignUp/user-image.png';
 import { MAX_BIO_LENGTH } from '../domain/models/User/Profile/Bio';
+import { EnterUserLocation } from './SignUp/EnterUserLocation';
+import { MAX_USER_LOCATION_LENGTH } from '../domain/models/User/Profile/UserLocation';
 
 type Props = {
   isLogin: boolean;
@@ -30,6 +32,16 @@ export const SignUp: React.FC<Props> = (props) => {
   // SelectUserImage
   const [userImage, setUserImage] = React.useState(DefaultUserImage);
   const [canGoToPage3, setCanGoToPage3] = React.useState(false);
+
+  // EnterBio
+  const [bio, setBio] = React.useState('');
+  const [isValidBio, setIsValidBio] = React.useState(true);
+  const [canGoToPage4, setCanGoToPage4] = React.useState(false);
+
+  // EnterUserLocation
+  const [userLocation, setUserLocation] = React.useState('');
+  const [isValidUserLocation, setIsValidUserLocation] = React.useState(true);
+  const [canGoToPage5, setCanGoToPage5] = React.useState(false);
 
   // common
 
@@ -154,10 +166,6 @@ export const SignUp: React.FC<Props> = (props) => {
 
   // for EnterBio.tsx
 
-  const [bio, setBio] = React.useState('');
-  const [isValidBio, setIsValidBio] = React.useState(true);
-  const [canGoToPage4, setCanGoToPage4] = React.useState(false);
-
   const handleChangeBio = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const bioEntering = e.currentTarget.value;
     setBio(bioEntering);
@@ -171,6 +179,26 @@ export const SignUp: React.FC<Props> = (props) => {
     setCanGoToPage4(isValid);
   };
 
+  // EnterUserLocation
+
+  const handleChangeUserLocation = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const userLocationEntering = e.currentTarget.value;
+    setUserLocation(userLocationEntering);
+    let isValid;
+    if (
+      userLocationEntering.length > 0 &&
+      userLocationEntering.length < MAX_USER_LOCATION_LENGTH
+    ) {
+      isValid = true;
+    } else {
+      isValid = false;
+    }
+    setIsValidUserLocation(isValid);
+    setCanGoToPage5(isValid);
+  };
+
   return (
     <>
       <>
@@ -179,6 +207,7 @@ export const SignUp: React.FC<Props> = (props) => {
           <Logo />
           {pageNumber === 1 && (
             <EnterProfile
+              // TODO ↓ 減らそう
               message="アカウントを作成 1/3"
               screenName={screenName}
               userName={userName}
@@ -217,6 +246,16 @@ export const SignUp: React.FC<Props> = (props) => {
               canGoToPage4={canGoToPage4}
               handleChangeBio={handleChangeBio}
               isValidBio={isValidBio}
+            />
+          )}
+          {pageNumber === 4 && (
+            <EnterUserLocation
+              goToNextPage={goToNextPage}
+              backToPreviousPage={backToPreviousPage}
+              canGoToPage5={canGoToPage5}
+              handleChangeUserLocation={handleChangeUserLocation}
+              isValidUserLocation={isValidUserLocation}
+              userLocation={userLocation}
             />
           )}
         </div>
