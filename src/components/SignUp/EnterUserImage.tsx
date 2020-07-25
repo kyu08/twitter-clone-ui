@@ -2,7 +2,6 @@ import * as React from 'react';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import { Message } from '../Login/Message';
 import classes from './EnterUserImage.module.css';
-import DefaultUserImage from './user-image.png';
 
 type Props = {
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
@@ -26,7 +25,11 @@ export const EnterUserImage: React.FC<Props> = (props) => {
       <Message message="プロフォール画像を選ぶ 2/4" />
       <div className={classes.ButtonContainer}>
         <div className={classes.FileInputContainer}>
-          <img src={userImage} className={classes.DefaultUserImage} />
+          <img
+            src={userImage}
+            className={classes.DefaultUserImage}
+            alt="UserImage preview"
+          />
           <label className={classes.InputLabel}>
             <AddAPhotoOutlinedIcon />
             <input

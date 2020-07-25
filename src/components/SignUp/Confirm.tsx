@@ -3,7 +3,6 @@ import classes from './EnterBio.module.css';
 import { Message } from '../Login/Message';
 
 type Props = {
-  goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   backToPreviousPage(e: React.MouseEvent<HTMLInputElement>): void;
   userName: string;
   screenName: string;
@@ -20,7 +19,6 @@ export const Confirm: React.FC<Props> = (props) => {
     backToPreviousPage,
     bio,
     day,
-    goToNextPage,
     month,
     screenName,
     userImage,
@@ -50,7 +48,7 @@ export const Confirm: React.FC<Props> = (props) => {
         <span>bio: {bio}</span>
       </div>
       <div>
-        <img src={userImage} />
+        <img src={userImage} alt="UserImage preview" />
       </div>
 
       <div className={classes.SelectorContainer}>

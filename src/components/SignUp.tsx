@@ -260,7 +260,6 @@ export const SignUp: React.FC<Props> = (props) => {
           {pageNumber === 5 && (
             <Confirm
               backToPreviousPage={backToPreviousPage}
-              goToNextPage={goToNextPage}
               bio={bio}
               userImage={userImage}
               year={year}
