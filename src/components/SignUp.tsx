@@ -5,6 +5,7 @@ import classes from './SignUp.module.css';
 import { EnterProfile } from './SignUp/EnterProfile';
 import { EnterUserImage } from './SignUp/EnterUserImage';
 import { EnterBio } from './SignUp/EnterBio';
+import DefaultUserImage from './SignUp/user-image.png';
 
 type Props = {
   isLogin: boolean;
@@ -15,15 +16,19 @@ export const SignUp: React.FC<Props> = (props) => {
   const { isLogin } = props;
   const [pageNumber, setPageNumber] = React.useState(2);
 
+  // EnterProfile
   const [userName, setUserName] = React.useState('');
   const [screenName, setScreenName] = React.useState('');
-
   const [year, setYear] = React.useState(2020);
   const [month, setMonth] = React.useState(1);
   const [day, setDay] = React.useState(1);
   const [isValidUserName, setIsValidUserName] = React.useState(true);
   const [isValidScreenName, setIsValidScreenName] = React.useState(true);
   const [canGoNextPage, setCanGoNextPage] = React.useState(false);
+
+  // SelectUserImage
+  const [userImage, setUserImage] = React.useState(DefaultUserImage);
+  const [canGoToPage3, setCanGoToPage3] = React.useState(false);
 
   // common
 
@@ -135,6 +140,17 @@ export const SignUp: React.FC<Props> = (props) => {
 
   // for EnterUserImage.tsx
 
+  const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+    // @ts-ignore
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = function (event) {
+      // @ts-ignore
+      setUserImage(event.target.result);
+      setCanGoToPage3(true);
+    };
+  };
+
   return (
     <>
       <>
@@ -168,6 +184,9 @@ export const SignUp: React.FC<Props> = (props) => {
             <EnterUserImage
               backToPreviousPage={backToPreviousPage}
               goToNextPage={goToNextPage}
+              userImage={userImage}
+              canGoToPage3={canGoToPage3}
+              selectImage={selectImage}
             />
           )}
           {pageNumber === 3 && (

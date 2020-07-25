@@ -7,21 +7,19 @@ import DefaultUserImage from './user-image.png';
 type Props = {
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   backToPreviousPage(e: React.MouseEvent<HTMLInputElement>): void;
+  userImage: any;
+  selectImage(e: React.ChangeEvent<HTMLInputElement>): void;
+  canGoToPage3: boolean;
 };
 
 export const EnterUserImage: React.FC<Props> = (props) => {
-  const { backToPreviousPage, goToNextPage } = props;
-  const [userImage, setUserImage] = React.useState(DefaultUserImage);
-
-  const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader();
-    reader.onload = function (event) {
-      // @ts-ignore
-      setUserImage(event.target.result);
-    };
-    // @ts-ignore
-    reader.readAsDataURL(e.target.files[0]);
-  };
+  const {
+    backToPreviousPage,
+    canGoToPage3,
+    goToNextPage,
+    selectImage,
+    userImage,
+  } = props;
 
   return (
     <div>
@@ -47,14 +45,13 @@ export const EnterUserImage: React.FC<Props> = (props) => {
             className={classes.SubmitButton}
             value="戻る"
             onClick={(e) => backToPreviousPage(e)}
-            // disabled={!canGoNextPage}
           />
           <input
             type="submit"
             className={classes.SubmitButton}
             value="次へ"
             onClick={(e) => goToNextPage(e)}
-            // disabled={!canGoNextPage}
+            disabled={!canGoToPage3}
           />
         </div>
       </div>
