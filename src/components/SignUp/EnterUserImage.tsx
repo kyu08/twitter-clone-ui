@@ -13,12 +13,13 @@ export const EnterUserImage: React.FC<Props> = (props) => {
   const { backToPreviousPage, goToNextPage } = props;
   const [userImage, setUserImage] = React.useState(DefaultUserImage);
 
-  const test = (e: any) => {
+  const selectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
     reader.onload = function (event) {
       // @ts-ignore
       setUserImage(event.target.result);
     };
+    // @ts-ignore
     reader.readAsDataURL(e.target.files[0]);
   };
 
@@ -35,7 +36,8 @@ export const EnterUserImage: React.FC<Props> = (props) => {
               type="file"
               id="upload_chat"
               name="file"
-              onChange={(e) => test(e)}
+              accept="image/png, image/jpeg"
+              onChange={(e) => selectImage(e)}
             />
           </label>
         </div>
