@@ -8,10 +8,13 @@ import { AlertMessage } from '../Login/AlertMessage';
 type Props = {
   userName: string;
   screenName: string;
+  password: string;
   handleUserNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
   handleScreenNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>): void;
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   isValidUserName: boolean;
+  isValidPassword: boolean;
   isValidDate: boolean;
   isValidScreenName: boolean;
   canGoNextPage: boolean;
@@ -36,6 +39,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
     isValidDate,
     isValidUserName,
     isValidScreenName,
+    isValidPassword,
     canGoNextPage,
     monthArray,
     dayArray,
@@ -46,6 +50,8 @@ export const EnterProfile: React.FC<Props> = (props) => {
     handleChangeMonth,
     handleChangeDay,
     handleChangeYear,
+    password,
+    handlePasswordChange,
   } = props;
 
   const message = 'アカウントを作成 1/4';
@@ -72,6 +78,15 @@ export const EnterProfile: React.FC<Props> = (props) => {
             inputType="text"
             value={screenName}
             handleChangeValue={handleScreenNameChange}
+          />
+          {!isValidPassword && (
+            <AlertMessage alertMessage="パスワードは1~10文字で入力してください" />
+          )}
+          <InputContainer
+            labelTitle="パスワード"
+            inputType="password"
+            value={password}
+            handleChangeValue={handlePasswordChange}
           />
           {!isValidDate && <AlertMessage alertMessage="不正な年月日です" />}
           <div className={classes.SelectorContainer}>

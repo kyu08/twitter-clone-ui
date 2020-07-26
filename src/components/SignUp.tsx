@@ -25,11 +25,13 @@ export const SignUp: React.FC<Props> = (props) => {
   // EnterProfile
   const [userName, setUserName] = React.useState('');
   const [screenName, setScreenName] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [year, setYear] = React.useState(2020);
   const [month, setMonth] = React.useState(1);
   const [day, setDay] = React.useState(1);
   const [isValidUserName, setIsValidUserName] = React.useState(true);
   const [isValidScreenName, setIsValidScreenName] = React.useState(true);
+  const [isValidPassword, setIsValidPassword] = React.useState(true);
   const [canGoNextPage, setCanGoNextPage] = React.useState(false);
 
   // SelectUserImage
@@ -59,7 +61,7 @@ export const SignUp: React.FC<Props> = (props) => {
     setPageNumber(pageNumber - 1);
   };
 
-  // for EnterUserImage.tsx
+  // for EnterProfile.tsx
   const isLeapYear = (y: number): boolean => {
     return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
   };
@@ -79,9 +81,15 @@ export const SignUp: React.FC<Props> = (props) => {
   const judgeCanGoNextPage = ({
     isRightUserName = userName.length > 0 && userName.length <= 15,
     isRightScreenName = screenName.length > 0 && screenName.length <= 10,
+    isRightPassword = password.length > 0 && password.length <= 10,
     isRightDate = isValidDate(),
   }): void => {
-    if (isRightUserName && isRightScreenName && isRightDate) {
+    if (
+      isRightUserName &&
+      isRightScreenName &&
+      isRightPassword &&
+      isRightDate
+    ) {
       setCanGoNextPage(true);
 
       return;
@@ -112,6 +120,7 @@ export const SignUp: React.FC<Props> = (props) => {
     setScreenName(screenNameEntering);
 
     let isValid;
+    // todo 繰り返し出てきてるので関数で分離しよう
     if (screenNameEntering === '' || screenNameEntering.length > 15) {
       isValid = false;
     } else {
@@ -119,6 +128,22 @@ export const SignUp: React.FC<Props> = (props) => {
     }
     setIsValidScreenName(isValid);
     judgeCanGoNextPage({ isRightScreenName: isValid });
+  };
+
+  const handleChangePassword = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const passwordEntering = e.currentTarget.value;
+    setPassword(passwordEntering);
+
+    let isValid;
+    if (passwordEntering === '' || passwordEntering.length > 10) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    setIsValidPassword(isValid);
+    judgeCanGoNextPage({ isRightPassword: isValid });
   };
 
   const handleChangeDay = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -159,7 +184,7 @@ export const SignUp: React.FC<Props> = (props) => {
     const reader = new FileReader();
     // @ts-ignore
     reader.readAsDataURL(e.target.files[0]);
-    reader.onload = function (event) {
+    reader.onload = (event) => {
       // @ts-ignore
       setUserImage(event.target.result);
       setCanGoToPage3(true);
@@ -199,6 +224,14 @@ export const SignUp: React.FC<Props> = (props) => {
     setCanGoToPage5(isValid);
   };
 
+  // for Confirm.tsx
+
+  const convertPassword = (): string => {
+    const passwordArray = password.split('');
+
+    return passwordArray.map(() => '*').join('');
+  };
+
   return (
     <>
       <>
@@ -207,25 +240,28 @@ export const SignUp: React.FC<Props> = (props) => {
           <Logo />
           {pageNumber === 1 && (
             <EnterProfile
-              // TODO ↓ 減らそう
-              screenName={screenName}
-              userName={userName}
-              handleScreenNameChange={handleChangeScreenName}
-              handleUserNameChange={handleChangeUserName}
               goToNextPage={goToNextPage}
-              isValidDate={isValidDate()}
-              isValidUserName={isValidUserName}
-              isValidScreenName={isValidScreenName}
               canGoNextPage={canGoNextPage}
+              screenName={screenName}
+              // todo handleChangeHoge に統一しよう
+              handleScreenNameChange={handleChangeScreenName}
+              isValidScreenName={isValidScreenName}
+              userName={userName}
+              handleUserNameChange={handleChangeUserName}
+              isValidUserName={isValidUserName}
+              year={year}
+              month={month}
+              day={day}
               monthArray={generateMonthArray()}
               dayArray={generateDayArray()}
               yearArray={generateYearArray()}
-              month={month}
-              day={day}
-              year={year}
               handleChangeMonth={handleChangeMonth}
               handleChangeDay={handleChangeDay}
               handleChangeYear={handleChangeYear}
+              isValidDate={isValidDate()}
+              password={password}
+              handlePasswordChange={handleChangePassword}
+              isValidPassword={isValidPassword}
             />
           )}
           {pageNumber === 2 && (
@@ -268,6 +304,7 @@ export const SignUp: React.FC<Props> = (props) => {
               userName={userName}
               screenName={screenName}
               userLocation={userLocation}
+              password={convertPassword()}
             />
           )}
         </div>
