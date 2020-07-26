@@ -12,6 +12,7 @@ type Props = {
   userImage: string;
   bio: string;
   userLocation: string;
+  password: string;
 };
 
 export const Confirm: React.FC<Props> = (props) => {
@@ -25,6 +26,7 @@ export const Confirm: React.FC<Props> = (props) => {
     userLocation,
     userName,
     year,
+    password,
   } = props;
 
   return (
@@ -35,6 +37,9 @@ export const Confirm: React.FC<Props> = (props) => {
       </div>
       <div>
         <span>userName: {userName}</span>
+      </div>
+      <div>
+        <span>password: {password}</span>
       </div>
       <div>
         <span>
