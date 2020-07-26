@@ -104,6 +104,7 @@ export const SignUp: React.FC<Props> = (props) => {
     setUserName(userNameEntering);
 
     let isValid;
+    // todo 繰り返し出てきてるので関数で分離しよう
     if (userNameEntering === '' || userNameEntering.length > 15) {
       isValid = false;
     } else {
@@ -137,6 +138,7 @@ export const SignUp: React.FC<Props> = (props) => {
     setPassword(passwordEntering);
 
     let isValid;
+    // todo 繰り返し出てきてるので関数で分離しよう
     if (passwordEntering === '' || passwordEntering.length > 10) {
       isValid = false;
     } else {
