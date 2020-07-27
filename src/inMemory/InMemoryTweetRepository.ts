@@ -7,7 +7,7 @@ import Content from '../domain/models/Tweet/Content/Content';
 import LikeSet from '../domain/models/Tweet/LikeSet/LikeSet';
 import RetweetMap from '../domain/models/Tweet/RetweetMap/RetweetMap';
 import TweetId from '../domain/models/Tweet/TweetId/TweetId';
-import UserId from '../domain/models/User/UserId/UserId';
+import ScreenName from '../domain/models/User/Profile/ScreenName';
 
 export class InMemoryTweetRepository implements ITweetRepository {
   createTweet(props: TweetCreateProps): Tweet {
@@ -17,7 +17,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
       retweetMap: retweetMapProps,
       tweetId: tweetIdProps,
       tweetedAt: tweetedAtProps,
-      userId: userIdProps,
+      screenName: screenNameProps,
     } = props;
 
     const content = new Content(contentProps);
@@ -25,7 +25,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
     const retweetMap = new RetweetMap(retweetMapProps);
     const tweetId = new TweetId(tweetIdProps);
     const tweetedAt = tweetedAtProps;
-    const userId = new UserId(userIdProps);
+    const screenName = new ScreenName(screenNameProps);
 
     const propsForTweet = {
       content,
@@ -33,7 +33,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
       retweetMap,
       tweetId,
       tweetedAt,
-      userId,
+      screenName,
     };
 
     return new Tweet(propsForTweet);

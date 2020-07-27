@@ -3,10 +3,11 @@ import UserId from '../User/UserId/UserId';
 import RetweetMap from './RetweetMap/RetweetMap';
 import Content from './Content/Content';
 import LikeSet from './LikeSet/LikeSet';
+import ScreenName from '../User/Profile/ScreenName';
 
 export interface AbstractTweetProps {
   tweetId: TweetId;
-  userId: UserId;
+  screenName: ScreenName;
   content: Content;
   retweetMap: RetweetMap;
   likeSet: LikeSet;

@@ -4,11 +4,12 @@ import UserId from '../../domain/models/User/UserId/UserId';
 import Content from '../../domain/models/Tweet/Content/Content';
 import RetweetMap from '../../domain/models/Tweet/RetweetMap/RetweetMap';
 import Reply from '../../domain/models/Tweet/ConcreteClasses/Reply';
+import ScreenName from '../../domain/models/User/Profile/ScreenName';
 
 export class TweetApplicationService {
   static test() {
     const tweetId = new TweetId(123);
-    const userId = new UserId(123);
+    const screenName = new ScreenName('123');
     const content = new Content('this is content.');
     const retweetMap = new RetweetMap();
     const likeSet = new LikeSet();
@@ -17,7 +18,7 @@ export class TweetApplicationService {
     const replyTo = tweetId;
     const props = {
       tweetId,
-      userId,
+      screenName,
       content,
       retweetMap,
       likeSet,

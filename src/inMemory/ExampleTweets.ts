@@ -7,25 +7,24 @@ import { InMemoryTweetRepository } from './InMemoryTweetRepository';
 
 const tweetRepository = new InMemoryTweetRepository();
 
-const tweetProps1 = {
-  tweetId: 1,
-  userId: 1,
-  content: 'test',
-  retweetMap: new Map(),
-  likeSet: new Set(),
-  tweetedAt: new Date(),
-};
-
-const tweetProps2 = {
-  tweetId: 1,
-  userId: 1,
-  content: 'test',
-  retweetMap: new Map(),
-  likeSet: new Set(),
-  tweetedAt: new Date(),
-};
-
-const tweetPropsArray = [tweetProps1, tweetProps2];
+const tweetPropsArray = [
+  {
+    tweetId: 1,
+    screenName: 'kyu',
+    content: 'test',
+    retweetMap: new Map(),
+    likeSet: new Set(),
+    tweetedAt: new Date(),
+  },
+  {
+    tweetId: 2,
+    screenName: 'kyu',
+    content: 'test',
+    retweetMap: new Map(),
+    likeSet: new Set(),
+    tweetedAt: new Date(),
+  },
+];
 
 export const tweetArray: Tweet[] = tweetPropsArray.map((t) =>
   tweetRepository.createTweet(t),

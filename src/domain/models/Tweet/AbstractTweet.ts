@@ -4,11 +4,12 @@ import Content from './Content/Content';
 import RetweetMap from './RetweetMap/RetweetMap';
 import LikeSet from './LikeSet/LikeSet';
 import { AbstractTweetProps } from './IAbstractTweet';
+import ScreenName from '../User/Profile/ScreenName';
 
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
 
-  readonly userId: UserId;
+  readonly screenName: ScreenName;
 
   readonly content: Content;
 
@@ -19,9 +20,16 @@ export abstract class AbstractTweet {
   readonly tweetedAt: Date;
 
   protected constructor(props: AbstractTweetProps) {
-    const { tweetId, userId, content, retweetMap, likeSet, tweetedAt } = props;
+    const {
+      tweetId,
+      screenName,
+      content,
+      retweetMap,
+      likeSet,
+      tweetedAt,
+    } = props;
     this.tweetId = tweetId;
-    this.userId = userId;
+    this.screenName = screenName;
     this.content = content;
     this.retweetMap = retweetMap;
     this.likeSet = likeSet;
