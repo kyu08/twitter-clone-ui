@@ -11,7 +11,6 @@ export interface AbstractTweetProps {
   retweetMap: RetweetMap;
   likeSet: LikeSet;
   tweetedAt: Date;
-  updatedAt: Date;
 }
 
 export interface IAbstractTweet extends AbstractTweetProps {
