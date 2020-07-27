@@ -7,7 +7,7 @@ import Reply from '../../domain/models/Tweet/ConcreteClasses/Reply';
 
 export class TweetApplicationService {
   static test() {
-    const tweetId = new TweetId('hoge');
+    const tweetId = new TweetId(123);
     const userId = new UserId(123);
     const content = new Content('this is content.');
     const retweetMap = new RetweetMap();
