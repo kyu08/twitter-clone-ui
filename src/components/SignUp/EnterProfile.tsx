@@ -9,9 +9,9 @@ type Props = {
   userName: string;
   screenName: string;
   password: string;
-  handleUserNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
-  handleScreenNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
-  handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleChangeUserName(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleChangeScreenName(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleChangePassword(e: React.ChangeEvent<HTMLInputElement>): void;
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   isValidUserName: boolean;
   isValidPassword: boolean;
@@ -33,8 +33,6 @@ export const EnterProfile: React.FC<Props> = (props) => {
   const {
     userName,
     screenName,
-    handleUserNameChange,
-    handleScreenNameChange,
     goToNextPage,
     isValidDate,
     isValidUserName,
@@ -51,7 +49,9 @@ export const EnterProfile: React.FC<Props> = (props) => {
     handleChangeDay,
     handleChangeYear,
     password,
-    handlePasswordChange,
+    handleChangePassword,
+    handleChangeScreenName,
+    handleChangeUserName,
   } = props;
 
   const message = 'アカウントを作成 1/4';
@@ -68,7 +68,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
             labelTitle="ユーザ名"
             inputType="text"
             value={userName}
-            handleChangeValue={handleUserNameChange}
+            handleChangeValue={handleChangeUserName}
           />
           {!isValidScreenName && (
             <AlertMessage alertMessage="スクリーンネームは1~10文字で入力してください" />
@@ -77,7 +77,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
             labelTitle="スクリーンネーム"
             inputType="text"
             value={screenName}
-            handleChangeValue={handleScreenNameChange}
+            handleChangeValue={handleChangeScreenName}
           />
           {!isValidPassword && (
             <AlertMessage alertMessage="パスワードは1~10文字で入力してください" />
@@ -86,7 +86,7 @@ export const EnterProfile: React.FC<Props> = (props) => {
             labelTitle="パスワード"
             inputType="password"
             value={password}
-            handleChangeValue={handlePasswordChange}
+            handleChangeValue={handleChangePassword}
           />
           {!isValidDate && <AlertMessage alertMessage="不正な年月日です" />}
           <div className={classes.SelectorContainer}>

@@ -246,10 +246,10 @@ export const SignUp: React.FC<Props> = (props) => {
               canGoNextPage={canGoNextPage}
               screenName={screenName}
               // todo handleChangeHoge に統一しよう
-              handleScreenNameChange={handleChangeScreenName}
+              handleChangeScreenName={handleChangeScreenName}
               isValidScreenName={isValidScreenName}
               userName={userName}
-              handleUserNameChange={handleChangeUserName}
+              handleChangeUserName={handleChangeUserName}
               isValidUserName={isValidUserName}
               year={year}
               month={month}
@@ -262,7 +262,7 @@ export const SignUp: React.FC<Props> = (props) => {
               handleChangeYear={handleChangeYear}
               isValidDate={isValidDate()}
               password={password}
-              handlePasswordChange={handleChangePassword}
+              handleChangePassword={handleChangePassword}
               isValidPassword={isValidPassword}
             />
           )}

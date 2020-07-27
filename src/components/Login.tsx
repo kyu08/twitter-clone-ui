@@ -37,11 +37,11 @@ export const Login: React.FC<Props> = (props) => {
     setIsInvalidLogin(true);
   };
 
-  const handleScreenNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeScreenName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setScreenName(e.currentTarget.value);
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   };
 
@@ -57,9 +57,9 @@ export const Login: React.FC<Props> = (props) => {
         <LoginForm
           login={login}
           screenName={screenName}
-          handleScreenNameChange={handleScreenNameChange}
+          handleChangeScreenName={handleChangeScreenName}
           password={password}
-          handlePasswordChange={handlePasswordChange}
+          handleChangePassword={handleChangePassword}
         />
       </div>
     </>
