@@ -4,12 +4,12 @@ import Content from './Content/Content';
 import RetweetMap from './RetweetMap/RetweetMap';
 import LikeSet from './LikeSet/LikeSet';
 import { AbstractTweetProps } from './IAbstractTweet';
+import ScreenName from '../User/Profile/ScreenName';
 
 export abstract class AbstractTweet {
-  // todo protected にできない
   readonly tweetId: TweetId;
 
-  readonly userId: UserId;
+  readonly screenName: ScreenName;
 
   readonly content: Content;
 
@@ -19,26 +19,21 @@ export abstract class AbstractTweet {
 
   readonly tweetedAt: Date;
 
-  // timeline の表示ロジックにもよるけどたぶんいらない気がする
-  readonly updatedAt: Date;
-
   protected constructor(props: AbstractTweetProps) {
     const {
       tweetId,
-      userId,
+      screenName,
       content,
       retweetMap,
       likeSet,
       tweetedAt,
-      updatedAt,
     } = props;
     this.tweetId = tweetId;
-    this.userId = userId;
+    this.screenName = screenName;
     this.content = content;
     this.retweetMap = retweetMap;
     this.likeSet = likeSet;
     this.tweetedAt = tweetedAt;
-    this.updatedAt = updatedAt;
   }
 
   abstract like(userId: UserId): AbstractTweet;

@@ -20,8 +20,8 @@ import { IUser } from './IUser';
 export default class UserFactory {
   static toInstanceUserId(set: any[]): Set<UserId> {
     // todo ださいきがする
-    if (JSON.stringify(set) === '{}' || JSON.stringify(set) === '[]')
-      return new Set();
+    const setString = JSON.stringify(set);
+    if (setString === '{}' || setString === '[]') return new Set();
     const setProps = set.map((u) => {
       return new UserId(u.userId);
     });

@@ -8,7 +8,6 @@ interface ReplyProps extends AbstractTweetProps {
 }
 
 export default class Reply extends AbstractTweet {
-  // todo private にできない (AbstractTweet の properties も protected にしたい)
   readonly replyTo: TweetId;
 
   constructor(props: ReplyProps) {

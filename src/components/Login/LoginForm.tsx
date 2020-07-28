@@ -5,18 +5,18 @@ import { LinkToSignUp } from './LinkToSignUp';
 
 type Props = {
   screenName: string;
-  handleScreenNameChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleChangeScreenName(e: React.ChangeEvent<HTMLInputElement>): void;
   password: string;
-  handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleChangePassword(e: React.ChangeEvent<HTMLInputElement>): void;
   login(): void;
 };
 
 export const LoginForm: React.FC<Props> = (props) => {
   const {
     screenName,
-    handleScreenNameChange,
+    handleChangeScreenName,
     password,
-    handlePasswordChange,
+    handleChangePassword,
     login,
   } = props;
 
@@ -28,13 +28,13 @@ export const LoginForm: React.FC<Props> = (props) => {
             labelTitle="ユーザ名"
             inputType="text"
             value={screenName}
-            handleChangeValue={handleScreenNameChange}
+            handleChangeValue={handleChangeScreenName}
           />
           <InputContainer
             labelTitle="パスワード"
             inputType="password"
             value={password}
-            handleChangeValue={handlePasswordChange}
+            handleChangeValue={handleChangePassword}
           />
           <input
             type="submit"
