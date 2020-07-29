@@ -2,7 +2,7 @@ interface IScreenName {
   readonly screenName: string;
 }
 
-const MAX_SCREEN_NAME_LENGTH = 10;
+export const MAX_SCREEN_NAME_LENGTH = 10;
 
 export default class ScreenName implements IScreenName {
   readonly screenName: string;
