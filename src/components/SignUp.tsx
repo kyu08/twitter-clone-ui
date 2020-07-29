@@ -10,6 +10,8 @@ import { MAX_BIO_LENGTH } from '../domain/models/User/Profile/Bio';
 import { EnterUserLocation } from './SignUp/EnterUserLocation';
 import { MAX_USER_LOCATION_LENGTH } from '../domain/models/User/Profile/UserLocation';
 import { Confirm } from './SignUp/Confirm';
+import { MAX_SCREEN_NAME_LENGTH } from '../domain/models/User/Profile/ScreenName';
+import { MAX_USER_NAME_LENGTH } from '../domain/models/User/Profile/UserName';
 
 type Props = {
   isLogin: boolean;
@@ -79,8 +81,11 @@ export const SignUp: React.FC<Props> = (props) => {
   };
 
   const judgeCanGoNextPage = ({
-    isRightUserName = userName.length > 0 && userName.length <= 15,
-    isRightScreenName = screenName.length > 0 && screenName.length <= 10,
+    // isValidHoge はあくまでエラーメッセージコンポーネントを表示するためのフラグなのでここで改めて判定する必要がある。
+    isRightUserName = userName.length > 0 &&
+      userName.length <= MAX_USER_NAME_LENGTH,
+    isRightScreenName = screenName.length > 0 &&
+      screenName.length <= MAX_SCREEN_NAME_LENGTH,
     isRightPassword = password.length > 0 && password.length <= 10,
     isRightDate = isValidDate(),
   }): void => {
@@ -105,7 +110,10 @@ export const SignUp: React.FC<Props> = (props) => {
 
     let isValid;
     // todo 繰り返し出てきてるので関数で分離しよう
-    if (userNameEntering === '' || userNameEntering.length > 15) {
+    if (
+      userNameEntering === '' ||
+      userNameEntering.length > MAX_SCREEN_NAME_LENGTH
+    ) {
       isValid = false;
     } else {
       isValid = true;
@@ -122,7 +130,10 @@ export const SignUp: React.FC<Props> = (props) => {
 
     let isValid;
     // todo 繰り返し出てきてるので関数で分離しよう
-    if (screenNameEntering === '' || screenNameEntering.length > 15) {
+    if (
+      screenNameEntering === '' ||
+      screenNameEntering.length > MAX_SCREEN_NAME_LENGTH
+    ) {
       isValid = false;
     } else {
       isValid = true;

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import classes from './Timeline.module.css';
 import { Tweet } from './Tweet';
+import { Retweet } from './Retweet';
+import { Reply } from './Reply';
 
 export const Timeline: React.FC<{}> = () => {
   const userImage = 'UserImage';
@@ -28,7 +30,7 @@ export const Timeline: React.FC<{}> = () => {
         likeNumber={likeNumber}
         content={content}
       />
-      <Tweet
+      <Retweet
         userImage={userImage}
         userName={userName}
         screenName={screenName}
@@ -37,6 +39,17 @@ export const Timeline: React.FC<{}> = () => {
         retweetNumber={retweetNumber}
         likeNumber={likeNumber}
         content={content}
+      />
+      <Reply
+        userImage={userImage}
+        userName={userName}
+        screenName={screenName}
+        howLongAgo={howLongAgo}
+        replyNumber={replyNumber}
+        retweetNumber={retweetNumber}
+        likeNumber={likeNumber}
+        content={content}
+        replyTo="きゅうしま"
       />
       <Tweet
         userImage={userImage}

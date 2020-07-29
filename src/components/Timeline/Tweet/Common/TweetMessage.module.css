@@ -1,0 +1,11 @@
+.TweetMessage {
+    color: #8899A6;
+    font-size: 13px;
+    font-family: "Segoe UI", Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    margin-left: 55px;
+    display: flex;
+}
+
+.MessageText {
+    margin-left: 10px;
+}
