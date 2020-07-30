@@ -1,21 +1,21 @@
 import * as React from 'react';
 import classes from './TweetButton.module.css';
 import { TweetButtonIcon } from './TweetButtonIcon';
-import { TweetButtonNumber } from './TweetButtonNumber';
+import { TweetButtonCount } from './TweetButtonCount';
 import { TODO } from '../../../../util/Util';
 
-interface TweetButtonNumberProps {
+interface TweetButtonCountProps {
   buttonIcon: TODO<'JSXComponent'>;
-  tweetButtonNumber: number;
+  tweetButtonCount: number;
 }
 
-export const TweetButton: React.FC<TweetButtonNumberProps> = (props) => {
-  const { buttonIcon, tweetButtonNumber } = props;
+export const TweetButton: React.FC<TweetButtonCountProps> = (props) => {
+  const { buttonIcon, tweetButtonCount } = props;
 
   return (
     <div className={classes.TweetButton}>
       <TweetButtonIcon buttonIcon={buttonIcon} />
-      <TweetButtonNumber tweetButtonNumber={tweetButtonNumber} />
+      <TweetButtonCount tweetButtonCount={tweetButtonCount} />
     </div>
   );
 };

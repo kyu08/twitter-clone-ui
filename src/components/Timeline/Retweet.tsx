@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
-import { Tweet } from './Tweet';
+import { TweetComponent } from './TweetComponent';
 import { TweetMessage } from './Tweet/Common/TweetMessage';
 
 type Props = {
@@ -30,21 +30,22 @@ export const Retweet: React.FC<Props> = (props) => {
 
   return (
     <>
-      <TweetMessage
-        userName={userName}
-        message={message}
-        icon={<RepeatOutlinedIcon fontSize="small" />}
-      />
-      <Tweet
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-      />
+      {/* <TweetMessage*/}
+      {/*  userName={userName}*/}
+      {/*  message={message}*/}
+      {/*  icon={<RepeatOutlinedIcon fontSize="small" />}*/}
+      {/*/ >*/}
+      {/* <TweetComponent*/}
+      {/*  userImage={userImage}*/}
+      {/*  userName={userName}*/}
+      {/*  screenName={screenName}*/}
+      {/*  howLongAgo={howLongAgo}*/}
+      {/*  replyNumber={replyNumber}*/}
+      {/*  retweetNumber={retweetNumber}*/}
+      {/*  likeNumber={likeNumber}*/}
+      {/*  content={content}*/}
+      {/*/ >*/}
+      hogehoge
     </>
   );
 };

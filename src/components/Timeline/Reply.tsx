@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tweet } from './Tweet';
+import { TweetComponent } from './TweetComponent';
 import { TweetMessage } from './Tweet/Common/TweetMessage';
 
 type Props = {
@@ -31,17 +31,18 @@ export const Reply: React.FC<Props> = (props) => {
 
   return (
     <>
-      <TweetMessage userName={replyTo} message={message} />
-      <Tweet
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-      />
+      {/* <TweetMessage userName={replyTo} message={message} />*/}
+      {/* <TweetComponent*/}
+      {/*  userImage={userImage}*/}
+      {/*  userName={userName}*/}
+      {/*  screenName={screenName}*/}
+      {/*  howLongAgo={howLongAgo}*/}
+      {/*  replyNumber={replyNumber}*/}
+      {/*  retweetNumber={retweetNumber}*/}
+      {/*  likeNumber={likeNumber}*/}
+      {/*  content={content}*/}
+      {/*/ >*/}
+      hoge
     </>
   );
 };

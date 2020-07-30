@@ -3,45 +3,44 @@ import classes from './Tweet.module.css';
 import { UserImageContainer } from './Tweet/UserImageContainer';
 import { TweetInformationContainer } from './Tweet/TweetInformationContainer';
 import { TweetContentContainer } from './Tweet/TweetContentContainer';
+import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
 
 type Props = {
-  userImage: string;
-  userName: string;
-  screenName: string;
-  howLongAgo: string;
-  replyNumber: number;
-  retweetNumber: number;
-  likeNumber: number;
-  content: string;
+  tweet: Tweet;
 };
 
-export const Tweet: React.FC<Props> = (props) => {
+export const TweetComponent: React.FC<Props> = (props) => {
+  const { tweet } = props;
   const {
     content,
-    howLongAgo,
-    likeNumber,
-    replyNumber,
-    retweetNumber,
+    tweetedAt,
+    likeCount,
+    // replyCount,
+    retweetCount,
     screenName,
     userImage,
     userName,
-  } = props;
+  } = tweet;
+
+  const replyCount = 1;
+  // todo ここちゃんと書く
+  const howLongAgo = '2019/11/11';
 
   return (
     <div className={classes.TweetContainer}>
       <div className={classes.Tweet}>
-        <UserImageContainer userImage={userImage} />
+        <UserImageContainer userImage={userImage.userImage} />
         <div className="TweetRightContainer">
           <TweetInformationContainer
-            userName={userName}
-            screenName={screenName}
+            userName={userName.userName}
+            screenName={screenName.screenName}
             howLongAgo={howLongAgo}
           />
           <TweetContentContainer
-            replyNumber={replyNumber}
-            retweetNumber={retweetNumber}
-            likeNumber={likeNumber}
-            content={content}
+            replyCount={replyCount}
+            retweetCount={retweetCount}
+            likeCount={likeCount}
+            content={content.content}
           />
         </div>
       </div>
