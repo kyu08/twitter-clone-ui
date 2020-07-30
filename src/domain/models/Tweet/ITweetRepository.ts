@@ -4,6 +4,7 @@ export interface TweetCreateProps {
   tweetId: number;
   screenName: string;
   content: string;
+  replyCount: number;
   retweetCount: number;
   likeCount: number;
   tweetedAt: Date;

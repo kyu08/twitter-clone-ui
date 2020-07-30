@@ -13,6 +13,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
   createTweet(props: TweetCreateProps): Tweet {
     const {
       content: contentProps,
+      replyCount: replyCountProps,
       likeCount: likeCountProps,
       retweetCount: retweetCountProps,
       tweetId: tweetIdProps,
@@ -23,6 +24,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
     } = props;
 
     const content = new Content(contentProps);
+    const replyCount = replyCountProps;
     const likeCount = likeCountProps;
     const retweetCount = retweetCountProps;
     const tweetId = new TweetId(tweetIdProps);
@@ -33,6 +35,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
 
     const propsForTweet = {
       content,
+      replyCount,
       likeCount,
       retweetCount,
       tweetId,

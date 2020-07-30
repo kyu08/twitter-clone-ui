@@ -13,6 +13,7 @@ const tweetPropsArray = [
     tweetId: 1,
     screenName: 'doit_uncle',
     content: 'do it!!!',
+    replyCount: 12,
     retweetCount: 13,
     likeCount: 13,
     tweetedAt: new Date(),
