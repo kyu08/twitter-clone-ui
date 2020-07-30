@@ -23,7 +23,7 @@ export const TweetComponent: React.FC<Props> = (props) => {
   } = tweet;
 
   const replyCount = 1;
-  // todo ここちゃんと書く
+  // todo #111 ここちゃんと書く
   const howLongAgo = '2019/11/11';
 
   return (
