@@ -4,9 +4,11 @@ export interface TweetCreateProps {
   tweetId: number;
   screenName: string;
   content: string;
-  retweetMap: Map<any, any>;
-  likeSet: Set<any>;
+  retweetCount: number;
+  likeCount: number;
   tweetedAt: Date;
+  userImage: string;
+  userName: string;
 }
 
 export interface ITweetRepository {

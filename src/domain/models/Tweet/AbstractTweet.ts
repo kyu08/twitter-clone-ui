@@ -1,10 +1,9 @@
-import UserId from '../User/UserId/UserId';
 import TweetId from './TweetId/TweetId';
 import Content from './Content/Content';
-import RetweetMap from './RetweetMap/RetweetMap';
-import LikeSet from './LikeSet/LikeSet';
 import { AbstractTweetProps } from './IAbstractTweet';
 import ScreenName from '../User/Profile/ScreenName';
+import UserImage from '../User/Profile/UserImage';
+import UserName from '../User/Profile/UserName';
 
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
@@ -13,34 +12,34 @@ export abstract class AbstractTweet {
 
   readonly content: Content;
 
-  readonly retweetMap: RetweetMap;
+  readonly retweetCount: number;
 
-  readonly likeSet: LikeSet;
+  readonly likeCount: number;
 
   readonly tweetedAt: Date;
+
+  readonly userImage: UserImage;
+
+  readonly userName: UserName;
 
   protected constructor(props: AbstractTweetProps) {
     const {
       tweetId,
       screenName,
       content,
-      retweetMap,
-      likeSet,
+      retweetCount,
+      likeCount,
       tweetedAt,
+      userImage,
+      userName,
     } = props;
     this.tweetId = tweetId;
     this.screenName = screenName;
     this.content = content;
-    this.retweetMap = retweetMap;
-    this.likeSet = likeSet;
+    this.retweetCount = retweetCount;
+    this.likeCount = likeCount;
     this.tweetedAt = tweetedAt;
+    this.userImage = userImage;
+    this.userName = userName;
   }
-
-  abstract like(userId: UserId): AbstractTweet;
-
-  abstract cancelLike(userId: UserId): AbstractTweet;
-
-  abstract retweet(userId: UserId): AbstractTweet;
-
-  abstract cancelRetweet(userId: UserId): AbstractTweet;
 }
