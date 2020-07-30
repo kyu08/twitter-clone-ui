@@ -3,8 +3,6 @@ import Profile from './Profile/Profile';
 import { User } from './User';
 import Bio from './Profile/Bio';
 import Day from './Profile/Birthday/Day';
-import Follower from './Follower/Follower';
-import Following from './Following/Following';
 import HeaderImage from './Profile/HeaderImage';
 import Month from './Profile/Birthday/Month';
 import ScreenName from './Profile/ScreenName';
@@ -30,15 +28,15 @@ export default class UserFactory {
   }
 
   static createUserPropsFromJSON(propsJSON: any): IUserProps {
-    const { follower, following, userId, profile } = propsJSON;
-    const followerParsed = UserFactory.toInstanceUserId(follower.follower);
-    const followingParsed = UserFactory.toInstanceUserId(following.following);
+    const { followerCount, followingCount, userId, profile } = propsJSON;
+    // const followerParsed = UserFactory.toInstanceUserId(follower.follower);
+    // const followingParsed = UserFactory.toInstanceUserId(following.following);
 
     const props = {
       bio: profile.bio.bio,
       day: profile.birthday.day.day,
-      follower: followerParsed,
-      following: followingParsed,
+      followerCount,
+      followingCount,
       headerImage: profile.headerImage.headerImage,
       month: profile.birthday.month.month,
       screenName: profile.screenName.screenName,
@@ -57,8 +55,8 @@ export default class UserFactory {
     return {
       bio: new Bio(props.bio),
       day: new Day(props.day),
-      follower: new Follower(props.follower),
-      following: new Following(props.following),
+      followerCount: props.followerCount,
+      followingCount: props.followingCount,
       headerImage: new HeaderImage(props.headerImage),
       month: new Month(props.month),
       screenName: new ScreenName(props.screenName),
@@ -75,8 +73,8 @@ export default class UserFactory {
     const {
       bio,
       day,
-      follower,
-      following,
+      followerCount,
+      followingCount,
       headerImage,
       month,
       screenName,
@@ -99,6 +97,6 @@ export default class UserFactory {
       website,
     });
 
-    return new User({ profile, follower, following, userId });
+    return new User({ profile, followerCount, followingCount, userId });
   }
 }

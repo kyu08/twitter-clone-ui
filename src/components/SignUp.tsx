@@ -256,7 +256,6 @@ export const SignUp: React.FC<Props> = (props) => {
               goToNextPage={goToNextPage}
               canGoNextPage={canGoNextPage}
               screenName={screenName}
-              // todo handleChangeHoge に統一しよう
               handleChangeScreenName={handleChangeScreenName}
               isValidScreenName={isValidScreenName}
               userName={userName}

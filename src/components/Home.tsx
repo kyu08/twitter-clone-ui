@@ -16,7 +16,6 @@ export const Home: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
 
-  // なんでここなら window.location.href が動いたんだろう
   const logout = (): void => {
     store.set('screenName')(undefined);
     setIsLogin(false);
@@ -26,8 +25,7 @@ export const Home: React.FC<Props> = (props) => {
     <>
       {!isLogin && <Redirect to="/" />}
       <Header logout={logout} />
-      <Timeline />
-      {console.log(tweetArray)}
+      <Timeline tweetArray={tweetArray} />
       <Footer />
     </>
   );

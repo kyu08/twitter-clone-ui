@@ -1,76 +1,22 @@
 import * as React from 'react';
 import classes from './Timeline.module.css';
-import { Tweet } from './Tweet';
-import { Retweet } from './Retweet';
-import { Reply } from './Reply';
+import { TweetComponent } from './TweetComponent';
+import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
 
-export const Timeline: React.FC<{}> = () => {
-  const userImage = 'UserImage';
+type Props = {
+  tweetArray: Tweet[];
+};
 
-  const userName = 'neko';
-  const screenName = 'I_am_neko';
-  const howLongAgoNumber = 10;
-  const howLongAgoLabel = '分前';
-  const howLongAgo = `${String(howLongAgoNumber)}${howLongAgoLabel}`;
-
-  const replyNumber = 1;
-  const retweetNumber = 1;
-  const likeNumber = 1;
-  const content = 'hogehogethisistweeeeeeeeeeeeeeeeeeeeeeet';
+export const Timeline: React.FC<Props> = (props) => {
+  const { tweetArray } = props;
 
   return (
     <div className={classes.Timeline}>
-      <Tweet
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-      />
-      <Retweet
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-      />
-      <Reply
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-        replyTo="きゅうしま"
-      />
-      <Tweet
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-      />
-      <Tweet
-        userImage={userImage}
-        userName={userName}
-        screenName={screenName}
-        howLongAgo={howLongAgo}
-        replyNumber={replyNumber}
-        retweetNumber={retweetNumber}
-        likeNumber={likeNumber}
-        content={content}
-      />
+      {/* todo #112 これ関数化する*/}
+      {tweetArray.map((t) => (
+        // todo component が properties を知ってるイマイチ
+        <TweetComponent tweet={t} key={t.tweetId.tweetId} />
+      ))}
     </div>
   );
 };

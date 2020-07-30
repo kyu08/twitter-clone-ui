@@ -22,32 +22,4 @@ export default class Retweet extends AbstractTweet {
     this.retweetedBy = retweetedBy;
     this.retweetedAt = retweetedAt;
   }
-
-  like(userId: UserId): Retweet {
-    const likeSet = this.likeSet.like(userId);
-    const props = { ...this, likeSet };
-
-    return new Retweet(props);
-  }
-
-  cancelLike(userId: UserId): Retweet {
-    const likeSet = this.likeSet.cancelLike(userId);
-    const props = { ...this, likeSet };
-
-    return new Retweet(props);
-  }
-
-  retweet(userId: UserId): Retweet {
-    const retweetMap = this.retweetMap.retweet(userId);
-    const props = { ...this, retweetMap };
-
-    return new Retweet(props);
-  }
-
-  cancelRetweet(userId: UserId): Retweet {
-    const retweetMap = this.retweetMap.cancelRetweet(userId);
-    const props = { ...this, retweetMap };
-
-    return new Retweet(props);
-  }
 }

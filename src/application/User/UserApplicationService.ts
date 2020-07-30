@@ -60,23 +60,23 @@ export default class UserApplicationService {
     UserApplicationService.userRepository.save(updatedUser);
   }
 
-  static follow(currentUserId: UserId, targetUserId: UserId): void {
-    const currentUser = UserApplicationService.findUserByUserId(currentUserId);
-    const targetUser = UserApplicationService.findUserByUserId(targetUserId);
-    const currentUserUpdated = currentUser.follow(targetUserId);
-    const targetUserUpdated = targetUser.followed(currentUserId);
-    UserApplicationService.userRepository.save(currentUserUpdated);
-    UserApplicationService.userRepository.save(targetUserUpdated);
-  }
-
-  static unFollow(currentUserId: UserId, targetUserId: UserId): void {
-    const currentUser = UserApplicationService.findUserByUserId(currentUserId);
-    const targetUser = UserApplicationService.findUserByUserId(targetUserId);
-    const currentUserUpdated = currentUser.unFollow(targetUserId);
-    const targetUserUpdated = targetUser.unFollowed(currentUserId);
-    UserApplicationService.userRepository.save(currentUserUpdated);
-    UserApplicationService.userRepository.save(targetUserUpdated);
-  }
+  // static follow(currentUserId: UserId, targetUserId: UserId): void {
+  //   const currentUser = UserApplicationService.findUserByUserId(currentUserId);
+  //   const targetUser = UserApplicationService.findUserByUserId(targetUserId);
+  //   const currentUserUpdated = currentUser.follow(targetUserId);
+  //   const targetUserUpdated = targetUser.followed(currentUserId);
+  //   UserApplicationService.userRepository.save(currentUserUpdated);
+  //   UserApplicationService.userRepository.save(targetUserUpdated);
+  // }
+  //
+  // static unFollow(currentUserId: UserId, targetUserId: UserId): void {
+  //   const currentUser = UserApplicationService.findUserByUserId(currentUserId);
+  //   const targetUser = UserApplicationService.findUserByUserId(targetUserId);
+  //   const currentUserUpdated = currentUser.unFollow(targetUserId);
+  //   const targetUserUpdated = targetUser.unFollowed(currentUserId);
+  //   UserApplicationService.userRepository.save(currentUserUpdated);
+  //   UserApplicationService.userRepository.save(targetUserUpdated);
+  // }
 
   static isAuthorized(screenName: string, password: string): boolean {
     return this.userRepository.isAuthorized(screenName, password);

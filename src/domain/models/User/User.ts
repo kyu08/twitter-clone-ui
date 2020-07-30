@@ -1,21 +1,19 @@
 import { IUser } from './IUser';
 import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
-import Following from './Following/Following';
-import Follower from './Follower/Follower';
 import { BirthdayProps } from './Profile/Birthday';
 
 interface UserProps {
-  readonly follower: Follower;
-  readonly following: Following;
   readonly profile: Profile;
   readonly userId: UserId;
+  readonly followerCount: number;
+  readonly followingCount: number;
 }
 
 export class User implements IUser {
-  readonly follower: Follower;
+  readonly followerCount: number;
 
-  readonly following: Following;
+  readonly followingCount: number;
 
   // todo あとImage系の実装
   readonly profile: Profile;
@@ -24,48 +22,23 @@ export class User implements IUser {
   readonly userId: UserId;
 
   constructor(props: UserProps) {
-    const { follower, following, profile, userId } = props;
-    this.follower = follower;
-    this.following = following;
+    const { followerCount, followingCount, profile, userId } = props;
+    this.followerCount = followerCount;
+    this.followingCount = followingCount;
     this.profile = profile;
     this.userId = userId;
   }
 
-  private getFollower(): Follower {
-    return this.follower;
+  private getFollowerCount(): number {
+    return this.followerCount;
   }
 
-  private getFollowing(): Following {
-    return this.following;
+  private getFollowingCount(): number {
+    return this.followingCount;
   }
 
   private getProfile(): Profile {
     return this.profile;
-  }
-
-  // 共通化したい〜〜〜
-  follow(userId: UserId): User {
-    const following = this.getFollowing().follow(userId);
-
-    return this.returnUpdatedInstance('following', following);
-  }
-
-  unFollow(userId: UserId): User {
-    const following = this.getFollowing().unFollow(userId);
-
-    return this.returnUpdatedInstance('following', following);
-  }
-
-  followed(userId: UserId): User {
-    const follower = this.getFollower().followed(userId);
-
-    return this.returnUpdatedInstance('follower', follower);
-  }
-
-  unFollowed(userId: UserId): User {
-    const follower = this.getFollower().unFollowed(userId);
-
-    return this.returnUpdatedInstance('follower', follower);
   }
 
   updateBio(bioString: string): User {

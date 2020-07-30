@@ -1,22 +1,18 @@
 import TweetId from './TweetId/TweetId';
-import UserId from '../User/UserId/UserId';
-import RetweetMap from './RetweetMap/RetweetMap';
 import Content from './Content/Content';
-import LikeSet from './LikeSet/LikeSet';
 import ScreenName from '../User/Profile/ScreenName';
+import UserImage from '../User/Profile/UserImage';
+import UserName from '../User/Profile/UserName';
 
 export interface AbstractTweetProps {
   tweetId: TweetId;
   screenName: ScreenName;
   content: Content;
-  retweetMap: RetweetMap;
-  likeSet: LikeSet;
+  retweetCount: number;
+  likeCount: number;
   tweetedAt: Date;
+  userImage: UserImage;
+  userName: UserName;
 }
 
-export interface IAbstractTweet extends AbstractTweetProps {
-  like(userId: UserId): IAbstractTweet;
-  cancelLike(userId: UserId): IAbstractTweet;
-  retweet(userId: UserId): IAbstractTweet;
-  cancelRetweet(userId: UserId): IAbstractTweet;
-}
+export type IAbstractTweet = AbstractTweetProps;
