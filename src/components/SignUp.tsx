@@ -80,6 +80,7 @@ export const SignUp: React.FC<Props> = (props) => {
     return d <= lastDay(m, y);
   };
 
+
   const judgeCanGoNextPage = ({
     // isValidHoge はあくまでエラーメッセージコンポーネントを表示するためのフラグなのでここで改めて判定する必要がある。
     isRightUserName = userName.length > 0 &&
