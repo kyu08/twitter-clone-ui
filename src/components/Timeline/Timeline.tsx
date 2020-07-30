@@ -12,6 +12,7 @@ export const Timeline: React.FC<Props> = (props) => {
 
   return (
     <div className={classes.Timeline}>
+      {/* todo #112 これ関数化する*/}
       {tweetArray.map((t) => (
         // todo component が properties を知ってるイマイチ
         <TweetComponent tweet={t} key={t.tweetId.tweetId} />
