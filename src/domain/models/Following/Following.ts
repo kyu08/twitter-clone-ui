@@ -4,9 +4,12 @@ import UserId from '../User/UserId/UserId';
 import { deleteFromSet } from '../../../util/Util';
 
 export default class Following implements IFollowing {
+  readonly userId: UserId;
+
   readonly following: Set<UserId>;
 
-  constructor(following: Set<UserId>) {
+  constructor(userId: UserId, following: Set<UserId>) {
+    this.userId = userId;
     this.following = following;
   }
 
@@ -29,13 +32,13 @@ export default class Following implements IFollowing {
     const copy = _.cloneDeep(this.getFollowing());
     copy.add(userId);
 
-    return new Following(copy);
+    return new Following(userId, copy);
   }
 
   unFollow(userId: UserId): Following {
     const copiedFollowing = _.cloneDeep(this.getFollowing());
     const updatedFollowing = deleteFromSet(copiedFollowing, userId);
 
-    return new Following(updatedFollowing);
+    return new Following(userId, updatedFollowing);
   }
 }
