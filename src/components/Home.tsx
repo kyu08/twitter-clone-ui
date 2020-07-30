@@ -4,7 +4,7 @@ import { Header } from './Timeline/Common/Header';
 import { Timeline } from './Timeline/Timeline';
 import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
-import { tweetArray } from '../inMemory/ExampleTweets';
+// import { tweetArray } from '../inMemory/ExampleTweets';
 
 type Props = {
   isLogin: boolean;
@@ -27,7 +27,7 @@ export const Home: React.FC<Props> = (props) => {
       {!isLogin && <Redirect to="/" />}
       <Header logout={logout} />
       <Timeline />
-      {console.log(tweetArray)}
+      {/* {console.log(tweetArray)}*/}
       <Footer />
     </>
   );

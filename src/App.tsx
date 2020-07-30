@@ -12,7 +12,7 @@ const App = () => {
   const userIdB = new UserId(3);
   // const user = UserApplicationService.findUserByUserId(userId);
   // const userB = UserApplicationService.findUserByUserId(userIdB);
-  UserApplicationService.follow(userId, userIdB);
+  // UserApplicationService.follow(userId, userIdB);
   // const userUpdated = UserApplicationService.findUserByUserId(userId);
   // const userBUpdated = UserApplicationService.findUserByUserId(userIdB);
   // console.log(user);

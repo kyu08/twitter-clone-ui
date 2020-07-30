@@ -3,37 +3,43 @@ import {
   TweetCreateProps,
 } from '../domain/models/Tweet/ITweetRepository';
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
-import Content from '../domain/models/Tweet/Content/Content';
-import LikeSet from '../domain/models/Tweet/LikeSet/LikeSet';
-import RetweetMap from '../domain/models/Tweet/RetweetMap/RetweetMap';
 import TweetId from '../domain/models/Tweet/TweetId/TweetId';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
+import UserName from '../domain/models/User/Profile/UserName';
+import UserImage from '../domain/models/User/Profile/UserImage';
+import Content from '../domain/models/Tweet/Content/Content';
 
 export class InMemoryTweetRepository implements ITweetRepository {
   createTweet(props: TweetCreateProps): Tweet {
     const {
       content: contentProps,
-      likeSet: likeSetProps,
-      retweetMap: retweetMapProps,
+      likeCount: likeCountProps,
+      retweetCount: retweetCountProps,
       tweetId: tweetIdProps,
       tweetedAt: tweetedAtProps,
       screenName: screenNameProps,
+      userImage: userImageProps,
+      userName: userNameProps,
     } = props;
 
     const content = new Content(contentProps);
-    const likeSet = new LikeSet(likeSetProps);
-    const retweetMap = new RetweetMap(retweetMapProps);
+    const likeCount = likeCountProps;
+    const retweetCount = retweetCountProps;
     const tweetId = new TweetId(tweetIdProps);
     const tweetedAt = tweetedAtProps;
     const screenName = new ScreenName(screenNameProps);
+    const userImage = new UserImage(userImageProps);
+    const userName = new UserName(userNameProps);
 
     const propsForTweet = {
       content,
-      likeSet,
-      retweetMap,
+      likeCount,
+      retweetCount,
       tweetId,
       tweetedAt,
       screenName,
+      userName,
+      userImage,
     };
 
     return new Tweet(propsForTweet);

@@ -1,6 +1,4 @@
 import { IUser } from '../domain/models/User/IUser';
-import Follower from '../domain/models/User/Follower/Follower';
-import Following from '../domain/models/User/Following/Following';
 import Profile from '../domain/models/User/Profile/Profile';
 import UserId from '../domain/models/User/UserId/UserId';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
@@ -27,8 +25,8 @@ export interface IProps {
   userName: string;
   userImage: string;
   website: string;
-  follower: Set<UserId>;
-  following: Set<UserId>;
+  followerCount: number;
+  followingCount: number;
   userId: number;
 }
 
@@ -43,8 +41,8 @@ export interface IUserProps {
   userName: UserName;
   userImage: UserImage;
   website: Website;
-  follower: Follower;
-  following: Following;
+  followerCount: number;
+  followingCount: number;
   userId: UserId;
 }
 
@@ -52,8 +50,8 @@ const userFactory = (props: IUserProps) => {
   const {
     bio,
     day,
-    follower,
-    following,
+    followerCount,
+    followingCount,
     headerImage,
     month,
     screenName,
@@ -76,7 +74,7 @@ const userFactory = (props: IUserProps) => {
     website,
   });
 
-  return new User({ profile, follower, following, userId });
+  return new User({ profile, followerCount, followingCount, userId });
 };
 
 const userA = userFactory({
@@ -90,8 +88,8 @@ const userA = userFactory({
   userName: new UserName('kyuushima'),
   userImage: new UserImage('kyu'),
   website: new Website('kyu08.com'),
-  follower: new Follower(new Set()),
-  following: new Following(new Set()),
+  followerCount: 10,
+  followingCount: 13,
   userId: new UserId(1),
 });
 
@@ -106,8 +104,8 @@ const userB = userFactory({
   userName: new UserName('test_user_1'),
   userImage: new UserImage('te'),
   website: new Website('testUser1.com'),
-  follower: new Follower(new Set()),
-  following: new Following(new Set()),
+  followerCount: 11,
+  followingCount: 10000,
   userId: new UserId(2),
 });
 
@@ -122,8 +120,8 @@ const userC = userFactory({
   userName: new UserName('test_dayo2'),
   userImage: new UserImage('test2'),
   website: new Website('test2.com'),
-  follower: new Follower(new Set()),
-  following: new Following(new Set()),
+  followerCount: 11,
+  followingCount: 10000,
   userId: new UserId(3),
 });
 
