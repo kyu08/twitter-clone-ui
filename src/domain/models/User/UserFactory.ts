@@ -3,8 +3,6 @@ import Profile from './Profile/Profile';
 import { User } from './User';
 import Bio from './Profile/Bio';
 import Day from './Profile/Birthday/Day';
-import Follower from './Follower/Follower';
-import Following from './Following/Following';
 import HeaderImage from './Profile/HeaderImage';
 import Month from './Profile/Birthday/Month';
 import ScreenName from './Profile/ScreenName';
