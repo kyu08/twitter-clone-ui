@@ -4,7 +4,7 @@
 
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import { InMemoryTweetRepository } from './InMemoryTweetRepository';
-// import doit from './doit.png';
+import doit from './doit.png';
 
 const tweetRepository = new InMemoryTweetRepository();
 
@@ -17,7 +17,7 @@ const tweetPropsArray = [
     retweetCount: 13,
     likeCount: 13,
     tweetedAt: new Date(),
-    userImage: 'doit',
+    userImage: doit,
     userName: 'doitおじさん',
   },
   // {
