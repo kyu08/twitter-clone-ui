@@ -12,6 +12,8 @@ export abstract class AbstractTweet {
 
   readonly content: Content;
 
+  readonly replyCount: number;
+
   readonly retweetCount: number;
 
   readonly likeCount: number;
@@ -27,6 +29,7 @@ export abstract class AbstractTweet {
       tweetId,
       screenName,
       content,
+      replyCount,
       retweetCount,
       likeCount,
       tweetedAt,
@@ -36,6 +39,7 @@ export abstract class AbstractTweet {
     this.tweetId = tweetId;
     this.screenName = screenName;
     this.content = content;
+    this.replyCount = replyCount;
     this.retweetCount = retweetCount;
     this.likeCount = likeCount;
     this.tweetedAt = tweetedAt;

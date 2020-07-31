@@ -15,14 +15,13 @@ export const TweetComponent: React.FC<Props> = (props) => {
     content,
     tweetedAt,
     likeCount,
-    // replyCount,
+    replyCount,
     retweetCount,
     screenName,
     userImage,
     userName,
   } = tweet;
 
-  const replyCount = 1;
   // todo #111 ここちゃんと書く
   const howLongAgo = '2019/11/11';
 

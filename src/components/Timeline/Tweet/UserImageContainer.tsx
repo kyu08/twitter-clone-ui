@@ -8,5 +8,11 @@ type Props = {
 export const UserImageContainer: React.FC<Props> = (props) => {
   const { userImage } = props;
 
-  return <div className={classes.UserImageContainer}>{userImage}</div>;
+  return (
+    <img
+      className={classes.UserImageContainer}
+      src={userImage}
+      alt="users profile"
+    />
+  );
 };

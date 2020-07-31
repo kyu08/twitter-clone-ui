@@ -8,6 +8,7 @@ export interface AbstractTweetProps {
   tweetId: TweetId;
   screenName: ScreenName;
   content: Content;
+  replyCount: number;
   retweetCount: number;
   likeCount: number;
   tweetedAt: Date;
