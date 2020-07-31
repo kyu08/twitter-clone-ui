@@ -12,13 +12,14 @@ const tweetPropsArray = [
   {
     tweetId: 1,
     screenName: 'doit_uncle',
-    content: 'do it!!!',
+    content:
+      'do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!',
     replyCount: 12,
     retweetCount: 13,
     likeCount: 13,
     tweetedAt: new Date(),
     userImage: doit,
-    userName: 'doitおじさん',
+    userName: 'doit!!',
   },
   // {
   //   tweetId: 2,
