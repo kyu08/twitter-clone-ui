@@ -1,15 +1,27 @@
 import React from 'react';
 import './App.css';
-import UserApplicationService from './application/User/UserApplicationService';
-import UserId from './domain/models/User/UserId/UserId';
 import InMemoryUserRepository from './inMemory/InMemoryUserRepository';
 import Store from './Store';
 import { Container } from './Container/Container';
 
 const App = () => {
   InMemoryUserRepository.initializeLocalStorage();
-  const userId = new UserId(2);
-  const userIdB = new UserId(3);
+  console.log(11);
+  React.useEffect(() => {
+    fetch('http://localhost:3001/', {
+      mode: 'cors',
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(22);
   // const user = UserApplicationService.findUserByUserId(userId);
   // const userB = UserApplicationService.findUserByUserId(userIdB);
   // UserApplicationService.follow(userId, userIdB);
