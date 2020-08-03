@@ -9,6 +9,7 @@ type Props = {
 
 export const Timeline: React.FC<Props> = (props) => {
   const { tweetArray } = props;
+  console.log(tweetArray);
 
   return (
     <div className={classes.Timeline}>

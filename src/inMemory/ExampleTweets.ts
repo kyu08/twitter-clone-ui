@@ -21,6 +21,18 @@ const tweetPropsArray = [
     userImage: doit,
     userName: 'doit!!',
   },
+  {
+    tweetId: 2,
+    screenName: 'doit2',
+    content:
+      '2do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!do it!!!',
+    replyCount: 13,
+    retweetCount: 131,
+    likeCount: 1334,
+    tweetedAt: new Date(),
+    userImage: doit,
+    userName: '2doit!!',
+  },
   // {
   //   tweetId: 2,
   //   screenName: 'kyu',
@@ -87,6 +99,6 @@ const tweetPropsArray = [
   // },
 ];
 
-export const tweetArray: Tweet[] = tweetPropsArray.map((t) =>
+export const tweetArrayStatic: Tweet[] = tweetPropsArray.map((t) =>
   tweetRepository.createTweet(t),
 );
