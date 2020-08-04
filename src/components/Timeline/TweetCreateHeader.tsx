@@ -1,15 +1,17 @@
 import * as React from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useHistory } from 'react-router-dom';
 import classes from './TweetCreateHeader.module.css';
 
-type Props = {
-  //
-};
+export const TweetCreateHeader: React.FC<{}> = () => {
+  const history = useHistory();
+  const Back = () => {
+    history.goBack();
+  };
 
-export const TweetCreateHeader: React.FC<Props> = (props) => {
   return (
     <div className={classes.Header}>
-      <div className={classes.Icon}>
+      <div className={classes.Icon} onClick={() => Back()}>
         <ArrowBackIcon />
       </div>
       <div className={classes.ButtonWrapper}>
