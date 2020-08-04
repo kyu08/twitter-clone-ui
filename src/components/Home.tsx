@@ -4,8 +4,9 @@ import { Header } from './Timeline/Common/Header';
 import { Timeline } from './Timeline/Timeline';
 import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
-import { tweetArrayStatic } from '../inMemory/ExampleTweets';
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
+import { TweetApplicationService } from '../application/Tweet/TweetApplicationService';
+import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 
 type Props = {
   isLogin: boolean;
@@ -19,19 +20,15 @@ export const Home: React.FC<Props> = (props) => {
   const [tweetArray, setTweetArray]: [Tweet[], any] = React.useState([]);
 
   React.useEffect(() => {
-    // todo repository 経由で！
-    fetch('http://localhost:3001/home/123', {
-      mode: 'cors',
-    })
+    TweetApplicationService.fetchTimeline()
       .then((res) => {
         return res.json();
       })
       .then((json) => {
-        console.log(json);
-        console.log(tweetArrayStatic);
-        // todo tweetArray は Tweet[] を要求しているのでそこんとこあってない
-        setTweetArray(tweetArrayStatic);
-        // setTweetArray(json);
+        const TweetInstanceArray = json.map((t: TweetCreateProps) =>
+          TweetApplicationService.toInsntace(t),
+        );
+        setTweetArray(TweetInstanceArray);
       })
       .catch((err) => {
         console.log(err);
