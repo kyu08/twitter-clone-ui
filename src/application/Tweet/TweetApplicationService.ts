@@ -20,6 +20,11 @@ export class TweetApplicationService {
     });
   }
 
+  static returnTweetId(tweet: Tweet): number {
+    return tweet.getTweetId();
+  }
+
+
   static test() {
     console.log(1);
     // const tweetId = new TweetId(123);

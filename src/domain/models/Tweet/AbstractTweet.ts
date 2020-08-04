@@ -46,4 +46,8 @@ export abstract class AbstractTweet {
     this.userImage = userImage;
     this.userName = userName;
   }
+
+  getTweetId(): number {
+    return this.tweetId.tweetId;
+  }
 }
