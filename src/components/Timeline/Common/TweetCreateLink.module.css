@@ -1,11 +1,16 @@
+.TweetCreateLinkWrapper {
+    margin-left: auto;
+    position: absolute;
+    right: 25px;
+    bottom: 75px;
+}
+
 .TweetCreateLink {
     background-color: #1DA1F2;
     color: white;
     border-radius: 50%;
     font-size: 35px;
     border: none;
-}
-
-.TweetCreateLinkWrapper {
-    margin-left: auto;
+    position: relative;
+    padding: 10px 18px;
 }
