@@ -25,6 +25,7 @@ export const Home: React.FC<Props> = (props) => {
         return res.json();
       })
       .then((json) => {
+        // todo これも関数化して分離する？
         const TweetInstanceArray = json.map((t: TweetCreateProps) =>
           TweetApplicationService.toInsntace(t),
         );
