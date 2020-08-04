@@ -4,7 +4,6 @@ import classes from './TweetInformationContainer.module.css';
 import { UserName } from './TweetInformationContainer/UserName';
 import { ScreenName } from './TweetInformationContainer/ScreenName';
 import { HowLongAgo } from './TweetInformationContainer/HowLongAgo';
-import { TweetMenuButton } from './Common/TweetMenuButton';
 
 type Props = {
   userName: string;
@@ -21,7 +20,7 @@ export const TweetInformationContainer: React.FC<Props> = (props) => {
       <ScreenName screenName={screenName} />
       <HowLongAgo howLongAgo={howLongAgo} />
       <div className={classes.TweetOptionButtonWrapper}>
-        <TweetMenuButton buttonIcon={<ExpandMoreOutlinedIcon />} />
+        <ExpandMoreOutlinedIcon />
       </div>
     </div>
   );

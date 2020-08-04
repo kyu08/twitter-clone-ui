@@ -2,7 +2,7 @@ import * as React from 'react';
 import classes from './Header.module.css';
 
 type Props = {
-  logout(): void;
+  logout?(): void;
 };
 
 export const Header: React.FC<Props> = (props) => {
@@ -11,7 +11,7 @@ export const Header: React.FC<Props> = (props) => {
   return (
     <div className={classes.Header}>
       Header
-      <button onClick={() => logout()}>Logout</button>
+      {logout ? <button onClick={() => logout()}>Logout</button> : null}
     </div>
   );
 };

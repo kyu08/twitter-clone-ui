@@ -4,6 +4,7 @@ import { Home } from './Home';
 import { Login } from './Login';
 import classes from './RootComponent.module.css';
 import { SignUp } from './SignUp';
+import { TweetCreate } from './Timeline/TweetCreate';
 
 type Props = {
   isLogin: boolean;
@@ -31,6 +32,16 @@ export const RootComponent: React.FC<Props> = (props) => {
             exact
             path="/home"
             render={() => <Home isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
+          <Route
+            exact
+            path="/tweet"
+            render={() => (
+              <TweetCreate
+                isLogin={isLogin}
+                userImageURL="https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1=w288-h288-n-rw"
+              />
+            )}
           />
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import classes from './TweetButtonIcon.module.css';
-import { TweetMenuButton } from '../Common/TweetMenuButton';
 
 type TweetButtonContainerProps = {
   buttonIcon: any;
@@ -9,9 +8,5 @@ type TweetButtonContainerProps = {
 export const TweetButtonIcon: React.FC<TweetButtonContainerProps> = (props) => {
   const { buttonIcon } = props;
 
-  return (
-    <div className={classes.TweetButtonContainer}>
-      <TweetMenuButton buttonIcon={buttonIcon} />
-    </div>
-  );
+  return <div className={classes.TweetButtonContainer}>{buttonIcon}</div>;
 };
