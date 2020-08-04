@@ -9,13 +9,19 @@ export const TweetCreateHeader: React.FC<{}> = () => {
     history.goBack();
   };
 
+  const submitTweet = () => {
+    console.log('tweet button pushed.');
+  };
+
   return (
     <div className={classes.Header}>
       <div className={classes.Icon} onClick={() => Back()}>
         <ArrowBackIcon />
       </div>
       <div className={classes.ButtonWrapper}>
-        <button className={classes.tweetButton}>ツイートする</button>
+        <button className={classes.tweetButton} onClick={() => submitTweet()}>
+          ツイートする
+        </button>
       </div>
     </div>
   );
