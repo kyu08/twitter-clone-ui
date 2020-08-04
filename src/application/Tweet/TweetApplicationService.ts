@@ -1,10 +1,30 @@
-// import TweetId from '../../domain/models/Tweet/TweetId/TweetId';
-// import UserId from '../../domain/models/User/UserId/UserId';
-// import Content from '../../domain/models/Tweet/Content/Content';
-// import Reply from '../../domain/models/Tweet/ConcreteClasses/Reply';
-// import ScreenName from '../../domain/models/User/Profile/ScreenName';
+import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
+import {
+  ITweetRepository,
+  TweetCreateProps,
+} from '../../domain/models/Tweet/ITweetRepository';
+import { InMemoryTweetRepository } from '../../inMemory/InMemoryTweetRepository';
 
 export class TweetApplicationService {
+  static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
+
+  static toInsntace(json: TweetCreateProps): Tweet {
+    return TweetApplicationService.tweetRepository.createTweet(json);
+  }
+
+  static fetchTimeline(): Promise<Response> {
+    const hostURL = 'http://localhost:3001';
+
+    return fetch(`${hostURL}/home/123`, {
+      mode: 'cors',
+    });
+  }
+
+  static returnTweetId(tweet: Tweet): number {
+    return tweet.getTweetId();
+  }
+
+
   static test() {
     console.log(1);
     // const tweetId = new TweetId(123);
