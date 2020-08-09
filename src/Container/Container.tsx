@@ -11,10 +11,10 @@ export const Container: React.FC = () => {
   const userRepository: IUserRepository = new InMemoryUserRepository();
 
   useEffect(() => {
-    const screenNameInLocalStorage = userRepository.getScreenNameFromLocalStorage();
-    if (!screenNameInLocalStorage) return;
+    const userIdInLocalStorage = userRepository.getUserIdFromLocalStorage();
+    if (!userIdInLocalStorage) return;
     setIsLogin(true);
-    store.set('screenName')(screenNameInLocalStorage);
+    store.set('userId')(userIdInLocalStorage);
   }, []);
 
   return (

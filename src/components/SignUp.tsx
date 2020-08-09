@@ -199,7 +199,8 @@ export const SignUp: React.FC<Props> = (props) => {
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = (event) => {
       // @ts-ignore
-      setUserImage(event.target.result);
+      setUserImage(reader.result);
+      // setUserImage(event.target.result);
       setCanGoToPage3(true);
     };
   };

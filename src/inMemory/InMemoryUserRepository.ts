@@ -62,7 +62,7 @@ export default class InMemoryUserRepository implements IUserRepository {
     const userMapInLocalStorage = localStorage.getItem('userMap');
     if (!userMapInLocalStorage) {
       const userMap = inMemoryUserMap;
-      const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
+      const userMapJSON = JSON.stringify(userMap);
       localStorage.setItem('userMap', userMapJSON);
     }
   }
@@ -89,9 +89,23 @@ export default class InMemoryUserRepository implements IUserRepository {
     InMemoryUserRepository.saveUserMap(userMapCopy);
   }
 
+  returnUserIdByScreenName(screenName: string): number {
+    let userIdFound;
+    inMemoryUserMap.forEach((user, userId) => {
+      if (user.getScreenName().screenName === screenName) {
+        userIdFound = userId;
+      }
+    });
+    if (userIdFound) {
+      return userIdFound;
+    }
+    throw new Error('no user has this screenName.');
+  }
+
   isAuthorized(screenName: string, password: string): boolean {
     const screenNamePasswordMap = ScreenNamePasswordMap;
     const passwordExpected = screenNamePasswordMap.get(screenName);
+
     if (passwordExpected === undefined || passwordExpected !== password) {
       console.log('invalid access.');
 
@@ -102,15 +116,15 @@ export default class InMemoryUserRepository implements IUserRepository {
     return true;
   }
 
-  setScreenNameToLocalStorage(screenName: string): void {
-    localStorage.setItem('screenName', screenName);
+  setUserIdToLocalStorage(userId: string): void {
+    localStorage.setItem('userId', userId);
   }
 
-  getScreenNameFromLocalStorage(): string | null {
-    return localStorage.getItem('screenName');
+  getUserIdFromLocalStorage(): string | null {
+    return localStorage.getItem('userId');
   }
 
-  removeScreenNameFromLocalStorage(): void {
-    localStorage.removeItem('screenName');
+  removeUserIdFromLocalStorage(): void {
+    localStorage.removeItem('userId');
   }
 }

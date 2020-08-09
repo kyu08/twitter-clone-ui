@@ -1,6 +1,7 @@
 import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import { BirthdayProps } from './Profile/Birthday';
+import ScreenName from './Profile/ScreenName';
 
 export interface UserProps {
   readonly profile: Profile;
@@ -17,4 +18,5 @@ export interface IUser extends UserProps {
   updateWebsite(webSiteString: string): IUser;
   updateUserName(userNameString: string): IUser;
   getUserId(): UserId;
+  getScreenName(): ScreenName;
 }

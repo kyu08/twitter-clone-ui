@@ -28,8 +28,11 @@ export const Login: React.FC<Props> = (props) => {
 
   const login = (): void => {
     const isAuthorized = authorize(screenName, password);
+    const userId = UserApplicationService.returnUserIdByScreenName(screenName);
+    const userIdJSON = JSON.stringify(userId);
+
     if (isAuthorized) {
-      store.set('screenName')(screenName);
+      store.set('userId')(userIdJSON);
       setIsLogin(true);
 
       return;

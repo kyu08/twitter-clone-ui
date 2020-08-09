@@ -6,6 +6,8 @@ import { Container } from './Container/Container';
 
 const App = () => {
   InMemoryUserRepository.initializeLocalStorage();
+  const test = localStorage.getItem('userMap');
+  if (test) console.log(JSON.parse(test));
   // const user = UserApplicationService.findUserByUserId(userId);
   // const userB = UserApplicationService.findUserByUserId(userIdB);
   // UserApplicationService.follow(userId, userIdB);
