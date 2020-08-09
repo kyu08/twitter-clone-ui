@@ -37,7 +37,7 @@ export const Home: React.FC<Props> = (props) => {
   }, []);
 
   const logout = (): void => {
-    store.set('screenName')(undefined);
+    store.set('userId')(undefined);
     setIsLogin(false);
   };
 

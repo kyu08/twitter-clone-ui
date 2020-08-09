@@ -6,13 +6,13 @@ import InMemoryUserRepository from './inMemory/InMemoryUserRepository';
 const userRepository: IUserRepository = new InMemoryUserRepository();
 
 const effects: StoreEffects = (store) => {
-  store.on('screenName').subscribe((screenName) => {
-    if (!screenName) {
-      userRepository.removeScreenNameFromLocalStorage();
+  store.on('userId').subscribe((userId) => {
+    if (!userId) {
+      userRepository.removeUserIdFromLocalStorage();
 
       return;
     }
-    userRepository.setScreenNameToLocalStorage(screenName);
+    userRepository.setUserIdToLocalStorage(userId);
   });
 
   return store;

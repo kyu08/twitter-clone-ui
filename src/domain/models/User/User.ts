@@ -2,6 +2,7 @@ import { IUser } from './IUser';
 import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import { BirthdayProps } from './Profile/Birthday';
+import ScreenName from './Profile/ScreenName';
 
 interface UserProps {
   readonly profile: Profile;
@@ -77,5 +78,9 @@ export class User implements IUser {
 
   getUserId(): UserId {
     return this.userId;
+  }
+
+  getScreenName(): ScreenName {
+    return this.getProfile().screenName;
   }
 }

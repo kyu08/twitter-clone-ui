@@ -3,11 +3,11 @@ import { Store, createConnectedStore, Effects } from 'undux';
 import effects from './Effects';
 
 type State = {
-  screenName?: string;
+  userId?: string;
 };
 
 const initialState: State = {
-  screenName: undefined,
+  userId: undefined,
 };
 
 export default createConnectedStore(initialState, effects);
