@@ -1,5 +1,7 @@
 import { IContent } from './IContent';
 
+export const MAX_TWEET_LENGTH = 140;
+
 export default class Content implements IContent {
   readonly content: string;
 
@@ -10,7 +12,6 @@ export default class Content implements IContent {
 
   private static isInvalid(content: string): boolean {
     const MIN_TWEET_LENGTH = 1;
-    const MAX_TWEET_LENGTH = 140;
     const isShort = content.length < MIN_TWEET_LENGTH;
     const isLong = content.length > MAX_TWEET_LENGTH;
 

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { TweetCreateHeader } from './TweetCreateHeader';
 import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
 import { TweetCreateForm } from './TweetCreateForm';
+import { MAX_TWEET_LENGTH } from '../../../domain/models/Tweet/Content/Content';
 
 type Props = {
   isLogin: boolean;
@@ -14,13 +15,13 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
   const { isLogin, userImageURL, userId } = props;
   const [content, setContent] = React.useState('');
   const [tempTweet, setTempTweet] = React.useState();
+  const [canSubmitTweet, setCanSubmitTweet] = React.useState(false);
 
   const history = useHistory();
   const goBack = () => {
     history.goBack();
   };
 
-  // todo validation
   const submitTweet = () => {
     console.log(tempTweet);
     console.log('tweet button pushed.');
@@ -36,6 +37,15 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
       userId,
       contentEntered,
     );
+    if (
+      contentEntered.length !== 0 &&
+      contentEntered.length <= MAX_TWEET_LENGTH
+    ) {
+      setCanSubmitTweet(true);
+    } else {
+      setCanSubmitTweet(false);
+    }
+
     setTempTweet(tempTweetUpdated);
   };
 
@@ -43,7 +53,11 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     <>
       {console.log(isLogin)}
       {/* {!isLogin && <Redirect to="/" />}*/}
-      <TweetCreateHeader goBack={goBack} submitTweet={submitTweet} />
+      <TweetCreateHeader
+        goBack={goBack}
+        submitTweet={submitTweet}
+        canSubmitTweet={canSubmitTweet}
+      />
       <TweetCreateForm
         userImageURL={userImageURL}
         content={content}

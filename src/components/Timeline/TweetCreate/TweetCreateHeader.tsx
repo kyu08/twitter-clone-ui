@@ -5,10 +5,11 @@ import classes from './TweetCreateHeader.module.css';
 type Props = {
   goBack(): void;
   submitTweet(): void;
+  canSubmitTweet: boolean;
 };
 
 export const TweetCreateHeader: React.FC<Props> = (props) => {
-  const { submitTweet, goBack } = props;
+  const { submitTweet, goBack, canSubmitTweet } = props;
 
   return (
     <div className={classes.Header}>
@@ -16,7 +17,11 @@ export const TweetCreateHeader: React.FC<Props> = (props) => {
         <ArrowBackIcon />
       </div>
       <div className={classes.ButtonWrapper}>
-        <button className={classes.tweetButton} onClick={() => submitTweet()}>
+        <button
+          className={classes.tweetButton}
+          onClick={() => submitTweet()}
+          disabled={!canSubmitTweet}
+        >
           ツイートする
         </button>
       </div>
