@@ -13,7 +13,6 @@ type Props = {
   setIsLogin(boolean: boolean): void;
 };
 
-// this is container component.
 export const HomeContainer: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
