@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
-import { Home } from './Home';
-import { Login } from './Login';
+import { HomeContainer } from './HomeContainer';
+import { LoginContainer } from './LoginContainer';
 import classes from './RootComponent.module.css';
-import { SignUp } from './SignUp';
+import { SignUpContainer } from './SignUpContainer';
 import { TweetCreateContainer } from './Timeline/TweetCreate/TweetCreateContainer';
 
 type Props = {
@@ -22,17 +22,17 @@ export const RootComponent: React.FC<Props> = (props) => {
           <Route
             exact
             path="/signup"
-            render={() => <SignUp isLogin={isLogin} />}
+            render={() => <SignUpContainer isLogin={isLogin} />}
           />
           <Route
             exact
             path="/login"
-            render={() => <Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+            render={() => <LoginContainer isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route
             exact
             path="/home"
-            render={() => <Home isLogin={isLogin} setIsLogin={setIsLogin} />}
+            render={() => <HomeContainer isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route
             exact

@@ -14,7 +14,7 @@ type Props = {
 };
 
 // this is container component.
-export const Home: React.FC<Props> = (props) => {
+export const HomeContainer: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
   const [tweetArray, setTweetArray]: [Tweet[], any] = React.useState([]);
