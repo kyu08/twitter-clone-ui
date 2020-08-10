@@ -8,6 +8,7 @@ import UserFactory from '../domain/models/User/UserFactory';
 import { ScreenNamePasswordMap } from './InMemoryScreenNamePassword';
 
 export default class InMemoryUserRepository implements IUserRepository {
+  // todo これたぶん使う必要ない
   private static returnUserMap(): Map<number, IUser> {
     const usersJSON = localStorage.getItem('userMap');
     if (!usersJSON) throw Error('There is no userMapInLS');
