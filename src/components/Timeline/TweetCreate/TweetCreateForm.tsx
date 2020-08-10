@@ -20,6 +20,7 @@ export const TweetCreateForm: React.FC<Props> = (props) => {
           wrap="soft"
           value={content}
           onChange={(e) => handleChangeContent(e)}
+          placeholder="いまどうしてる？"
         />
       </div>
     </div>
