@@ -1,8 +1,8 @@
-import UserId from '../../domain/models/User/UserId/UserId';
-import { TODO } from '../../util/Util';
-import InMemoryUserRepository from '../../inMemory/InMemoryUserRepository';
-import { IUserRepository } from '../../domain/models/User/IUserRepository';
-import { BirthdayProps } from '../../domain/models/User/Profile/Birthday';
+import UserId from '../domain/models/User/UserId/UserId';
+import { TODO } from '../util/Util';
+import InMemoryUserRepository from '../inMemory/InMemoryUserRepository';
+import { IUserRepository } from '../domain/models/User/IUserRepository';
+import { BirthdayProps } from '../domain/models/User/Profile/Birthday';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
