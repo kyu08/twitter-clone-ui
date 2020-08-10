@@ -9,6 +9,7 @@ export const Container: React.FC = () => {
   const store = Store.useStore();
   const [isLogin, setIsLogin] = React.useState<boolean>(false);
   const userRepository: IUserRepository = new InMemoryUserRepository();
+  const userId = store.get('userId');
 
   useEffect(() => {
     const userIdInLocalStorage = userRepository.getUserIdFromLocalStorage();
@@ -19,7 +20,15 @@ export const Container: React.FC = () => {
 
   return (
     <>
-      <RootComponent isLogin={isLogin} setIsLogin={setIsLogin} />
+      {userId ? (
+        <RootComponent
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
+          userId={userId}
+        />
+      ) : (
+        <RootComponent isLogin={isLogin} setIsLogin={setIsLogin} />
+      )}
     </>
   );
 };

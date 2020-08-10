@@ -4,15 +4,16 @@ import { Home } from './Home';
 import { Login } from './Login';
 import classes from './RootComponent.module.css';
 import { SignUp } from './SignUp';
-import { TweetCreate } from './Timeline/TweetCreate';
+import { TweetCreate } from './Timeline/TweetCreate/TweetCreate';
 
 type Props = {
   isLogin: boolean;
   setIsLogin(boolean: boolean): void;
+  userId?: string;
 };
 
 export const RootComponent: React.FC<Props> = (props) => {
-  const { isLogin, setIsLogin } = props;
+  const { isLogin, setIsLogin, userId } = props;
 
   return (
     <div className={classes.RootComponent}>
@@ -40,6 +41,7 @@ export const RootComponent: React.FC<Props> = (props) => {
               <TweetCreate
                 isLogin={isLogin}
                 userImageURL="https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1=w288-h288-n-rw"
+                userId={userId}
               />
             )}
           />

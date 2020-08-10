@@ -6,6 +6,7 @@ import { TweetCreateHeader } from './TweetCreateHeader';
 type Props = {
   isLogin: boolean;
   userImageURL: string;
+  userId?: string;
 };
 
 export const TweetCreate: React.FC<Props> = (props) => {

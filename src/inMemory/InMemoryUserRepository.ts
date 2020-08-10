@@ -9,7 +9,7 @@ import { ScreenNamePasswordMap } from './InMemoryScreenNamePassword';
 
 export default class InMemoryUserRepository implements IUserRepository {
   // todo これたぶん使う必要ない
-  private static returnUserMap(): Map<number, IUser> {
+  private static returnUserMap(): Map<string, IUser> {
     const usersJSON = localStorage.getItem('userMap');
     if (!usersJSON) throw Error('There is no userMapInLS');
     const usersJSONParsed = JSON.parse(usersJSON);
@@ -17,12 +17,12 @@ export default class InMemoryUserRepository implements IUserRepository {
     return InMemoryUserRepository.instantiateUsersFromJSON(usersJSONParsed);
   }
 
-  private static saveUserMap(userMap: Map<number, IUser>): void {
+  private static saveUserMap(userMap: Map<string, IUser>): void {
     const userMapJSON = InMemoryUserRepository.MapToArray(userMap);
     localStorage.setItem('userMap', userMapJSON);
   }
 
-  private static MapToArray(userMap: Map<number, IUser>): string {
+  private static MapToArray(userMap: Map<string, IUser>): string {
     const userMapSetArray = InMemoryUserRepository.SetToArray(userMap);
     const userMapArray = Array.from(userMapSetArray);
 
@@ -32,7 +32,7 @@ export default class InMemoryUserRepository implements IUserRepository {
   // LS からもってきた値を User インスタンス化して UserMap をかえす
   private static instantiateUsersFromJSON(
     users: TODO<'usersParsed'>[],
-  ): Map<number, IUser> {
+  ): Map<string, IUser> {
     const map = new Map();
 
     users.forEach((u) => {
@@ -47,7 +47,7 @@ export default class InMemoryUserRepository implements IUserRepository {
     return map;
   }
 
-  static SetToArray(userMap: Map<number, any>): Map<number, any> {
+  static SetToArray(userMap: Map<string, any>): Map<string, any> {
     userMap.forEach((user) => {
       // eslint-disable-next-line no-param-reassign
       user.following.following = Array.from(user.following.following);

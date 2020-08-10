@@ -1,10 +1,7 @@
-import { IUserId } from './IUserId';
+export default class UserId {
+  readonly userId: string;
 
-export default class UserId implements IUserId {
-  readonly userId: number;
-
-  // todo validation どうやれば、、不要、、？
-  constructor(userId: number) {
+  constructor(userId: string) {
     this.userId = userId;
   }
 }
