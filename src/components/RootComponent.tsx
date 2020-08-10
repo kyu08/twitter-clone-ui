@@ -27,12 +27,16 @@ export const RootComponent: React.FC<Props> = (props) => {
           <Route
             exact
             path="/login"
-            render={() => <LoginContainer isLogin={isLogin} setIsLogin={setIsLogin} />}
+            render={() => (
+              <LoginContainer isLogin={isLogin} setIsLogin={setIsLogin} />
+            )}
           />
           <Route
             exact
             path="/home"
-            render={() => <HomeContainer isLogin={isLogin} setIsLogin={setIsLogin} />}
+            render={() => (
+              <HomeContainer isLogin={isLogin} setIsLogin={setIsLogin} />
+            )}
           />
           <Route
             exact
