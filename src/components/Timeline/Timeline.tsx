@@ -2,7 +2,7 @@ import * as React from 'react';
 import classes from './Timeline.module.css';
 import { TweetComponent } from './TweetComponent';
 import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
-import { TweetApplicationService } from '../../application/Tweet/TweetApplicationService';
+import { TweetApplicationService } from '../../application/TweetApplicationService';
 
 type Props = {
   tweetArray: Tweet[];

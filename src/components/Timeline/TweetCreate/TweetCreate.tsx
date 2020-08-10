@@ -2,6 +2,7 @@ import * as React from 'react';
 import { UserImageContainer } from './Tweet/UserImageContainer';
 import classes from './TweetCreate.module.css';
 import { TweetCreateHeader } from './TweetCreateHeader';
+import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
 
 type Props = {
   isLogin: boolean;
