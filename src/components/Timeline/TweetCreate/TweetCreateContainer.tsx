@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { UserImageContainer } from '../Tweet/UserImageContainer';
-import classes from './TweetCreate.module.css';
+import { useHistory } from 'react-router-dom';
 import { TweetCreateHeader } from './TweetCreateHeader';
 import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
+import { TweetCreateForm } from './TweetCreateForm';
 
 type Props = {
   isLogin: boolean;
@@ -10,12 +10,21 @@ type Props = {
   userId?: string;
 };
 
-export const TweetCreate: React.FC<Props> = (props) => {
+export const TweetCreateContainer: React.FC<Props> = (props) => {
   const { isLogin, userImageURL, userId } = props;
-
-  // todo #122 お近くの container component に移動しよ
   const [content, setContent] = React.useState('');
   const [tempTweet, setTempTweet] = React.useState();
+
+  const history = useHistory();
+  const goBack = () => {
+    history.goBack();
+  };
+
+  // todo validation
+  const submitTweet = () => {
+    console.log(tempTweet);
+    console.log('tweet button pushed.');
+  };
 
   const handleChangeContent = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
@@ -28,26 +37,18 @@ export const TweetCreate: React.FC<Props> = (props) => {
       contentEntered,
     );
     setTempTweet(tempTweetUpdated);
-    console.log(tempTweetUpdated);
-    console.log(tempTweet);
   };
 
   return (
     <>
       {console.log(isLogin)}
       {/* {!isLogin && <Redirect to="/" />}*/}
-      <TweetCreateHeader />
-      <div className={classes.TweetCreate}>
-        <UserImageContainer userImage={userImageURL} />
-        <div className={classes.RightContainer}>
-          <textarea
-            className={classes.InputElement}
-            wrap="soft"
-            value={content}
-            onChange={(e) => handleChangeContent(e)}
-          />
-        </div>
-      </div>
+      <TweetCreateHeader goBack={goBack} submitTweet={submitTweet} />
+      <TweetCreateForm
+        userImageURL={userImageURL}
+        content={content}
+        handleChangeContent={handleChangeContent}
+      />
     </>
   );
 };
