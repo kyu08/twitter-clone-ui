@@ -62,8 +62,7 @@ export default class InMemoryUserRepository implements IUserRepository {
   static initializeLocalStorage(): void {
     const userMapInLocalStorage = localStorage.getItem('userMap');
     if (!userMapInLocalStorage) {
-      const userMap = inMemoryUserMap;
-      const userMapJSON = JSON.stringify(userMap);
+      const userMapJSON = JSON.stringify(inMemoryUserMap);
       localStorage.setItem('userMap', userMapJSON);
     }
   }
@@ -104,8 +103,7 @@ export default class InMemoryUserRepository implements IUserRepository {
   }
 
   isAuthorized(screenName: string, password: string): boolean {
-    const screenNamePasswordMap = ScreenNamePasswordMap;
-    const passwordExpected = screenNamePasswordMap.get(screenName);
+    const passwordExpected = ScreenNamePasswordMap.get(screenName);
 
     if (passwordExpected === undefined || passwordExpected !== password) {
       console.log('invalid access.');
