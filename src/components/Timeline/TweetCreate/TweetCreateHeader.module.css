@@ -24,3 +24,7 @@
     padding: 4px 10px;
     font-size: 15px;
 }
+
+.tweetButton:disabled {
+    opacity: 0.5;
+}

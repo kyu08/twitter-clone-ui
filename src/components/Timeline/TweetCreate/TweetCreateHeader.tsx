@@ -1,25 +1,27 @@
 import * as React from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { useHistory } from 'react-router-dom';
 import classes from './TweetCreateHeader.module.css';
 
-export const TweetCreateHeader: React.FC<{}> = () => {
-  const history = useHistory();
-  const Back = () => {
-    history.goBack();
-  };
+type Props = {
+  goBack(): void;
+  submitTweet(): void;
+  canSubmitTweet: boolean;
+};
 
-  const submitTweet = () => {
-    console.log('tweet button pushed.');
-  };
+export const TweetCreateHeader: React.FC<Props> = (props) => {
+  const { submitTweet, goBack, canSubmitTweet } = props;
 
   return (
     <div className={classes.Header}>
-      <div className={classes.Icon} onClick={() => Back()}>
+      <div className={classes.Icon} onClick={() => goBack()}>
         <ArrowBackIcon />
       </div>
       <div className={classes.ButtonWrapper}>
-        <button className={classes.tweetButton} onClick={() => submitTweet()}>
+        <button
+          className={classes.tweetButton}
+          onClick={() => submitTweet()}
+          disabled={!canSubmitTweet}
+        >
           ツイートする
         </button>
       </div>
