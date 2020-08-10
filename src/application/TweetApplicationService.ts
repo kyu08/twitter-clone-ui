@@ -1,9 +1,9 @@
-import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
+import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import {
   ITweetRepository,
   TweetCreateProps,
-} from '../../domain/models/Tweet/ITweetRepository';
-import { InMemoryTweetRepository } from '../../inMemory/InMemoryTweetRepository';
+} from '../domain/models/Tweet/ITweetRepository';
+import { InMemoryTweetRepository } from '../inMemory/InMemoryTweetRepository';
 
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();

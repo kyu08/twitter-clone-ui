@@ -2,13 +2,7 @@ import * as React from 'react';
 import CreateIcon from '@material-ui/icons/Create';
 import classes from './TweetCreateLink.module.css';
 
-type Props = {
-  //
-};
-
-export const TweetCreateLink: React.FC<Props> = (props) => {
-  const data = props;
-
+export const TweetCreateLink: React.FC<{}> = () => {
   return (
     <>
       <div className={classes.TweetCreateLinkWrapper}>

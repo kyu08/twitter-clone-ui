@@ -16,6 +16,7 @@ export interface AbstractTweetProps {
   userName: UserName;
 }
 
+// todo これ使われてない
 export type IAbstractTweet = AbstractTweetProps & {
   getTweetId(): number;
 };

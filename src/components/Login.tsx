@@ -4,7 +4,7 @@ import classes from './Login.module.css';
 import { Logo } from './Login/Logo';
 import { Message } from './Login/Message';
 import { LoginForm } from './Login/LoginForm';
-import UserApplicationService from '../application/User/UserApplicationService';
+import UserApplicationService from '../application/UserApplicationService';
 import Store from '../Store';
 import { AlertMessage } from './Login/AlertMessage';
 

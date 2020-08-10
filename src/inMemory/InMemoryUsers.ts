@@ -27,7 +27,7 @@ export interface IProps {
   website: string;
   followerCount: number;
   followingCount: number;
-  userId: number;
+  userId: string;
 }
 
 export interface IUserProps {
@@ -90,7 +90,7 @@ const userA = userFactory({
   website: new Website('kyu08.com'),
   followerCount: 10,
   followingCount: 13,
-  userId: new UserId(1),
+  userId: new UserId('kyu08userId'),
 });
 
 const userB = userFactory({
@@ -106,7 +106,7 @@ const userB = userFactory({
   website: new Website('testUser1.com'),
   followerCount: 11,
   followingCount: 10000,
-  userId: new UserId(2),
+  userId: new UserId('useriD2'),
 });
 
 const userC = userFactory({
@@ -122,12 +122,12 @@ const userC = userFactory({
   website: new Website('test2.com'),
   followerCount: 11,
   followingCount: 10000,
-  userId: new UserId(3),
+  userId: new UserId('userId3'),
 });
 
 export const inMemoryUsers: IUser[] = [userA, userB, userC];
 
-export const inMemoryUserMap: Map<number, IUser> = new Map([
+export const inMemoryUserMap: Map<string, IUser> = new Map([
   [userA.userId.userId, userA],
   [userB.userId.userId, userB],
   [userC.userId.userId, userC],
