@@ -2,6 +2,8 @@ import UserId from '../domain/models/User/UserId/UserId';
 
 export type TODO<T> = any;
 
+export const hostURL = 'http://localhost:3001';
+
 // todo ↓これも
 export const deleteFromSet = (
   copy: Set<UserId>,
