@@ -89,7 +89,7 @@ export default class InMemoryUserRepository implements IUserRepository {
     InMemoryUserRepository.saveUserMap(userMapCopy);
   }
 
-  returnUserIdByScreenName(screenName: string): number {
+  returnUserIdByScreenName(screenName: string): string {
     let userIdFound;
     inMemoryUserMap.forEach((user, userId) => {
       if (user.getScreenName().screenName === screenName) {
