@@ -25,6 +25,7 @@ export const HomeContainer: React.FC<Props> = (props) => {
       })
       .then((json) => {
         // todo これも関数化して分離する？
+        // todo 命名なんとかして
         const TweetInstanceArray = json.map((t: TweetCreateProps) =>
           TweetApplicationService.toInsntace(t),
         );
