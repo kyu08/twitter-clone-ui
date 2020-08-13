@@ -4,7 +4,6 @@ import { Header } from './Timeline/Common/Header';
 import { Timeline } from './Timeline/Timeline';
 import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
-import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import { TweetApplicationService } from '../application/TweetApplicationService';
 import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 
@@ -16,7 +15,7 @@ type Props = {
 export const HomeContainer: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
-  const [tweetArray, setTweetArray]: [Tweet[], any] = React.useState([]);
+  const [tweetArray, setTweetArray] = React.useState([]);
 
   React.useEffect(() => {
     TweetApplicationService.fetchTimeline()
@@ -25,11 +24,12 @@ export const HomeContainer: React.FC<Props> = (props) => {
       })
       .then((json) => {
         // todo これも関数化して分離する？
-        // todo 命名なんとかして
-        const TweetInstanceArray = json.map((t: TweetCreateProps) =>
-          TweetApplicationService.toInsntace(t),
+        const tweetInstanceArray = json.map((tweetProps: TweetCreateProps) =>
+          TweetApplicationService.toInsntace(tweetProps),
         );
-        setTweetArray(TweetInstanceArray);
+        // todo これがドメイン知識なのかどうなのか...
+        const tweetInstanceArrayReversed = tweetInstanceArray.reverse();
+        setTweetArray(tweetInstanceArrayReversed);
       })
       .catch((err) => {
         console.log(err);
