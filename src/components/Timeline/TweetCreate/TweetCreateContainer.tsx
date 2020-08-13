@@ -6,8 +6,8 @@ import { TempTweetApplicationService } from '../../../application/TempTweetAppli
 import { TweetCreateForm } from './TweetCreateForm';
 import { MAX_TWEET_LENGTH } from '../../../domain/models/Tweet/Content/Content';
 import { TempTweet } from '../../../domain/models/TempTweet/ConcreteClasses/TempTweet';
-import { hostURL } from '../../../util/Util';
 import { TempTweetDataModel } from '../../../ProdutionInfrastructure/TempTweetDataModel';
+import { hostURL } from '../../../util/Util';
 
 type Props = {
   isLogin: boolean;
@@ -34,27 +34,15 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     if (!tempTweet) throw new Error('there is no temp tweet');
     const tempTweetDataModel = new TempTweetDataModel(tempTweet);
     const data = tempTweetDataModel.build();
-    console.log('this is uuid');
-    console.log(data.user_id);
-    console.log(JSON.stringify(data));
-    const datatest = {
-      user_id: 'bad9996f-c846-4d86-9868-da57e19427f8',
-      content: 'test',
-    };
-    fetch('http://localHost:3001/tweet', {
-      // fetch(`${hostURL}/tweet`, {
+    fetch(`${hostURL}/tweet`, {
       method: 'POST',
       mode: 'cors',
       headers: {
-        Accept: 'application/json',
-        ContentType: 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(datatest),
+      body: JSON.stringify(data),
     })
       .then((res) => {
-        console.log('this is res');
-        console.log(res);
-
         return res.json();
       })
       .then((resJSON) => console.log(resJSON))
@@ -85,7 +73,7 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
 
   return (
     <>
-      {console.log(isLogin)}
+      {/* {console.log(isLogin)}*/}
       {/* {!isLogin && <Redirect to="/" />}*/}
       <TweetCreateHeader
         goBack={goBack}
