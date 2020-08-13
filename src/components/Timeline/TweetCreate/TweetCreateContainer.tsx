@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import { TweetCreateHeader } from './TweetCreateHeader';
 import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
@@ -22,6 +22,7 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     TempTweet | undefined,
     Dispatch<SetStateAction<TempTweet | undefined>>,
   ] = React.useState();
+  const [hasSubmit, setHasSubmit] = React.useState(false);
   const [canSubmitTweet, setCanSubmitTweet] = React.useState(false);
 
   const history = useHistory();
@@ -42,10 +43,11 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => {
-        return res.json();
+      .then((res) => res.json())
+      .then((resJSON) => {
+        console.log(resJSON);
+        setHasSubmit(true);
       })
-      .then((resJSON) => console.log(resJSON))
       .catch((e) => console.log(e));
   };
 
@@ -75,6 +77,7 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     <>
       {/* {console.log(isLogin)}*/}
       {/* {!isLogin && <Redirect to="/" />}*/}
+      {hasSubmit && <Redirect to="/home" />}
       <TweetCreateHeader
         goBack={goBack}
         submitTweet={submitTweet}
