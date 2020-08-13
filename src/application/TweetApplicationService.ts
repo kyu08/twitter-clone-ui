@@ -4,6 +4,7 @@ import {
   TweetCreateProps,
 } from '../domain/models/Tweet/ITweetRepository';
 import { InMemoryTweetRepository } from '../inMemory/InMemoryTweetRepository';
+import { hostURL } from '../util/Util';
 
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
@@ -13,8 +14,6 @@ export class TweetApplicationService {
   }
 
   static fetchTimeline(): Promise<Response> {
-    const hostURL = 'http://localhost:3001';
-
     return fetch(`${hostURL}/home/123`, {
       mode: 'cors',
     });
@@ -23,7 +22,6 @@ export class TweetApplicationService {
   static returnTweetId(tweet: Tweet): number {
     return tweet.getTweetId();
   }
-
 
   static test() {
     console.log(1);

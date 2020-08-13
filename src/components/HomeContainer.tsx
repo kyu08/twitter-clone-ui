@@ -13,8 +13,7 @@ type Props = {
   setIsLogin(boolean: boolean): void;
 };
 
-// this is container component.
-export const Home: React.FC<Props> = (props) => {
+export const HomeContainer: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
   const [tweetArray, setTweetArray]: [Tweet[], any] = React.useState([]);
@@ -26,6 +25,7 @@ export const Home: React.FC<Props> = (props) => {
       })
       .then((json) => {
         // todo これも関数化して分離する？
+        // todo 命名なんとかして
         const TweetInstanceArray = json.map((t: TweetCreateProps) =>
           TweetApplicationService.toInsntace(t),
         );

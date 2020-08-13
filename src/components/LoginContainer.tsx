@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
-import classes from './Login.module.css';
+import classes from './LoginContainer.module.css';
 import { Logo } from './Login/Logo';
 import { Message } from './Login/Message';
 import { LoginForm } from './Login/LoginForm';
@@ -15,7 +15,7 @@ type Props = {
 
 // todo container と presentation にわけよう
 // this is container component.
-export const Login: React.FC<Props> = (props) => {
+export const LoginContainer: React.FC<Props> = (props) => {
   const { setIsLogin, isLogin } = props;
   const [screenName, setScreenName] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -29,10 +29,9 @@ export const Login: React.FC<Props> = (props) => {
   const login = (): void => {
     const isAuthorized = authorize(screenName, password);
     const userId = UserApplicationService.returnUserIdByScreenName(screenName);
-    const userIdJSON = JSON.stringify(userId);
 
     if (isAuthorized) {
-      store.set('userId')(userIdJSON);
+      store.set('userId')(userId);
       setIsLogin(true);
 
       return;

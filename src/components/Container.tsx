@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { RootComponent } from '../components/RootComponent';
+import { RootComponent } from './RootComponent';
 import Store from '../Store';
 import { IUserRepository } from '../domain/models/User/IUserRepository';
 import InMemoryUserRepository from '../inMemory/InMemoryUserRepository';

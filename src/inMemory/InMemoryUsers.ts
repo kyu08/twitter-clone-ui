@@ -90,7 +90,7 @@ const userA = userFactory({
   website: new Website('kyu08.com'),
   followerCount: 10,
   followingCount: 13,
-  userId: new UserId('kyu08userId'),
+  userId: new UserId('e15a1c26-9a65-4f89-91b0-99b2055ae26f'),
 });
 
 const userB = userFactory({
@@ -106,7 +106,7 @@ const userB = userFactory({
   website: new Website('testUser1.com'),
   followerCount: 11,
   followingCount: 10000,
-  userId: new UserId('useriD2'),
+  userId: new UserId('bad9996f-c846-4d86-9868-da57e19427f8'),
 });
 
 const userC = userFactory({
@@ -122,7 +122,7 @@ const userC = userFactory({
   website: new Website('test2.com'),
   followerCount: 11,
   followingCount: 10000,
-  userId: new UserId('userId3'),
+  userId: new UserId('7e275e25-e12f-408b-b3e7-32a65c1553cc'),
 });
 
 export const inMemoryUsers: IUser[] = [userA, userB, userC];

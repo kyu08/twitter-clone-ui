@@ -82,7 +82,7 @@ export default class UserApplicationService {
     return this.userRepository.isAuthorized(screenName, password);
   }
 
-  static returnUserIdByScreenName(screenName: string): number {
+  static returnUserIdByScreenName(screenName: string): string {
     return UserApplicationService.userRepository.returnUserIdByScreenName(
       screenName,
     );
