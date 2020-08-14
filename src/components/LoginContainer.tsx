@@ -17,9 +17,9 @@ type Props = {
 // this is container component.
 export const LoginContainer: React.FC<Props> = (props) => {
   const { setIsLogin, isLogin } = props;
-  const [screenName, setScreenName] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [isInvalidLogin, setIsInvalidLogin] = React.useState(false);
+  const [screenName, setScreenName] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+  const [isInvalidLogin, setIsInvalidLogin] = React.useState<boolean>(false);
   const store = Store.useStore();
 
   const authorize = (screenNameAuth: string, passwordAuth: string): boolean => {

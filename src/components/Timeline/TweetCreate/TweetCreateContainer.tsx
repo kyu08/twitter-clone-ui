@@ -17,13 +17,13 @@ type Props = {
 
 export const TweetCreateContainer: React.FC<Props> = (props) => {
   const { isLogin, userImageURL, userId } = props;
-  const [content, setContent] = React.useState('');
+  const [content, setContent] = React.useState<string>('');
   const [tempTweet, setTempTweet]: [
     TempTweet | undefined,
     Dispatch<SetStateAction<TempTweet | undefined>>,
-  ] = React.useState();
-  const [hasSubmit, setHasSubmit] = React.useState(false);
-  const [canSubmitTweet, setCanSubmitTweet] = React.useState(false);
+  ] = React.useState<TempTweet>();
+  const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
+  const [canSubmitTweet, setCanSubmitTweet] = React.useState<boolean>(false);
 
   const history = useHistory();
   const goBack = () => {

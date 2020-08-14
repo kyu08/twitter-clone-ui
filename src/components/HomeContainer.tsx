@@ -6,6 +6,7 @@ import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
 import { TweetApplicationService } from '../application/TweetApplicationService';
 import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
+import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 
 type Props = {
   isLogin: boolean;
@@ -15,7 +16,7 @@ type Props = {
 export const HomeContainer: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
-  const [tweetArray, setTweetArray] = React.useState([]);
+  const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
 
   React.useEffect(() => {
     TweetApplicationService.fetchTimeline()

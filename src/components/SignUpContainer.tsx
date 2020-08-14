@@ -12,6 +12,7 @@ import { MAX_USER_LOCATION_LENGTH } from '../domain/models/User/Profile/UserLoca
 import { Confirm } from './SignUp/Confirm';
 import { MAX_SCREEN_NAME_LENGTH } from '../domain/models/User/Profile/ScreenName';
 import { MAX_USER_NAME_LENGTH } from '../domain/models/User/Profile/UserName';
+import { TODO } from '../util/Util';
 
 type Props = {
   isLogin: boolean;
@@ -22,33 +23,39 @@ export const SignUpContainer: React.FC<Props> = (props) => {
   const { isLogin } = props;
 
   // Common
-  const [pageNumber, setPageNumber] = React.useState(1);
+  const [pageNumber, setPageNumber] = React.useState<number>(1);
 
   // EnterProfile
-  const [userName, setUserName] = React.useState('');
-  const [screenName, setScreenName] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [year, setYear] = React.useState(2020);
-  const [month, setMonth] = React.useState(1);
-  const [day, setDay] = React.useState(1);
-  const [isValidUserName, setIsValidUserName] = React.useState(true);
-  const [isValidScreenName, setIsValidScreenName] = React.useState(true);
-  const [isValidPassword, setIsValidPassword] = React.useState(true);
-  const [canGoNextPage, setCanGoNextPage] = React.useState(false);
+  const [userName, setUserName] = React.useState<string>('');
+  const [screenName, setScreenName] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+  const [year, setYear] = React.useState<number>(2020);
+  const [month, setMonth] = React.useState<number>(1);
+  const [day, setDay] = React.useState<number>(1);
+  const [isValidUserName, setIsValidUserName] = React.useState<boolean>(true);
+  const [isValidScreenName, setIsValidScreenName] = React.useState<boolean>(
+    true,
+  );
+  const [isValidPassword, setIsValidPassword] = React.useState<boolean>(true);
+  const [canGoNextPage, setCanGoNextPage] = React.useState<boolean>(false);
 
   // SelectUserImage
-  const [userImage, setUserImage] = React.useState(DefaultUserImage);
-  const [canGoToPage3, setCanGoToPage3] = React.useState(false);
+  const [userImage, setUserImage] = React.useState<TODO<'userimage'>>(
+    DefaultUserImage,
+  );
+  const [canGoToPage3, setCanGoToPage3] = React.useState<boolean>(false);
 
   // EnterBio
-  const [bio, setBio] = React.useState('');
-  const [isValidBio, setIsValidBio] = React.useState(true);
-  const [canGoToPage4, setCanGoToPage4] = React.useState(false);
+  const [bio, setBio] = React.useState<string>('');
+  const [isValidBio, setIsValidBio] = React.useState<boolean>(true);
+  const [canGoToPage4, setCanGoToPage4] = React.useState<boolean>(false);
 
   // EnterUserLocation
-  const [userLocation, setUserLocation] = React.useState('');
-  const [isValidUserLocation, setIsValidUserLocation] = React.useState(true);
-  const [canGoToPage5, setCanGoToPage5] = React.useState(false);
+  const [userLocation, setUserLocation] = React.useState<string>('');
+  const [isValidUserLocation, setIsValidUserLocation] = React.useState<boolean>(
+    true,
+  );
+  const [canGoToPage5, setCanGoToPage5] = React.useState<boolean>(false);
 
   // Functions
 
