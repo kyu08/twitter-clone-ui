@@ -10,19 +10,9 @@ export default class UserApplicationService {
   // todo InMemory <-> Production でさしかえる
   static readonly userRepository: IUserRepository = new InMemoryUserRepository();
 
-  //
-  // todo
-  //  findUserByUserId
-  //  user 登録
-  //  ログイン
-  //  ログアウト
-  //
-
-  // signUp(userProps: any): any {
-  //   const props = UserFactory.createProps(userProps);
-  //   const user = UserFactory.create(props);
-  //   UserApplicationService.userRepository.save(user);
-  // }
+  static getUserIdFromLocalStorage(): string | null {
+    return this.userRepository.getUserIdFromLocalStorage();
+  }
 
   // todo login 中のユーザーの情報しかもってこれないようにする
   static findUserByUserId(userId: UserId): TODO<'User'> {

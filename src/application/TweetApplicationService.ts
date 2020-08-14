@@ -9,8 +9,13 @@ import { hostURL } from '../util/Util';
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
 
-  static toInsntace(json: TweetCreateProps): Tweet {
-    return TweetApplicationService.tweetRepository.createTweet(json);
+  // インスタンス化して逆順にして返す
+  static toTweetInstanceArray(jsonArray: TweetCreateProps[]): Tweet[] {
+    return jsonArray
+      .map((tweetProps: TweetCreateProps) =>
+        TweetApplicationService.tweetRepository.createTweet(tweetProps),
+      )
+      .reverse();
   }
 
   static fetchTimeline(): Promise<Response> {

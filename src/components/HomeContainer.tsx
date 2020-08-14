@@ -24,13 +24,10 @@ export const HomeContainer: React.FC<Props> = (props) => {
         return res.json();
       })
       .then((json) => {
-        // todo これも関数化して分離する？
-        const tweetInstanceArray = json.map((tweetProps: TweetCreateProps) =>
-          TweetApplicationService.toInsntace(tweetProps),
+        const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
+          json,
         );
-        // todo これがドメイン知識なのかどうなのか...
-        const tweetInstanceArrayReversed = tweetInstanceArray.reverse();
-        setTweetArray(tweetInstanceArrayReversed);
+        setTweetArray(tweetInstanceArray);
       })
       .catch((err) => {
         console.log(err);

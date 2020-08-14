@@ -3,7 +3,7 @@ import Profile from './Profile/Profile';
 import { User } from './User';
 import Bio from './Profile/Bio';
 import Day from './Profile/Birthday/Day';
-import HeaderImage from './Profile/HeaderImage';
+import HeaderImageURL from './Profile/HeaderImageURL';
 import Month from './Profile/Birthday/Month';
 import ScreenName from './Profile/ScreenName';
 import UserId from './UserId/UserId';
@@ -38,7 +38,7 @@ export default class UserFactory {
       day: profile.birthday.day.day,
       followerCount,
       followingCount,
-      headerImage: profile.headerImage.headerImage,
+      headerImageURL: profile.headerImageURL.headerImageURL,
       month: profile.birthday.month.month,
       screenName: profile.screenName.screenName,
       userId: userId.userId,
@@ -58,7 +58,7 @@ export default class UserFactory {
       day: new Day(props.day),
       followerCount: props.followerCount,
       followingCount: props.followingCount,
-      headerImage: new HeaderImage(props.headerImage),
+      headerImageURL: new HeaderImageURL(props.headerImageURL),
       month: new Month(props.month),
       screenName: new ScreenName(props.screenName),
       userId: new UserId(props.userId),
@@ -76,7 +76,7 @@ export default class UserFactory {
       day,
       followerCount,
       followingCount,
-      headerImage,
+      headerImageURL,
       month,
       screenName,
       userId,
@@ -90,7 +90,7 @@ export default class UserFactory {
     const profile = new Profile({
       birthday,
       bio,
-      headerImage,
+      headerImageURL,
       screenName,
       userImageURL,
       userLocation,

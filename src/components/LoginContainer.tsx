@@ -1,4 +1,4 @@
-import * as React from 'react';
+    import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import classes from './LoginContainer.module.css';
 import { Logo } from './Login/Logo';
@@ -14,7 +14,6 @@ type Props = {
 };
 
 // todo container と presentation にわけよう
-// this is container component.
 export const LoginContainer: React.FC<Props> = (props) => {
   const { setIsLogin, isLogin } = props;
   const [screenName, setScreenName] = React.useState<string>('');

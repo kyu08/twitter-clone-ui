@@ -22,6 +22,8 @@ type Props = {
 export const SignUpContainer: React.FC<Props> = (props) => {
   const { isLogin } = props;
 
+  // State
+
   // Common
   const [pageNumber, setPageNumber] = React.useState<number>(1);
 
@@ -70,6 +72,8 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     setPageNumber(pageNumber - 1);
   };
 
+  // todo #154 この辺はドメイン知識な気もする ProfileService とか？
+  // todo #157 TempUserService あたりに書こう
   // for EnterProfile.tsx
   const isLeapYear = (y: number): boolean => {
     return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
@@ -116,7 +120,8 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     setUserName(userNameEntering);
 
     let isValid;
-    // todo 繰り返し出てきてるので関数で分離しよう
+    // todo #154 ドメイン知識なので分離しよう
+    // todo #157 TempUserService あたりに書こう
     if (
       userNameEntering === '' ||
       userNameEntering.length > MAX_SCREEN_NAME_LENGTH
@@ -136,7 +141,8 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     setScreenName(screenNameEntering);
 
     let isValid;
-    // todo 繰り返し出てきてるので関数で分離しよう
+    // todo #154 ドメイン知識なので分離しよう
+    // todo #157 TempUserService あたりに書こう
     if (
       screenNameEntering === '' ||
       screenNameEntering.length > MAX_SCREEN_NAME_LENGTH
@@ -156,7 +162,8 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     setPassword(passwordEntering);
 
     let isValid;
-    // todo 繰り返し出てきてるので関数で分離しよう
+    // todo #154 ドメイン知識なので分離しよう
+    // todo #157 TempUserService あたりに書こう
     if (passwordEntering === '' || passwordEntering.length > 10) {
       isValid = false;
     } else {
@@ -184,6 +191,9 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     judgeCanGoNextPage({ isRightDate: isValidDate({ y: yearEntered }) });
   };
 
+  // todo #154 この辺はドメイン知識な気もする ProfileService とか？
+  // todo #157 TempUserService あたりに書こう
+  // isLeapYear とかと一緒に分離しよう
   // この辺は静的なデータだから presentation がもっててもいいかも？
   const generateMonthArray = (): number[] => {
     return [...Array(12).keys()].map((e) => e + 1);
@@ -217,6 +227,8 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     const bioEntering = e.currentTarget.value;
     setBio(bioEntering);
     let isValid;
+    // todo #154 ドメイン知識なので分離しよう
+    // todo #157 TempUserService あたりに書こう
     if (bioEntering.length > 0 && bioEntering.length < MAX_BIO_LENGTH) {
       isValid = true;
     } else {
@@ -233,6 +245,8 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     const userLocationEntering = e.currentTarget.value;
     setUserLocation(userLocationEntering);
     let isValid;
+    // todo #154 ドメイン知識なので分離しよう
+    // todo #157 TempUserService あたりに書こう
     if (
       userLocationEntering.length > 0 &&
       userLocationEntering.length < MAX_USER_LOCATION_LENGTH

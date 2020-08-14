@@ -5,7 +5,7 @@ import UserName from './UserName';
 import Website from './Website';
 import Birthday, { BirthdayProps, IBirthday } from './Birthday';
 import UserImageURL from './UserImageURL';
-import HeaderImage from './HeaderImage';
+import HeaderImageURL from './HeaderImageURL';
 import Day from './Birthday/Day';
 import Year from './Birthday/Year';
 import Month from './Birthday/Month';
@@ -13,8 +13,7 @@ import Month from './Birthday/Month';
 interface ProfileProps {
   readonly screenName: ScreenName;
   readonly userName: UserName;
-  // todo imageURL にする
-  readonly headerImage: HeaderImage;
+  readonly headerImageURL: HeaderImageURL;
   readonly userImageURL: UserImageURL;
   readonly bio: Bio;
   readonly birthday: Birthday;
@@ -28,7 +27,7 @@ export default class Profile {
 
   readonly userName: UserName;
 
-  readonly headerImage: HeaderImage;
+  readonly headerImageURL: HeaderImageURL;
 
   readonly userImageURL: UserImageURL;
 
@@ -44,7 +43,7 @@ export default class Profile {
     const {
       screenName,
       userName,
-      headerImage,
+      headerImageURL,
       userImageURL,
       bio,
       birthday,
@@ -53,7 +52,7 @@ export default class Profile {
     } = props;
     this.userName = userName;
     this.screenName = screenName;
-    this.headerImage = headerImage;
+    this.headerImageURL = headerImageURL;
     this.userImageURL = userImageURL;
     this.bio = bio;
     this.birthday = birthday;
