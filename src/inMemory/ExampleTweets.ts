@@ -1,13 +1,10 @@
-// ここで props を用意
-// TweetRepositoryに投げてインスタンスをもらう
-// Tweet[]をUIに投げる
-
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import { InMemoryTweetRepository } from './InMemoryTweetRepository';
 import doit from './doit.png';
 
 const tweetRepository = new InMemoryTweetRepository();
 
+// api 完成前用のツイートのテストデータ
 const tweetPropsArray = [
   {
     tweetId: 1,
@@ -18,7 +15,7 @@ const tweetPropsArray = [
     retweetCount: 13,
     likeCount: 13,
     tweetedAt: new Date(),
-    userImage: doit,
+    userImageURL: doit,
     userName: 'doit!!',
   },
   {
@@ -30,7 +27,7 @@ const tweetPropsArray = [
     retweetCount: 131,
     likeCount: 1334,
     tweetedAt: new Date(),
-    userImage: doit,
+    userImageURL: doit,
     userName: '2doit!!',
   },
   // {

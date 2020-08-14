@@ -7,7 +7,7 @@ import HeaderImage from './Profile/HeaderImage';
 import Month from './Profile/Birthday/Month';
 import ScreenName from './Profile/ScreenName';
 import UserId from './UserId/UserId';
-import UserImage from './Profile/UserImage';
+import UserImageURL from './Profile/UserImageURL';
 import UserLocation from './Profile/UserLocation';
 import UserName from './Profile/UserName';
 import Website from './Profile/Website';
@@ -42,7 +42,7 @@ export default class UserFactory {
       month: profile.birthday.month.month,
       screenName: profile.screenName.screenName,
       userId: userId.userId,
-      userImage: profile.userImage.userImage,
+      userImageURL: profile.userImageURL.userImageURL,
       userLocation: profile.userLocation.userLocation,
       userName: profile.userName.userName,
       website: profile.website.website,
@@ -62,7 +62,7 @@ export default class UserFactory {
       month: new Month(props.month),
       screenName: new ScreenName(props.screenName),
       userId: new UserId(props.userId),
-      userImage: new UserImage(props.userImage),
+      userImageURL: new UserImageURL(props.userImageURL),
       userLocation: new UserLocation(props.userLocation),
       userName: new UserName(props.userName),
       website: new Website(props.website),
@@ -80,7 +80,7 @@ export default class UserFactory {
       month,
       screenName,
       userId,
-      userImage,
+      userImageURL,
       userLocation,
       userName,
       website,
@@ -92,7 +92,7 @@ export default class UserFactory {
       bio,
       headerImage,
       screenName,
-      userImage,
+      userImageURL,
       userLocation,
       userName,
       website,

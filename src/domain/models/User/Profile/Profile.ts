@@ -4,7 +4,7 @@ import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
 import Birthday, { BirthdayProps, IBirthday } from './Birthday';
-import UserImage from './UserImage';
+import UserImageURL from './UserImageURL';
 import HeaderImage from './HeaderImage';
 import Day from './Birthday/Day';
 import Year from './Birthday/Year';
@@ -15,15 +15,14 @@ interface ProfileProps {
   readonly userName: UserName;
   // todo imageURL にする
   readonly headerImage: HeaderImage;
-  // todo imageURL にする
-  readonly userImage: UserImage;
+  readonly userImageURL: UserImageURL;
   readonly bio: Bio;
   readonly birthday: Birthday;
   readonly userLocation: UserLocation;
   readonly website: Website;
 }
 
-// note userImage, bio, userLocation, website optional にするかも
+// note UserImageURL, bio, userLocation, website optional にするかも
 export default class Profile {
   readonly screenName: ScreenName;
 
@@ -31,7 +30,7 @@ export default class Profile {
 
   readonly headerImage: HeaderImage;
 
-  readonly userImage: UserImage;
+  readonly userImageURL: UserImageURL;
 
   readonly bio: Bio;
 
@@ -46,7 +45,7 @@ export default class Profile {
       screenName,
       userName,
       headerImage,
-      userImage,
+      userImageURL,
       bio,
       birthday,
       userLocation,
@@ -55,7 +54,7 @@ export default class Profile {
     this.userName = userName;
     this.screenName = screenName;
     this.headerImage = headerImage;
-    this.userImage = userImage;
+    this.userImageURL = userImageURL;
     this.bio = bio;
     this.birthday = birthday;
     this.userLocation = userLocation;

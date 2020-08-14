@@ -9,6 +9,7 @@ type Props = {
   year: number;
   month: number;
   day: number;
+  // todo これ string でいいのかな
   userImage: string;
   bio: string;
   userLocation: string;

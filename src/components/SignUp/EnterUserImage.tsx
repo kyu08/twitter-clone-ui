@@ -2,11 +2,12 @@ import * as React from 'react';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import { Message } from '../Login/Message';
 import classes from './EnterUserImage.module.css';
+import { TODO } from '../../util/Util';
 
 type Props = {
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;
   backToPreviousPage(e: React.MouseEvent<HTMLInputElement>): void;
-  userImage: any;
+  userImage: TODO<'userimage'>;
   selectImage(e: React.ChangeEvent<HTMLInputElement>): void;
   canGoToPage3: boolean;
 };

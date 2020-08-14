@@ -4,7 +4,7 @@ import UserId from '../domain/models/User/UserId/UserId';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import UserName from '../domain/models/User/Profile/UserName';
 import HeaderImage from '../domain/models/User/Profile/HeaderImage';
-import UserImage from '../domain/models/User/Profile/UserImage';
+import UserImageURL from '../domain/models/User/Profile/UserImageURL';
 import Bio from '../domain/models/User/Profile/Bio';
 import Birthday from '../domain/models/User/Profile/Birthday';
 import UserLocation from '../domain/models/User/Profile/UserLocation';
@@ -23,7 +23,7 @@ export interface IProps {
   userLocation: string;
   screenName: string;
   userName: string;
-  userImage: string;
+  userImageURL: string;
   website: string;
   followerCount: number;
   followingCount: number;
@@ -39,7 +39,7 @@ export interface IUserProps {
   userLocation: UserLocation;
   screenName: ScreenName;
   userName: UserName;
-  userImage: UserImage;
+  userImageURL: UserImageURL;
   website: Website;
   followerCount: number;
   followingCount: number;
@@ -56,7 +56,7 @@ const userFactory = (props: IUserProps) => {
     month,
     screenName,
     userId,
-    userImage,
+    userImageURL,
     userLocation,
     userName,
     website,
@@ -68,7 +68,7 @@ const userFactory = (props: IUserProps) => {
     bio,
     headerImage,
     screenName,
-    userImage,
+    userImageURL,
     userLocation,
     userName,
     website,
@@ -86,7 +86,7 @@ const userA = userFactory({
   userLocation: new UserLocation('tokyo'),
   screenName: new ScreenName('kyu08'),
   userName: new UserName('kyuushima'),
-  userImage: new UserImage('kyu'),
+  userImageURL: new UserImageURL('kyu'),
   website: new Website('kyu08.com'),
   followerCount: 10,
   followingCount: 13,
@@ -102,7 +102,7 @@ const userB = userFactory({
   userLocation: new UserLocation('hokkaido'),
   screenName: new ScreenName('test1'),
   userName: new UserName('test_user_1'),
-  userImage: new UserImage('te'),
+  userImageURL: new UserImageURL('te'),
   website: new Website('testUser1.com'),
   followerCount: 11,
   followingCount: 10000,
@@ -118,7 +118,7 @@ const userC = userFactory({
   userLocation: new UserLocation('chiba'),
   screenName: new ScreenName('test2'),
   userName: new UserName('test_dayo2'),
-  userImage: new UserImage('test2'),
+  userImageURL: new UserImageURL('test2'),
   website: new Website('test2.com'),
   followerCount: 11,
   followingCount: 10000,

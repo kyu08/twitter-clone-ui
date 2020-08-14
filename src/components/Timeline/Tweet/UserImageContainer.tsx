@@ -2,16 +2,16 @@ import * as React from 'react';
 import classes from './UserImageContainer.module.css';
 
 type Props = {
-  userImage: string;
+  userImageURL: string;
 };
 
 export const UserImageContainer: React.FC<Props> = (props) => {
-  const { userImage } = props;
+  const { userImageURL } = props;
 
   return (
     <img
       className={classes.UserImageContainer}
-      src={userImage}
+      src={userImageURL}
       alt="users profile"
     />
   );
