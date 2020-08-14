@@ -14,7 +14,7 @@ export interface BirthdayProps {
   day: number;
 }
 
-export default class Birthday implements IBirthday {
+export default class Birthday {
   readonly year: Year;
 
   readonly month: Month;
@@ -22,7 +22,6 @@ export default class Birthday implements IBirthday {
   readonly day: Day;
 
   constructor(props: IBirthday) {
-    // todo 月と日の組み合わせが適当かチェックする
     const { year, month, day } = props;
     this.year = year;
     this.month = month;

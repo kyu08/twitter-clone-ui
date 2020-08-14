@@ -1,8 +1,4 @@
-interface IDay {
-  readonly day: number;
-}
-
-export default class Day implements IDay {
+export default class Day {
   readonly day: number;
 
   constructor(day: number) {

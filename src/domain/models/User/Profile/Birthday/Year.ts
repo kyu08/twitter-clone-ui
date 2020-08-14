@@ -1,8 +1,4 @@
-interface IYear {
-  readonly year: number;
-}
-
-export default class Year implements IYear {
+export default class Year {
   readonly year: number;
 
   constructor(year: number) {

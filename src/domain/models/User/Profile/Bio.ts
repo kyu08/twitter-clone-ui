@@ -1,10 +1,6 @@
-interface IBio {
-  readonly bio: string;
-}
-
 export const MAX_BIO_LENGTH = 20;
 
-export default class Bio implements IBio {
+export default class Bio {
   readonly bio: string;
 
   constructor(bio: string) {

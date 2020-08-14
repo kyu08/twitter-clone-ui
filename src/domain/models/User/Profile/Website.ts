@@ -1,10 +1,6 @@
-interface IWebsite {
-  readonly website: string;
-}
-
 const MAX_WEBSITE_LENGTH = 30;
 
-export default class Website implements IWebsite {
+export default class Website {
   readonly website: string;
 
   constructor(website: string) {

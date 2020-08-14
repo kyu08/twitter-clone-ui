@@ -16,10 +16,8 @@ export class User implements IUser {
 
   readonly followingCount: number;
 
-  // todo あとImage系の実装
   readonly profile: Profile;
 
-  // todo まだ中身実装してない
   readonly userId: UserId;
 
   constructor(props: UserProps) {

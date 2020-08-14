@@ -15,6 +15,7 @@ import Year from './Profile/Birthday/Year';
 import { IProps, IUserProps } from '../../../inMemory/InMemoryUsers';
 import { IUser } from './IUser';
 
+// todo インスタンスの復元はrepositoryでやろう
 export default class UserFactory {
   static toInstanceUserId(set: any[]): Set<UserId> {
     // todo ださいきがする

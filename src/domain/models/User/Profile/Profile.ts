@@ -1,4 +1,3 @@
-import { IProfile, ProfileProps } from './IProfile';
 import Bio from './Bio';
 import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
@@ -11,8 +10,21 @@ import Day from './Birthday/Day';
 import Year from './Birthday/Year';
 import Month from './Birthday/Month';
 
+interface ProfileProps {
+  readonly screenName: ScreenName;
+  readonly userName: UserName;
+  // todo imageURL にする
+  readonly headerImage: HeaderImage;
+  // todo imageURL にする
+  readonly userImage: UserImage;
+  readonly bio: Bio;
+  readonly birthday: Birthday;
+  readonly userLocation: UserLocation;
+  readonly website: Website;
+}
+
 // note userImage, bio, userLocation, website optional にするかも
-export default class Profile implements IProfile {
+export default class Profile {
   readonly screenName: ScreenName;
 
   readonly userName: UserName;

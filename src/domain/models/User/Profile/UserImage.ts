@@ -1,8 +1,4 @@
-interface IUserImage {
-  readonly userImage: string;
-}
-
-export default class UserImage implements IUserImage {
+export default class UserImage {
   readonly userImage: string;
 
   // todo validation どうやれば、、不要、、？
