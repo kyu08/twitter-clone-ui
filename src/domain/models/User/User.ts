@@ -3,6 +3,7 @@ import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import { BirthdayProps } from './Profile/Birthday';
 import ScreenName from './Profile/ScreenName';
+import { ensurePropsContainsNoUndefined } from '../../../util/Util';
 
 interface UserProps {
   readonly profile: Profile;
@@ -21,6 +22,7 @@ export class User implements IUser {
   readonly userId: UserId;
 
   constructor(props: UserProps) {
+    ensurePropsContainsNoUndefined<UserProps>(props);
     const { followerCount, followingCount, profile, userId } = props;
     this.followerCount = followerCount;
     this.followingCount = followingCount;

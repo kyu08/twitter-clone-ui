@@ -4,6 +4,7 @@ import { AbstractTweetProps } from './IAbstractTweet';
 import ScreenName from '../User/Profile/ScreenName';
 import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
+import { ensurePropsContainsNoUndefined } from '../../../util/Util';
 
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
@@ -36,6 +37,7 @@ export abstract class AbstractTweet {
       userImageURL,
       userName,
     } = props;
+    ensurePropsContainsNoUndefined<AbstractTweetProps>(props);
     this.tweetId = tweetId;
     this.screenName = screenName;
     this.content = content;
