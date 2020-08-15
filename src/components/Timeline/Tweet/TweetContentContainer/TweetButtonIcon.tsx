@@ -1,8 +1,9 @@
 import * as React from 'react';
 import classes from './TweetButtonIcon.module.css';
+import { TODO } from '../../../../util/Util';
 
 type TweetButtonContainerProps = {
-  buttonIcon: any;
+  buttonIcon: TODO<'material UI SVG Icon'>;
 };
 
 export const TweetButtonIcon: React.FC<TweetButtonContainerProps> = (props) => {

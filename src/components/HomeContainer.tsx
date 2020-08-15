@@ -5,7 +5,6 @@ import { Timeline } from './Timeline/Timeline';
 import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
 import { TweetApplicationService } from '../application/TweetApplicationService';
-import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 
 type Props = {

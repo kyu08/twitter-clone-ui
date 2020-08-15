@@ -24,7 +24,7 @@ export class TweetApplicationService {
     });
   }
 
-  static returnTweetId(tweet: Tweet): number {
+  static returnTweetId(tweet: Tweet): string {
     return tweet.getTweetId();
   }
 
@@ -35,7 +35,7 @@ export class TweetApplicationService {
     // const content = new Content('this is content.');
     // const retweetMap = new RetweetMap();
     // const likeSet = new LikeSet();
-    // const tweetedAt = new Date();
+    // const createdAt = new Date();
     // const updatedAt = new Date();
     // const replyTo = tweetId;
     // const props = {
@@ -44,7 +44,7 @@ export class TweetApplicationService {
     //   content,
     //   retweetMap,
     //   likeSet,
-    //   tweetedAt,
+    //   createdAt,
     //   updatedAt,
     //   replyTo,
     // };

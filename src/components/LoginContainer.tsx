@@ -1,4 +1,4 @@
-    import * as React from 'react';
+import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import classes from './LoginContainer.module.css';
 import { Logo } from './Login/Logo';

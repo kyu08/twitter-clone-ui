@@ -14,21 +14,23 @@ import Website from './Profile/Website';
 import Year from './Profile/Birthday/Year';
 import { IProps, IUserProps } from '../../../inMemory/InMemoryUsers';
 import { IUser } from './IUser';
+import { TODO } from '../../../util/Util';
 
 // todo インスタンスの復元はrepositoryでやろう
 export default class UserFactory {
-  static toInstanceUserId(set: any[]): Set<UserId> {
-    // todo ださいきがする
-    const setString = JSON.stringify(set);
-    if (setString === '{}' || setString === '[]') return new Set();
-    const setProps = set.map((u) => {
-      return new UserId(u.userId);
-    });
+  // static toInstanceUserId(set: any[]): Set<UserId> {
+  //   // todo ださいきがする
+  //   const setString = JSON.stringify(set);
+  //   if (setString === '{}' || setString === '[]') return new Set();
+  //   const setProps = set.map((u) => {
+  //     return new UserId(u.userId);
+  //   });
+  //
+  //   return new Set(setProps);
+  // }
 
-    return new Set(setProps);
-  }
-
-  static createUserPropsFromJSON(propsJSON: any): IUserProps {
+  // todo Userのインスタンス化が必要になったら型ちゃんと書こう
+  static createUserPropsFromJSON(propsJSON: TODO<'userPropsJSON'>): IUserProps {
     const { followerCount, followingCount, userId, profile } = propsJSON;
     // const followerParsed = UserFactory.toInstanceUserId(follower.follower);
     // const followingParsed = UserFactory.toInstanceUserId(following.following);
