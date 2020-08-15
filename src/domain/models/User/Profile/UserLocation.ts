@@ -1,10 +1,6 @@
-interface IUserLocation {
-  readonly userLocation: string;
-}
-
 export const MAX_USER_LOCATION_LENGTH = 10;
 
-export default class UserLocation implements IUserLocation {
+export default class UserLocation {
   readonly userLocation: string;
 
   constructor(userLocation: string) {

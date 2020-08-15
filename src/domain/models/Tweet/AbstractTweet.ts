@@ -2,8 +2,9 @@ import TweetId from './TweetId/TweetId';
 import Content from './Content/Content';
 import { AbstractTweetProps } from './IAbstractTweet';
 import ScreenName from '../User/Profile/ScreenName';
-import UserImage from '../User/Profile/UserImage';
+import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
+import { ensurePropsContainsNoUndefined } from '../../../util/Util';
 
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
@@ -18,9 +19,9 @@ export abstract class AbstractTweet {
 
   readonly likeCount: number;
 
-  readonly tweetedAt: Date;
+  readonly createdAt: Date;
 
-  readonly userImage: UserImage;
+  readonly userImageURL: UserImageURL;
 
   readonly userName: UserName;
 
@@ -32,22 +33,23 @@ export abstract class AbstractTweet {
       replyCount,
       retweetCount,
       likeCount,
-      tweetedAt,
-      userImage,
+      createdAt,
+      userImageURL,
       userName,
     } = props;
+    ensurePropsContainsNoUndefined<AbstractTweetProps>(props);
     this.tweetId = tweetId;
     this.screenName = screenName;
     this.content = content;
     this.replyCount = replyCount;
     this.retweetCount = retweetCount;
     this.likeCount = likeCount;
-    this.tweetedAt = tweetedAt;
-    this.userImage = userImage;
+    this.createdAt = createdAt;
+    this.userImageURL = userImageURL;
     this.userName = userName;
   }
 
-  getTweetId(): number {
+  getTweetId(): string {
     return this.tweetId.tweetId;
   }
 }

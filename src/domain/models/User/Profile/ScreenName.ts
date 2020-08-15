@@ -1,10 +1,6 @@
-interface IScreenName {
-  readonly screenName: string;
-}
-
 export const MAX_SCREEN_NAME_LENGTH = 10;
 
-export default class ScreenName implements IScreenName {
+export default class ScreenName {
   readonly screenName: string;
 
   // memo 一意な値であることを保証しないといけないんよな〜

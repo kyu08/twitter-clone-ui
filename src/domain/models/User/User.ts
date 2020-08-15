@@ -3,6 +3,7 @@ import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import { BirthdayProps } from './Profile/Birthday';
 import ScreenName from './Profile/ScreenName';
+import { ensurePropsContainsNoUndefined } from '../../../util/Util';
 
 interface UserProps {
   readonly profile: Profile;
@@ -16,13 +17,12 @@ export class User implements IUser {
 
   readonly followingCount: number;
 
-  // todo あとImage系の実装
   readonly profile: Profile;
 
-  // todo まだ中身実装してない
   readonly userId: UserId;
 
   constructor(props: UserProps) {
+    ensurePropsContainsNoUndefined<UserProps>(props);
     const { followerCount, followingCount, profile, userId } = props;
     this.followerCount = followerCount;
     this.followingCount = followingCount;

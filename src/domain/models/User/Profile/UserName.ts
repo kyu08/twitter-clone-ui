@@ -1,10 +1,6 @@
-interface IUserName {
-  readonly userName: string;
-}
-
 export const MAX_USER_NAME_LENGTH = 15;
 
-export default class UserName implements IUserName {
+export default class UserName {
   readonly userName: string;
 
   constructor(userName: string) {

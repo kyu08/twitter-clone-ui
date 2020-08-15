@@ -1,7 +1,7 @@
 import TweetId from './TweetId/TweetId';
 import Content from './Content/Content';
 import ScreenName from '../User/Profile/ScreenName';
-import UserImage from '../User/Profile/UserImage';
+import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
 
 export interface AbstractTweetProps {
@@ -11,12 +11,12 @@ export interface AbstractTweetProps {
   replyCount: number;
   retweetCount: number;
   likeCount: number;
-  tweetedAt: Date;
-  userImage: UserImage;
+  createdAt: Date;
+  userImageURL: UserImageURL;
   userName: UserName;
 }
 
 // todo これ使われてない
 export type IAbstractTweet = AbstractTweetProps & {
-  getTweetId(): number;
+  getTweetId(): string;
 };

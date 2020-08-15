@@ -13,12 +13,12 @@ export const TweetComponent: React.FC<Props> = (props) => {
   const { tweet } = props;
   const {
     content,
-    tweetedAt,
+    createdAt,
     likeCount,
     replyCount,
     retweetCount,
     screenName,
-    userImage,
+    userImageURL,
     userName,
   } = tweet;
 
@@ -28,7 +28,7 @@ export const TweetComponent: React.FC<Props> = (props) => {
   return (
     <div className={classes.TweetContainer}>
       <div className={classes.Tweet}>
-        <UserImageContainer userImage={userImage.userImage} />
+        <UserImageContainer userImageURL={userImageURL.userImageURL} />
         <div className="TweetRightContainer">
           <TweetInformationContainer
             userName={userName.userName}

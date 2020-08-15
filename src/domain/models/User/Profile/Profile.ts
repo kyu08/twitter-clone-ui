@@ -1,25 +1,35 @@
-import { IProfile, ProfileProps } from './IProfile';
 import Bio from './Bio';
 import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
 import Birthday, { BirthdayProps, IBirthday } from './Birthday';
-import UserImage from './UserImage';
-import HeaderImage from './HeaderImage';
+import UserImageURL from './UserImageURL';
+import HeaderImageURL from './HeaderImageURL';
 import Day from './Birthday/Day';
 import Year from './Birthday/Year';
 import Month from './Birthday/Month';
 
-// note userImage, bio, userLocation, website optional にするかも
-export default class Profile implements IProfile {
+interface ProfileProps {
+  readonly screenName: ScreenName;
+  readonly userName: UserName;
+  readonly headerImageURL: HeaderImageURL;
+  readonly userImageURL: UserImageURL;
+  readonly bio: Bio;
+  readonly birthday: Birthday;
+  readonly userLocation: UserLocation;
+  readonly website: Website;
+}
+
+// note UserImageURL, bio, userLocation, website optional にするかも
+export default class Profile {
   readonly screenName: ScreenName;
 
   readonly userName: UserName;
 
-  readonly headerImage: HeaderImage;
+  readonly headerImageURL: HeaderImageURL;
 
-  readonly userImage: UserImage;
+  readonly userImageURL: UserImageURL;
 
   readonly bio: Bio;
 
@@ -33,8 +43,8 @@ export default class Profile implements IProfile {
     const {
       screenName,
       userName,
-      headerImage,
-      userImage,
+      headerImageURL,
+      userImageURL,
       bio,
       birthday,
       userLocation,
@@ -42,8 +52,8 @@ export default class Profile implements IProfile {
     } = props;
     this.userName = userName;
     this.screenName = screenName;
-    this.headerImage = headerImage;
-    this.userImage = userImage;
+    this.headerImageURL = headerImageURL;
+    this.userImageURL = userImageURL;
     this.bio = bio;
     this.birthday = birthday;
     this.userLocation = userLocation;

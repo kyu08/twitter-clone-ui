@@ -1,12 +1,11 @@
-import { ITweetId } from './ITweetId';
+import { ensurePropsContainsNoUndefined } from '../../../../util/Util';
 
-export default class TweetId implements ITweetId {
-  readonly tweetId: number;
+export default class TweetId {
+  readonly tweetId: string;
 
-  constructor(tweetId: number) {
-    // todo どうやって一意な id 発行しよう、、、
-    // そういうAPIを作ればいいか
-    // フロントからはIdなしで送ってバックエンドでidつけることもできるけどそれはエンティティみがないよね〜
+  // todo string になおす
+  constructor(tweetId: string) {
+    ensurePropsContainsNoUndefined<string>(tweetId);
     this.tweetId = tweetId;
   }
 }

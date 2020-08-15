@@ -13,7 +13,7 @@ export const TweetCreateForm: React.FC<Props> = (props) => {
 
   return (
     <div className={classes.TweetCreate}>
-      <UserImageContainer userImage={userImageURL} />
+      <UserImageContainer userImageURL={userImageURL} />
       <div className={classes.RightContainer}>
         <textarea
           className={classes.InputElement}

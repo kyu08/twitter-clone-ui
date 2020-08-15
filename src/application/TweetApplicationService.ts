@@ -9,8 +9,13 @@ import { hostURL } from '../util/Util';
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
 
-  static toInsntace(json: TweetCreateProps): Tweet {
-    return TweetApplicationService.tweetRepository.createTweet(json);
+  // インスタンス化して逆順にして返す
+  static toTweetInstanceArray(jsonArray: TweetCreateProps[]): Tweet[] {
+    return jsonArray
+      .map((tweetProps: TweetCreateProps) =>
+        TweetApplicationService.tweetRepository.createTweet(tweetProps),
+      )
+      .reverse();
   }
 
   static fetchTimeline(): Promise<Response> {
@@ -19,7 +24,7 @@ export class TweetApplicationService {
     });
   }
 
-  static returnTweetId(tweet: Tweet): number {
+  static returnTweetId(tweet: Tweet): string {
     return tweet.getTweetId();
   }
 
@@ -30,7 +35,7 @@ export class TweetApplicationService {
     // const content = new Content('this is content.');
     // const retweetMap = new RetweetMap();
     // const likeSet = new LikeSet();
-    // const tweetedAt = new Date();
+    // const createdAt = new Date();
     // const updatedAt = new Date();
     // const replyTo = tweetId;
     // const props = {
@@ -39,7 +44,7 @@ export class TweetApplicationService {
     //   content,
     //   retweetMap,
     //   likeSet,
-    //   tweetedAt,
+    //   createdAt,
     //   updatedAt,
     //   replyTo,
     // };

@@ -12,6 +12,7 @@ type Props = {
   userId?: string;
 };
 
+// this is presentation component.
 export const RootComponent: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin, userId } = props;
 

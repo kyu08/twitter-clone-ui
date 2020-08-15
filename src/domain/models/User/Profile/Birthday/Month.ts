@@ -1,12 +1,7 @@
-interface IMonth {
-  readonly month: number;
-}
-
-export default class Month implements IMonth {
+export default class Month {
   readonly month: number;
 
   constructor(month: number) {
-    // todo UI側との兼ね合いによってはここのvalidationは不要？
     if (Month.isInvalid(month)) throw new Error('Month Validation Error!');
     this.month = month;
   }

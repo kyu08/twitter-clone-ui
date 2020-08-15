@@ -3,8 +3,8 @@ import Profile from '../domain/models/User/Profile/Profile';
 import UserId from '../domain/models/User/UserId/UserId';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import UserName from '../domain/models/User/Profile/UserName';
-import HeaderImage from '../domain/models/User/Profile/HeaderImage';
-import UserImage from '../domain/models/User/Profile/UserImage';
+import HeaderImageURL from '../domain/models/User/Profile/HeaderImageURL';
+import UserImageURL from '../domain/models/User/Profile/UserImageURL';
 import Bio from '../domain/models/User/Profile/Bio';
 import Birthday from '../domain/models/User/Profile/Birthday';
 import UserLocation from '../domain/models/User/Profile/UserLocation';
@@ -19,11 +19,11 @@ export interface IProps {
   month: number;
   year: number;
   bio: string;
-  headerImage: string;
+  headerImageURL: string;
   userLocation: string;
   screenName: string;
   userName: string;
-  userImage: string;
+  userImageURL: string;
   website: string;
   followerCount: number;
   followingCount: number;
@@ -35,11 +35,11 @@ export interface IUserProps {
   month: Month;
   year: Year;
   bio: Bio;
-  headerImage: HeaderImage;
+  headerImageURL: HeaderImageURL;
   userLocation: UserLocation;
   screenName: ScreenName;
   userName: UserName;
-  userImage: UserImage;
+  userImageURL: UserImageURL;
   website: Website;
   followerCount: number;
   followingCount: number;
@@ -52,11 +52,11 @@ const userFactory = (props: IUserProps) => {
     day,
     followerCount,
     followingCount,
-    headerImage,
+    headerImageURL,
     month,
     screenName,
     userId,
-    userImage,
+    userImageURL,
     userLocation,
     userName,
     website,
@@ -66,9 +66,9 @@ const userFactory = (props: IUserProps) => {
   const profile = new Profile({
     birthday,
     bio,
-    headerImage,
+    headerImageURL,
     screenName,
-    userImage,
+    userImageURL,
     userLocation,
     userName,
     website,
@@ -82,11 +82,11 @@ const userA = userFactory({
   month: new Month(5),
   year: new Year(1996),
   bio: new Bio('hello'),
-  headerImage: new HeaderImage('kyukyu'),
+  headerImageURL: new HeaderImageURL('kyukyu'),
   userLocation: new UserLocation('tokyo'),
   screenName: new ScreenName('kyu08'),
   userName: new UserName('kyuushima'),
-  userImage: new UserImage('kyu'),
+  userImageURL: new UserImageURL('kyu'),
   website: new Website('kyu08.com'),
   followerCount: 10,
   followingCount: 13,
@@ -98,11 +98,11 @@ const userB = userFactory({
   month: new Month(1),
   year: new Year(1919),
   bio: new Bio('i am userId 1'),
-  headerImage: new HeaderImage('hoge'),
+  headerImageURL: new HeaderImageURL('hoge'),
   userLocation: new UserLocation('hokkaido'),
   screenName: new ScreenName('test1'),
   userName: new UserName('test_user_1'),
-  userImage: new UserImage('te'),
+  userImageURL: new UserImageURL('te'),
   website: new Website('testUser1.com'),
   followerCount: 11,
   followingCount: 10000,
@@ -114,11 +114,11 @@ const userC = userFactory({
   month: new Month(1),
   year: new Year(2020),
   bio: new Bio('fugafuga'),
-  headerImage: new HeaderImage('hogehoge'),
+  headerImageURL: new HeaderImageURL('hogehoge'),
   userLocation: new UserLocation('chiba'),
   screenName: new ScreenName('test2'),
   userName: new UserName('test_dayo2'),
-  userImage: new UserImage('test2'),
+  userImageURL: new UserImageURL('test2'),
   website: new Website('test2.com'),
   followerCount: 11,
   followingCount: 10000,

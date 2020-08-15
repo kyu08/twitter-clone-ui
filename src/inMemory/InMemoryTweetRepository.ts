@@ -6,7 +6,7 @@ import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import TweetId from '../domain/models/Tweet/TweetId/TweetId';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import UserName from '../domain/models/User/Profile/UserName';
-import UserImage from '../domain/models/User/Profile/UserImage';
+import UserImageURL from '../domain/models/User/Profile/UserImageURL';
 import Content from '../domain/models/Tweet/Content/Content';
 
 export class InMemoryTweetRepository implements ITweetRepository {
@@ -17,9 +17,9 @@ export class InMemoryTweetRepository implements ITweetRepository {
       likeCount: likeCountProps,
       retweetCount: retweetCountProps,
       tweetId: tweetIdProps,
-      tweetedAt: tweetedAtProps,
+      createdAt: createdAtProps,
       screenName: screenNameProps,
-      userImage: userImageProps,
+      userImageURL: userImageURLProps,
       userName: userNameProps,
     } = props;
 
@@ -28,9 +28,9 @@ export class InMemoryTweetRepository implements ITweetRepository {
     const likeCount = likeCountProps;
     const retweetCount = retweetCountProps;
     const tweetId = new TweetId(tweetIdProps);
-    const tweetedAt = tweetedAtProps;
+    const createdAt = createdAtProps;
     const screenName = new ScreenName(screenNameProps);
-    const userImage = new UserImage(userImageProps);
+    const userImageURL = new UserImageURL(userImageURLProps);
     const userName = new UserName(userNameProps);
 
     const propsForTweet = {
@@ -39,10 +39,10 @@ export class InMemoryTweetRepository implements ITweetRepository {
       likeCount,
       retweetCount,
       tweetId,
-      tweetedAt,
+      createdAt,
       screenName,
       userName,
-      userImage,
+      userImageURL,
     };
 
     return new Tweet(propsForTweet);

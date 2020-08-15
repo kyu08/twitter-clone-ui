@@ -4,7 +4,7 @@ import classes from './TweetMessage.module.css';
 type Props = {
   userName: string;
   message: string;
-  icon?: any;
+  icon?: React.FC;
 };
 
 export const TweetMessage: React.FC<Props> = (props) => {

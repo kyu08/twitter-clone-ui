@@ -1,8 +1,6 @@
-import { IContent } from './IContent';
-
 export const MAX_TWEET_LENGTH = 140;
 
-export default class Content implements IContent {
+export default class Content {
   readonly content: string;
 
   constructor(content: string) {

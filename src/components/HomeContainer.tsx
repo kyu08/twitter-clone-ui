@@ -5,7 +5,7 @@ import { Timeline } from './Timeline/Timeline';
 import { Footer } from './Timeline/Common/Footer';
 import Store from '../Store';
 import { TweetApplicationService } from '../application/TweetApplicationService';
-import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
+import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 
 type Props = {
   isLogin: boolean;
@@ -15,7 +15,7 @@ type Props = {
 export const HomeContainer: React.FC<Props> = (props) => {
   const { isLogin, setIsLogin } = props;
   const store = Store.useStore();
-  const [tweetArray, setTweetArray] = React.useState([]);
+  const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
 
   React.useEffect(() => {
     TweetApplicationService.fetchTimeline()
@@ -23,13 +23,10 @@ export const HomeContainer: React.FC<Props> = (props) => {
         return res.json();
       })
       .then((json) => {
-        // todo これも関数化して分離する？
-        const tweetInstanceArray = json.map((tweetProps: TweetCreateProps) =>
-          TweetApplicationService.toInsntace(tweetProps),
+        const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
+          json,
         );
-        // todo これがドメイン知識なのかどうなのか...
-        const tweetInstanceArrayReversed = tweetInstanceArray.reverse();
-        setTweetArray(tweetInstanceArrayReversed);
+        setTweetArray(tweetInstanceArray);
       })
       .catch((err) => {
         console.log(err);
