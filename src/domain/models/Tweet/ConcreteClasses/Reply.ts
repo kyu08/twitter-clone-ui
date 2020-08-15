@@ -1,6 +1,5 @@
-import { AbstractTweet } from '../AbstractTweet';
+import { AbstractTweet, AbstractTweetProps } from '../AbstractTweet';
 import TweetId from '../TweetId/TweetId';
-import { AbstractTweetProps } from '../IAbstractTweet';
 
 interface ReplyProps extends AbstractTweetProps {
   replyTo: TweetId;

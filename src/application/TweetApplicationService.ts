@@ -5,6 +5,7 @@ import {
 } from '../domain/models/Tweet/ITweetRepository';
 import { InMemoryTweetRepository } from '../inMemory/InMemoryTweetRepository';
 import { hostURL } from '../util/Util';
+import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
@@ -26,6 +27,10 @@ export class TweetApplicationService {
 
   static returnTweetId(tweet: Tweet): string {
     return tweet.getTweetId();
+  }
+
+  static howLongAgo(tweet: AbstractTweet): string {
+    return tweet.howLongAgo();
   }
 
   static test() {
