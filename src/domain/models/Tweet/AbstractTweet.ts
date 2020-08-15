@@ -18,7 +18,7 @@ export abstract class AbstractTweet {
 
   readonly likeCount: number;
 
-  readonly tweetedAt: Date;
+  readonly createdAt: Date;
 
   readonly userImageURL: UserImageURL;
 
@@ -32,7 +32,7 @@ export abstract class AbstractTweet {
       replyCount,
       retweetCount,
       likeCount,
-      tweetedAt,
+      createdAt,
       userImageURL,
       userName,
     } = props;
@@ -42,12 +42,12 @@ export abstract class AbstractTweet {
     this.replyCount = replyCount;
     this.retweetCount = retweetCount;
     this.likeCount = likeCount;
-    this.tweetedAt = tweetedAt;
+    this.createdAt = createdAt;
     this.userImageURL = userImageURL;
     this.userName = userName;
   }
 
-  getTweetId(): number {
+  getTweetId(): string {
     return this.tweetId.tweetId;
   }
 }

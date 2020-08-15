@@ -17,7 +17,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
       likeCount: likeCountProps,
       retweetCount: retweetCountProps,
       tweetId: tweetIdProps,
-      tweetedAt: tweetedAtProps,
+      createdAt: createdAtProps,
       screenName: screenNameProps,
       userImageURL: userImageURLProps,
       userName: userNameProps,
@@ -28,7 +28,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
     const likeCount = likeCountProps;
     const retweetCount = retweetCountProps;
     const tweetId = new TweetId(tweetIdProps);
-    const tweetedAt = tweetedAtProps;
+    const createdAt = createdAtProps;
     const screenName = new ScreenName(screenNameProps);
     const userImageURL = new UserImageURL(userImageURLProps);
     const userName = new UserName(userNameProps);
@@ -39,7 +39,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
       likeCount,
       retweetCount,
       tweetId,
-      tweetedAt,
+      createdAt,
       screenName,
       userName,
       userImageURL,

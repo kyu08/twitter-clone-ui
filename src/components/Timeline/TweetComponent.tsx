@@ -13,7 +13,7 @@ export const TweetComponent: React.FC<Props> = (props) => {
   const { tweet } = props;
   const {
     content,
-    tweetedAt,
+    createdAt,
     likeCount,
     replyCount,
     retweetCount,

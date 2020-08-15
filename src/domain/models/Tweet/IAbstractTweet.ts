@@ -11,7 +11,7 @@ export interface AbstractTweetProps {
   replyCount: number;
   retweetCount: number;
   likeCount: number;
-  tweetedAt: Date;
+  createdAt: Date;
   userImageURL: UserImageURL;
   userName: UserName;
 }
