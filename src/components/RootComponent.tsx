@@ -4,7 +4,7 @@ import { HomeContainer } from './HomeContainer';
 import { LoginContainer } from './LoginContainer';
 import classes from './RootComponent.module.css';
 import { SignUpContainer } from './SignUpContainer';
-import { TweetCreateContainer } from './Timeline/TweetCreate/TweetCreateContainer';
+import { TweetCreateContainer } from './Home/TweetCreate/TweetCreateContainer';
 import { ProfileContainer } from './ProfileContainer';
 
 type Props = {

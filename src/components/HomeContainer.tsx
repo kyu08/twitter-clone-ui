@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Redirect } from 'react-router-dom';
-import { Header } from './Timeline/Common/Header';
-import { Timeline } from './Timeline/Timeline';
-import { Footer } from './Timeline/Common/Footer';
+import { Link, Redirect } from 'react-router-dom';
+import { Header } from './Home/Common/Header';
+import { Timeline } from './Home/Timeline';
+import { Footer } from './Home/Common/Footer';
 import Store from '../Store';
 import { TweetApplicationService } from '../application/TweetApplicationService';
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
+import { HomeHeaderContent } from './Home/HomeHeaderContent';
 
 type Props = {
   isLogin: boolean;
@@ -42,7 +43,9 @@ export const HomeContainer: React.FC<Props> = (props) => {
     <>
       {!isLogin && <Redirect to="/" />}
       {tweetArray === [] && <div>loading</div>}
-      <Header logout={logout} />
+      <Header logout={logout}>
+        <HomeHeaderContent logout={logout} />
+      </Header>
       <Timeline tweetArray={tweetArray} />
       <Footer />
     </>
