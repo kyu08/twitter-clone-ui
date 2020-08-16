@@ -4,6 +4,7 @@ import { UserImageContainer } from './Tweet/UserImageContainer';
 import { TweetInformationContainer } from './Tweet/TweetInformationContainer';
 import { TweetContentContainer } from './Tweet/TweetContentContainer';
 import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
+import { TweetApplicationService } from '../../application/TweetApplicationService';
 
 type Props = {
   tweet: Tweet;
@@ -13,7 +14,6 @@ export const TweetComponent: React.FC<Props> = (props) => {
   const { tweet } = props;
   const {
     content,
-    createdAt,
     likeCount,
     replyCount,
     retweetCount,
@@ -22,8 +22,7 @@ export const TweetComponent: React.FC<Props> = (props) => {
     userName,
   } = tweet;
 
-  // todo #111 ここちゃんと書く
-  const howLongAgo = '2019/11/11';
+  const howLongAgo = TweetApplicationService.howLongAgo(tweet);
 
   return (
     <div className={classes.TweetContainer}>

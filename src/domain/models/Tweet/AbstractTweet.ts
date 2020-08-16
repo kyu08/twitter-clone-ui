@@ -1,11 +1,27 @@
+import format from 'date-fns/format';
 import TweetId from './TweetId/TweetId';
 import Content from './Content/Content';
-import { AbstractTweetProps } from './IAbstractTweet';
 import ScreenName from '../User/Profile/ScreenName';
 import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
 import { ensurePropsContainsNoUndefined } from '../../../util/Util';
 
+export interface AbstractTweetProps {
+  tweetId: TweetId;
+  screenName: ScreenName;
+  content: Content;
+  replyCount: number;
+  retweetCount: number;
+  likeCount: number;
+  createdAt: Date;
+  userImageURL: UserImageURL;
+  userName: UserName;
+}
+
+// memo 以下の理由で abstract class で実装
+// sub class の constructor がシンプルにかける
+// base class であることがわかりやすい
+// けど abstract method ないなら ふつうに class で書くべき...?
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
 
@@ -51,5 +67,23 @@ export abstract class AbstractTweet {
 
   getTweetId(): string {
     return this.tweetId.tweetId;
+  }
+
+  howLongAgo(): string {
+    const { createdAt } = this;
+    const now = new Date();
+    // diff[ms]: number
+    const diffms = now.getTime() - createdAt.getTime();
+    const diffSecond = Math.round(diffms / 1000);
+    const diffMinute = Math.round(diffms / 1000 / 60);
+    const diffHour = Math.round(diffms / 1000 / 60 / 60);
+    const diffDay = Math.round(diffms / 1000 / 60 / 60 / 24);
+    const fullDate: string = format(createdAt, 'yyyy/M/d');
+    if (diffSecond < 60) return `${diffSecond}秒`;
+    if (diffMinute < 60) return `${diffMinute}分`;
+    if (diffHour < 24) return `${diffHour}時間`;
+    if (diffDay < 7) return `${diffDay}日`;
+
+    return fullDate;
   }
 }

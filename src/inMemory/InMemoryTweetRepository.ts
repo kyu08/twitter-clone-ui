@@ -28,7 +28,7 @@ export class InMemoryTweetRepository implements ITweetRepository {
     const likeCount = likeCountProps;
     const retweetCount = retweetCountProps;
     const tweetId = new TweetId(tweetIdProps);
-    const createdAt = createdAtProps;
+    const createdAt = new Date(createdAtProps);
     const screenName = new ScreenName(screenNameProps);
     const userImageURL = new UserImageURL(userImageURLProps);
     const userName = new UserName(userNameProps);

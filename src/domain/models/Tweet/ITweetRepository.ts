@@ -7,7 +7,7 @@ export interface TweetCreateProps {
   replyCount: number;
   retweetCount: number;
   likeCount: number;
-  createdAt: Date;
+  createdAt: string;
   userImageURL: string;
   userName: string;
 }
