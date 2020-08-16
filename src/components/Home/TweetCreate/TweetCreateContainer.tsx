@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
-import { TweetCreateHeader } from './TweetCreateHeader';
+import { TweetCreateHeaderContent } from './TweetCreateHeaderContent';
 import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
 import { TweetCreateForm } from './TweetCreateForm';
 import { MAX_TWEET_LENGTH } from '../../../domain/models/Tweet/Content/Content';
 import { TempTweet } from '../../../domain/models/TempTweet/ConcreteClasses/TempTweet';
 import { TempTweetDataModel } from '../../../ProdutionInfrastructure/TempTweetDataModel';
 import { hostURL } from '../../../util/Util';
+import { Header } from '../Common/Header';
 
 type Props = {
   isLogin: boolean;
@@ -77,11 +78,13 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     <>
       {!isLogin && <Redirect to="/" />}
       {hasSubmit && <Redirect to="/home" />}
-      <TweetCreateHeader
-        goBack={goBack}
-        submitTweet={submitTweet}
-        canSubmitTweet={canSubmitTweet}
-      />
+      <Header>
+        <TweetCreateHeaderContent
+          goBack={goBack}
+          submitTweet={submitTweet}
+          canSubmitTweet={canSubmitTweet}
+        />
+      </Header>
       <TweetCreateForm
         userImageURL={userImageURL}
         content={content}

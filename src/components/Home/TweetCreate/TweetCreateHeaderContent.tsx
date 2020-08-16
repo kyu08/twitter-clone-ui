@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import classes from './TweetCreateHeader.module.css';
+import classes from './TweetCreateHeaderContent.module.css';
 
 type Props = {
   goBack(): void;
@@ -8,7 +8,7 @@ type Props = {
   canSubmitTweet: boolean;
 };
 
-export const TweetCreateHeader: React.FC<Props> = (props) => {
+export const TweetCreateHeaderContent: React.FC<Props> = (props) => {
   const { submitTweet, goBack, canSubmitTweet } = props;
 
   return (
