@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Header } from './Home/Common/Header';
 import { Timeline } from './Home/Timeline';
 import { Footer } from './Home/Common/Footer';

@@ -26,6 +26,8 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
   const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
   const [canSubmitTweet, setCanSubmitTweet] = React.useState<boolean>(false);
 
+  // todo 戻るボタン component として切り出そう！
+  // todo ここからあああああああああ
   const history = useHistory();
   const goBack = () => {
     history.goBack();
