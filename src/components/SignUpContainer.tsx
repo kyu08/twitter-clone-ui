@@ -271,77 +271,75 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     <>
       <>
         {isLogin && <Redirect to="/" />}
-        <div className={classes.SignUp}>
-          <Logo />
-          {pageNumber === 1 && (
-            <EnterProfile
-              goToNextPage={goToNextPage}
-              canGoNextPage={canGoNextPage}
-              screenName={screenName}
-              handleChangeScreenName={handleChangeScreenName}
-              isValidScreenName={isValidScreenName}
-              userName={userName}
-              handleChangeUserName={handleChangeUserName}
-              isValidUserName={isValidUserName}
-              year={year}
-              month={month}
-              day={day}
-              monthArray={generateMonthArray()}
-              dayArray={generateDayArray()}
-              yearArray={generateYearArray()}
-              handleChangeMonth={handleChangeMonth}
-              handleChangeDay={handleChangeDay}
-              handleChangeYear={handleChangeYear}
-              isValidDate={isValidDate()}
-              password={password}
-              handleChangePassword={handleChangePassword}
-              isValidPassword={isValidPassword}
-            />
-          )}
-          {pageNumber === 2 && (
-            <EnterUserImage
-              backToPreviousPage={backToPreviousPage}
-              goToNextPage={goToNextPage}
-              userImage={userImage}
-              canGoToPage3={canGoToPage3}
-              selectImage={selectImage}
-            />
-          )}
-          {pageNumber === 3 && (
-            <EnterBio
-              goToNextPage={goToNextPage}
-              backToPreviousPage={backToPreviousPage}
-              bio={bio}
-              canGoToPage4={canGoToPage4}
-              handleChangeBio={handleChangeBio}
-              isValidBio={isValidBio}
-            />
-          )}
-          {pageNumber === 4 && (
-            <EnterUserLocation
-              goToNextPage={goToNextPage}
-              backToPreviousPage={backToPreviousPage}
-              canGoToPage5={canGoToPage5}
-              handleChangeUserLocation={handleChangeUserLocation}
-              isValidUserLocation={isValidUserLocation}
-              userLocation={userLocation}
-            />
-          )}
-          {pageNumber === 5 && (
-            <Confirm
-              backToPreviousPage={backToPreviousPage}
-              bio={bio}
-              userImage={userImage}
-              year={year}
-              day={day}
-              month={month}
-              userName={userName}
-              screenName={screenName}
-              userLocation={userLocation}
-              password={convertPassword()}
-            />
-          )}
-        </div>
+        <Logo />
+        {pageNumber === 1 && (
+          <EnterProfile
+            goToNextPage={goToNextPage}
+            canGoNextPage={canGoNextPage}
+            screenName={screenName}
+            handleChangeScreenName={handleChangeScreenName}
+            isValidScreenName={isValidScreenName}
+            userName={userName}
+            handleChangeUserName={handleChangeUserName}
+            isValidUserName={isValidUserName}
+            year={year}
+            month={month}
+            day={day}
+            monthArray={generateMonthArray()}
+            dayArray={generateDayArray()}
+            yearArray={generateYearArray()}
+            handleChangeMonth={handleChangeMonth}
+            handleChangeDay={handleChangeDay}
+            handleChangeYear={handleChangeYear}
+            isValidDate={isValidDate()}
+            password={password}
+            handleChangePassword={handleChangePassword}
+            isValidPassword={isValidPassword}
+          />
+        )}
+        {pageNumber === 2 && (
+          <EnterUserImage
+            backToPreviousPage={backToPreviousPage}
+            goToNextPage={goToNextPage}
+            userImage={userImage}
+            canGoToPage3={canGoToPage3}
+            selectImage={selectImage}
+          />
+        )}
+        {pageNumber === 3 && (
+          <EnterBio
+            goToNextPage={goToNextPage}
+            backToPreviousPage={backToPreviousPage}
+            bio={bio}
+            canGoToPage4={canGoToPage4}
+            handleChangeBio={handleChangeBio}
+            isValidBio={isValidBio}
+          />
+        )}
+        {pageNumber === 4 && (
+          <EnterUserLocation
+            goToNextPage={goToNextPage}
+            backToPreviousPage={backToPreviousPage}
+            canGoToPage5={canGoToPage5}
+            handleChangeUserLocation={handleChangeUserLocation}
+            isValidUserLocation={isValidUserLocation}
+            userLocation={userLocation}
+          />
+        )}
+        {pageNumber === 5 && (
+          <Confirm
+            backToPreviousPage={backToPreviousPage}
+            bio={bio}
+            userImage={userImage}
+            year={year}
+            day={day}
+            month={month}
+            userName={userName}
+            screenName={screenName}
+            userLocation={userLocation}
+            password={convertPassword()}
+          />
+        )}
       </>
     </>
   );

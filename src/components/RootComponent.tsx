@@ -5,6 +5,7 @@ import { LoginContainer } from './LoginContainer';
 import classes from './RootComponent.module.css';
 import { SignUpContainer } from './SignUpContainer';
 import { TweetCreateContainer } from './Timeline/TweetCreate/TweetCreateContainer';
+import { ProfileContainer } from './ProfileContainer';
 
 type Props = {
   isLogin: boolean;
@@ -50,6 +51,7 @@ export const RootComponent: React.FC<Props> = (props) => {
               />
             )}
           />
+          <Route exact path="/profile" render={() => <ProfileContainer />} />
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>
       </BrowserRouter>

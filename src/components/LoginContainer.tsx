@@ -49,20 +49,18 @@ export const LoginContainer: React.FC<Props> = (props) => {
   return (
     <>
       {isLogin && <Redirect to="/" />}
-      <div className={classes.Login}>
-        <Logo />
-        <Message message="Twitterにログイン" />
-        {isInvalidLogin && (
-          <AlertMessage alertMessage="入力されたユーザー名やパスワードが正しくありません。確認してからやりなおしてください。" />
-        )}
-        <LoginForm
-          login={login}
-          screenName={screenName}
-          handleChangeScreenName={handleChangeScreenName}
-          password={password}
-          handleChangePassword={handleChangePassword}
-        />
-      </div>
+      <Logo />
+      <Message message="Twitterにログイン" />
+      {isInvalidLogin && (
+        <AlertMessage alertMessage="入力されたユーザー名やパスワードが正しくありません。確認してからやりなおしてください。" />
+      )}
+      <LoginForm
+        login={login}
+        screenName={screenName}
+        handleChangeScreenName={handleChangeScreenName}
+        password={password}
+        handleChangePassword={handleChangePassword}
+      />
     </>
   );
 };
