@@ -75,8 +75,7 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
 
   return (
     <>
-      {/* {console.log(isLogin)}*/}
-      {/* {!isLogin && <Redirect to="/" />}*/}
+      {!isLogin && <Redirect to="/" />}
       {hasSubmit && <Redirect to="/home" />}
       <TweetCreateHeader
         goBack={goBack}

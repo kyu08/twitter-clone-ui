@@ -51,7 +51,11 @@ export const RootComponent: React.FC<Props> = (props) => {
               />
             )}
           />
-          <Route exact path="/profile" render={() => <ProfileContainer />} />
+          <Route
+            exact
+            path="/profile"
+            render={() => <ProfileContainer isLogin={isLogin} />}
+          />
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>
       </BrowserRouter>

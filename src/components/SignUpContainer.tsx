@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Logo } from './Login/Logo';
-import classes from './SignUpContainer.module.css';
 import { EnterProfile } from './SignUp/EnterProfile';
 import { EnterUserImage } from './SignUp/EnterUserImage';
 import { EnterBio } from './SignUp/EnterBio';
@@ -18,7 +17,6 @@ type Props = {
   isLogin: boolean;
 };
 
-// todo container と presentation にわけよう
 export const SignUpContainer: React.FC<Props> = (props) => {
   const { isLogin } = props;
 
