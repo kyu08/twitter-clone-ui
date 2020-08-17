@@ -1,21 +1,18 @@
 import * as React from 'react';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import classes from './TweetCreateHeaderContent.module.css';
+import { GoBackButton } from '../Common/GoBackButton';
 
 type Props = {
-  goBack(): void;
   submitTweet(): void;
   canSubmitTweet: boolean;
 };
 
 export const TweetCreateHeaderContent: React.FC<Props> = (props) => {
-  const { submitTweet, goBack, canSubmitTweet } = props;
+  const { submitTweet, canSubmitTweet } = props;
 
   return (
     <div className={classes.Header}>
-      <div className={classes.Icon} onClick={() => goBack()}>
-        <ArrowBackIcon />
-      </div>
+      <GoBackButton />
       <div className={classes.ButtonWrapper}>
         <button
           className={classes.tweetButton}

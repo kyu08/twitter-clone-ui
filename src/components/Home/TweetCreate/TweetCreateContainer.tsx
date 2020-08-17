@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import { TweetCreateHeaderContent } from './TweetCreateHeaderContent';
 import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
@@ -25,13 +25,6 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
   ] = React.useState<TempTweet>();
   const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
   const [canSubmitTweet, setCanSubmitTweet] = React.useState<boolean>(false);
-
-  // todo 戻るボタン component として切り出そう！
-  // todo ここからあああああああああ
-  const history = useHistory();
-  const goBack = () => {
-    history.goBack();
-  };
 
   const submitTweet = () => {
     console.log('tweet button pushed.');
@@ -82,7 +75,6 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
       {hasSubmit && <Redirect to="/home" />}
       <Header>
         <TweetCreateHeaderContent
-          goBack={goBack}
           submitTweet={submitTweet}
           canSubmitTweet={canSubmitTweet}
         />
