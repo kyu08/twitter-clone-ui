@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Message } from '../Login/Message';
 import classes from './EnterBio.module.css';
 import { AlertMessage } from '../Login/AlertMessage';
-import { InputContainer } from '../Common/InputContainer';
+import { InputForm } from '../Common/InputForm';
 import { MAX_USER_LOCATION_LENGTH } from '../../domain/models/User/Profile/UserLocation';
 
 type Props = {
@@ -31,7 +31,7 @@ export const EnterUserLocation: React.FC<Props> = (props) => {
       <Message message="User Locationを入力してください 4/4" />
       <div className={classes.ButtonContainer}>
         {!isValidUserLocation && <AlertMessage alertMessage={alertMessage} />}
-        <InputContainer
+        <InputForm
           labelTitle="UserLocation"
           inputType="text"
           value={userLocation}

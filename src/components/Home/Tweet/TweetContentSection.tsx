@@ -3,7 +3,7 @@ import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineO
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
-import classes from './TweetContentContainer.module.css';
+import classes from './TweetContentSection.module.css';
 import { TweetContent } from './TweetContentContainer/TweetContent';
 import { TweetButton } from './TweetContentContainer/TweetButton';
 import { TweetButtonIcon } from './TweetContentContainer/TweetButtonIcon';
@@ -15,7 +15,7 @@ type Props = {
   content: string;
 };
 
-export const TweetContentContainer: React.FC<Props> = (props) => {
+export const TweetContentSection: React.FC<Props> = (props) => {
   const { likeCount, replyCount, retweetCount, content } = props;
 
   return (

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
-import { TweetCreateHeaderContent } from './TweetCreateHeaderContent';
-import { TempTweetApplicationService } from '../../../application/TempTweetApplicationService';
-import { TweetCreateForm } from './TweetCreateForm';
-import { MAX_TWEET_LENGTH } from '../../../domain/models/Tweet/Content/Content';
-import { TempTweet } from '../../../domain/models/TempTweet/ConcreteClasses/TempTweet';
-import { TempTweetDataModel } from '../../../ProdutionInfrastructure/TempTweetDataModel';
-import { hostURL } from '../../../util/Util';
-import { Header } from '../Common/Header';
+import { TweetCreateHeaderContent } from './TweetCreate/TweetCreateHeaderContent';
+import { TempTweetApplicationService } from '../../application/TempTweetApplicationService';
+import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
+import { MAX_TWEET_LENGTH } from '../../domain/models/Tweet/Content/Content';
+import { TempTweet } from '../../domain/models/TempTweet/ConcreteClasses/TempTweet';
+import { TempTweetDataModel } from '../../ProdutionInfrastructure/TempTweetDataModel';
+import { hostURL } from '../../util/Util';
+import { Header } from './Common/Header';
 
 type Props = {
   isLogin: boolean;
@@ -16,6 +16,7 @@ type Props = {
   userId?: string;
 };
 
+// todo これディレクトリどこにおこう...
 export const TweetCreateContainer: React.FC<Props> = (props) => {
   const { isLogin, userImageURL, userId } = props;
   const [content, setContent] = React.useState<string>('');

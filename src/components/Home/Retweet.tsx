@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
-import { TweetComponent } from './TweetComponent';
+import { TweetCard } from './TweetCard';
 import { TweetMessage } from './Tweet/Common/TweetMessage';
 
 type Props = {

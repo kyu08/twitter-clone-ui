@@ -1,11 +1,11 @@
 import * as React from 'react';
-import classes from './UserImageContainer.module.css';
+import classes from './UserImageSection.module.css';
 
 type Props = {
   userImageURL: string;
 };
 
-export const UserImageContainer: React.FC<Props> = (props) => {
+export const UserImageSection: React.FC<Props> = (props) => {
   const { userImageURL } = props;
 
   return (

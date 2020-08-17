@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './InputContainer.module.css';
+import classes from './InputForm.module.css';
 
 type Props = {
   labelTitle: string;
@@ -8,7 +8,7 @@ type Props = {
   handleChangeValue(e: React.ChangeEvent<HTMLInputElement>): void;
 };
 
-export const InputContainer: React.FC<Props> = (props) => {
+export const InputForm: React.FC<Props> = (props) => {
   const { labelTitle, inputType, value, handleChangeValue } = props;
 
   return (

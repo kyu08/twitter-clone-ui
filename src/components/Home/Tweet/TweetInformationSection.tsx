@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
-import classes from './TweetInformationContainer.module.css';
+import classes from './TweetInformationSection.module.css';
 import { UserName } from './TweetInformationContainer/UserName';
 import { ScreenName } from './TweetInformationContainer/ScreenName';
 import { HowLongAgo } from './TweetInformationContainer/HowLongAgo';
@@ -11,7 +11,7 @@ type Props = {
   howLongAgo: string;
 };
 
-export const TweetInformationContainer: React.FC<Props> = (props) => {
+export const TweetInformationSection: React.FC<Props> = (props) => {
   const { howLongAgo, screenName, userName } = props;
 
   return (

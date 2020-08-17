@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classes from './TweetCreateForm.module.css';
-import { UserImageContainer } from '../Tweet/UserImageContainer';
+import { UserImageSection } from '../Tweet/UserImageSection';
 
 type Props = {
   userImageURL: string;
@@ -13,7 +13,7 @@ export const TweetCreateForm: React.FC<Props> = (props) => {
 
   return (
     <div className={classes.TweetCreate}>
-      <UserImageContainer userImageURL={userImageURL} />
+      <UserImageSection userImageURL={userImageURL} />
       <div className={classes.RightContainer}>
         <textarea
           className={classes.InputElement}

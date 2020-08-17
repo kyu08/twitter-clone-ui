@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TweetComponent } from './TweetComponent';
+import { TweetCard } from './TweetCard';
 import { TweetMessage } from './Tweet/Common/TweetMessage';
 
 type Props = {

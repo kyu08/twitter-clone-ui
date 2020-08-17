@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classes from './Timeline.module.css';
-import { TweetComponent } from './TweetComponent';
+import { TweetCard } from './TweetCard';
 import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
 import { TweetApplicationService } from '../../application/TweetApplicationService';
 
@@ -13,9 +13,9 @@ export const Timeline: React.FC<Props> = (props) => {
 
   return (
     <div className={classes.Timeline}>
-      {/* todo #112 これ関数化する*/}
+      {/* todo #112 Tweet / Reply / Retweet component だしわけ関数実装する*/}
       {tweetArray.map((t) => (
-        <TweetComponent
+        <TweetCard
           tweet={t}
           key={TweetApplicationService.returnTweetId(t)}
         />
