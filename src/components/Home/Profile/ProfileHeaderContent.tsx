@@ -6,6 +6,10 @@ export const ProfileHeaderContent: React.FC = () => {
   return (
     <div className={classes.Header}>
       <GoBackButton />
+      <div className={classes.Wrapper}>
+        <span className={classes.UserName}>userName</span>
+        <div className={classes.TweetCount}>1,234 ツイート</div>
+      </div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ export const ProfileContainer: React.FC<Props> = (props) => {
         <ProfileHeaderContent />
       </Header>
       <div className={classes.HeaderImage} />
-      this is ProfileContainer
+      <div className={classes.ProfileSection} />
     </>
   );
 };

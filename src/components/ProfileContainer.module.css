@@ -1,3 +1,24 @@
+/* header */
+.UserName {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.TweetCount {
+    color: #8899A6;
+    font-size: 13px;
+}
+
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100%;
+}
+
+/* profile section */
 .HeaderImage {
     background-color: darkgreen;
     width: 100%;
@@ -12,4 +33,10 @@
 .Icon {
     color: #1DA1F2;
     padding: 15px 15px;
+}
+
+.ProfileSection {
+    height: 235px;
+    padding: 10px 15px 10px;
+    border-bottom: solid 1px rgb(136, 153, 166);
 }
