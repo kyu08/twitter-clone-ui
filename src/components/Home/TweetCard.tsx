@@ -23,12 +23,16 @@ export const TweetCard: React.FC<Props> = (props) => {
   } = tweet;
 
   const howLongAgo = TweetApplicationService.howLongAgo(tweet);
+  const imageSize = 49;
 
   return (
     <div className={classes.TweetContainer}>
       <div className={classes.Tweet}>
         {/* todo component が tweet の詳細を知ってるのは微妙 */}
-        <UserImageSection userImageURL={userImageURL.userImageURL} />
+        <UserImageSection
+          userImageURL={userImageURL.userImageURL}
+          imageSize={imageSize}
+        />
         <div>
           <TweetInformationSection
             userName={userName.userName}

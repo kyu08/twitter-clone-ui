@@ -10,10 +10,11 @@ type Props = {
 
 export const TweetCreateForm: React.FC<Props> = (props) => {
   const { content, handleChangeContent, userImageURL } = props;
+  const imageSize = 49;
 
   return (
     <div className={classes.TweetCreate}>
-      <UserImageSection userImageURL={userImageURL} />
+      <UserImageSection userImageURL={userImageURL} imageSize={imageSize} />
       <div className={classes.RightContainer}>
         <textarea
           className={classes.InputElement}
