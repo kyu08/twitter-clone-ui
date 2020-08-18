@@ -12,13 +12,11 @@ import { Confirm } from './SignUp/Confirm';
 import { MAX_SCREEN_NAME_LENGTH } from '../domain/models/User/Profile/ScreenName';
 import { MAX_USER_NAME_LENGTH } from '../domain/models/User/Profile/UserName';
 import { TODO } from '../util/Util';
+import Store from '../Store';
 
-type Props = {
-  isLogin: boolean;
-};
-
-export const SignUpContainer: React.FC<Props> = (props) => {
-  const { isLogin } = props;
+export const SignUpContainer: React.FC = () => {
+  const store = Store.useStore();
+  const isLogin = store.get('userId');
 
   // State
 

@@ -7,17 +7,13 @@ import UserApplicationService from '../application/UserApplicationService';
 import Store from '../Store';
 import { AlertMessage } from './Login/AlertMessage';
 
-type Props = {
-  setIsLogin(boolean: boolean): void;
-  isLogin: boolean;
-};
+export const LoginContainer: React.FC = () => {
+  const store = Store.useStore();
+  const isLogin = store.get('isLogin');
 
-export const LoginContainer: React.FC<Props> = (props) => {
-  const { setIsLogin, isLogin } = props;
   const [screenName, setScreenName] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [isInvalidLogin, setIsInvalidLogin] = React.useState<boolean>(false);
-  const store = Store.useStore();
 
   const authorize = (screenNameAuth: string, passwordAuth: string): boolean => {
     return UserApplicationService.isAuthorized(screenNameAuth, passwordAuth);
@@ -29,7 +25,7 @@ export const LoginContainer: React.FC<Props> = (props) => {
 
     if (isAuthorized) {
       store.set('userId')(userId);
-      setIsLogin(true);
+      store.set('isLogin')(true);
 
       return;
     }

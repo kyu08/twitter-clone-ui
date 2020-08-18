@@ -8,14 +8,10 @@ import { TweetApplicationService } from '../application/TweetApplicationService'
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import { HomeHeaderContent } from './Home/HomeHeaderContent';
 
-type Props = {
-  isLogin: boolean;
-  setIsLogin(boolean: boolean): void;
-};
-
-export const HomeContainer: React.FC<Props> = (props) => {
-  const { isLogin, setIsLogin } = props;
+export const HomeContainer: React.FC = () => {
   const store = Store.useStore();
+  const isLogin = store.get('isLogin');
+
   const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
 
   React.useEffect(() => {
@@ -36,7 +32,7 @@ export const HomeContainer: React.FC<Props> = (props) => {
 
   const logout = (): void => {
     store.set('userId')(undefined);
-    setIsLogin(false);
+    store.set('isLogin')(false);
   };
 
   return (

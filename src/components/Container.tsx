@@ -6,27 +6,14 @@ import UserApplicationService from '../application/UserApplicationService';
 
 export const Container: React.FC = () => {
   const store = Store.useStore();
-  const [isLogin, setIsLogin] = React.useState<boolean>(false);
-  const userId = store.get('userId');
+  const isLogin = store.get('isLogin');
 
   useEffect(() => {
     const userIdInLocalStorage = UserApplicationService.getUserIdFromLocalStorage();
     if (userIdInLocalStorage === null) return;
-    setIsLogin(true);
+    store.set('isLogin')(true);
     store.set('userId')(userIdInLocalStorage);
   }, []);
 
-  return (
-    <>
-      {userId ? (
-        <RootComponent
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
-          userId={userId}
-        />
-      ) : (
-        <RootComponent isLogin={isLogin} setIsLogin={setIsLogin} />
-      )}
-    </>
-  );
+  return <RootComponent isLogin={isLogin} />;
 };

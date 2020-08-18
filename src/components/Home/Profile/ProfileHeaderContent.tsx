@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from '../../ProfileContainer.module.css';
+import classes from './ProfileHeaderContent.module.css';
 import { GoBackButton } from '../Common/GoBackButton';
 
 export const ProfileHeaderContent: React.FC = () => {

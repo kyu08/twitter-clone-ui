@@ -4,10 +4,12 @@ import effects from './Effects';
 
 type State = {
   userId?: string;
+  isLogin: boolean;
 };
 
 const initialState: State = {
   userId: undefined,
+  isLogin: false,
 };
 
 export default createConnectedStore(initialState, effects);

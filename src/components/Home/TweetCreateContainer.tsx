@@ -9,16 +9,18 @@ import { TempTweet } from '../../domain/models/TempTweet/ConcreteClasses/TempTwe
 import { TempTweetDataModel } from '../../ProdutionInfrastructure/TempTweetDataModel';
 import { hostURL } from '../../util/Util';
 import { Header } from './Common/Header';
+import Store from '../../Store';
 
 type Props = {
-  isLogin: boolean;
   userImageURL: string;
-  userId?: string;
 };
 
-// todo これディレクトリどこにおこう...
 export const TweetCreateContainer: React.FC<Props> = (props) => {
-  const { isLogin, userImageURL, userId } = props;
+  const { userImageURL } = props;
+  const store = Store.useStore();
+  const isLogin = store.get('isLogin');
+  const userId = store.get('userId');
+
   const [content, setContent] = React.useState<string>('');
   const [tempTweet, setTempTweet]: [
     TempTweet | undefined,
@@ -32,6 +34,7 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     if (!tempTweet) throw new Error('there is no temp tweet');
     const tempTweetDataModel = new TempTweetDataModel(tempTweet);
     const data = tempTweetDataModel.build();
+    // todo これも ApplicationService 経由で！
     fetch(`${hostURL}/tweet`, {
       method: 'POST',
       mode: 'cors',
