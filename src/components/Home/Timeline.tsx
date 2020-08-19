@@ -15,10 +15,7 @@ export const Timeline: React.FC<Props> = (props) => {
     <div className={classes.Timeline}>
       {/* todo #112 Tweet / Reply / Retweet component だしわけ関数実装する*/}
       {tweetArray.map((t) => (
-        <TweetCard
-          tweet={t}
-          key={TweetApplicationService.returnTweetId(t)}
-        />
+        <TweetCard tweet={t} key={TweetApplicationService.returnTweetId(t)} />
       ))}
     </div>
   );

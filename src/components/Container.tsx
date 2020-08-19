@@ -13,6 +13,7 @@ export const Container: React.FC = () => {
     if (userIdInLocalStorage === null) return;
     store.set('isLogin')(true);
     store.set('userId')(userIdInLocalStorage);
+    // todo ここで UserDataModel インスタンスを store.set する
   }, []);
 
   return <RootComponent isLogin={isLogin} />;

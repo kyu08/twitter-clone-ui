@@ -31,10 +31,4 @@ export const deleteFromSet = (
   if (userIdFound) copy.delete(userIdFound);
 
   return copy;
-
-  // todo ↓これもあまり綺麗でない
-  // for (const value of copy.values()) {
-  //   if (value.userId === userId.userId) copy.delete(value);
-  //   break;
-  // }
 };
