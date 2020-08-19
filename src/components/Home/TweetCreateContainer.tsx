@@ -6,7 +6,7 @@ import { TempTweetApplicationService } from '../../application/TempTweetApplicat
 import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
 import { MAX_TWEET_LENGTH } from '../../domain/models/Tweet/Content/Content';
 import { TempTweet } from '../../domain/models/TempTweet/ConcreteClasses/TempTweet';
-import { TempTweetDataModel } from '../../ProdutionInfrastructure/TempTweetDataModel';
+import { TempTweetDataModel } from '../../infrastructure/TempTweetDataModel';
 import { hostURL } from '../../util/Util';
 import { Header } from './Common/Header';
 import Store from '../../Store';
