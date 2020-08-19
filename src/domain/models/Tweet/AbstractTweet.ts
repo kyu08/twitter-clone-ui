@@ -19,8 +19,8 @@ export interface AbstractTweetProps {
 }
 
 // memo 以下の理由で abstract class で実装
-// sub class の constructor がシンプルにかける
-// base class であることがわかりやすい
+// - sub class の constructor がシンプルにかける
+// - abstract class な方が base class であることがわかりやすいし抽象から具象を作る方がしっくりくる
 // けど abstract method ないなら ふつうに class で書くべき...?
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
