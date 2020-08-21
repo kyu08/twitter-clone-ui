@@ -5,9 +5,9 @@ import { AbstractTempTweet } from '../domain/models/TempTweet/AbstractTempTweet'
 type TempTweetData = { user_id: string; content: string };
 
 export class TempTweetDataModel {
-  private readonly userId: UserId;
+  readonly userId: UserId;
 
-  private readonly content: TempContent;
+  readonly content: TempContent;
 
   constructor(props: AbstractTempTweet) {
     const { userId, content } = props;
@@ -15,11 +15,11 @@ export class TempTweetDataModel {
     this.content = content;
   }
 
-  getUserId(): string {
+  private getUserId(): string {
     return this.userId.userId;
   }
 
-  getContent(): string {
+  private getContent(): string {
     return this.content.content;
   }
 

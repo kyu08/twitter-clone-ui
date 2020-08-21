@@ -5,7 +5,6 @@ import { TweetCreateHeaderContent } from './TweetCreate/TweetCreateHeaderContent
 import { TempTweetApplicationService } from '../../application/TempTweetApplicationService';
 import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
 import { MAX_TWEET_LENGTH } from '../../domain/models/Tweet/Content/Content';
-import { TempTweet } from '../../domain/models/TempTweet/ConcreteClasses/TempTweet';
 import { TempTweetDataModel } from '../../infrastructure/TempTweetDataModel';
 import { hostURL } from '../../util/Util';
 import { Header } from './Common/Header';
@@ -22,18 +21,16 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
   const userId = store.get('userId');
 
   const [content, setContent] = React.useState<string>('');
-  const [tempTweet, setTempTweet]: [
-    TempTweet | undefined,
-    Dispatch<SetStateAction<TempTweet | undefined>>,
-  ] = React.useState<TempTweet>();
+  const [tempTweetDataModel, setTempTweetDataModel]: [
+    TempTweetDataModel | undefined,
+    Dispatch<SetStateAction<TempTweetDataModel | undefined>>,
+  ] = React.useState<TempTweetDataModel>();
+
   const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
   const [canSubmitTweet, setCanSubmitTweet] = React.useState<boolean>(false);
 
   const submitTweet = () => {
-    console.log('tweet button pushed.');
-    if (!tempTweet) throw new Error('there is no temp tweet');
-    // todo DTO 使う必要なくない？ DTO ってDomain model のデータを使いたいけどインスタンスを渡すとメソッド実行できちゃうのが安全性損なうから使うものだよね、、
-    const tempTweetDataModel = new TempTweetDataModel(tempTweet);
+    if (!tempTweetDataModel) throw new Error('there is no temp tweet');
     const data = tempTweetDataModel.build();
     // todo これも ApplicationService 経由で！
     fetch(`${hostURL}/tweet`, {
@@ -58,22 +55,16 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
     if (!userId) throw new Error('ログインしてるはずなのにuserIdがないよ...');
     const contentEntered = e.currentTarget.value;
     setContent(contentEntered);
-    const tempTweetUpdated = TempTweetApplicationService.createTempTweet(
+    const tempTweetDataModelUpdated = TempTweetApplicationService.getTempTweetDataModel(
+      tempTweetDataModel,
       userId,
       contentEntered,
     );
 
-    // todo canSubmitTweet は TempTweet class が持つべき
-    if (
-      contentEntered.length !== 0 &&
-      contentEntered.length <= MAX_TWEET_LENGTH
-    ) {
-      setCanSubmitTweet(true);
-    } else {
-      setCanSubmitTweet(false);
-    }
-
-    setTempTweet(tempTweetUpdated);
+    setCanSubmitTweet(
+      TempTweetApplicationService.canSubmitTweet(tempTweetDataModelUpdated),
+    );
+    setTempTweetDataModel(tempTweetDataModelUpdated);
   };
 
   return (

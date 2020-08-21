@@ -5,6 +5,7 @@ import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
 import { TweetApplicationService } from '../../application/TweetApplicationService';
 
 type Props = {
+  // todo DTO を使おう
   tweetArray: Tweet[];
 };
 
