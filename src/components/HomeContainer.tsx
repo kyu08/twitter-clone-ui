@@ -5,16 +5,20 @@ import { Timeline } from './Home/Timeline';
 import { Footer } from './Home/Common/Footer';
 import Store from '../Store';
 import { TweetApplicationService } from '../application/TweetApplicationService';
-import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import { HomeHeaderContent } from './Home/HomeHeaderContent';
+import { TweetDataModel } from '../infrastructure/TweetDataModel';
 
 export const HomeContainer: React.FC = () => {
   const store = Store.useStore();
   const isLogin = store.get('isLogin');
 
-  const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
+  const [tweetDataModelArray, setTweetDataModelArray] = React.useState<
+    TweetDataModel[]
+  >([]);
+  // const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
 
   React.useEffect(() => {
+    // todo await/catch にする
     TweetApplicationService.fetchTimeline()
       .then((res) => {
         return res.json();
@@ -23,7 +27,7 @@ export const HomeContainer: React.FC = () => {
         const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
           json,
         );
-        setTweetArray(tweetInstanceArray);
+        setTweetDataModelArray(tweetInstanceArray);
       })
       .catch((err) => {
         console.log(err);
@@ -38,11 +42,11 @@ export const HomeContainer: React.FC = () => {
   return (
     <>
       {!isLogin && <Redirect to="/" />}
-      {tweetArray === [] && <div>loading</div>}
+      {tweetDataModelArray === [] && <div>loading</div>}
       <Header logout={logout}>
         <HomeHeaderContent logout={logout} />
       </Header>
-      <Timeline tweetArray={tweetArray} />
+      <Timeline tweetDataModelArray={tweetDataModelArray} />
       <Footer />
     </>
   );

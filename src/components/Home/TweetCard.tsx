@@ -3,16 +3,15 @@ import classes from './TweetCard.module.css';
 import { UserImageSection } from './Tweet/UserImageSection';
 import { TweetInformationSection } from './Tweet/TweetInformationSection';
 import { TweetContentSection } from './Tweet/TweetContentSection';
-import Tweet from '../../domain/models/Tweet/ConcreteClasses/Tweet';
+import { TweetDataModel } from '../../infrastructure/TweetDataModel';
 import { TweetApplicationService } from '../../application/TweetApplicationService';
 
 type Props = {
-  // todo DTO を使おう
-  tweet: Tweet;
+  tweetDataModel: TweetDataModel;
 };
 
 export const TweetCard: React.FC<Props> = (props) => {
-  const { tweet } = props;
+  const { tweetDataModel } = props;
   const {
     content,
     likeCount,
@@ -21,30 +20,27 @@ export const TweetCard: React.FC<Props> = (props) => {
     screenName,
     userImageURL,
     userName,
-  } = tweet;
+  } = tweetDataModel;
 
-  const howLongAgo = TweetApplicationService.howLongAgo(tweet);
+  // const howLongAgo = 'hoge';
+  const howLongAgo = TweetApplicationService.howLongAgo(tweetDataModel);
   const imageSize = 49;
 
   return (
     <div className={classes.TweetContainer}>
       <div className={classes.Tweet}>
-        {/* todo component が tweet の詳細を知ってるのは微妙 */}
-        <UserImageSection
-          userImageURL={userImageURL.userImageURL}
-          imageSize={imageSize}
-        />
+        <UserImageSection userImageURL={userImageURL} imageSize={imageSize} />
         <div>
           <TweetInformationSection
-            userName={userName.userName}
-            screenName={screenName.screenName}
+            userName={userName}
+            screenName={screenName}
             howLongAgo={howLongAgo}
           />
           <TweetContentSection
             replyCount={replyCount}
             retweetCount={retweetCount}
             likeCount={likeCount}
-            content={content.content}
+            content={content}
           />
         </div>
       </div>

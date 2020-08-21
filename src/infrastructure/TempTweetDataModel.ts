@@ -4,6 +4,9 @@ import { AbstractTempTweet } from '../domain/models/TempTweet/AbstractTempTweet'
 
 export type TempTweetData = { user_id: string; content: string };
 
+// todo value object 使わなくてもいい気がしてきたぞ
+// TempTweet が存在するので
+// けど TempTweet に形式を合わせる方がいいか？
 export class TempTweetDataModel {
   readonly userId: UserId;
 
@@ -23,8 +26,6 @@ export class TempTweetDataModel {
     return this.content.content;
   }
 
-  // todo これ TempTweet でやればいい気がする
-  // todo ここで content.length の validation するか？
   build(): TempTweetData {
     return { user_id: this.getUserId(), content: this.getContent() };
   }
