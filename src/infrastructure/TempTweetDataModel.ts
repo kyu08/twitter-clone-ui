@@ -23,6 +23,8 @@ export class TempTweetDataModel {
     return this.content.content;
   }
 
+  // todo これ TempTweet でやればいい気がする
+  // todo ここで content.length の validation するか？
   build(): TempTweetData {
     return { user_id: this.getUserId(), content: this.getContent() };
   }

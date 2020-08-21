@@ -32,6 +32,7 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
   const submitTweet = () => {
     console.log('tweet button pushed.');
     if (!tempTweet) throw new Error('there is no temp tweet');
+    // todo DTO 使う必要なくない？ DTO ってDomain model のデータを使いたいけどインスタンスを渡すとメソッド実行できちゃうのが安全性損なうから使うものだよね、、
     const tempTweetDataModel = new TempTweetDataModel(tempTweet);
     const data = tempTweetDataModel.build();
     // todo これも ApplicationService 経由で！
@@ -61,6 +62,8 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
       userId,
       contentEntered,
     );
+
+    // todo canSubmitTweet は TempTweet class が持つべき
     if (
       contentEntered.length !== 0 &&
       contentEntered.length <= MAX_TWEET_LENGTH
