@@ -6,6 +6,7 @@ import {
 import { InMemoryTweetRepository } from '../inMemory/InMemoryTweetRepository';
 import { hostURL } from '../util/Util';
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
+import { TempTweetData } from '../infrastructure/TempTweetDataModel';
 
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
@@ -22,6 +23,17 @@ export class TweetApplicationService {
   static fetchTimeline(): Promise<Response> {
     return fetch(`${hostURL}/home/123`, {
       mode: 'cors',
+    });
+  }
+
+  static postTweet(tweetDataModel: TempTweetData): Promise<Response> {
+    return fetch(`${hostURL}/tweet`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tweetDataModel),
     });
   }
 

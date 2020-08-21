@@ -4,11 +4,10 @@ import { Dispatch, SetStateAction } from 'react';
 import { TweetCreateHeaderContent } from './TweetCreate/TweetCreateHeaderContent';
 import { TempTweetApplicationService } from '../../application/TempTweetApplicationService';
 import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
-import { MAX_TWEET_LENGTH } from '../../domain/models/Tweet/Content/Content';
 import { TempTweetDataModel } from '../../infrastructure/TempTweetDataModel';
-import { hostURL } from '../../util/Util';
 import { Header } from './Common/Header';
 import Store from '../../Store';
+import { TweetApplicationService } from '../../application/TweetApplicationService';
 
 type Props = {
   userImageURL: string;
@@ -29,24 +28,14 @@ export const TweetCreateContainer: React.FC<Props> = (props) => {
   const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
   const [canSubmitTweet, setCanSubmitTweet] = React.useState<boolean>(false);
 
-  const submitTweet = () => {
+  const submitTweet = async () => {
     if (!tempTweetDataModel) throw new Error('there is no temp tweet');
     const data = tempTweetDataModel.build();
-    // todo これも ApplicationService 経由で！
-    fetch(`${hostURL}/tweet`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((resJSON) => {
-        console.log(resJSON);
-        setHasSubmit(true);
-      })
-      .catch((e) => console.log(e));
+    const response = await TweetApplicationService.postTweet(data).catch((e) =>
+      console.log(e),
+    );
+    console.log(response);
+    setHasSubmit(true);
   };
 
   const handleChangeContent = (

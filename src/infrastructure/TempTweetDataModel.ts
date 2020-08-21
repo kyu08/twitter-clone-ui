@@ -2,7 +2,7 @@ import UserId from '../domain/models/User/UserId/UserId';
 import TempContent from '../domain/models/TempTweet/TempContent';
 import { AbstractTempTweet } from '../domain/models/TempTweet/AbstractTempTweet';
 
-type TempTweetData = { user_id: string; content: string };
+export type TempTweetData = { user_id: string; content: string };
 
 export class TempTweetDataModel {
   readonly userId: UserId;
