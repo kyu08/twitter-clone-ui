@@ -15,23 +15,18 @@ export const HomeContainer: React.FC = () => {
   const [tweetDataModelArray, setTweetDataModelArray] = React.useState<
     TweetDataModel[]
   >([]);
-  // const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
 
   React.useEffect(() => {
-    // todo await/catch にする
-    TweetApplicationService.fetchTimeline()
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
-          json,
-        );
-        setTweetDataModelArray(tweetInstanceArray);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    (async () => {
+      const response = await TweetApplicationService.fetchTimeline().catch(
+        (e) => e,
+      );
+      const resJson = await response.json();
+      const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
+        resJson,
+      );
+      setTweetDataModelArray(tweetInstanceArray);
+    })();
   }, []);
 
   const logout = (): void => {
