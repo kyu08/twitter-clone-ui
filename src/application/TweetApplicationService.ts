@@ -8,23 +8,25 @@ import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import { TempTweetData } from '../infrastructure/TempTweetDataModel';
 import { TweetDataModel } from '../infrastructure/TweetDataModel';
 import { TweetRepository } from '../infrastructure/TweetRepository';
+import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
 
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
 
   static readonly tweetRepositoryNew = new TweetRepository();
 
+  static readonly tweetFactory = new TweetFactory();
+
   // インスタンス化して逆順にして返す
   static toTweetInstanceArray(jsonArray: TweetCreateProps[]): TweetDataModel[] {
-    return (
-      jsonArray
-        .map((tweetProps: TweetCreateProps) =>
-          TweetApplicationService.tweetRepository.createTweet(tweetProps),
-        )
-        // todo 0822 factory でやる
-        .map((tweet: AbstractTweet) => new TweetDataModel(tweet))
-        .reverse()
-    );
+    return jsonArray
+      .map((tweetProps: TweetCreateProps) =>
+        TweetApplicationService.tweetRepository.createTweet(tweetProps),
+      )
+      .map((tweet: AbstractTweet) =>
+        TweetApplicationService.tweetFactory.createTweetDataModel(tweet),
+      )
+      .reverse();
   }
 
   static fetchTimeline(): Promise<Response> {
