@@ -89,6 +89,7 @@ export const SignUpContainer: React.FC = () => {
 
   const judgeCanGoNextPage = ({
     // isValidHoge はあくまでエラーメッセージコンポーネントを表示するためのフラグなのでここで改めて判定する必要がある。
+    // todo ここでやるべきではない
     isRightUserName = userName.length > 0 &&
       userName.length <= MAX_USER_NAME_LENGTH,
     isRightScreenName = screenName.length > 0 &&

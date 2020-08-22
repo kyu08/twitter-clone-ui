@@ -4,13 +4,15 @@ import {
   TweetCreateProps,
 } from '../domain/models/Tweet/ITweetRepository';
 import { InMemoryTweetRepository } from '../inMemory/InMemoryTweetRepository';
-import { hostURL } from '../util/Util';
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import { TempTweetData } from '../infrastructure/TempTweetDataModel';
 import { TweetDataModel } from '../infrastructure/TweetDataModel';
+import { TweetRepository } from '../infrastructure/TweetRepository';
 
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
+
+  static readonly tweetRepositoryNew = new TweetRepository();
 
   // インスタンス化して逆順にして返す
   static toTweetInstanceArray(jsonArray: TweetCreateProps[]): TweetDataModel[] {
@@ -26,22 +28,11 @@ export class TweetApplicationService {
   }
 
   static fetchTimeline(): Promise<Response> {
-    // todo 0822 repository でやる
-    return fetch(`${hostURL}/home/123`, {
-      mode: 'cors',
-    });
+    return TweetApplicationService.tweetRepositoryNew.fetchTimeline();
   }
 
   static postTweet(tweetDataModel: TempTweetData): Promise<Response> {
-    // todo 0822 repository でやる
-    return fetch(`${hostURL}/tweet`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(tweetDataModel),
-    });
+    return TweetApplicationService.tweetRepositoryNew.postTweet(tweetDataModel);
   }
 
   static returnTweetId(tweet: Tweet): string {

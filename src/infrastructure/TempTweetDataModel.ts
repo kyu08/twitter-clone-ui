@@ -4,7 +4,7 @@ import { AbstractTempTweet } from '../domain/models/TempTweet/AbstractTempTweet'
 
 export type TempTweetData = { user_id: string; content: string };
 
-// todo value object 使わなくてもいい気がしてきたぞ
+// todo 0822 value object 使わなくてもいい気がしてきたぞ
 // TempTweet が存在するので
 // けど TempTweet に形式を合わせる方がいいか？
 export class TempTweetDataModel {
