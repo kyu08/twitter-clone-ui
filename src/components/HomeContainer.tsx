@@ -17,6 +17,7 @@ export const HomeContainer: React.FC = () => {
   >([]);
 
   React.useEffect(() => {
+    // todo ここの中身も ApplicationService にまとめるべきでは
     (async () => {
       const response = await TweetApplicationService.fetchTimeline().catch(
         (e) => e,

@@ -3,9 +3,21 @@ import UserId from '../domain/models/User/UserId/UserId';
 import { IUser } from '../domain/models/User/IUser';
 import { TODO } from '../util/Util';
 import { IUserRepository } from '../domain/models/User/IUserRepository';
-import { inMemoryUserMap } from './InMemoryUsers';
-import UserFactory from '../domain/models/User/UserFactory';
+import { inMemoryUserMap, IProps, IUserProps } from './InMemoryUsers';
 import { ScreenNamePasswordMap } from './InMemoryScreenNamePassword';
+import Bio from '../domain/models/User/Profile/Bio';
+import Day from '../domain/models/User/Profile/Birthday/Day';
+import HeaderImageURL from '../domain/models/User/Profile/HeaderImageURL';
+import Month from '../domain/models/User/Profile/Birthday/Month';
+import ScreenName from '../domain/models/User/Profile/ScreenName';
+import UserImageURL from '../domain/models/User/Profile/UserImageURL';
+import UserLocation from '../domain/models/User/Profile/UserLocation';
+import UserName from '../domain/models/User/Profile/UserName';
+import Website from '../domain/models/User/Profile/Website';
+import Year from '../domain/models/User/Profile/Birthday/Year';
+import Birthday from '../domain/models/User/Profile/Birthday';
+import Profile from '../domain/models/User/Profile/Profile';
+import { User } from '../domain/models/User/User';
 
 export default class InMemoryUserRepository implements IUserRepository {
   // todo これたぶん使う必要ない
@@ -37,10 +49,10 @@ export default class InMemoryUserRepository implements IUserRepository {
 
     users.forEach((u) => {
       const { userId } = new UserId(u[0]);
-      const props = UserFactory.createUserPropsFromJSON(u[1]);
+      const props = InMemoryUserRepository.createUserPropsFromJSON(u[1]);
 
       // todo ここで follow系 Set もいじる(UserId にして new Set()する)
-      const user = UserFactory.create(props);
+      const user = InMemoryUserRepository.create(props);
       map.set(userId, user);
     });
 
@@ -125,5 +137,79 @@ export default class InMemoryUserRepository implements IUserRepository {
 
   removeUserIdFromLocalStorage(): void {
     localStorage.removeItem('userId');
+  }
+
+  // 使われてない
+  static createUserPropsFromJSON(propsJSON: TODO<'userPropsJSON'>): IUserProps {
+    const { followerCount, followingCount, userId, profile } = propsJSON;
+
+    const props = {
+      bio: profile.bio.bio,
+      day: profile.birthday.day.day,
+      followerCount,
+      followingCount,
+      headerImageURL: profile.headerImageURL.headerImageURL,
+      month: profile.birthday.month.month,
+      screenName: profile.screenName.screenName,
+      userId: userId.userId,
+      userImageURL: profile.userImageURL.userImageURL,
+      userLocation: profile.userLocation.userLocation,
+      userName: profile.userName.userName,
+      website: profile.website.website,
+      year: profile.birthday.year.year,
+    };
+
+    return InMemoryUserRepository.createProps(props);
+  }
+
+  // 使われてない
+  static createProps(props: IProps): IUserProps {
+    return {
+      bio: new Bio(props.bio),
+      day: new Day(props.day),
+      followerCount: props.followerCount,
+      followingCount: props.followingCount,
+      headerImageURL: new HeaderImageURL(props.headerImageURL),
+      month: new Month(props.month),
+      screenName: new ScreenName(props.screenName),
+      userId: new UserId(props.userId),
+      userImageURL: new UserImageURL(props.userImageURL),
+      userLocation: new UserLocation(props.userLocation),
+      userName: new UserName(props.userName),
+      website: new Website(props.website),
+      year: new Year(props.year),
+    };
+  }
+
+  // 使われてない
+  static create(props: IUserProps): IUser {
+    const {
+      bio,
+      day,
+      followerCount,
+      followingCount,
+      headerImageURL,
+      month,
+      screenName,
+      userId,
+      userImageURL,
+      userLocation,
+      userName,
+      website,
+      year,
+    } = props;
+    const birthday = new Birthday({ day, month, year });
+    const profile = new Profile({
+      birthday,
+      bio,
+      headerImageURL,
+      screenName,
+      userImageURL,
+      userLocation,
+      userName,
+      website,
+    });
+
+    return new User({ profile, followerCount, followingCount, userId });
   }
 }

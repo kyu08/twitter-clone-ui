@@ -13,6 +13,7 @@ import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
 export class TweetApplicationService {
   static readonly tweetRepository: ITweetRepository = new InMemoryTweetRepository();
 
+  // todo tweetRepo を1つにまとめよう
   static readonly tweetRepositoryNew = new TweetRepository();
 
   static readonly tweetFactory = new TweetFactory();
