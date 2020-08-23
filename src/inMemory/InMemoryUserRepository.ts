@@ -127,8 +127,8 @@ export default class InMemoryUserRepository implements IUserRepository {
     return true;
   }
 
-  setUserIdToLocalStorage(userId: string): void {
-    localStorage.setItem('userId', userId);
+  setUserIdToLocalStorage(userId: UserId): void {
+    localStorage.setItem('userId', userId.userId);
   }
 
   getUserIdFromLocalStorage(): string | null {

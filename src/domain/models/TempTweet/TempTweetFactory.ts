@@ -6,10 +6,9 @@ import Content from '../Tweet/Content/Content';
 
 export class TempTweetFactory {
   createTempTweetDataModel(
-    userIdProp: string,
+    userId: UserId,
     contentProp: string,
   ): TempTweetDataModel {
-    const userId = new UserId(userIdProp);
     const content = new TempContent(contentProp);
     const tempTweet = new TempTweet({ userId, content });
 

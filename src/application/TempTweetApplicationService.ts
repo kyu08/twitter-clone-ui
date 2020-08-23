@@ -1,12 +1,13 @@
 import { TempTweetFactory } from '../domain/models/TempTweet/TempTweetFactory';
 import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
+import UserId from '../domain/models/User/UserId/UserId';
 
 export class TempTweetApplicationService {
   static readonly tempTweetFactory = new TempTweetFactory();
 
   static getTempTweetDataModel(
     tempTweetDataModel: TempTweetDataModel | undefined,
-    userId: string,
+    userId: UserId,
     contentEntered: string,
   ): TempTweetDataModel {
     if (!tempTweetDataModel) {
@@ -23,7 +24,7 @@ export class TempTweetApplicationService {
   }
 
   static createTempTweetDataModel(
-    userId: string,
+    userId: UserId,
     content: string,
   ): TempTweetDataModel {
     return TempTweetApplicationService.tempTweetFactory.createTempTweetDataModel(

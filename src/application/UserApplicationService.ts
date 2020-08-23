@@ -7,7 +7,6 @@ import { BirthdayProps } from '../domain/models/User/Profile/Birthday';
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
-  // todo InMemory <-> Production でさしかえる
   static readonly userRepository: IUserRepository = new InMemoryUserRepository();
 
   static getUserIdFromLocalStorage(): string | null {
@@ -72,9 +71,11 @@ export default class UserApplicationService {
     return this.userRepository.isAuthorized(screenName, password);
   }
 
-  static returnUserIdByScreenName(screenName: string): string {
-    return UserApplicationService.userRepository.returnUserIdByScreenName(
+  static returnUserIdByScreenName(screenName: string): UserId {
+    const userIdProp = UserApplicationService.userRepository.returnUserIdByScreenName(
       screenName,
     );
+
+    return new UserId(userIdProp);
   }
 }
