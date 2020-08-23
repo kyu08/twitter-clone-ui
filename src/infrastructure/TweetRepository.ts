@@ -2,7 +2,7 @@ import { hostURL } from '../util/Util';
 import { TempTweetData } from './TempTweetDataModel';
 
 export class TweetRepository {
-  fetchTimeline(): Promise<any> {
+  fetchTimeline(): Promise<Response> {
     return fetch(`${hostURL}/home/123`, {
       mode: 'cors',
     });

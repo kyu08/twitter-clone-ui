@@ -1,5 +1,4 @@
 import { TempTweetFactory } from '../domain/models/TempTweet/TempTweetFactory';
-import { TempTweet } from '../domain/models/TempTweet/ConcreteClasses/TempTweet';
 import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 
 export class TempTweetApplicationService {
@@ -44,8 +43,9 @@ export class TempTweetApplicationService {
   }
 
   static canSubmitTweet(tempTweetDataModel: TempTweetDataModel): boolean {
-    const { userId, content } = tempTweetDataModel;
-    const tempTweet = new TempTweet({ userId, content });
+    const tempTweet = TempTweetApplicationService.tempTweetFactory.createFromDataModel(
+      tempTweetDataModel,
+    );
 
     return tempTweet.canSubmit();
   }

@@ -1,29 +1,24 @@
-import UserId from '../domain/models/User/UserId/UserId';
-import TempContent from '../domain/models/TempTweet/TempContent';
 import { AbstractTempTweet } from '../domain/models/TempTweet/AbstractTempTweet';
 
 export type TempTweetData = { user_id: string; content: string };
 
-// todo 0822 value object 使わなくてもいい気がしてきたぞ
-// TempTweet が存在するので
-// けど TempTweet に形式を合わせる方がいいか？
 export class TempTweetDataModel {
-  readonly userId: UserId;
+  readonly userId: string;
 
-  readonly content: TempContent;
+  readonly content: string;
 
   constructor(props: AbstractTempTweet) {
     const { userId, content } = props;
-    this.userId = userId;
-    this.content = content;
+    this.userId = userId.userId;
+    this.content = content.content;
   }
 
   private getUserId(): string {
-    return this.userId.userId;
+    return this.userId;
   }
 
   private getContent(): string {
-    return this.content.content;
+    return this.content;
   }
 
   build(): TempTweetData {
