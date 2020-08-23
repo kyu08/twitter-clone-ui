@@ -17,14 +17,9 @@ export const HomeContainer: React.FC = () => {
   >([]);
 
   React.useEffect(() => {
-    // todo ここの中身も ApplicationService にまとめるべきでは
     (async () => {
-      const response = await TweetApplicationService.fetchTimeline().catch(
+      const tweetInstanceArray = await TweetApplicationService.getTimeLine().catch(
         (e) => e,
-      );
-      const resJson = await response.json();
-      const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
-        resJson,
       );
       setTweetDataModelArray(tweetInstanceArray);
     })();

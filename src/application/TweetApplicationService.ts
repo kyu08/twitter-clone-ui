@@ -18,6 +18,15 @@ export class TweetApplicationService {
 
   static readonly tweetFactory = new TweetFactory();
 
+  static async getTimeLine(): Promise<TweetDataModel[]> {
+    const response = await TweetApplicationService.fetchTimeline().catch(
+      (e) => e,
+    );
+    const resJson = await response.json();
+
+    return TweetApplicationService.toTweetInstanceArray(resJson);
+  }
+
   // インスタンス化して逆順にして返す
   static toTweetInstanceArray(jsonArray: TweetCreateProps[]): TweetDataModel[] {
     return jsonArray
@@ -72,31 +81,5 @@ export class TweetApplicationService {
 
   static test() {
     console.log(1);
-    // const tweetId = new TweetId(123);
-    // const screenName = new ScreenName('123');
-    // const content = new Content('this is content.');
-    // const retweetMap = new RetweetMap();
-    // const likeSet = new LikeSet();
-    // const createdAt = new Date();
-    // const updatedAt = new Date();
-    // const replyTo = tweetId;
-    // const props = {
-    //   tweetId,
-    //   screenName,
-    //   content,
-    //   retweetMap,
-    //   likeSet,
-    //   createdAt,
-    //   updatedAt,
-    //   replyTo,
-    // };
-    // const tweet = new Reply(props);
-    // const userA = new UserId(1234);
-    // // const userB = new UserId(12344);
-    // const tweetB = tweet.like(userA);
-    // const tweetC = tweetB.cancelLike(userA);
-    // console.log(tweetB);
-    // // const tweetC = tweetB.cancelLike(userA);
-    // console.log(tweetC);
   }
 }
