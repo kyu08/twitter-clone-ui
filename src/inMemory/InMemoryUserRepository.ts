@@ -59,6 +59,10 @@ export default class InMemoryUserRepository implements IUserRepository {
     return map;
   }
 
+  toInstanceUserId(userIdString: string): UserId {
+    return new UserId(userIdString);
+  }
+
   static SetToArray(userMap: Map<string, any>): Map<string, any> {
     userMap.forEach((user) => {
       // eslint-disable-next-line no-param-reassign

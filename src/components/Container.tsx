@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { RootComponent } from './RootComponent';
 import Store from '../Store';
 import UserApplicationService from '../application/UserApplicationService';
-import UserId from '../domain/models/User/UserId/UserId';
 
 export const Container: React.FC = () => {
   const store = Store.useStore();
@@ -12,8 +11,9 @@ export const Container: React.FC = () => {
   useEffect(() => {
     const userIdInLocalStorage = UserApplicationService.getUserIdFromLocalStorage();
     if (userIdInLocalStorage === null) return;
-    // todo 0824 repository で復元しよう
-    const userId = new UserId(userIdInLocalStorage);
+    const userId = UserApplicationService.toInstanceUserId(
+      userIdInLocalStorage,
+    );
     store.set('isLogin')(true);
     store.set('userId')(userId);
     // todo ここで UserDataModel インスタンスを store.set する

@@ -9,4 +9,5 @@ export interface IUserRepository {
   getUserIdFromLocalStorage(): string | null;
   removeUserIdFromLocalStorage(): void;
   returnUserIdByScreenName(screenName: string): string;
+  toInstanceUserId(userIdString: string): UserId;
 }

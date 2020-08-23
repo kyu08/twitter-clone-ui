@@ -13,6 +13,10 @@ export default class UserApplicationService {
     return this.userRepository.getUserIdFromLocalStorage();
   }
 
+  static toInstanceUserId(userIdString: string): UserId {
+    return this.userRepository.toInstanceUserId(userIdString);
+  }
+
   // todo login 中のユーザーの情報しかもってこれないようにする
   static findUserByUserId(userId: UserId): TODO<'User'> {
     return this.userRepository.getUserByUserId(userId);
@@ -48,24 +52,6 @@ export default class UserApplicationService {
     const updatedUser = user.updateBirthday(birthdayProps);
     UserApplicationService.userRepository.save(updatedUser);
   }
-
-  // static follow(currentUserId: UserId, targetUserId: UserId): void {
-  //   const currentUser = UserApplicationService.findUserByUserId(currentUserId);
-  //   const targetUser = UserApplicationService.findUserByUserId(targetUserId);
-  //   const currentUserUpdated = currentUser.follow(targetUserId);
-  //   const targetUserUpdated = targetUser.followed(currentUserId);
-  //   UserApplicationService.userRepository.save(currentUserUpdated);
-  //   UserApplicationService.userRepository.save(targetUserUpdated);
-  // }
-  //
-  // static unFollow(currentUserId: UserId, targetUserId: UserId): void {
-  //   const currentUser = UserApplicationService.findUserByUserId(currentUserId);
-  //   const targetUser = UserApplicationService.findUserByUserId(targetUserId);
-  //   const currentUserUpdated = currentUser.unFollow(targetUserId);
-  //   const targetUserUpdated = targetUser.unFollowed(currentUserId);
-  //   UserApplicationService.userRepository.save(currentUserUpdated);
-  //   UserApplicationService.userRepository.save(targetUserUpdated);
-  // }
 
   static isAuthorized(screenName: string, password: string): boolean {
     return this.userRepository.isAuthorized(screenName, password);
