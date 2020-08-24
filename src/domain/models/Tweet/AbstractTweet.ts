@@ -42,6 +42,7 @@ export abstract class AbstractTweet {
   readonly userName: UserName;
 
   protected constructor(props: AbstractTweetProps) {
+    ensurePropsContainsNoUndefined<AbstractTweetProps>(props);
     const {
       tweetId,
       screenName,
@@ -53,7 +54,6 @@ export abstract class AbstractTweet {
       userImageURL,
       userName,
     } = props;
-    ensurePropsContainsNoUndefined<AbstractTweetProps>(props);
     this.tweetId = tweetId;
     this.screenName = screenName;
     this.content = content;
@@ -63,10 +63,6 @@ export abstract class AbstractTweet {
     this.createdAt = createdAt;
     this.userImageURL = userImageURL;
     this.userName = userName;
-  }
-
-  getTweetId(): string {
-    return this.tweetId.tweetId;
   }
 
   howLongAgo(): string {

@@ -17,6 +17,7 @@ import Year from '../domain/models/User/Profile/Birthday/Year';
 import Birthday from '../domain/models/User/Profile/Birthday';
 import Profile from '../domain/models/User/Profile/Profile';
 import { User } from '../domain/models/User/User';
+import { IUser } from '../domain/models/User/IUser';
 
 export type userFull = {
   id: string;
@@ -38,15 +39,6 @@ export default class UserRepository implements IUserRepository {
     return new UserId(userIdString);
   }
 
-  // LS に 初期値を set
-  static initializeLocalStorage(): void {
-    const userMapInLocalStorage = localStorage.getItem('userMap');
-    if (!userMapInLocalStorage) {
-      const userMapJSON = JSON.stringify(inMemoryUserMap);
-      localStorage.setItem('userMap', userMapJSON);
-    }
-  }
-
   getUserJson(userId: UserId): Promise<Response> {
     const userIdString = userId.userId;
 
@@ -57,7 +49,7 @@ export default class UserRepository implements IUserRepository {
 
   returnUserIdByScreenName(screenName: string): string {
     let userIdFound;
-    inMemoryUserMap.forEach((user, userId) => {
+    inMemoryUserMap.forEach((user: IUser, userId: string) => {
       if (user.getScreenName().screenName === screenName) {
         userIdFound = userId;
       }
