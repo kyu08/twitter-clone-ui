@@ -1,11 +1,11 @@
 import * as _ from 'lodash';
 import UserId from '../domain/models/User/UserId/UserId';
-import {IUser} from '../domain/models/User/IUser';
-import {hostURL, TODO} from '../util/Util';
+import { IUser } from '../domain/models/User/IUser';
+import { hostURL, TODO } from '../util/Util';
 // eslint-disable-next-line import/no-cycle
-import {IUserRepository} from '../domain/models/User/IUserRepository';
-import {inMemoryUserMap, IProps, IUserProps} from './InMemoryUsers';
-import {ScreenNamePasswordMap} from './InMemoryScreenNamePassword';
+import { IUserRepository } from '../domain/models/User/IUserRepository';
+import { inMemoryUserMap, IProps, IUserProps } from './InMemoryUsers';
+import { ScreenNamePasswordMap } from './InMemoryScreenNamePassword';
 import Bio from '../domain/models/User/Profile/Bio';
 import Day from '../domain/models/User/Profile/Birthday/Day';
 import HeaderImageURL from '../domain/models/User/Profile/HeaderImageURL';
@@ -18,7 +18,7 @@ import Website from '../domain/models/User/Profile/Website';
 import Year from '../domain/models/User/Profile/Birthday/Year';
 import Birthday from '../domain/models/User/Profile/Birthday';
 import Profile from '../domain/models/User/Profile/Profile';
-import {User} from '../domain/models/User/User';
+import { User } from '../domain/models/User/User';
 
 export type userFull = {
   id: string;

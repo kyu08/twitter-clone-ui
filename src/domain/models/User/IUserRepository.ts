@@ -1,8 +1,8 @@
 import UserId from './UserId/UserId';
-import {IUser} from './IUser';
-import {User} from './User';
+import { IUser } from './IUser';
+import { User } from './User';
 // eslint-disable-next-line import/no-cycle
-import {userFull} from '../../../inMemory/InMemoryUserRepository';
+import { userFull } from '../../../inMemory/InMemoryUserRepository';
 
 export interface IUserRepository {
   getUserByUserId(userId: UserId): IUser;
