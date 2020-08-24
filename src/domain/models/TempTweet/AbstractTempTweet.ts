@@ -7,12 +7,12 @@ export interface AbstractTempTweetProps {
 }
 
 export abstract class AbstractTempTweet {
+  // todo tempContent にする...?
   readonly content: TempContent;
 
   readonly userId: UserId;
 
-  protected constructor(props: AbstractTempTweetProps) {
-    const { content, userId } = props;
+  protected constructor({ content, userId }: AbstractTempTweetProps) {
     this.content = content;
     this.userId = userId;
   }

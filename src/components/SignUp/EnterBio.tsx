@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Message } from '../Login/Message';
 import classes from './EnterBio.module.css';
 import { AlertMessage } from '../Login/AlertMessage';
-import { InputContainer } from '../Common/InputContainer';
+import { InputForm } from '../Common/InputForm';
 import { MAX_BIO_LENGTH } from '../../domain/models/User/Profile/Bio';
 
 type Props = {
@@ -14,15 +14,14 @@ type Props = {
   canGoToPage4: boolean;
 };
 
-export const EnterBio: React.FC<Props> = (props) => {
-  const {
-    backToPreviousPage,
-    bio,
-    canGoToPage4,
-    goToNextPage,
-    handleChangeBio,
-    isValidBio,
-  } = props;
+export const EnterBio: React.FC<Props> = ({
+  backToPreviousPage,
+  bio,
+  canGoToPage4,
+  goToNextPage,
+  handleChangeBio,
+  isValidBio,
+}) => {
   const alertMessage = `自己紹介は1~${MAX_BIO_LENGTH}文字で入力してください`;
 
   return (
@@ -30,7 +29,7 @@ export const EnterBio: React.FC<Props> = (props) => {
       <Message message="自己紹介を入力してください 3/4" />
       <div className={classes.ButtonContainer}>
         {!isValidBio && <AlertMessage alertMessage={alertMessage} />}
-        <InputContainer
+        <InputForm
           labelTitle="自己紹介"
           inputType="text"
           value={bio}

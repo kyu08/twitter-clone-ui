@@ -12,15 +12,13 @@ type Props = {
   canGoToPage3: boolean;
 };
 
-export const EnterUserImage: React.FC<Props> = (props) => {
-  const {
-    backToPreviousPage,
-    canGoToPage3,
-    goToNextPage,
-    selectImage,
-    userImage,
-  } = props;
-
+export const EnterUserImage: React.FC<Props> = ({
+  backToPreviousPage,
+  canGoToPage3,
+  goToNextPage,
+  selectImage,
+  userImage,
+}) => {
   return (
     <div>
       <Message message="プロフォール画像を選ぶ 2/4" />

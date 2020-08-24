@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Logo } from './Login/Logo';
-import classes from './SignUpContainer.module.css';
 import { EnterProfile } from './SignUp/EnterProfile';
 import { EnterUserImage } from './SignUp/EnterUserImage';
 import { EnterBio } from './SignUp/EnterBio';
@@ -13,14 +12,11 @@ import { Confirm } from './SignUp/Confirm';
 import { MAX_SCREEN_NAME_LENGTH } from '../domain/models/User/Profile/ScreenName';
 import { MAX_USER_NAME_LENGTH } from '../domain/models/User/Profile/UserName';
 import { TODO } from '../util/Util';
+import Store from '../Store';
 
-type Props = {
-  isLogin: boolean;
-};
-
-// todo container と presentation にわけよう
-export const SignUpContainer: React.FC<Props> = (props) => {
-  const { isLogin } = props;
+export const SignUpContainer: React.FC = () => {
+  const store = Store.useStore();
+  const isLogin = store.get('userId');
 
   // State
 
@@ -93,6 +89,7 @@ export const SignUpContainer: React.FC<Props> = (props) => {
 
   const judgeCanGoNextPage = ({
     // isValidHoge はあくまでエラーメッセージコンポーネントを表示するためのフラグなのでここで改めて判定する必要がある。
+    // todo ここでやるべきではない
     isRightUserName = userName.length > 0 &&
       userName.length <= MAX_USER_NAME_LENGTH,
     isRightScreenName = screenName.length > 0 &&
@@ -271,77 +268,75 @@ export const SignUpContainer: React.FC<Props> = (props) => {
     <>
       <>
         {isLogin && <Redirect to="/" />}
-        <div className={classes.SignUp}>
-          <Logo />
-          {pageNumber === 1 && (
-            <EnterProfile
-              goToNextPage={goToNextPage}
-              canGoNextPage={canGoNextPage}
-              screenName={screenName}
-              handleChangeScreenName={handleChangeScreenName}
-              isValidScreenName={isValidScreenName}
-              userName={userName}
-              handleChangeUserName={handleChangeUserName}
-              isValidUserName={isValidUserName}
-              year={year}
-              month={month}
-              day={day}
-              monthArray={generateMonthArray()}
-              dayArray={generateDayArray()}
-              yearArray={generateYearArray()}
-              handleChangeMonth={handleChangeMonth}
-              handleChangeDay={handleChangeDay}
-              handleChangeYear={handleChangeYear}
-              isValidDate={isValidDate()}
-              password={password}
-              handleChangePassword={handleChangePassword}
-              isValidPassword={isValidPassword}
-            />
-          )}
-          {pageNumber === 2 && (
-            <EnterUserImage
-              backToPreviousPage={backToPreviousPage}
-              goToNextPage={goToNextPage}
-              userImage={userImage}
-              canGoToPage3={canGoToPage3}
-              selectImage={selectImage}
-            />
-          )}
-          {pageNumber === 3 && (
-            <EnterBio
-              goToNextPage={goToNextPage}
-              backToPreviousPage={backToPreviousPage}
-              bio={bio}
-              canGoToPage4={canGoToPage4}
-              handleChangeBio={handleChangeBio}
-              isValidBio={isValidBio}
-            />
-          )}
-          {pageNumber === 4 && (
-            <EnterUserLocation
-              goToNextPage={goToNextPage}
-              backToPreviousPage={backToPreviousPage}
-              canGoToPage5={canGoToPage5}
-              handleChangeUserLocation={handleChangeUserLocation}
-              isValidUserLocation={isValidUserLocation}
-              userLocation={userLocation}
-            />
-          )}
-          {pageNumber === 5 && (
-            <Confirm
-              backToPreviousPage={backToPreviousPage}
-              bio={bio}
-              userImage={userImage}
-              year={year}
-              day={day}
-              month={month}
-              userName={userName}
-              screenName={screenName}
-              userLocation={userLocation}
-              password={convertPassword()}
-            />
-          )}
-        </div>
+        <Logo />
+        {pageNumber === 1 && (
+          <EnterProfile
+            goToNextPage={goToNextPage}
+            canGoNextPage={canGoNextPage}
+            screenName={screenName}
+            handleChangeScreenName={handleChangeScreenName}
+            isValidScreenName={isValidScreenName}
+            userName={userName}
+            handleChangeUserName={handleChangeUserName}
+            isValidUserName={isValidUserName}
+            year={year}
+            month={month}
+            day={day}
+            monthArray={generateMonthArray()}
+            dayArray={generateDayArray()}
+            yearArray={generateYearArray()}
+            handleChangeMonth={handleChangeMonth}
+            handleChangeDay={handleChangeDay}
+            handleChangeYear={handleChangeYear}
+            isValidDate={isValidDate()}
+            password={password}
+            handleChangePassword={handleChangePassword}
+            isValidPassword={isValidPassword}
+          />
+        )}
+        {pageNumber === 2 && (
+          <EnterUserImage
+            backToPreviousPage={backToPreviousPage}
+            goToNextPage={goToNextPage}
+            userImage={userImage}
+            canGoToPage3={canGoToPage3}
+            selectImage={selectImage}
+          />
+        )}
+        {pageNumber === 3 && (
+          <EnterBio
+            goToNextPage={goToNextPage}
+            backToPreviousPage={backToPreviousPage}
+            bio={bio}
+            canGoToPage4={canGoToPage4}
+            handleChangeBio={handleChangeBio}
+            isValidBio={isValidBio}
+          />
+        )}
+        {pageNumber === 4 && (
+          <EnterUserLocation
+            goToNextPage={goToNextPage}
+            backToPreviousPage={backToPreviousPage}
+            canGoToPage5={canGoToPage5}
+            handleChangeUserLocation={handleChangeUserLocation}
+            isValidUserLocation={isValidUserLocation}
+            userLocation={userLocation}
+          />
+        )}
+        {pageNumber === 5 && (
+          <Confirm
+            backToPreviousPage={backToPreviousPage}
+            bio={bio}
+            userImage={userImage}
+            year={year}
+            day={day}
+            month={month}
+            userName={userName}
+            screenName={screenName}
+            userLocation={userLocation}
+            password={convertPassword()}
+          />
+        )}
       </>
     </>
   );

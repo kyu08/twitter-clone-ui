@@ -19,8 +19,8 @@ export interface AbstractTweetProps {
 }
 
 // memo 以下の理由で abstract class で実装
-// sub class の constructor がシンプルにかける
-// base class であることがわかりやすい
+// - sub class の constructor がシンプルにかける
+// - abstract class な方が base class であることがわかりやすいし抽象から具象を作る方がしっくりくる
 // けど abstract method ないなら ふつうに class で書くべき...?
 export abstract class AbstractTweet {
   readonly tweetId: TweetId;
@@ -42,6 +42,7 @@ export abstract class AbstractTweet {
   readonly userName: UserName;
 
   protected constructor(props: AbstractTweetProps) {
+    ensurePropsContainsNoUndefined<AbstractTweetProps>(props);
     const {
       tweetId,
       screenName,
@@ -53,7 +54,6 @@ export abstract class AbstractTweet {
       userImageURL,
       userName,
     } = props;
-    ensurePropsContainsNoUndefined<AbstractTweetProps>(props);
     this.tweetId = tweetId;
     this.screenName = screenName;
     this.content = content;
@@ -63,10 +63,6 @@ export abstract class AbstractTweet {
     this.createdAt = createdAt;
     this.userImageURL = userImageURL;
     this.userName = userName;
-  }
-
-  getTweetId(): string {
-    return this.tweetId.tweetId;
   }
 
   howLongAgo(): string {

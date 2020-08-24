@@ -46,22 +46,21 @@ export interface IUserProps {
   userId: UserId;
 }
 
-const userFactory = (props: IUserProps) => {
-  const {
-    bio,
-    day,
-    followerCount,
-    followingCount,
-    headerImageURL,
-    month,
-    screenName,
-    userId,
-    userImageURL,
-    userLocation,
-    userName,
-    website,
-    year,
-  } = props;
+const userFactory = ({
+  bio,
+  day,
+  followerCount,
+  followingCount,
+  headerImageURL,
+  month,
+  screenName,
+  userId,
+  userImageURL,
+  userLocation,
+  userName,
+  website,
+  year,
+}: IUserProps) => {
   const birthday = new Birthday({ day, month, year });
   const profile = new Profile({
     birthday,
@@ -124,8 +123,6 @@ const userC = userFactory({
   followingCount: 10000,
   userId: new UserId('7e275e25-e12f-408b-b3e7-32a65c1553cc'),
 });
-
-export const inMemoryUsers: IUser[] = [userA, userB, userC];
 
 export const inMemoryUserMap: Map<string, IUser> = new Map([
   [userA.userId.userId, userA],

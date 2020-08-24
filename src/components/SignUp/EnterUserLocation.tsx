@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Message } from '../Login/Message';
 import classes from './EnterBio.module.css';
 import { AlertMessage } from '../Login/AlertMessage';
-import { InputContainer } from '../Common/InputContainer';
+import { InputForm } from '../Common/InputForm';
 import { MAX_USER_LOCATION_LENGTH } from '../../domain/models/User/Profile/UserLocation';
 
 type Props = {
@@ -14,16 +14,14 @@ type Props = {
   canGoToPage5: boolean;
 };
 
-export const EnterUserLocation: React.FC<Props> = (props) => {
-  const {
-    backToPreviousPage,
-    canGoToPage5,
-    goToNextPage,
-    handleChangeUserLocation,
-    isValidUserLocation,
-    userLocation,
-  } = props;
-
+export const EnterUserLocation: React.FC<Props> = ({
+  backToPreviousPage,
+  canGoToPage5,
+  goToNextPage,
+  handleChangeUserLocation,
+  isValidUserLocation,
+  userLocation,
+}) => {
   const alertMessage = `User Locationは1~${MAX_USER_LOCATION_LENGTH}文字で入力してください`;
 
   return (
@@ -31,7 +29,7 @@ export const EnterUserLocation: React.FC<Props> = (props) => {
       <Message message="User Locationを入力してください 4/4" />
       <div className={classes.ButtonContainer}>
         {!isValidUserLocation && <AlertMessage alertMessage={alertMessage} />}
-        <InputContainer
+        <InputForm
           labelTitle="UserLocation"
           inputType="text"
           value={userLocation}

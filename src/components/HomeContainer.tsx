@@ -1,49 +1,43 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Header } from './Timeline/Common/Header';
-import { Timeline } from './Timeline/Timeline';
-import { Footer } from './Timeline/Common/Footer';
+import { Header } from './Home/Common/Header';
+import { Timeline } from './Home/Timeline';
+import { Footer } from './Home/Common/Footer';
 import Store from '../Store';
 import { TweetApplicationService } from '../application/TweetApplicationService';
-import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
+import { HomeHeaderContent } from './Home/HomeHeaderContent';
+import { TweetDataModel } from '../infrastructure/TweetDataModel';
 
-type Props = {
-  isLogin: boolean;
-  setIsLogin(boolean: boolean): void;
-};
-
-export const HomeContainer: React.FC<Props> = (props) => {
-  const { isLogin, setIsLogin } = props;
+export const HomeContainer: React.FC = () => {
   const store = Store.useStore();
-  const [tweetArray, setTweetArray] = React.useState<Tweet[]>([]);
+  const isLogin = store.get('isLogin');
+
+  const [tweetDataModelArray, setTweetDataModelArray] = React.useState<
+    TweetDataModel[]
+  >([]);
 
   React.useEffect(() => {
-    TweetApplicationService.fetchTimeline()
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        const tweetInstanceArray = TweetApplicationService.toTweetInstanceArray(
-          json,
-        );
-        setTweetArray(tweetInstanceArray);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    (async () => {
+      const tweetInstanceArray = await TweetApplicationService.getTimeLine().catch(
+        (e) => e,
+      );
+      setTweetDataModelArray(tweetInstanceArray);
+    })();
   }, []);
 
   const logout = (): void => {
     store.set('userId')(undefined);
-    setIsLogin(false);
+    store.set('isLogin')(false);
   };
 
   return (
     <>
       {!isLogin && <Redirect to="/" />}
-      {tweetArray === [] && <div>loading</div>}
-      <Header logout={logout} />
-      <Timeline tweetArray={tweetArray} />
+      {tweetDataModelArray === [] && <div>loading</div>}
+      <Header logout={logout}>
+        <HomeHeaderContent logout={logout} />
+      </Header>
+      <Timeline tweetDataModelArray={tweetDataModelArray} />
       <Footer />
     </>
   );

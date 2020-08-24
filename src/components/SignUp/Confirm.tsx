@@ -16,20 +16,18 @@ type Props = {
   password: string;
 };
 
-export const Confirm: React.FC<Props> = (props) => {
-  const {
-    backToPreviousPage,
-    bio,
-    day,
-    month,
-    screenName,
-    userImage,
-    userLocation,
-    userName,
-    year,
-    password,
-  } = props;
-
+export const Confirm: React.FC<Props> = ({
+  backToPreviousPage,
+  bio,
+  day,
+  month,
+  screenName,
+  userImage,
+  userLocation,
+  userName,
+  year,
+  password,
+}) => {
   return (
     <>
       <Message message="以下の内容でよろしいですか？" />

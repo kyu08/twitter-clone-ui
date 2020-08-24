@@ -8,15 +8,12 @@ type Props = {
   optionNumber: number;
 };
 
-export const SelectDate: React.FC<Props> = (props) => {
-  const { labelTitle, optionArray, handleChange, optionNumber } = props;
-  // const [day, setDay] = React.useState(1);
-
-  // const handleChangeDay = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-  //   const dayEntered = Number(e.currentTarget.value);
-  //   setDay(dayEntered);
-  // };
-
+export const SelectDate: React.FC<Props> = ({
+  labelTitle,
+  optionArray,
+  handleChange,
+  optionNumber,
+}) => {
   return (
     <div className={classes.InputContainer}>
       <label className={classes.InputLabel}>
@@ -26,9 +23,7 @@ export const SelectDate: React.FC<Props> = (props) => {
           value={optionNumber}
           onChange={(e) => handleChange(e)}
         >
-          {/* eslint-disable-next-line no-shadow */}
           {optionArray.map((option, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <option value={option} key={index}>
               {option}
             </option>

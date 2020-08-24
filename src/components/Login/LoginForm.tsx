@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classes from './LoginForm.module.css';
-import { InputContainer } from '../Common/InputContainer';
+import { InputForm } from '../Common/InputForm';
 import { LinkToSignUp } from './LinkToSignUp';
 
 type Props = {
@@ -11,26 +11,24 @@ type Props = {
   login(): void;
 };
 
-export const LoginForm: React.FC<Props> = (props) => {
-  const {
-    screenName,
-    handleChangeScreenName,
-    password,
-    handleChangePassword,
-    login,
-  } = props;
-
+export const LoginForm: React.FC<Props> = ({
+  screenName,
+  handleChangeScreenName,
+  password,
+  handleChangePassword,
+  login,
+}) => {
   return (
     <>
       <div className={classes.ButtonContainer}>
         <form>
-          <InputContainer
+          <InputForm
             labelTitle="ユーザ名"
             inputType="text"
             value={screenName}
             handleChangeValue={handleChangeScreenName}
           />
-          <InputContainer
+          <InputForm
             labelTitle="パスワード"
             inputType="password"
             value={password}

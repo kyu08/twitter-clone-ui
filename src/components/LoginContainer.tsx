@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
-import classes from './LoginContainer.module.css';
 import { Logo } from './Login/Logo';
 import { Message } from './Login/Message';
 import { LoginForm } from './Login/LoginForm';
@@ -8,18 +7,13 @@ import UserApplicationService from '../application/UserApplicationService';
 import Store from '../Store';
 import { AlertMessage } from './Login/AlertMessage';
 
-type Props = {
-  setIsLogin(boolean: boolean): void;
-  isLogin: boolean;
-};
+export const LoginContainer: React.FC = () => {
+  const store = Store.useStore();
+  const isLogin = store.get('isLogin');
 
-// todo container と presentation にわけよう
-export const LoginContainer: React.FC<Props> = (props) => {
-  const { setIsLogin, isLogin } = props;
   const [screenName, setScreenName] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [isInvalidLogin, setIsInvalidLogin] = React.useState<boolean>(false);
-  const store = Store.useStore();
 
   const authorize = (screenNameAuth: string, passwordAuth: string): boolean => {
     return UserApplicationService.isAuthorized(screenNameAuth, passwordAuth);
@@ -31,7 +25,7 @@ export const LoginContainer: React.FC<Props> = (props) => {
 
     if (isAuthorized) {
       store.set('userId')(userId);
-      setIsLogin(true);
+      store.set('isLogin')(true);
 
       return;
     }
@@ -49,20 +43,18 @@ export const LoginContainer: React.FC<Props> = (props) => {
   return (
     <>
       {isLogin && <Redirect to="/" />}
-      <div className={classes.Login}>
-        <Logo />
-        <Message message="Twitterにログイン" />
-        {isInvalidLogin && (
-          <AlertMessage alertMessage="入力されたユーザー名やパスワードが正しくありません。確認してからやりなおしてください。" />
-        )}
-        <LoginForm
-          login={login}
-          screenName={screenName}
-          handleChangeScreenName={handleChangeScreenName}
-          password={password}
-          handleChangePassword={handleChangePassword}
-        />
-      </div>
+      <Logo />
+      <Message message="Twitterにログイン" />
+      {isInvalidLogin && (
+        <AlertMessage alertMessage="入力されたユーザー名やパスワードが正しくありません。確認してからやりなおしてください。" />
+      )}
+      <LoginForm
+        login={login}
+        screenName={screenName}
+        handleChangeScreenName={handleChangeScreenName}
+        password={password}
+        handleChangePassword={handleChangePassword}
+      />
     </>
   );
 };
