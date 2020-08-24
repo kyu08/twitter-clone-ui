@@ -1,15 +1,19 @@
 import UserId from '../domain/models/User/UserId/UserId';
-import { TODO } from '../util/Util';
+import {TODO} from '../util/Util';
 import InMemoryUserRepository from '../inMemory/InMemoryUserRepository';
-import { IUserRepository } from '../domain/models/User/IUserRepository';
-import { BirthdayProps } from '../domain/models/User/Profile/Birthday';
+import {IUserRepository} from '../domain/models/User/IUserRepository';
+import {BirthdayProps} from '../domain/models/User/Profile/Birthday';
+import {UserDataModel} from '../infrastructure/UserDataModel';
+import {UserFactory} from '../domain/models/User/UserFactory';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
   static readonly userRepository: IUserRepository = new InMemoryUserRepository();
 
-  static getUserIdFromLocalStorage(): string | null {
+  static readonly userFactory = new UserFactory();
+
+  static getUserIdFromLocalStorage(): UserId | null {
     return this.userRepository.getUserIdFromLocalStorage();
   }
 
@@ -20,6 +24,17 @@ export default class UserApplicationService {
   // todo login 中のユーザーの情報しかもってこれないようにする
   static findUserByUserId(userId: UserId): TODO<'User'> {
     return this.userRepository.getUserByUserId(userId);
+  }
+
+  static async getCurrentUser(userId: UserId): Promise<UserDataModel> {
+    const userData = await this.userRepository
+      .getUserJson(userId)
+      .catch((e) => e);
+    const userJson = await userData.json();
+    const user = this.userRepository.toInstance(userJson);
+    const userDataModel = this.userFactory.createUserDataModel(user);
+
+    return userDataModel;
   }
 
   // todo パラメータごとにsaveメソッドを分けるかどうかはバックエンドと相談(とりあえずわけずにいく)

@@ -1,10 +1,11 @@
 import * as _ from 'lodash';
 import UserId from '../domain/models/User/UserId/UserId';
-import { IUser } from '../domain/models/User/IUser';
-import { TODO } from '../util/Util';
-import { IUserRepository } from '../domain/models/User/IUserRepository';
-import { inMemoryUserMap, IProps, IUserProps } from './InMemoryUsers';
-import { ScreenNamePasswordMap } from './InMemoryScreenNamePassword';
+import {IUser} from '../domain/models/User/IUser';
+import {hostURL, TODO} from '../util/Util';
+// eslint-disable-next-line import/no-cycle
+import {IUserRepository} from '../domain/models/User/IUserRepository';
+import {inMemoryUserMap, IProps, IUserProps} from './InMemoryUsers';
+import {ScreenNamePasswordMap} from './InMemoryScreenNamePassword';
 import Bio from '../domain/models/User/Profile/Bio';
 import Day from '../domain/models/User/Profile/Birthday/Day';
 import HeaderImageURL from '../domain/models/User/Profile/HeaderImageURL';
@@ -17,7 +18,22 @@ import Website from '../domain/models/User/Profile/Website';
 import Year from '../domain/models/User/Profile/Birthday/Year';
 import Birthday from '../domain/models/User/Profile/Birthday';
 import Profile from '../domain/models/User/Profile/Profile';
-import { User } from '../domain/models/User/User';
+import {User} from '../domain/models/User/User';
+
+export type userFull = {
+  id: string;
+  screen_name: string;
+  user_name: string;
+  header_image_url: string;
+  user_image_url: string;
+  bio: string;
+  birthday: string;
+  user_location: string;
+  website: string;
+  created_at: string;
+  followerCount: number;
+  followingCount: number;
+};
 
 export default class InMemoryUserRepository implements IUserRepository {
   // todo これたぶん使う必要ない
@@ -83,6 +99,14 @@ export default class InMemoryUserRepository implements IUserRepository {
     }
   }
 
+  getUserJson(userId: UserId): Promise<Response> {
+    const userIdString = userId.userId;
+
+    return fetch(`${hostURL}/user/${userIdString}/full`, {
+      mode: 'cors',
+    });
+  }
+
   getUserByUserId(userId: UserId): IUser {
     const userMap = InMemoryUserRepository.returnUserMap();
     let user: IUser;
@@ -135,8 +159,11 @@ export default class InMemoryUserRepository implements IUserRepository {
     localStorage.setItem('userId', userId.userId);
   }
 
-  getUserIdFromLocalStorage(): string | null {
-    return localStorage.getItem('userId');
+  getUserIdFromLocalStorage(): UserId | null {
+    const userIdInLocalStorage = localStorage.getItem('userId');
+    if (!userIdInLocalStorage) return null;
+
+    return this.toInstanceUserId(userIdInLocalStorage);
   }
 
   removeUserIdFromLocalStorage(): void {
@@ -144,10 +171,13 @@ export default class InMemoryUserRepository implements IUserRepository {
   }
 
   // 使われてない
-  static createUserPropsFromJSON(propsJSON: TODO<'userPropsJSON'>): IUserProps {
-    const { followerCount, followingCount, userId, profile } = propsJSON;
-
-    const props = {
+  static createUserPropsFromJSON({
+    followerCount,
+    followingCount,
+    userId,
+    profile,
+  }: TODO<'userPropsJSON'>): IUserProps {
+    return InMemoryUserRepository.createProps({
       bio: profile.bio.bio,
       day: profile.birthday.day.day,
       followerCount,
@@ -161,27 +191,39 @@ export default class InMemoryUserRepository implements IUserRepository {
       userName: profile.userName.userName,
       website: profile.website.website,
       year: profile.birthday.year.year,
-    };
-
-    return InMemoryUserRepository.createProps(props);
+    });
   }
 
   // 使われてない
-  static createProps(props: IProps): IUserProps {
+  static createProps({
+    bio,
+    day,
+    followerCount,
+    followingCount,
+    headerImageURL,
+    month,
+    screenName,
+    userId,
+    userImageURL,
+    userLocation,
+    userName,
+    website,
+    year,
+  }: IProps): IUserProps {
     return {
-      bio: new Bio(props.bio),
-      day: new Day(props.day),
-      followerCount: props.followerCount,
-      followingCount: props.followingCount,
-      headerImageURL: new HeaderImageURL(props.headerImageURL),
-      month: new Month(props.month),
-      screenName: new ScreenName(props.screenName),
-      userId: new UserId(props.userId),
-      userImageURL: new UserImageURL(props.userImageURL),
-      userLocation: new UserLocation(props.userLocation),
-      userName: new UserName(props.userName),
-      website: new Website(props.website),
-      year: new Year(props.year),
+      bio: new Bio(bio),
+      day: new Day(day),
+      followerCount,
+      followingCount,
+      headerImageURL: new HeaderImageURL(headerImageURL),
+      month: new Month(month),
+      screenName: new ScreenName(screenName),
+      userId: new UserId(userId),
+      userImageURL: new UserImageURL(userImageURL),
+      userLocation: new UserLocation(userLocation),
+      userName: new UserName(userName),
+      website: new Website(website),
+      year: new Year(year),
     };
   }
 
@@ -215,5 +257,43 @@ export default class InMemoryUserRepository implements IUserRepository {
     });
 
     return new User({ profile, followerCount, followingCount, userId });
+  }
+
+  toInstance({
+    id: userId,
+    screen_name: screenName,
+    user_name: userName,
+    header_image_url: headerImageURL,
+    user_image_url: userImageURL,
+    bio,
+    birthday: birthdayProp,
+    user_location: userLocation,
+    website,
+    // created_at: createdAt,
+    followerCount,
+    followingCount,
+  }: userFull): User {
+    const date = new Date(birthdayProp);
+    const year = new Year(date.getFullYear());
+    const month = new Month(date.getMonth() + 1);
+    const day = new Day(date.getDate());
+    const profileProps = {
+      screenName: new ScreenName(screenName),
+      userName: new UserName(userName),
+      headerImageURL: new HeaderImageURL(headerImageURL),
+      userImageURL: new UserImageURL(userImageURL),
+      bio: new Bio(bio),
+      birthday: new Birthday({ year, month, day }),
+      userLocation: new UserLocation(userLocation),
+      website: new Website(website),
+    };
+    const profile = new Profile(profileProps);
+
+    return new User({
+      profile,
+      followerCount,
+      followingCount,
+      userId: new UserId(userId),
+    });
   }
 }

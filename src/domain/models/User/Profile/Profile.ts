@@ -3,7 +3,7 @@ import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
-import Birthday, { BirthdayProps, IBirthday } from './Birthday';
+import Birthday, {BirthdayProps, IBirthday} from './Birthday';
 import UserImageURL from './UserImageURL';
 import HeaderImageURL from './HeaderImageURL';
 import Day from './Birthday/Day';
@@ -21,7 +21,7 @@ interface ProfileProps {
   readonly website: Website;
 }
 
-// note UserImageURL, bio, userLocation, website optional にするかも
+// note UserImageURL, birthday optional にするかも
 export default class Profile {
   readonly screenName: ScreenName;
 
