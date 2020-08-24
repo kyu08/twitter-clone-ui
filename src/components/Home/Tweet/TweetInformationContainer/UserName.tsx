@@ -5,8 +5,6 @@ interface UserNameProps {
   userName: string;
 }
 
-export const UserName: React.FC<UserNameProps> = (props) => {
-  const { userName } = props;
-
+export const UserName: React.FC<UserNameProps> = ({ userName }) => {
   return <div className={classes.UserName}>{userName}</div>;
 };

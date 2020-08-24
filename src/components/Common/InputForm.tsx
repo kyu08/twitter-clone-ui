@@ -8,9 +8,12 @@ type Props = {
   handleChangeValue(e: React.ChangeEvent<HTMLInputElement>): void;
 };
 
-export const InputForm: React.FC<Props> = (props) => {
-  const { labelTitle, inputType, value, handleChangeValue } = props;
-
+export const InputForm: React.FC<Props> = ({
+  labelTitle,
+  inputType,
+  value,
+  handleChangeValue,
+}) => {
   return (
     <div className={classes.InputContainer}>
       <label className={classes.InputLabel}>

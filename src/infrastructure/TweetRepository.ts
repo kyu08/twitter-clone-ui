@@ -26,19 +26,17 @@ export class TweetRepository {
     });
   }
 
-  createTweet(props: TweetCreateProps): Tweet {
-    const {
-      content: contentProps,
-      replyCount: replyCountProps,
-      likeCount: likeCountProps,
-      retweetCount: retweetCountProps,
-      tweetId: tweetIdProps,
-      createdAt: createdAtProps,
-      screenName: screenNameProps,
-      userImageURL: userImageURLProps,
-      userName: userNameProps,
-    } = props;
-
+  createTweet({
+    content: contentProps,
+    replyCount: replyCountProps,
+    likeCount: likeCountProps,
+    retweetCount: retweetCountProps,
+    tweetId: tweetIdProps,
+    createdAt: createdAtProps,
+    screenName: screenNameProps,
+    userImageURL: userImageURLProps,
+    userName: userNameProps,
+  }: TweetCreateProps): Tweet {
     const content = new Content(contentProps);
     const replyCount = replyCountProps;
     const likeCount = likeCountProps;

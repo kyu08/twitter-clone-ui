@@ -7,8 +7,7 @@ export class TempTweetDataModel {
 
   readonly content: string;
 
-  constructor(props: AbstractTempTweet) {
-    const { userId, content } = props;
+  constructor({ userId, content }: AbstractTempTweet) {
     this.userId = userId.userId;
     this.content = content.content;
   }

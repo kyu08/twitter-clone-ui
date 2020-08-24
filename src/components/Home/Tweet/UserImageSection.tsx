@@ -7,9 +7,10 @@ type Props = {
   imageSize: number;
 };
 
-export const UserImageSection: React.FC<Props> = (props) => {
-  const { userImageURL, imageSize } = props;
-
+export const UserImageSection: React.FC<Props> = ({
+  userImageURL,
+  imageSize,
+}) => {
   const Img = styled.img`
     font-size: 5px;
     margin: 10px;

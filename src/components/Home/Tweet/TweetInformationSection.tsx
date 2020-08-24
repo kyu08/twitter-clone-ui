@@ -11,9 +11,11 @@ type Props = {
   howLongAgo: string;
 };
 
-export const TweetInformationSection: React.FC<Props> = (props) => {
-  const { howLongAgo, screenName, userName } = props;
-
+export const TweetInformationSection: React.FC<Props> = ({
+  howLongAgo,
+  screenName,
+  userName,
+}) => {
   return (
     <div className={classes.TweetInformationContainer}>
       <UserName userName={userName} />

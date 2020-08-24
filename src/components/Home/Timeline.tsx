@@ -7,9 +7,7 @@ type Props = {
   tweetDataModelArray: TweetDataModel[];
 };
 
-export const Timeline: React.FC<Props> = (props) => {
-  const { tweetDataModelArray } = props;
-
+export const Timeline: React.FC<Props> = ({ tweetDataModelArray }) => {
   return (
     <div className={classes.Timeline}>
       {/* todo #112 Tweet / Reply / Retweet component だしわけ関数実装する*/}

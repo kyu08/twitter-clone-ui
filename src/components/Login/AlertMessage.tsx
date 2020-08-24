@@ -5,14 +5,10 @@ type Props = {
   alertMessage: string;
 };
 
-export const AlertMessage: React.FC<Props> = (props) => {
-  const { alertMessage } = props;
-
+export const AlertMessage: React.FC<Props> = ({ alertMessage }) => {
   return (
     <div className={classes.InvalidLogin}>
-      <span>
-        {alertMessage}
-      </span>
+      <span>{alertMessage}</span>
     </div>
   );
 };

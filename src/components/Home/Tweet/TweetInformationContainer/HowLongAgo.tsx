@@ -5,8 +5,6 @@ interface HowLongAgoProps {
   howLongAgo: string;
 }
 
-export const HowLongAgo: React.FC<HowLongAgoProps> = (props) => {
-  const { howLongAgo } = props;
-
+export const HowLongAgo: React.FC<HowLongAgoProps> = ({ howLongAgo }) => {
   return <div className={classes.HowLongAgo}>{howLongAgo}</div>;
 };

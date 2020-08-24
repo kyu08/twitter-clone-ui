@@ -1,7 +1,4 @@
 import * as React from 'react';
-import RepeatOutlinedIcon from '@material-ui/icons/RepeatOutlined';
-import { TweetCard } from './TweetCard';
-import { TweetMessage } from './Tweet/Common/TweetMessage';
 
 type Props = {
   userImage: string;
@@ -14,18 +11,16 @@ type Props = {
   content: string;
 };
 
-export const Retweet: React.FC<Props> = (props) => {
-  const {
-    content,
-    howLongAgo,
-    likeNumber,
-    replyNumber,
-    retweetNumber,
-    screenName,
-    userImage,
-    userName,
-  } = props;
-
+export const Retweet: React.FC<Props> = ({
+  content,
+  howLongAgo,
+  likeNumber,
+  replyNumber,
+  retweetNumber,
+  screenName,
+  userImage,
+  userName,
+}) => {
   const message = 'さんがリツイート';
 
   return (

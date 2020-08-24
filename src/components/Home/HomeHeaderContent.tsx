@@ -7,8 +7,7 @@ type Props = {
   logout?(): void;
 };
 
-export const HomeHeaderContent: React.FC<Props> = (props) => {
-  const { logout } = props;
+export const HomeHeaderContent: React.FC<Props> = ({ logout }) => {
   const imageSize = 30;
   // todo これ動的にしよう -> まずは undux でグローバル管理にするところから
   const userImageURL =

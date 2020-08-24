@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { TweetCard } from './TweetCard';
-import { TweetMessage } from './Tweet/Common/TweetMessage';
 
 type Props = {
   userImage: string;
@@ -14,19 +12,17 @@ type Props = {
   replyTo: string;
 };
 
-export const Reply: React.FC<Props> = (props) => {
-  const {
-    content,
-    howLongAgo,
-    likeNumber,
-    replyNumber,
-    retweetNumber,
-    screenName,
-    userImage,
-    userName,
-    replyTo,
-  } = props;
-
+export const Reply: React.FC<Props> = ({
+  content,
+  howLongAgo,
+  likeNumber,
+  replyNumber,
+  retweetNumber,
+  screenName,
+  userImage,
+  userName,
+  replyTo,
+}) => {
   const message = 'さんへの返信';
 
   return (

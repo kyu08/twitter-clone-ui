@@ -13,8 +13,7 @@ type Props = {
   userImageURL: string;
 };
 
-export const TweetCreateContainer: React.FC<Props> = (props) => {
-  const { userImageURL } = props;
+export const TweetCreateContainer: React.FC<Props> = ({ userImageURL }) => {
   const store = Store.useStore();
   const isLogin = store.get('isLogin');
   const userId = store.get('userId');

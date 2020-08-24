@@ -7,9 +7,7 @@ type Props = {
   icon?: React.FC;
 };
 
-export const TweetMessage: React.FC<Props> = (props) => {
-  const { userName, message, icon } = props;
-
+export const TweetMessage: React.FC<Props> = ({ userName, message, icon }) => {
   return (
     <div className={classes.TweetMessage}>
       {icon}

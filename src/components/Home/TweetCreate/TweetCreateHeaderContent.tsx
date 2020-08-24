@@ -7,9 +7,10 @@ type Props = {
   canSubmitTweet: boolean;
 };
 
-export const TweetCreateHeaderContent: React.FC<Props> = (props) => {
-  const { submitTweet, canSubmitTweet } = props;
-
+export const TweetCreateHeaderContent: React.FC<Props> = ({
+  submitTweet,
+  canSubmitTweet,
+}) => {
   return (
     <div className={classes.Header}>
       <GoBackButton />

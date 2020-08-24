@@ -10,8 +10,7 @@ type Props = {
   tweetDataModel: TweetDataModel;
 };
 
-export const TweetCard: React.FC<Props> = (props) => {
-  const { tweetDataModel } = props;
+export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
   const {
     content,
     likeCount,
@@ -22,7 +21,6 @@ export const TweetCard: React.FC<Props> = (props) => {
     userName,
   } = tweetDataModel;
 
-  // const howLongAgo = 'hoge';
   const howLongAgo = TweetApplicationService.howLongAgo(tweetDataModel);
   const imageSize = 49;
 

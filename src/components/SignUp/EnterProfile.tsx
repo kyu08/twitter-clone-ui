@@ -29,31 +29,29 @@ type Props = {
   handleChangeYear(e: React.ChangeEvent<HTMLSelectElement>): void;
 };
 
-export const EnterProfile: React.FC<Props> = (props) => {
-  const {
-    userName,
-    screenName,
-    goToNextPage,
-    isValidDate,
-    isValidUserName,
-    isValidScreenName,
-    isValidPassword,
-    canGoNextPage,
-    monthArray,
-    dayArray,
-    yearArray,
-    month,
-    day,
-    year,
-    handleChangeMonth,
-    handleChangeDay,
-    handleChangeYear,
-    password,
-    handleChangePassword,
-    handleChangeScreenName,
-    handleChangeUserName,
-  } = props;
-
+export const EnterProfile: React.FC<Props> = ({
+  userName,
+  screenName,
+  goToNextPage,
+  isValidDate,
+  isValidUserName,
+  isValidScreenName,
+  isValidPassword,
+  canGoNextPage,
+  monthArray,
+  dayArray,
+  yearArray,
+  month,
+  day,
+  year,
+  handleChangeMonth,
+  handleChangeDay,
+  handleChangeYear,
+  password,
+  handleChangePassword,
+  handleChangeScreenName,
+  handleChangeUserName,
+}) => {
   const message = 'アカウントを作成 1/4';
 
   return (

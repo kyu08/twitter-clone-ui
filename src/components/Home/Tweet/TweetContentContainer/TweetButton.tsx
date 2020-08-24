@@ -9,9 +9,10 @@ interface TweetButtonCountProps {
   tweetButtonCount: number;
 }
 
-export const TweetButton: React.FC<TweetButtonCountProps> = (props) => {
-  const { buttonIcon, tweetButtonCount } = props;
-
+export const TweetButton: React.FC<TweetButtonCountProps> = ({
+  buttonIcon,
+  tweetButtonCount,
+}) => {
   return (
     <div className={classes.TweetButton}>
       <TweetButtonIcon buttonIcon={buttonIcon} />

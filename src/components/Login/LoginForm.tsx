@@ -11,15 +11,13 @@ type Props = {
   login(): void;
 };
 
-export const LoginForm: React.FC<Props> = (props) => {
-  const {
-    screenName,
-    handleChangeScreenName,
-    password,
-    handleChangePassword,
-    login,
-  } = props;
-
+export const LoginForm: React.FC<Props> = ({
+  screenName,
+  handleChangeScreenName,
+  password,
+  handleChangePassword,
+  login,
+}) => {
   return (
     <>
       <div className={classes.ButtonContainer}>

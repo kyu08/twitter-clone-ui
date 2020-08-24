@@ -15,9 +15,12 @@ type Props = {
   content: string;
 };
 
-export const TweetContentSection: React.FC<Props> = (props) => {
-  const { likeCount, replyCount, retweetCount, content } = props;
-
+export const TweetContentSection: React.FC<Props> = ({
+  likeCount,
+  replyCount,
+  retweetCount,
+  content,
+}) => {
   return (
     <div className={classes.TweetContentContainer}>
       <TweetContent content={content} />

@@ -12,9 +12,7 @@ type Props = {
 };
 
 // this is presentation component.
-export const RootComponent: React.FC<Props> = (props) => {
-  const { isLogin } = props;
-
+export const RootComponent: React.FC<Props> = ({ isLogin }) => {
   return (
     <div className={classes.RootComponent}>
       <BrowserRouter>

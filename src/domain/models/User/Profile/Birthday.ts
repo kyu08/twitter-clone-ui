@@ -21,8 +21,7 @@ export default class Birthday {
 
   readonly day: Day;
 
-  constructor(props: IBirthday) {
-    const { year, month, day } = props;
+  constructor({ year, month, day }: IBirthday) {
     this.year = year;
     this.month = month;
     this.day = day;

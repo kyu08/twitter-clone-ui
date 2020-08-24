@@ -14,16 +14,14 @@ type Props = {
   canGoToPage5: boolean;
 };
 
-export const EnterUserLocation: React.FC<Props> = (props) => {
-  const {
-    backToPreviousPage,
-    canGoToPage5,
-    goToNextPage,
-    handleChangeUserLocation,
-    isValidUserLocation,
-    userLocation,
-  } = props;
-
+export const EnterUserLocation: React.FC<Props> = ({
+  backToPreviousPage,
+  canGoToPage5,
+  goToNextPage,
+  handleChangeUserLocation,
+  isValidUserLocation,
+  userLocation,
+}) => {
   const alertMessage = `User Locationは1~${MAX_USER_LOCATION_LENGTH}文字で入力してください`;
 
   return (

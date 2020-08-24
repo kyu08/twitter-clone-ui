@@ -14,15 +14,14 @@ type Props = {
   canGoToPage4: boolean;
 };
 
-export const EnterBio: React.FC<Props> = (props) => {
-  const {
-    backToPreviousPage,
-    bio,
-    canGoToPage4,
-    goToNextPage,
-    handleChangeBio,
-    isValidBio,
-  } = props;
+export const EnterBio: React.FC<Props> = ({
+  backToPreviousPage,
+  bio,
+  canGoToPage4,
+  goToNextPage,
+  handleChangeBio,
+  isValidBio,
+}) => {
   const alertMessage = `自己紹介は1~${MAX_BIO_LENGTH}文字で入力してください`;
 
   return (

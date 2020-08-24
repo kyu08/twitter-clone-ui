@@ -19,18 +19,17 @@ export class TweetDataModel {
 
   readonly userName: string;
 
-  constructor(props: AbstractTweet) {
-    const {
-      tweetId,
-      screenName,
-      content,
-      replyCount,
-      retweetCount,
-      likeCount,
-      createdAt,
-      userImageURL,
-      userName,
-    } = props;
+  constructor({
+    tweetId,
+    screenName,
+    content,
+    replyCount,
+    retweetCount,
+    likeCount,
+    createdAt,
+    userImageURL,
+    userName,
+  }: AbstractTweet) {
     this.tweetId = tweetId.tweetId;
     this.screenName = screenName.screenName;
     this.content = content.content;

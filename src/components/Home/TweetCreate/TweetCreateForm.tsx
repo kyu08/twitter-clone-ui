@@ -8,8 +8,11 @@ type Props = {
   handleChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 };
 
-export const TweetCreateForm: React.FC<Props> = (props) => {
-  const { content, handleChangeContent, userImageURL } = props;
+export const TweetCreateForm: React.FC<Props> = ({
+  content,
+  handleChangeContent,
+  userImageURL,
+}) => {
   const imageSize = 49;
 
   return (

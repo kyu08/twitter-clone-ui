@@ -5,8 +5,6 @@ interface ScreenNameProps {
   screenName: string;
 }
 
-export const ScreenName: React.FC<ScreenNameProps> = (props) => {
-  const { screenName } = props;
-
+export const ScreenName: React.FC<ScreenNameProps> = ({ screenName }) => {
   return <div className={classes.ScreenName}>@{screenName}</div>;
 };

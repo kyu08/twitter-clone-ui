@@ -12,8 +12,7 @@ export abstract class AbstractTempTweet {
 
   readonly userId: UserId;
 
-  protected constructor(props: AbstractTempTweetProps) {
-    const { content, userId } = props;
+  protected constructor({ content, userId }: AbstractTempTweetProps) {
     this.content = content;
     this.userId = userId;
   }
