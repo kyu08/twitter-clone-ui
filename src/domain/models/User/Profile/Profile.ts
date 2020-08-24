@@ -3,7 +3,7 @@ import UserLocation from './UserLocation';
 import ScreenName from './ScreenName';
 import UserName from './UserName';
 import Website from './Website';
-import Birthday, {BirthdayProps, IBirthday} from './Birthday';
+import Birthday, { BirthdayProps, IBirthday } from './Birthday';
 import UserImageURL from './UserImageURL';
 import HeaderImageURL from './HeaderImageURL';
 import Day from './Birthday/Day';
@@ -16,7 +16,7 @@ interface ProfileProps {
   readonly headerImageURL: HeaderImageURL;
   readonly userImageURL: UserImageURL;
   readonly bio: Bio;
-  readonly birthday: Birthday;
+  readonly birthday?: Birthday;
   readonly userLocation: UserLocation;
   readonly website: Website;
 }
@@ -33,23 +33,22 @@ export default class Profile {
 
   readonly bio: Bio;
 
-  readonly birthday: Birthday;
+  readonly birthday?: Birthday;
 
   readonly userLocation: UserLocation;
 
   readonly website: Website;
 
-  constructor(props: ProfileProps) {
-    const {
-      screenName,
-      userName,
-      headerImageURL,
-      userImageURL,
-      bio,
-      birthday,
-      userLocation,
-      website,
-    } = props;
+  constructor({
+    screenName,
+    userName,
+    headerImageURL,
+    userImageURL,
+    bio,
+    birthday,
+    userLocation,
+    website,
+  }: ProfileProps) {
     this.userName = userName;
     this.screenName = screenName;
     this.headerImageURL = headerImageURL;

@@ -1,5 +1,5 @@
-import {IUser} from '../domain/models/User/IUser';
-import {BirthdayProps} from '../domain/models/User/Profile/Birthday';
+import { IUser } from '../domain/models/User/IUser';
+import { BirthdayProps } from '../domain/models/User/Profile/Birthday';
 
 export class UserDataModel {
   readonly screenName: string;
@@ -12,7 +12,7 @@ export class UserDataModel {
 
   readonly bio: string;
 
-  readonly birthday: BirthdayProps;
+  readonly birthday?: BirthdayProps;
 
   readonly userLocation: string;
 
@@ -35,16 +35,18 @@ export class UserDataModel {
       userName,
       website,
     } = profile;
+    if (birthday) {
+      this.birthday = {
+        year: birthday.year.year,
+        month: birthday.month.month,
+        day: birthday.day.day,
+      };
+    }
     this.screenName = screenName.screenName;
     this.userName = userName.userName;
     this.headerImageURL = headerImageURL.headerImageURL;
     this.userImageURL = userImageURL.userImageURL;
     this.bio = bio.bio;
-    this.birthday = {
-      year: birthday.year.year,
-      month: birthday.month.month,
-      day: birthday.day.day,
-    };
     this.userLocation = userLocation.userLocation;
     this.website = website.website;
     this.userId = userId.userId;
