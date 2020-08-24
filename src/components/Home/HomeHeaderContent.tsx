@@ -7,14 +7,15 @@ type Props = {
   logout?(): void;
 };
 
+const LoginButtonWrapper = styled.div`
+  margin: auto 7px;
+`;
+
 export const HomeHeaderContent: React.FC<Props> = ({ logout }) => {
   const imageSize = 30;
   // todo これ動的にしよう -> まずは undux でグローバル管理にするところから
   const userImageURL =
     'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';
-  const LoginButtonWrapper = styled.div`
-    margin: auto 7px;
-  `;
 
   return (
     <>
