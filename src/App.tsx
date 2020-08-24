@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import InMemoryUserRepository from './inMemory/InMemoryUserRepository';
+import UserRepository from './infrastructure/UserRepository';
 import Store from './Store';
 import { Container } from './components/Container';
 
 const App = () => {
-  InMemoryUserRepository.initializeLocalStorage();
+  UserRepository.initializeLocalStorage();
 
   return (
     <Store.Container>

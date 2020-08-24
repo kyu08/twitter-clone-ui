@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
 import { StoreEffects } from './Store';
 import { IUserRepository } from './domain/models/User/IUserRepository';
-import InMemoryUserRepository from './inMemory/InMemoryUserRepository';
+import UserRepository from './infrastructure/UserRepository';
 
-const userRepository: IUserRepository = new InMemoryUserRepository();
+const userRepository: IUserRepository = new UserRepository();
 
 const effects: StoreEffects = (store) => {
   store.on('userId').subscribe((userId) => {

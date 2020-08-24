@@ -1,4 +1,3 @@
-import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import { TempTweetData } from '../infrastructure/TempTweetDataModel';
@@ -38,10 +37,6 @@ export class TweetApplicationService {
 
   static postTweet(tweetDataModel: TempTweetData): Promise<Response> {
     return TweetApplicationService.tweetRepository.postTweet(tweetDataModel);
-  }
-
-  static returnTweetId(tweet: Tweet): string {
-    return tweet.getTweetId();
   }
 
   static howLongAgo(tweetDataModel: TweetDataModel): string {
