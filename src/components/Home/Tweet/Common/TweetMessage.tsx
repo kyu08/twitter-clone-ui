@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './TweetMessage.module.css';
+import styled from 'styled-components';
 
 type Props = {
   userName: string;
@@ -7,14 +7,27 @@ type Props = {
   icon?: React.FC;
 };
 
+const TweetMessageWrapper = styled.div`
+  color: #8899a6;
+  font-size: 13px;
+  font-family: 'Segoe UI', Meiryo, system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  margin-left: 55px;
+  display: flex;
+`;
+
+const MessageText = styled.div`
+  margin-left: 10px;
+`;
+
 export const TweetMessage: React.FC<Props> = ({ userName, message, icon }) => {
   return (
-    <div className={classes.TweetMessage}>
+    <TweetMessageWrapper>
       {icon}
-      <div className={classes.MessageText}>
+      <MessageText>
         {userName}
         {message}
-      </div>
-    </div>
+      </MessageText>
+    </TweetMessageWrapper>
   );
 };

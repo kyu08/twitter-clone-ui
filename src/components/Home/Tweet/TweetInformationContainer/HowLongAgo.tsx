@@ -1,10 +1,15 @@
 import * as React from 'react';
-import classes from './HowLongAgo.module.css';
+import styled from 'styled-components';
 
 interface HowLongAgoProps {
   howLongAgo: string;
 }
 
+const HowLongAgoWrapper = styled.div`
+  margin-right: 5px;
+  color: #8899a6;
+`;
+
 export const HowLongAgo: React.FC<HowLongAgoProps> = ({ howLongAgo }) => {
-  return <div className={classes.HowLongAgo}>{howLongAgo}</div>;
+  return <HowLongAgoWrapper>{howLongAgo}</HowLongAgoWrapper>;
 };

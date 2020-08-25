@@ -1,10 +1,14 @@
 import * as React from 'react';
-import classes from './TweetContent.module.css';
+import styled from 'styled-components';
 
 interface TweetContentProps {
   content: string;
 }
 
+const TweetContentWrapper = styled.div`
+  word-break: break-all;
+`;
+
 export const TweetContent: React.FC<TweetContentProps> = ({ content }) => {
-  return <span className={classes.TweetContent}>{content}</span>;
+  return <TweetContentWrapper>{content}</TweetContentWrapper>;
 };

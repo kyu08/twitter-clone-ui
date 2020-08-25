@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import classes from './UserImageSection.module.css';
 
 type Props = {
   userImageURL: string;
@@ -19,11 +18,5 @@ export const UserImageSection: React.FC<Props> = ({
     border-radius: 50%;
   `;
 
-  return (
-    <Img
-      className={classes.UserImageContainer}
-      src={userImageURL}
-      alt="users profile"
-    />
-  );
+  return <Img src={userImageURL} alt="users profile" />;
 };

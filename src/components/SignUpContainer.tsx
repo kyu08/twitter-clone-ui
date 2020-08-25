@@ -214,7 +214,6 @@ export const SignUpContainer: React.FC = () => {
     reader.onload = (event) => {
       // @ts-ignore
       setUserImage(reader.result);
-      // setUserImage(event.target.result);
       setCanGoToPage3(true);
     };
   };
