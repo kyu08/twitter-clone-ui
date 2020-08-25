@@ -6,9 +6,9 @@ export class TempTweetApplicationService {
   static readonly tempTweetFactory = new TempTweetFactory();
 
   static getTempTweetDataModel(
-    tempTweetDataModel: TempTweetDataModel | undefined,
     userId: UserId,
     contentEntered: string,
+    tempTweetDataModel?: TempTweetDataModel,
   ): TempTweetDataModel {
     if (!tempTweetDataModel) {
       return TempTweetApplicationService.createTempTweetDataModel(

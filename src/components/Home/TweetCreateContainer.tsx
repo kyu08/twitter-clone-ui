@@ -44,9 +44,9 @@ export const TweetCreateContainer: React.FC<Props> = ({ userImageURL }) => {
     const contentEntered = e.currentTarget.value;
     setContent(contentEntered);
     const tempTweetDataModelUpdated = TempTweetApplicationService.getTempTweetDataModel(
-      tempTweetDataModel,
       userId,
       contentEntered,
+      tempTweetDataModel,
     );
 
     setCanSubmitTweet(

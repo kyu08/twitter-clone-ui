@@ -39,18 +39,17 @@ export class TweetApplicationService {
     return TweetApplicationService.tweetRepository.postTweet(tweetDataModel);
   }
 
-  static howLongAgo(tweetDataModel: TweetDataModel): string {
-    const {
-      content,
-      createdAt,
-      likeCount,
-      replyCount,
-      retweetCount,
-      screenName,
-      tweetId,
-      userImageURL,
-      userName,
-    } = tweetDataModel;
+  static howLongAgo({
+    content,
+    createdAt,
+    likeCount,
+    replyCount,
+    retweetCount,
+    screenName,
+    tweetId,
+    userImageURL,
+    userName,
+  }: TweetDataModel): string {
     const props = {
       content,
       createdAt: String(createdAt),
@@ -65,9 +64,5 @@ export class TweetApplicationService {
     const tweet = TweetApplicationService.tweetRepository.createTweet(props);
 
     return tweet.howLongAgo();
-  }
-
-  static test() {
-    console.log(1);
   }
 }

@@ -47,6 +47,7 @@ export default class UserRepository implements IUserRepository {
     });
   }
 
+  // todo 本当はここに認証ロジックおくべきではないんだけど、まだ仕様が未定なのでいったんここに置いておく
   returnUserIdByScreenName(screenName: string): string {
     let userIdFound;
     inMemoryUserMap.forEach((user: IUser, userId: string) => {
