@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import classes from './TweetCreateForm.module.css';
 import { UserImageSection } from '../Tweet/UserImageSection';
 
 type Props = {

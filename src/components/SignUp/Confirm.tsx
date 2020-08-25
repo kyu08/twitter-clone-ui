@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './EnterBio.module.css';
+import styled from 'styled-components';
 import { Message } from '../Login/Message';
 
 type Props = {
@@ -15,6 +15,24 @@ type Props = {
   userLocation: string;
   password: string;
 };
+
+const SelectorContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+`;
+
+// これ共通化する？
+const SubmitButton = styled.input`
+  width: 49%;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 60px;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+`;
 
 export const Confirm: React.FC<Props> = ({
   backToPreviousPage,
@@ -54,20 +72,18 @@ export const Confirm: React.FC<Props> = ({
       <div>
         <img src={userImage} alt="UserImage preview" />
       </div>
-      <div className={classes.SelectorContainer}>
-        <input
+      <SelectorContainer>
+        <SubmitButton
           type="submit"
-          className={classes.SubmitButton}
           value="戻る"
           onClick={(e) => backToPreviousPage(e)}
         />
-        <input
+        <SubmitButton
           type="submit"
-          className={classes.SubmitButton}
           value="登録"
           onClick={() => console.log('とくろくする関数をここにアレする')}
         />
-      </div>
+      </SelectorContainer>
     </>
   );
 };

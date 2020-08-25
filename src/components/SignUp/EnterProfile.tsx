@@ -1,6 +1,6 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import { Message } from '../Login/Message';
-import classes from './EnterProfile.module.css';
 import { InputForm } from '../Common/InputForm';
 import { SelectDate } from './SelectDate';
 import { AlertMessage } from '../Login/AlertMessage';
@@ -28,6 +28,31 @@ type Props = {
   handleChangeDay(e: React.ChangeEvent<HTMLSelectElement>): void;
   handleChangeYear(e: React.ChangeEvent<HTMLSelectElement>): void;
 };
+
+const SelectorContainer = styled.div`
+  display: flex;
+`;
+
+// これ共通化する？
+const SubmitButton = styled.input`
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 60px;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  :disabled {
+    background: rgb(31, 96, 142);
+    color: rgb(136, 153, 166);
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin: 20px auto;
+  width: 315px;
+`;
 
 export const EnterProfile: React.FC<Props> = ({
   userName,
@@ -57,7 +82,7 @@ export const EnterProfile: React.FC<Props> = ({
   return (
     <>
       <Message message={message} />
-      <div className={classes.ButtonContainer}>
+      <ButtonContainer>
         <form>
           {!isValidUserName && (
             <AlertMessage alertMessage="ユーザ名は1~15文字で入力してください" />
@@ -87,7 +112,7 @@ export const EnterProfile: React.FC<Props> = ({
             handleChangeValue={handleChangePassword}
           />
           {!isValidDate && <AlertMessage alertMessage="不正な年月日です" />}
-          <div className={classes.SelectorContainer}>
+          <SelectorContainer>
             <SelectDate
               labelTitle="月"
               optionArray={monthArray}
@@ -106,16 +131,15 @@ export const EnterProfile: React.FC<Props> = ({
               handleChange={handleChangeYear}
               optionNumber={year}
             />
-          </div>
-          <input
+          </SelectorContainer>
+          <SubmitButton
             type="submit"
-            className={classes.SubmitButton}
             value="次へ"
             onClick={(e) => goToNextPage(e)}
             disabled={!canGoNextPage}
           />
         </form>
-      </div>
+      </ButtonContainer>
     </>
   );
 };

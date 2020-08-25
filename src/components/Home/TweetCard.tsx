@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './TweetCard.module.css';
+import styled from 'styled-components';
 import { UserImageSection } from './Tweet/UserImageSection';
 import { TweetInformationSection } from './Tweet/TweetInformationSection';
 import { TweetContentSection } from './Tweet/TweetContentSection';
@@ -9,6 +9,15 @@ import { TweetApplicationService } from '../../application/TweetApplicationServi
 type Props = {
   tweetDataModel: TweetDataModel;
 };
+
+const TweetContainer = styled.div`
+  border-bottom: 1px #8899a6 solid;
+`;
+
+const Tweet = styled.div`
+  display: flex;
+  margin: 0 10px;
+`;
 
 export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
   const {
@@ -25,8 +34,8 @@ export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
   const imageSize = 49;
 
   return (
-    <div className={classes.TweetContainer}>
-      <div className={classes.Tweet}>
+    <TweetContainer>
+      <Tweet>
         <UserImageSection userImageURL={userImageURL} imageSize={imageSize} />
         <div>
           <TweetInformationSection
@@ -41,7 +50,7 @@ export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
             content={content}
           />
         </div>
-      </div>
-    </div>
+      </Tweet>
+    </TweetContainer>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './LoginForm.module.css';
+import styled from 'styled-components';
 import { InputForm } from '../Common/InputForm';
 import { LinkToSignUp } from './LinkToSignUp';
 
@@ -11,6 +11,22 @@ type Props = {
   login(): void;
 };
 
+const SubmitButton = styled.input`
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 60px;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+`;
+
+const ButtonContainer = styled.div`
+  margin: 20px auto;
+  width: 315px;
+`;
+
 export const LoginForm: React.FC<Props> = ({
   screenName,
   handleChangeScreenName,
@@ -20,7 +36,7 @@ export const LoginForm: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className={classes.ButtonContainer}>
+      <ButtonContainer>
         <form>
           <InputForm
             labelTitle="ユーザ名"
@@ -34,15 +50,14 @@ export const LoginForm: React.FC<Props> = ({
             value={password}
             handleChangeValue={handleChangePassword}
           />
-          <input
+          <SubmitButton
             type="submit"
-            className={classes.SubmitButton}
             value="ログイン"
             onClick={() => login()}
           />
           <LinkToSignUp />
         </form>
-      </div>
+      </ButtonContainer>
     </>
   );
 };
