@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
+import styled from 'styled-components';
 import { Message } from '../Login/Message';
-import classes from './EnterUserImage.module.css';
 import { TODO } from '../../util/Util';
 
 type Props = {
@@ -12,6 +12,52 @@ type Props = {
   canGoToPage3: boolean;
 };
 
+const FileInput = styled.input`
+  display: none;
+`;
+const FileInputContainer = styled.div`
+  position: relative;
+  text-align: center;
+`;
+
+const InputLabel = styled.label`
+  position: absolute;
+  top: 40%;
+  left: 46%;
+`;
+
+const DefaultUserImage = styled.img`
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+`;
+
+const SelectorContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+`;
+
+const SubmitButton = styled.input`
+  width: 49%;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 60px;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  :disabled {
+    background: rgb(31, 96, 142);
+    color: rgb(136, 153, 166);
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin: 20px auto;
+  width: 315px;
+`;
+
 export const EnterUserImage: React.FC<Props> = ({
   backToPreviousPage,
   canGoToPage3,
@@ -21,42 +67,35 @@ export const EnterUserImage: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <Message message="プロフォール画像を選ぶ 2/4" />
-      <div className={classes.ButtonContainer}>
-        <div className={classes.FileInputContainer}>
-          <img
-            src={userImage}
-            className={classes.DefaultUserImage}
-            alt="UserImage preview"
-          />
-          <label className={classes.InputLabel}>
+      <Message message="プロフィール画像を選ぶ 2/4" />
+      <ButtonContainer>
+        <FileInputContainer>
+          <DefaultUserImage src={userImage} alt="UserImage preview" />
+          <InputLabel>
             <AddAPhotoOutlinedIcon />
-            <input
-              className={classes.FileInput}
+            <FileInput
               type="file"
               id="upload_chat"
               name="file"
               accept="image/png, image/jpeg"
               onChange={(e) => selectImage(e)}
             />
-          </label>
-        </div>
-        <div className={classes.SelectorContainer}>
-          <input
+          </InputLabel>
+        </FileInputContainer>
+        <SelectorContainer>
+          <SubmitButton
             type="submit"
-            className={classes.SubmitButton}
             value="戻る"
             onClick={(e) => backToPreviousPage(e)}
           />
-          <input
+          <SubmitButton
             type="submit"
-            className={classes.SubmitButton}
             value="次へ"
             onClick={(e) => goToNextPage(e)}
             disabled={!canGoToPage3}
           />
-        </div>
-      </div>
+        </SelectorContainer>
+      </ButtonContainer>
     </div>
   );
 };

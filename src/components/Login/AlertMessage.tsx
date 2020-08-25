@@ -1,14 +1,21 @@
 import * as React from 'react';
-import classes from './AlertMessage.module.css';
+import styled from 'styled-components';
 
 type Props = {
   alertMessage: string;
 };
 
+const InvalidLogin = styled.div`
+  color: red;
+  width: 330px;
+  margin: 0 auto;
+  font-size: 15px;
+`;
+
 export const AlertMessage: React.FC<Props> = ({ alertMessage }) => {
   return (
-    <div className={classes.InvalidLogin}>
+    <InvalidLogin>
       <span>{alertMessage}</span>
-    </div>
+    </InvalidLogin>
   );
 };

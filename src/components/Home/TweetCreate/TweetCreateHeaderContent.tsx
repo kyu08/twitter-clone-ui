@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './TweetCreateHeaderContent.module.css';
+import styled from 'styled-components';
 import { GoBackButton } from '../Common/GoBackButton';
 
 type Props = {
@@ -7,22 +7,41 @@ type Props = {
   canSubmitTweet: boolean;
 };
 
+const Header = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-left: auto;
+  padding: 12px 12px;
+`;
+
+const TweetButton = styled.button`
+  color: white;
+  border: none;
+  background-color: #1da1f2;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 4px 10px;
+  font-size: 15px;
+  :disabled {
+    opacity: 0.5;
+  }
+`;
+
 export const TweetCreateHeaderContent: React.FC<Props> = ({
   submitTweet,
   canSubmitTweet,
 }) => {
   return (
-    <div className={classes.Header}>
+    <Header>
       <GoBackButton />
-      <div className={classes.ButtonWrapper}>
-        <button
-          className={classes.tweetButton}
-          onClick={() => submitTweet()}
-          disabled={!canSubmitTweet}
-        >
+      <ButtonWrapper>
+        <TweetButton onClick={() => submitTweet()} disabled={!canSubmitTweet}>
           ツイートする
-        </button>
-      </div>
-    </div>
+        </TweetButton>
+      </ButtonWrapper>
+    </Header>
   );
 };

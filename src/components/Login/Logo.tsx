@@ -1,11 +1,21 @@
 import * as React from 'react';
-import classes from './Logo.module.css';
+import styled from 'styled-components';
 import TwitterLogo from './TwitterLogo.png';
+
+const LogoWrapper = styled.div`
+  text-align: center;
+  padding-top: 25px;
+`;
+
+const LogoImage = styled.img`
+  height: 50px;
+  width: auto;
+`;
 
 export const Logo: React.FC<{}> = () => {
   return (
-    <div className={classes.Logo}>
-      <img className={classes.LogoImage} src={TwitterLogo} alt="logo" />
-    </div>
+    <LogoWrapper>
+      <LogoImage src={TwitterLogo} alt="logo" />
+    </LogoWrapper>
   );
 };

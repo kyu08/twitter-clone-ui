@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useHistory } from 'react-router-dom';
-import classes from './GoBackButton.module.css';
+import styled from 'styled-components';
 
 // container であり presentation でもあるけどいいかな、、、
 export const GoBackButton: React.FC = () => {
@@ -10,9 +10,14 @@ export const GoBackButton: React.FC = () => {
     history.goBack();
   };
 
+  const IconWrapper = styled.div`
+    color: #1da1f2;
+    padding: 15px 15px;
+  `;
+
   return (
-    <div className={classes.Icon} onClick={() => goBack()}>
+    <IconWrapper onClick={() => goBack()}>
       <ArrowBackIcon />
-    </div>
+    </IconWrapper>
   );
 };

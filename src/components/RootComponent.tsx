@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { HomeContainer } from './HomeContainer';
 import { LoginContainer } from './LoginContainer';
-import classes from './RootComponent.module.css';
 import { SignUpContainer } from './SignUpContainer';
 import { TweetCreateContainer } from './Home/TweetCreateContainer';
 import { ProfileContainer } from './ProfileContainer';
@@ -11,10 +11,20 @@ type Props = {
   isLogin: boolean;
 };
 
+const RootComponentWrapper = styled.div`
+  background-color: #15202b;
+  color: white;
+  overflow: hidden;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+`;
+
 // this is presentation component.
 export const RootComponent: React.FC<Props> = ({ isLogin }) => {
   return (
-    <div className={classes.RootComponent}>
+    <RootComponentWrapper>
       <BrowserRouter>
         <Switch>
           <Route exact path="/signup" component={SignUpContainer} />
@@ -31,6 +41,6 @@ export const RootComponent: React.FC<Props> = ({ isLogin }) => {
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>
       </BrowserRouter>
-    </div>
+    </RootComponentWrapper>
   );
 };

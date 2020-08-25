@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classes from './TweetButton.module.css';
+import styled from 'styled-components';
 import { TweetButtonIcon } from './TweetButtonIcon';
 import { TweetButtonCount } from './TweetButtonCount';
 import { TODO } from '../../../../util/Util';
@@ -9,14 +9,18 @@ interface TweetButtonCountProps {
   tweetButtonCount: number;
 }
 
+const TweetButtonWrapper = styled.div`
+  display: flex;
+`;
+
 export const TweetButton: React.FC<TweetButtonCountProps> = ({
   buttonIcon,
   tweetButtonCount,
 }) => {
   return (
-    <div className={classes.TweetButton}>
+    <TweetButtonWrapper>
       <TweetButtonIcon buttonIcon={buttonIcon} />
       <TweetButtonCount tweetButtonCount={tweetButtonCount} />
-    </div>
+    </TweetButtonWrapper>
   );
 };

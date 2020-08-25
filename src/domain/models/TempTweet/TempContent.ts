@@ -1,7 +1,7 @@
 export default class TempContent {
-  readonly content: string;
+  readonly tempContent: string;
 
-  constructor(content: string) {
-    this.content = content;
+  constructor(tempContent: string) {
+    this.tempContent = tempContent;
   }
 }

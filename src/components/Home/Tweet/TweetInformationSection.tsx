@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
-import classes from './TweetInformationSection.module.css';
+import styled from 'styled-components';
 import { UserName } from './TweetInformationContainer/UserName';
 import { ScreenName } from './TweetInformationContainer/ScreenName';
 import { HowLongAgo } from './TweetInformationContainer/HowLongAgo';
@@ -11,19 +11,29 @@ type Props = {
   howLongAgo: string;
 };
 
+const TweetInformationContainer = styled.div`
+  font-size: 15px;
+  display: flex;
+  margin-top: 3px;
+`;
+
+const TweetOptionButtonWrapper = styled.div`
+  margin-left: auto;
+`;
+
 export const TweetInformationSection: React.FC<Props> = ({
   howLongAgo,
   screenName,
   userName,
 }) => {
   return (
-    <div className={classes.TweetInformationContainer}>
+    <TweetInformationContainer>
       <UserName userName={userName} />
       <ScreenName screenName={screenName} />
       <HowLongAgo howLongAgo={howLongAgo} />
-      <div className={classes.TweetOptionButtonWrapper}>
+      <TweetOptionButtonWrapper>
         <ExpandMoreOutlinedIcon />
-      </div>
-    </div>
+      </TweetOptionButtonWrapper>
+    </TweetInformationContainer>
   );
 };
