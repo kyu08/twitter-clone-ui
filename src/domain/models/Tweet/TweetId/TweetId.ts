@@ -1,11 +1,8 @@
-import { ensurePropsContainsNoUndefined } from '../../../../util/Util';
-
 export default class TweetId {
   readonly tweetId: string;
 
-  // todo string になおす
   constructor(tweetId: string) {
-    ensurePropsContainsNoUndefined<string>(tweetId);
+    if (tweetId.length !== 36) throw new Error('tweetId is invalid.');
     this.tweetId = tweetId;
   }
 }
