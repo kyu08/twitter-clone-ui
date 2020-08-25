@@ -60,6 +60,7 @@ export default class UserRepository implements IUserRepository {
     throw new Error('no user has this screenName.');
   }
 
+  // todo 本当はここに認証ロジックおくべきではないんだけど、まだ仕様が未定なのでいったんここに置いておく
   isAuthorized(screenName: string, password: string): boolean {
     const passwordExpected = ScreenNamePasswordMap.get(screenName);
 
@@ -88,6 +89,7 @@ export default class UserRepository implements IUserRepository {
     localStorage.removeItem('userId');
   }
 
+  // user を復元(インスタンス化)
   toInstance({
     id: userId,
     screen_name: screenName,
@@ -102,20 +104,24 @@ export default class UserRepository implements IUserRepository {
     followerCount,
     followingCount,
   }: userFull): User {
-    const date = new Date(birthdayProp);
-    const year = new Year(date.getFullYear());
-    const month = new Month(date.getMonth() + 1);
-    const day = new Day(date.getDate());
     const profileProps = {
       screenName: new ScreenName(screenName),
       userName: new UserName(userName),
       headerImageURL: new HeaderImageURL(headerImageURL),
       userImageURL: new UserImageURL(userImageURL),
       bio: new Bio(bio),
-      birthday: new Birthday({ year, month, day }),
       userLocation: new UserLocation(userLocation),
       website: new Website(website),
     };
+    if (birthdayProp) {
+      const date = new Date(birthdayProp);
+      const year = new Year(date.getFullYear());
+      const month = new Month(date.getMonth() + 1);
+      const day = new Day(date.getDate());
+      Object.assign(profileProps, {
+        birthday: new Birthday({ year, month, day }),
+      });
+    }
     const profile = new Profile(profileProps);
 
     return new User({
