@@ -7,9 +7,9 @@ export class TempTweetDataModel {
 
   readonly content: string;
 
-  constructor({ userId, content }: AbstractTempTweet) {
+  constructor({ userId, tempContent }: AbstractTempTweet) {
     this.userId = userId.userId;
-    this.content = content.content;
+    this.content = tempContent.tempContent;
   }
 
   private getUserId(): string {

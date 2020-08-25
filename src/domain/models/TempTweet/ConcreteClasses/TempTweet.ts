@@ -11,15 +11,15 @@ export class TempTweet extends AbstractTempTweet {
     super(props);
   }
 
-  changeContent(contentString: string): TempTweet {
-    const content = new TempContent(contentString);
-    const props = { ...this, ...content };
+  changeContent(tempContentString: string): TempTweet {
+    const tempContent = new TempContent(tempContentString);
+    const props = { ...this, ...tempContent };
 
     return new TempTweet(props);
   }
 
   canSubmit(): boolean {
-    const { length: contentLength } = this.content.content;
+    const { length: contentLength } = this.tempContent.tempContent;
 
     return contentLength !== 0 && contentLength <= MAX_TWEET_LENGTH;
   }

@@ -2,15 +2,14 @@ import { TempTweet } from './ConcreteClasses/TempTweet';
 import TempContent from './TempContent';
 import UserId from '../User/UserId/UserId';
 import { TempTweetDataModel } from '../../../infrastructure/TempTweetDataModel';
-import Content from '../Tweet/Content/Content';
 
 export class TempTweetFactory {
   createTempTweetDataModel(
     userId: UserId,
     contentProp: string,
   ): TempTweetDataModel {
-    const content = new TempContent(contentProp);
-    const tempTweet = new TempTweet({ userId, content });
+    const tempContent = new TempContent(contentProp);
+    const tempTweet = new TempTweet({ userId, tempContent });
 
     return new TempTweetDataModel(tempTweet);
   }
@@ -18,9 +17,9 @@ export class TempTweetFactory {
   createFromDataModel(tempTweetDataModel: TempTweetDataModel): TempTweet {
     const { userId: userIdProp, content: contentProp } = tempTweetDataModel;
     const userId = new UserId(userIdProp);
-    const content = new Content(contentProp);
+    const tempContent = new TempContent(contentProp);
 
-    return new TempTweet({ userId, content });
+    return new TempTweet({ userId, tempContent });
   }
 
   // todo static or not
@@ -31,7 +30,7 @@ export class TempTweetFactory {
     const { userId: userIdProp } = tempTweetDataModel;
     const userId = new UserId(userIdProp);
     const contentUpdated = new TempContent(content);
-    const props = { userId, content: contentUpdated };
+    const props = { userId, tempContent: contentUpdated };
 
     return new TempTweet(props);
   }

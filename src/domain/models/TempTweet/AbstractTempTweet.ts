@@ -2,18 +2,18 @@ import UserId from '../User/UserId/UserId';
 import TempContent from './TempContent';
 
 export interface AbstractTempTweetProps {
-  content: TempContent;
+  tempContent: TempContent;
   userId: UserId;
 }
 
 export abstract class AbstractTempTweet {
-  // todo tempContent にする...?
-  readonly content: TempContent;
+  // todo #192 tempContent にする...?
+  readonly tempContent: TempContent;
 
   readonly userId: UserId;
 
-  protected constructor({ content, userId }: AbstractTempTweetProps) {
-    this.content = content;
+  protected constructor({ tempContent, userId }: AbstractTempTweetProps) {
+    this.tempContent = tempContent;
     this.userId = userId;
   }
 
