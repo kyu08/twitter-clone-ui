@@ -6,6 +6,8 @@ import { TweetContentSection } from './Tweet/TweetContentSection';
 import { TweetDataModel } from '../../infrastructure/TweetDataModel';
 import { TweetApplicationService } from '../../application/TweetApplicationService';
 
+const IMAGE_SIZE = 49;
+
 type Props = {
   tweetDataModel: TweetDataModel;
 };
@@ -31,12 +33,11 @@ export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
   } = tweetDataModel;
 
   const howLongAgo = TweetApplicationService.howLongAgo(tweetDataModel);
-  const imageSize = 49;
 
   return (
     <TweetContainer>
       <Tweet>
-        <UserImageSection userImageURL={userImageURL} imageSize={imageSize} />
+        <UserImageSection userImageURL={userImageURL} imageSize={IMAGE_SIZE} />
         <div>
           <TweetInformationSection
             userName={userName}

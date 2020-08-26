@@ -11,6 +11,7 @@ import { TweetDataModel } from '../infrastructure/TweetDataModel';
 export const HomeContainer: React.FC = () => {
   const store = Store.useStore();
   const isLogin = store.get('isLogin');
+  const userDataModel = store.get('userDataModel');
 
   const [tweetDataModelArray, setTweetDataModelArray] = React.useState<
     TweetDataModel[]
@@ -33,9 +34,11 @@ export const HomeContainer: React.FC = () => {
   return (
     <>
       {!isLogin && <Redirect to="/" />}
-      {tweetDataModelArray === [] && <div>loading</div>}
+      {(tweetDataModelArray === [] || !userDataModel) && <div>loading</div>}
       <Header logout={logout}>
-        <HomeHeaderContent logout={logout} />
+        {userDataModel && (
+          <HomeHeaderContent logout={logout} userDataModel={userDataModel} />
+        )}
       </Header>
       <Timeline tweetDataModelArray={tweetDataModelArray} />
       <Footer />

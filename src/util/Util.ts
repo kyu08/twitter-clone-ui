@@ -4,6 +4,9 @@ export type TODO<T> = any;
 
 export const hostURL = 'http://localhost:3001';
 
+export const DefaultUserImageURL =
+  'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';
+
 // 2階層目まで undefined をチェック
 export const ensurePropsContainsNoUndefined = <T>(props: T) => {
   const values = Object.values(props);

@@ -8,6 +8,8 @@ type Props = {
   handleChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 };
 
+const IMAGE_SIZE = 49;
+
 const TweetCreate = styled.div`
   display: flex;
   width: 100vw;
@@ -47,11 +49,9 @@ export const TweetCreateForm: React.FC<Props> = ({
   handleChangeContent,
   userImageURL,
 }) => {
-  const imageSize = 49;
-
   return (
     <TweetCreate>
-      <UserImageSection userImageURL={userImageURL} imageSize={imageSize} />
+      <UserImageSection userImageURL={userImageURL} imageSize={IMAGE_SIZE} />
       <RightContainer>
         <InputElement
           wrap="soft"
