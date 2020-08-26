@@ -1,6 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { GoBackButton } from '../Common/GoBackButton';
+import { UserDataModel } from '../../../infrastructure/UserDataModel';
+
+type Props = {
+  userDataModel: UserDataModel;
+  tweetCount: number;
+};
 
 const Header = styled.div`
   width: 100%;
@@ -26,13 +32,18 @@ const TweetCount = styled.div`
   font-size: 13px;
 `;
 
-export const ProfileHeaderContent: React.FC = () => {
+export const ProfileHeaderContent: React.FC<Props> = ({
+  userDataModel,
+  tweetCount,
+}) => {
+  const { userName } = userDataModel;
+
   return (
     <Header>
       <GoBackButton />
       <Wrapper>
-        <UserName>userName</UserName>
-        <TweetCount>1,234 ツイート</TweetCount>
+        <UserName>{userName}</UserName>
+        <TweetCount>{tweetCount.toLocaleString()} ツイート</TweetCount>
       </Wrapper>
     </Header>
   );

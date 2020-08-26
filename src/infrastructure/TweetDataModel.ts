@@ -7,6 +7,7 @@ export class TweetDataModel {
 
   readonly content: string;
 
+  // todo 本当は ↓この3つ、 toLocaleString() して string として扱いたい
   readonly replyCount: number;
 
   readonly retweetCount: number;
