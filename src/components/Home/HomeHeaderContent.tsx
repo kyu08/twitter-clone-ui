@@ -11,7 +11,7 @@ type Props = {
   userDataModel: UserDataModel;
 };
 
-const LoginButtonWrapper = styled.div`
+const ProfileLinkWrapper = styled.span`
   margin: auto 7px;
 `;
 
@@ -23,14 +23,14 @@ export const HomeHeaderContent: React.FC<Props> = ({
 
   return (
     <>
-      <LoginButtonWrapper>
+      <ProfileLinkWrapper>
         <Link to="/profile">
           <UserImageSection
             userImageURL={userImageURL}
             imageSize={IMAGE_SIZE}
           />
         </Link>
-      </LoginButtonWrapper>
+      </ProfileLinkWrapper>
       <button onClick={() => logout()}>Logout</button>
     </>
   );

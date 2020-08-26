@@ -8,15 +8,16 @@ import { TempTweetDataModel } from '../../infrastructure/TempTweetDataModel';
 import { Header } from './Common/Header';
 import Store from '../../Store';
 import { TweetApplicationService } from '../../application/TweetApplicationService';
+import { DefaultUserImageURL } from '../../util/Util';
 
-type Props = {
-  userImageURL: string;
-};
-
-export const TweetCreateContainer: React.FC<Props> = ({ userImageURL }) => {
+export const TweetCreateContainer: React.FC = () => {
   const store = Store.useStore();
   const isLogin = store.get('isLogin');
   const userId = store.get('userId');
+  const userDataModel = store.get('userDataModel');
+  const userImageURL = userDataModel
+    ? userDataModel.userImageURL
+    : DefaultUserImageURL;
 
   const [content, setContent] = React.useState<string>('');
   const [tempTweetDataModel, setTempTweetDataModel]: [
