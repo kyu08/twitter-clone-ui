@@ -1,5 +1,5 @@
 import { hostURL } from '../util/Util';
-import { TempTweetData } from './TempTweetDataModel';
+import { TempTweetDataModel } from './TempTweetDataModel';
 import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 import Tweet from '../domain/models/Tweet/ConcreteClasses/Tweet';
 import Content from '../domain/models/Tweet/Content/Content';
@@ -15,14 +15,16 @@ export class TweetRepository {
     });
   }
 
-  postTweet(tweetDataModel: TempTweetData): Promise<Response> {
+  postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
+    const tweetData = tweetDataModel.build();
+
     return fetch(`${hostURL}/tweet`, {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(tweetDataModel),
+      body: JSON.stringify(tweetData),
     });
   }
 

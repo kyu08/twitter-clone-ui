@@ -29,10 +29,9 @@ export const TweetCreateContainer: React.FC<Props> = ({ userImageURL }) => {
 
   const submitTweet = async () => {
     if (!tempTweetDataModel) throw new Error('there is no temp tweet');
-    const data = tempTweetDataModel.build();
-    const response = await TweetApplicationService.postTweet(data).catch((e) =>
-      console.log(e),
-    );
+    const response = await TweetApplicationService.postTweet(
+      tempTweetDataModel,
+    ).catch((e) => console.log(e));
     console.log(response);
     setHasSubmit(true);
   };

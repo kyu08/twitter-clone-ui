@@ -1,6 +1,6 @@
 import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
-import { TempTweetData } from '../infrastructure/TempTweetDataModel';
+import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 import { TweetDataModel } from '../infrastructure/TweetDataModel';
 import { TweetRepository } from '../infrastructure/TweetRepository';
 import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
@@ -35,7 +35,7 @@ export class TweetApplicationService {
     return TweetApplicationService.tweetRepository.fetchTimeline();
   }
 
-  static postTweet(tweetDataModel: TempTweetData): Promise<Response> {
+  static postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
     return TweetApplicationService.tweetRepository.postTweet(tweetDataModel);
   }
 
