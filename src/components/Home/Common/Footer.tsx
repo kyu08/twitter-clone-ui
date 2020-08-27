@@ -7,7 +7,11 @@ const FooterWrapper = styled.div`
   width: 100%;
   height: 59px;
   border-top: solid 1px rgb(136, 153, 166);
+  border: solid 1px red;
   display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 `;
 
 export const Footer: React.FC<{}> = () => {

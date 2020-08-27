@@ -5,6 +5,7 @@ import { ProfileHeaderContent } from './Home/Profile/ProfileHeaderContent';
 import { UserImageSection } from './Home/Tweet/UserImageSection';
 import Store from '../Store';
 import { DefaultUserImageURL } from '../util/Util';
+import { Footer } from './Home/Common/Footer';
 
 const IMAGE_SIZE = 84;
 
@@ -23,9 +24,10 @@ const HeaderImage = styled.div`
 `;
 
 const ProfileSection = styled.div`
-  height: 235px;
+  min-height: 235px;
   padding: 10px 15px 10px;
   border-bottom: solid 1px rgb(136, 153, 166);
+  word-break: break-all;
 `;
 
 const ButtonUtil = `font-weight: bold;
@@ -52,6 +54,50 @@ const ButtonWrapper = styled.div`
   margin-top: 50px;
   margin-left: auto;
   padding: 0 20px;
+`;
+
+const UserName = styled.span`
+  display: block;
+  margin-top: 45px;
+  font-weight: bold;
+  font-size: 20px;
+`;
+
+const ScreenName = styled.div`
+  color: #8899a6;
+  font-size: 16px;
+`;
+
+const Bio = styled.span`
+  font-size: 16px;
+  display: block;
+  margin: 8px 0;
+`;
+
+const UserLocation = styled.span`
+  font-size: 16px;
+  color: #8899a6;
+`;
+
+const CreatedAt = styled.span`
+  font-size: 16px;
+  color: #8899a6;
+  display: block;
+`;
+
+const FollowingFollowerWrapper = styled.div`
+  margin: 10px 0;
+`;
+
+const FollowCountUtil = styled.span`
+  font-weight: bold;
+`;
+
+const FollowDisplayUtil = styled.span`
+  font-size: 16px;
+  color: #8899a6;
+  margin-right: 25px;
+  margin-left: 10px;
 `;
 
 export const ProfileContainer: React.FC = () => {
@@ -106,7 +152,19 @@ export const ProfileContainer: React.FC = () => {
             </ButtonWrapper>
           )}
         </ProfileUpperSection>
+        <UserName>Queueしま</UserName>
+        <ScreenName>@kyu___8</ScreenName>
+        <Bio>つよつよえんじにあ</Bio>
+        <UserLocation>⛳️tokyo</UserLocation>
+        <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
+        <FollowingFollowerWrapper>
+          <FollowCountUtil>198</FollowCountUtil>
+          <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+          <FollowCountUtil>2.5億</FollowCountUtil>
+          <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
+        </FollowingFollowerWrapper>
       </ProfileSection>
+      <Footer />
     </>
   );
 };
