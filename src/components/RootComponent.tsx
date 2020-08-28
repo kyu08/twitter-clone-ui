@@ -31,7 +31,7 @@ export const RootComponent: React.FC<Props> = ({ isLogin }) => {
           <Route exact path="/login" component={LoginContainer} />
           <Route exact path="/home" component={HomeContainer} />
           <Route exact path="/tweet" component={TweetCreateContainer} />
-          <Route exact path="/profile" component={ProfileContainer} />
+          <Route exact path="/:screenName" component={ProfileContainer} />
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>
       </BrowserRouter>

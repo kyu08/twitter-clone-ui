@@ -42,7 +42,15 @@ export default class UserRepository implements IUserRepository {
   getUserJson(userId: UserId): Promise<Response> {
     const userIdString = userId.userId;
 
-    return fetch(`${hostURL}/user/${userIdString}/full`, {
+    return fetch(`${hostURL}/user/userId/${userIdString}/full`, {
+      mode: 'cors',
+    });
+  }
+
+  getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
+    const screenNameString = screenName.screenName;
+
+    return fetch(`${hostURL}/user/screenName/${screenNameString}/full`, {
       mode: 'cors',
     });
   }

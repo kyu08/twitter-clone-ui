@@ -1,11 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Header } from './Home/Common/Header';
 import { ProfileHeaderContent } from './Home/Profile/ProfileHeaderContent';
 import { UserImageSection } from './Home/Tweet/UserImageSection';
 import Store from '../Store';
 import { DefaultUserImageURL } from '../util/Util';
 import { Footer } from './Home/Common/Footer';
+import UserApplicationService from '../application/UserApplicationService';
+import ScreenName from '../domain/models/User/Profile/ScreenName';
+import { UserDataModel } from '../infrastructure/UserDataModel';
 
 const IMAGE_SIZE = 84;
 
@@ -63,7 +68,7 @@ const UserName = styled.span`
   font-size: 20px;
 `;
 
-const ScreenName = styled.div`
+const ScreenNameComponent = styled.div`
   color: #8899a6;
   font-size: 16px;
 `;
@@ -101,16 +106,14 @@ const FollowDisplayUtil = styled.span`
 `;
 
 export const ProfileContainer: React.FC = () => {
-  // todo isCurrentUser を導入して true ならば編集できるようにする
+  const { screenName: screenNameRequested } = useParams();
   const [isFollowing, setIsFollowing] = React.useState(false);
+  const [user, setUser] = React.useState();
+  const [existUser, setExistUser] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [userImageURL, setUserImageURL] = React.useState(DefaultUserImageURL);
   const store = Store.useStore();
-  // memo ↓ 開発用に comment out
-  // const isLogin = store.get('isLogin');
-
-  const userDataModel = store.get('userDataModel');
-  const userImageURL = userDataModel
-    ? userDataModel.userImageURL
-    : DefaultUserImageURL;
+  const currentUserDataModel = store.get('userDataModel');
 
   // todo これ動的にする
   const tweetCount = 123123123;
@@ -119,52 +122,79 @@ export const ProfileContainer: React.FC = () => {
     setIsFollowing(!isFollowing);
   };
 
+  useEffect(() => {
+    (async () => {
+      const userGotByScreenName = await UserApplicationService.getUserByScreenName(
+        new ScreenName(screenNameRequested),
+      ).catch((e) => e);
+      if (!(userGotByScreenName instanceof UserDataModel)) {
+        setExistUser(false);
+
+        return;
+      }
+      const userImageURLInUser =
+        userGotByScreenName.userImageURL || DefaultUserImageURL;
+
+      setUserImageURL(userImageURLInUser);
+      setExistUser(true);
+      setUser(userGotByScreenName);
+      setIsLoading(false);
+    })();
+  }, []);
+
   return (
     <>
-      {/* memo ↓ 開発用に comment out */}
-      {/* {!isLogin && <Redirect to="/" />}*/}
-      <Header>
-        {userDataModel && (
-          <ProfileHeaderContent
-            userDataModel={userDataModel}
-            tweetCount={tweetCount}
-          />
-        )}
-      </Header>
-      <HeaderImage />
-      <ProfileSection>
-        <ProfileUpperSection>
-          <UserImageSection
-            imageSize={IMAGE_SIZE}
-            userImageURL={userImageURL}
-          />
-          {isFollowing ? (
-            <ButtonWrapper>
-              <UnFollowButton onClick={() => toggleIsFollowing()}>
-                フォロー中
-              </UnFollowButton>
-            </ButtonWrapper>
-          ) : (
-            <ButtonWrapper>
-              <FollowButton onClick={() => toggleIsFollowing()}>
-                フォロー
-              </FollowButton>
-            </ButtonWrapper>
-          )}
-        </ProfileUpperSection>
-        <UserName>Queueしま</UserName>
-        <ScreenName>@kyu___8</ScreenName>
-        <Bio>つよつよえんじにあ</Bio>
-        <UserLocation>⛳️tokyo</UserLocation>
-        <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
-        <FollowingFollowerWrapper>
-          <FollowCountUtil>198</FollowCountUtil>
-          <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
-          <FollowCountUtil>2.5億</FollowCountUtil>
-          <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
-        </FollowingFollowerWrapper>
-      </ProfileSection>
-      <Footer />
+      {/* todo NotExistingUserComponent つくる */}
+      {/* todo フォローボタンが編集ボタンにかわるようにする */}
+      {currentUserDataModel instanceof UserDataModel &&
+        currentUserDataModel?.userId === user?.userId &&
+        console.log('自分のページです')}
+      {existUser === false || isLoading ? (
+        <div>存在しないユーザーです</div>
+      ) : (
+        <>
+          <Header>
+            <ProfileHeaderContent
+              userDataModel={user}
+              tweetCount={tweetCount}
+            />
+          </Header>
+          <HeaderImage />
+          <ProfileSection>
+            <ProfileUpperSection>
+              <UserImageSection
+                imageSize={IMAGE_SIZE}
+                userImageURL={userImageURL}
+              />
+              {isFollowing ? (
+                <ButtonWrapper>
+                  <UnFollowButton onClick={() => toggleIsFollowing()}>
+                    フォロー中
+                  </UnFollowButton>
+                </ButtonWrapper>
+              ) : (
+                <ButtonWrapper>
+                  <FollowButton onClick={() => toggleIsFollowing()}>
+                    フォロー
+                  </FollowButton>
+                </ButtonWrapper>
+              )}
+            </ProfileUpperSection>
+            <UserName>{user.userName}</UserName>
+            <ScreenNameComponent>@{user.screenName}</ScreenNameComponent>
+            <Bio>{user.bio}</Bio>
+            <UserLocation>⛳{user.userLocation}</UserLocation>
+            <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
+            <FollowingFollowerWrapper>
+              <FollowCountUtil>{user.followingCount}</FollowCountUtil>
+              <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+              <FollowCountUtil>{user.followerCount}</FollowCountUtil>
+              <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
+            </FollowingFollowerWrapper>
+          </ProfileSection>
+          <Footer />
+        </>
+      )}
     </>
   );
 };

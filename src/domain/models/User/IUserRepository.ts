@@ -1,8 +1,8 @@
 import UserId from './UserId/UserId';
-// import { IUser } from './IUser';
 import { User } from './User';
 // eslint-disable-next-line import/no-cycle
 import { userFull } from '../../../infrastructure/UserRepository';
+import ScreenName from './Profile/ScreenName';
 
 export interface IUserRepository {
   // save(user: IUser): void;
@@ -13,5 +13,6 @@ export interface IUserRepository {
   returnUserIdByScreenName(screenName: string): string;
   toInstanceUserId(userIdString: string): UserId;
   getUserJson(userId: UserId): Promise<Response>;
+  getUserJsonByScreenName(screenName: ScreenName): Promise<Response>;
   toInstance(props: userFull): User;
 }

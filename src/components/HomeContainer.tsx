@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Header } from './Home/Common/Header';
 import { Timeline } from './Home/Timeline';
@@ -17,7 +18,7 @@ export const HomeContainer: React.FC = () => {
     TweetDataModel[]
   >([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       const tweetInstanceArray = await TweetApplicationService.getTimeLine().catch(
         (e) => e,
