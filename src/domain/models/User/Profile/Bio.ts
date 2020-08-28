@@ -1,4 +1,4 @@
-export const MAX_BIO_LENGTH = 20;
+export const MAX_BIO_LENGTH = 150;
 
 export default class Bio {
   readonly bio: string;

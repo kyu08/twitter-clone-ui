@@ -1,4 +1,4 @@
-export const MAX_USER_NAME_LENGTH = 15;
+export const MAX_USER_NAME_LENGTH = 50;
 
 export default class UserName {
   readonly userName: string;
