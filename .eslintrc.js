@@ -75,6 +75,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/camelcase': 'off',
+    "class-methods-use-this": "off",
 
     // airbnb
     'no-restricted-syntax': [
@@ -260,7 +261,7 @@ module.exports = {
     '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/camelcase': 'off',
-
+    "class-methods-use-this": "off",
 
     // airbnb
     'no-restricted-syntax': [

@@ -11,6 +11,7 @@ import { Footer } from './Home/Common/Footer';
 import UserApplicationService from '../application/UserApplicationService';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { UserDataModel } from '../infrastructure/UserDataModel';
+import { FollowApplicationService } from '../application/FollowApplicationService';
 
 const IMAGE_SIZE = 84;
 
@@ -108,12 +109,15 @@ const FollowDisplayUtil = styled.span`
 export const ProfileContainer: React.FC = () => {
   const { screenName: screenNameRequested } = useParams();
   const [isFollowing, setIsFollowing] = React.useState(false);
-  const [user, setUser] = React.useState();
+  const [userIndicating, setUserIndicating] = React.useState();
   const [existUser, setExistUser] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const [userImageURL, setUserImageURL] = React.useState(DefaultUserImageURL);
   const store = Store.useStore();
   const currentUserDataModel = store.get('userDataModel');
+  const currentUserId = currentUserDataModel?.userId;
+  const userIndicatingUserId = userIndicating?.userId;
+  const followApplicationService = new FollowApplicationService();
 
   // todo これ動的にする
   const tweetCount = 123123123;
@@ -122,7 +126,20 @@ export const ProfileContainer: React.FC = () => {
     setIsFollowing(!isFollowing);
   };
 
+  const follow = () => {
+    toggleIsFollowing();
+    if (!currentUserId) return;
+    followApplicationService.follow(currentUserId, userIndicatingUserId);
+  };
+
+  const unFollow = () => {
+    toggleIsFollowing();
+    if (!currentUserId) return;
+    followApplicationService.unFollow(currentUserId, userIndicatingUserId);
+  };
+
   useEffect(() => {
+    // todo isFollowing を問い合わせる
     (async () => {
       const userGotByScreenName = await UserApplicationService.getUserByScreenName(
         new ScreenName(screenNameRequested),
@@ -134,10 +151,9 @@ export const ProfileContainer: React.FC = () => {
       }
       const userImageURLInUser =
         userGotByScreenName.userImageURL || DefaultUserImageURL;
-
       setUserImageURL(userImageURLInUser);
       setExistUser(true);
-      setUser(userGotByScreenName);
+      setUserIndicating(userGotByScreenName);
       setIsLoading(false);
     })();
   }, []);
@@ -147,7 +163,7 @@ export const ProfileContainer: React.FC = () => {
       {/* todo NotExistingUserComponent つくる */}
       {/* todo フォローボタンが編集ボタンにかわるようにする */}
       {currentUserDataModel instanceof UserDataModel &&
-        currentUserDataModel?.userId === user?.userId &&
+        currentUserDataModel?.userId === userIndicating?.userId &&
         console.log('自分のページです')}
       {existUser === false || isLoading ? (
         <div>存在しないユーザーです</div>
@@ -155,7 +171,7 @@ export const ProfileContainer: React.FC = () => {
         <>
           <Header>
             <ProfileHeaderContent
-              userDataModel={user}
+              userDataModel={userIndicating}
               tweetCount={tweetCount}
             />
           </Header>
@@ -168,27 +184,27 @@ export const ProfileContainer: React.FC = () => {
               />
               {isFollowing ? (
                 <ButtonWrapper>
-                  <UnFollowButton onClick={() => toggleIsFollowing()}>
+                  <UnFollowButton onClick={() => unFollow()}>
                     フォロー中
                   </UnFollowButton>
                 </ButtonWrapper>
               ) : (
                 <ButtonWrapper>
-                  <FollowButton onClick={() => toggleIsFollowing()}>
-                    フォロー
-                  </FollowButton>
+                  <FollowButton onClick={() => follow()}>フォロー</FollowButton>
                 </ButtonWrapper>
               )}
             </ProfileUpperSection>
-            <UserName>{user.userName}</UserName>
-            <ScreenNameComponent>@{user.screenName}</ScreenNameComponent>
-            <Bio>{user.bio}</Bio>
-            <UserLocation>⛳{user.userLocation}</UserLocation>
+            <UserName>{userIndicating.userName}</UserName>
+            <ScreenNameComponent>
+              @{userIndicating.screenName}
+            </ScreenNameComponent>
+            <Bio>{userIndicating.bio}</Bio>
+            <UserLocation>⛳{userIndicating.userLocation}</UserLocation>
             <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
             <FollowingFollowerWrapper>
-              <FollowCountUtil>{user.followingCount}</FollowCountUtil>
+              <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
               <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
-              <FollowCountUtil>{user.followerCount}</FollowCountUtil>
+              <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
               <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
             </FollowingFollowerWrapper>
           </ProfileSection>
