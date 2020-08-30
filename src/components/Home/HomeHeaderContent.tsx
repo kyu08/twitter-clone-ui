@@ -19,12 +19,12 @@ export const HomeHeaderContent: React.FC<Props> = ({
   logout,
   userDataModel,
 }) => {
-  const { userImageURL } = userDataModel;
+  const { userImageURL, screenName } = userDataModel;
 
   return (
     <>
       <ProfileLinkWrapper>
-        <Link to="/profile">
+        <Link to={`/${screenName}`}>
           <UserImageSection
             userImageURL={userImageURL}
             imageSize={IMAGE_SIZE}

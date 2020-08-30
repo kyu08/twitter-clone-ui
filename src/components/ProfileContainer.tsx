@@ -113,6 +113,7 @@ export const ProfileContainer: React.FC = () => {
   const [existUser, setExistUser] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const [userImageURL, setUserImageURL] = React.useState(DefaultUserImageURL);
+  const [isOwnPage, setIsOwnPage] = React.useState(false);
   const store = Store.useStore();
   const currentUserDataModel = store.get('userDataModel');
   const userIndicatingUserId = userIndicating?.userId;
@@ -168,6 +169,10 @@ export const ProfileContainer: React.FC = () => {
       if (isFollowingResponse.status === 400) return;
       const isFollowingJSON = await isFollowingResponse.json();
       setIsFollowing(isFollowingJSON);
+
+      //  set isOwnPage
+      if (currentUserDataModel?.userId === userIndicating?.userId)
+        setIsOwnPage(true);
     })();
   }, [currentUserDataModel]);
 
@@ -175,7 +180,8 @@ export const ProfileContainer: React.FC = () => {
     <>
       {/* todo フォローボタンが編集ボタンにかわるようにする */}
       {currentUserDataModel instanceof UserDataModel &&
-        currentUserDataModel?.userId === userIndicating?.userId &&
+        isOwnPage &&
+        // currentUserDataModel?.userId === userIndicating?.userId &&
         console.log('自分のページです')}
       {existUser === false ? (
         <div>存在しないユーザーです(componentつくろう)</div>
@@ -198,13 +204,18 @@ export const ProfileContainer: React.FC = () => {
               />
               {isFollowing ? (
                 <ButtonWrapper>
-                  <UnFollowButton onClick={() => unFollow()}>
+                  <UnFollowButton
+                    onClick={() => unFollow()}
+                    disabled={isOwnPage}
+                  >
                     フォロー中
                   </UnFollowButton>
                 </ButtonWrapper>
               ) : (
                 <ButtonWrapper>
-                  <FollowButton onClick={() => follow()}>フォロー</FollowButton>
+                  <FollowButton onClick={() => follow()} disabled={isOwnPage}>
+                    フォロー
+                  </FollowButton>
                 </ButtonWrapper>
               )}
             </ProfileUpperSection>
