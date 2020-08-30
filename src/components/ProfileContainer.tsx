@@ -43,6 +43,12 @@ const ButtonUtil = `font-weight: bold;
   border: solid 1px #1da1f2;
 `;
 
+const EditProfileButton = styled.button`
+  color: #1da1f2;
+  background-color: rgba(0, 0, 0, 0);
+  ${ButtonUtil}
+`;
+
 const FollowButton = styled.button`
   color: #1da1f2;
   background-color: rgba(0, 0, 0, 0);
@@ -126,6 +132,10 @@ export const ProfileContainer: React.FC = () => {
     setIsFollowing(!isFollowing);
   };
 
+  const editProfile = () => {
+    console.log('// todo imeplement edit profile.');
+  };
+
   const follow = async () => {
     const currentUserId = currentUserDataModel?.userId;
     toggleIsFollowing();
@@ -178,11 +188,6 @@ export const ProfileContainer: React.FC = () => {
 
   return (
     <>
-      {/* todo フォローボタンが編集ボタンにかわるようにする */}
-      {currentUserDataModel instanceof UserDataModel &&
-        isOwnPage &&
-        // currentUserDataModel?.userId === userIndicating?.userId &&
-        console.log('自分のページです')}
       {existUser === false ? (
         <div>存在しないユーザーです(componentつくろう)</div>
       ) : isLoading ? (
@@ -202,7 +207,13 @@ export const ProfileContainer: React.FC = () => {
                 imageSize={IMAGE_SIZE}
                 userImageURL={userImageURL}
               />
-              {isFollowing ? (
+              {isOwnPage ? (
+                <ButtonWrapper>
+                  <EditProfileButton onClick={() => editProfile()}>
+                    プロフィールを編集
+                  </EditProfileButton>
+                </ButtonWrapper>
+              ) : isFollowing ? (
                 <ButtonWrapper>
                   <UnFollowButton
                     onClick={() => unFollow()}
