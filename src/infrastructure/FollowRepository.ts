@@ -24,4 +24,16 @@ export class FollowRepository {
       body: JSON.stringify(followData),
     });
   }
+
+  isFollowing(
+    followingUserId: string,
+    followerUserId: string,
+  ): Promise<Response> {
+    return fetch(
+      `${hostURL}/follow?followingUserId=${followingUserId}&followerUserId=${followerUserId}`,
+      {
+        mode: 'cors',
+      },
+    );
+  }
 }

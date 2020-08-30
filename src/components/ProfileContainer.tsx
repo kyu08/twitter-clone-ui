@@ -115,7 +115,6 @@ export const ProfileContainer: React.FC = () => {
   const [userImageURL, setUserImageURL] = React.useState(DefaultUserImageURL);
   const store = Store.useStore();
   const currentUserDataModel = store.get('userDataModel');
-  const currentUserId = currentUserDataModel?.userId;
   const userIndicatingUserId = userIndicating?.userId;
   const followApplicationService = new FollowApplicationService();
 
@@ -126,20 +125,24 @@ export const ProfileContainer: React.FC = () => {
     setIsFollowing(!isFollowing);
   };
 
-  const follow = () => {
+  const follow = async () => {
+    const currentUserId = currentUserDataModel?.userId;
     toggleIsFollowing();
     if (!currentUserId) return;
-    followApplicationService.follow(currentUserId, userIndicatingUserId);
+    await followApplicationService.follow(currentUserId, userIndicatingUserId);
   };
 
-  const unFollow = () => {
+  const unFollow = async () => {
+    const currentUserId = currentUserDataModel?.userId;
     toggleIsFollowing();
     if (!currentUserId) return;
-    followApplicationService.unFollow(currentUserId, userIndicatingUserId);
+    await followApplicationService.unFollow(
+      currentUserId,
+      userIndicatingUserId,
+    );
   };
 
   useEffect(() => {
-    // todo isFollowing を問い合わせる
     (async () => {
       const userGotByScreenName = await UserApplicationService.getUserByScreenName(
         new ScreenName(screenNameRequested),
@@ -155,12 +158,21 @@ export const ProfileContainer: React.FC = () => {
       setExistUser(true);
       setUserIndicating(userGotByScreenName);
       setIsLoading(false);
+
+      // setIsFollowing
+      if (!currentUserDataModel) return;
+      const isFollowingResponse = await followApplicationService.isFollowing(
+        currentUserDataModel.userId,
+        userIndicatingUserId,
+      );
+      if (isFollowingResponse.status === 400) return;
+      const isFollowingJSON = await isFollowingResponse.json();
+      setIsFollowing(isFollowingJSON);
     })();
-  }, []);
+  }, [currentUserDataModel]);
 
   return (
     <>
-      {/* todo NotExistingUserComponent つくる */}
       {/* todo フォローボタンが編集ボタンにかわるようにする */}
       {currentUserDataModel instanceof UserDataModel &&
         currentUserDataModel?.userId === userIndicating?.userId &&

@@ -76,6 +76,7 @@ module.exports = {
     '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/camelcase': 'off',
     "class-methods-use-this": "off",
+    "no-nested-ternary": "off",
 
     // airbnb
     'no-restricted-syntax': [
@@ -238,6 +239,8 @@ module.exports = {
     'no-console': 'off',
     'no-continue': 'off',
     'class-methods-use-this': 'off',
+    "no-nested-ternary": "off",
+
 
     quotes: ['error', 'single', {avoidEscape: true}],
     'require-yield': 'error',
