@@ -177,8 +177,10 @@ export const ProfileContainer: React.FC = () => {
       {currentUserDataModel instanceof UserDataModel &&
         currentUserDataModel?.userId === userIndicating?.userId &&
         console.log('自分のページです')}
-      {existUser === false || isLoading ? (
-        <div>存在しないユーザーです</div>
+      {existUser === false ? (
+        <div>存在しないユーザーです(componentつくろう)</div>
+      ) : isLoading ? (
+        <div>Loaing...(componentつくろう)</div>
       ) : (
         <>
           <Header>
