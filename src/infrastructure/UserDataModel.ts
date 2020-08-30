@@ -20,6 +20,7 @@ export class UserDataModel {
 
   readonly userId: string;
 
+  // todo 本当は ↓この3つ、 toLocaleString() して string として扱いたい
   readonly followerCount: number;
 
   readonly followingCount: number;

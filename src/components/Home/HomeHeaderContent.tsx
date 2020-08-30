@@ -2,29 +2,36 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserImageSection } from './Tweet/UserImageSection';
+import { UserDataModel } from '../../infrastructure/UserDataModel';
+
+const IMAGE_SIZE = 30;
 
 type Props = {
-  logout?(): void;
+  logout(): void;
+  userDataModel: UserDataModel;
 };
 
-const LoginButtonWrapper = styled.div`
+const ProfileLinkWrapper = styled.span`
   margin: auto 7px;
 `;
 
-export const HomeHeaderContent: React.FC<Props> = ({ logout }) => {
-  const imageSize = 30;
-  // todo これ動的にしよう -> まずは undux でグローバル管理にするところから
-  const userImageURL =
-    'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';
+export const HomeHeaderContent: React.FC<Props> = ({
+  logout,
+  userDataModel,
+}) => {
+  const { userImageURL, screenName } = userDataModel;
 
   return (
     <>
-      <LoginButtonWrapper>
-        <Link to="/profile">
-          <UserImageSection userImageURL={userImageURL} imageSize={imageSize} />
+      <ProfileLinkWrapper>
+        <Link to={`/${screenName}`}>
+          <UserImageSection
+            userImageURL={userImageURL}
+            imageSize={IMAGE_SIZE}
+          />
         </Link>
-      </LoginButtonWrapper>
-      {logout ? <button onClick={() => logout()}>Logout</button> : null}
+      </ProfileLinkWrapper>
+      <button onClick={() => logout()}>Logout</button>
     </>
   );
 };

@@ -30,14 +30,8 @@ export const RootComponent: React.FC<Props> = ({ isLogin }) => {
           <Route exact path="/signup" component={SignUpContainer} />
           <Route exact path="/login" component={LoginContainer} />
           <Route exact path="/home" component={HomeContainer} />
-          <Route
-            exact
-            path="/tweet"
-            render={() => (
-              <TweetCreateContainer userImageURL="https://lh3.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1=w288-h288-n-rw" />
-            )}
-          />
-          <Route exact path="/profile" component={ProfileContainer} />
+          <Route exact path="/tweet" component={TweetCreateContainer} />
+          <Route exact path="/:screenName" component={ProfileContainer} />
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>
       </BrowserRouter>

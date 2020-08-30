@@ -1,14 +1,26 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Header } from './Home/Common/Header';
 import { ProfileHeaderContent } from './Home/Profile/ProfileHeaderContent';
 import { UserImageSection } from './Home/Tweet/UserImageSection';
 import Store from '../Store';
+import { DefaultUserImageURL } from '../util/Util';
+import { Footer } from './Home/Common/Footer';
+import UserApplicationService from '../application/UserApplicationService';
+import ScreenName from '../domain/models/User/Profile/ScreenName';
+import { UserDataModel } from '../infrastructure/UserDataModel';
+import { FollowApplicationService } from '../application/FollowApplicationService';
 
-const LoginButtonWrapper = styled.div`
+const IMAGE_SIZE = 84;
+
+const ProfileUpperSection = styled.div`
   position: absolute;
   top: 137px;
   left: 5px;
+  display: flex;
+  width: 100%;
 `;
 
 const HeaderImage = styled.div`
@@ -18,34 +30,223 @@ const HeaderImage = styled.div`
 `;
 
 const ProfileSection = styled.div`
-  height: 235px;
+  min-height: 235px;
   padding: 10px 15px 10px;
   border-bottom: solid 1px rgb(136, 153, 166);
+  word-break: break-all;
 `;
 
-// todo ひととおりできたら presentation component として view 部分を切り出していく
-export const ProfileContainer: React.FC = () => {
-  const store = Store.useStore();
-  const isLogin = store.get('isLogin');
+const ButtonUtil = `font-weight: bold;
+  border-radius: 30px;
+  padding: 7px 15px;
+  font-size: 15px;
+  border: solid 1px #1da1f2;
+`;
 
-  const imageSize = 84;
-  // todo  これ動的にしよう -> まずは undux でグローバル管理にするところから
-  const userImageURL =
-    'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';
+const EditProfileButton = styled.button`
+  color: #1da1f2;
+  background-color: rgba(0, 0, 0, 0);
+  ${ButtonUtil}
+`;
+
+const FollowButton = styled.button`
+  color: #1da1f2;
+  background-color: rgba(0, 0, 0, 0);
+  ${ButtonUtil}
+`;
+
+const UnFollowButton = styled.button`
+  color: white;
+  border-color: rgba(0, 0, 0, 0);
+  background-color: #1da1f2;
+  ${ButtonUtil}
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 50px;
+  margin-left: auto;
+  padding: 0 20px;
+`;
+
+const UserName = styled.span`
+  display: block;
+  margin-top: 45px;
+  font-weight: bold;
+  font-size: 20px;
+`;
+
+const ScreenNameComponent = styled.div`
+  color: #8899a6;
+  font-size: 16px;
+`;
+
+const Bio = styled.span`
+  font-size: 16px;
+  display: block;
+  margin: 8px 0;
+`;
+
+const UserLocation = styled.span`
+  font-size: 16px;
+  color: #8899a6;
+`;
+
+const CreatedAt = styled.span`
+  font-size: 16px;
+  color: #8899a6;
+  display: block;
+`;
+
+const FollowingFollowerWrapper = styled.div`
+  margin: 10px 0;
+`;
+
+const FollowCountUtil = styled.span`
+  font-weight: bold;
+`;
+
+const FollowDisplayUtil = styled.span`
+  font-size: 16px;
+  color: #8899a6;
+  margin-right: 25px;
+  margin-left: 10px;
+`;
+
+export const ProfileContainer: React.FC = () => {
+  const { screenName: screenNameRequested } = useParams();
+  const [isFollowing, setIsFollowing] = React.useState(false);
+  const [userIndicating, setUserIndicating] = React.useState();
+  const [existUser, setExistUser] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [userImageURL, setUserImageURL] = React.useState(DefaultUserImageURL);
+  const [isOwnPage, setIsOwnPage] = React.useState(false);
+  const store = Store.useStore();
+  const currentUserDataModel = store.get('userDataModel');
+  const userIndicatingUserId = userIndicating?.userId;
+  const followApplicationService = new FollowApplicationService();
+
+  // todo これ動的にする
+  const tweetCount = 123123123;
+
+  const toggleIsFollowing = () => {
+    setIsFollowing(!isFollowing);
+  };
+
+  const editProfile = () => {
+    console.log('// todo imeplement edit profile.');
+  };
+
+  const follow = async () => {
+    const currentUserId = currentUserDataModel?.userId;
+    toggleIsFollowing();
+    if (!currentUserId) return;
+    await followApplicationService.follow(currentUserId, userIndicatingUserId);
+  };
+
+  const unFollow = async () => {
+    const currentUserId = currentUserDataModel?.userId;
+    toggleIsFollowing();
+    if (!currentUserId) return;
+    await followApplicationService.unFollow(
+      currentUserId,
+      userIndicatingUserId,
+    );
+  };
+
+  useEffect(() => {
+    (async () => {
+      const userGotByScreenName = await UserApplicationService.getUserByScreenName(
+        new ScreenName(screenNameRequested),
+      ).catch((e) => e);
+      if (!(userGotByScreenName instanceof UserDataModel)) {
+        setExistUser(false);
+
+        return;
+      }
+      const userImageURLInUser =
+        userGotByScreenName.userImageURL || DefaultUserImageURL;
+      setUserImageURL(userImageURLInUser);
+      setExistUser(true);
+      setUserIndicating(userGotByScreenName);
+      setIsLoading(false);
+
+      // setIsFollowing
+      if (!currentUserDataModel) return;
+      const isFollowingResponse = await followApplicationService.isFollowing(
+        currentUserDataModel.userId,
+        userIndicatingUserId,
+      );
+      if (isFollowingResponse.status === 400) return;
+      const isFollowingJSON = await isFollowingResponse.json();
+      setIsFollowing(isFollowingJSON);
+
+      //  set isOwnPage
+      if (currentUserDataModel?.userId === userIndicating?.userId)
+        setIsOwnPage(true);
+    })();
+  }, [currentUserDataModel]);
 
   return (
     <>
-      {/* todo ↓ 開発用に comment out */}
-      {/* {!isLogin && <Redirect to="/" />}*/}
-      <Header>
-        <ProfileHeaderContent />
-      </Header>
-      <HeaderImage />
-      <ProfileSection>
-        <LoginButtonWrapper>
-          <UserImageSection imageSize={imageSize} userImageURL={userImageURL} />
-        </LoginButtonWrapper>
-      </ProfileSection>
+      {existUser === false ? (
+        <div>存在しないユーザーです(componentつくろう)</div>
+      ) : isLoading ? (
+        <div>Loaing...(componentつくろう)</div>
+      ) : (
+        <>
+          <Header>
+            <ProfileHeaderContent
+              userDataModel={userIndicating}
+              tweetCount={tweetCount}
+            />
+          </Header>
+          <HeaderImage />
+          <ProfileSection>
+            <ProfileUpperSection>
+              <UserImageSection
+                imageSize={IMAGE_SIZE}
+                userImageURL={userImageURL}
+              />
+              {isOwnPage ? (
+                <ButtonWrapper>
+                  <EditProfileButton onClick={() => editProfile()}>
+                    プロフィールを編集
+                  </EditProfileButton>
+                </ButtonWrapper>
+              ) : isFollowing ? (
+                <ButtonWrapper>
+                  <UnFollowButton
+                    onClick={() => unFollow()}
+                    disabled={isOwnPage}
+                  >
+                    フォロー中
+                  </UnFollowButton>
+                </ButtonWrapper>
+              ) : (
+                <ButtonWrapper>
+                  <FollowButton onClick={() => follow()} disabled={isOwnPage}>
+                    フォロー
+                  </FollowButton>
+                </ButtonWrapper>
+              )}
+            </ProfileUpperSection>
+            <UserName>{userIndicating.userName}</UserName>
+            <ScreenNameComponent>
+              @{userIndicating.screenName}
+            </ScreenNameComponent>
+            <Bio>{userIndicating.bio}</Bio>
+            <UserLocation>⛳{userIndicating.userLocation}</UserLocation>
+            <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
+            <FollowingFollowerWrapper>
+              <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
+              <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+              <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
+              <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
+            </FollowingFollowerWrapper>
+          </ProfileSection>
+          <Footer />
+        </>
+      )}
     </>
   );
 };

@@ -6,6 +6,7 @@ import { UserDataModel } from './infrastructure/UserDataModel';
 
 type State = {
   userId?: UserId;
+  // currentUser の UserDataModel インスタンス
   userDataModel?: UserDataModel;
   isLogin: boolean;
 };

@@ -8,15 +8,16 @@ import { TempTweetDataModel } from '../../infrastructure/TempTweetDataModel';
 import { Header } from './Common/Header';
 import Store from '../../Store';
 import { TweetApplicationService } from '../../application/TweetApplicationService';
+import { DefaultUserImageURL } from '../../util/Util';
 
-type Props = {
-  userImageURL: string;
-};
-
-export const TweetCreateContainer: React.FC<Props> = ({ userImageURL }) => {
+export const TweetCreateContainer: React.FC = () => {
   const store = Store.useStore();
   const isLogin = store.get('isLogin');
   const userId = store.get('userId');
+  const userDataModel = store.get('userDataModel');
+  const userImageURL = userDataModel
+    ? userDataModel.userImageURL
+    : DefaultUserImageURL;
 
   const [content, setContent] = React.useState<string>('');
   const [tempTweetDataModel, setTempTweetDataModel]: [
@@ -29,10 +30,9 @@ export const TweetCreateContainer: React.FC<Props> = ({ userImageURL }) => {
 
   const submitTweet = async () => {
     if (!tempTweetDataModel) throw new Error('there is no temp tweet');
-    const data = tempTweetDataModel.build();
-    const response = await TweetApplicationService.postTweet(data).catch((e) =>
-      console.log(e),
-    );
+    const response = await TweetApplicationService.postTweet(
+      tempTweetDataModel,
+    ).catch((e) => console.log(e));
     console.log(response);
     setHasSubmit(true);
   };

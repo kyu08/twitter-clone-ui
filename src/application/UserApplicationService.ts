@@ -3,6 +3,7 @@ import UserRepository from '../infrastructure/UserRepository';
 import { IUserRepository } from '../domain/models/User/IUserRepository';
 import { UserDataModel } from '../infrastructure/UserDataModel';
 import { UserFactory } from '../domain/models/User/UserFactory';
+import ScreenName from '../domain/models/User/Profile/ScreenName';
 
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
@@ -18,6 +19,18 @@ export default class UserApplicationService {
   static async getCurrentUser(userId: UserId): Promise<UserDataModel> {
     const userData = await this.userRepository
       .getUserJson(userId)
+      .catch((e) => e);
+    const userJson = await userData.json();
+    const user = this.userRepository.toInstance(userJson);
+
+    return this.userFactory.createUserDataModel(user);
+  }
+
+  static async getUserByScreenName(
+    screenName: ScreenName,
+  ): Promise<UserDataModel> {
+    const userData = await this.userRepository
+      .getUserJsonByScreenName(screenName)
       .catch((e) => e);
     const userJson = await userData.json();
     const user = this.userRepository.toInstance(userJson);
