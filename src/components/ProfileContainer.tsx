@@ -184,7 +184,7 @@ export const ProfileContainer: React.FC = () => {
       if (currentUserDataModel?.userId === userIndicating?.userId)
         setIsOwnPage(true);
     })();
-  }, [currentUserDataModel]);
+  }, [currentUserDataModel, userIndicatingUserId]);
 
   return (
     <>
