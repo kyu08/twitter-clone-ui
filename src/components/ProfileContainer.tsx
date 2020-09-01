@@ -169,84 +169,57 @@ export const ProfileContainer: React.FC = () => {
       setExistUser(true);
       setUserIndicating(userGotByScreenName);
       setIsLoading(false);
-
-      // setIsFollowing
-      if (!currentUserDataModel) return;
-      const isFollowingResponse = await followApplicationService.isFollowing(
-        currentUserDataModel.userId,
-        userIndicatingUserId,
-      );
-      if (isFollowingResponse.status === 400) return;
-      const isFollowingJSON = await isFollowingResponse.json();
-      setIsFollowing(isFollowingJSON);
-
-      //  set isOwnPage
-      if (currentUserDataModel?.userId === userIndicating?.userId)
-        setIsOwnPage(true);
     })();
   }, [currentUserDataModel, userIndicatingUserId]);
 
   return (
     <>
-      {existUser === false ? (
-        <div>存在しないユーザーです(componentつくろう)</div>
-      ) : isLoading ? (
-        <div>Loaing...(componentつくろう)</div>
-      ) : (
-        <>
-          <Header>
-            <ProfileHeaderContent
-              userDataModel={userIndicating}
-              tweetCount={tweetCount}
-            />
-          </Header>
-          <HeaderImage />
-          <ProfileSection>
-            <ProfileUpperSection>
-              <UserImageSection
-                imageSize={IMAGE_SIZE}
-                userImageURL={userImageURL}
-              />
-              {isOwnPage ? (
-                <ButtonWrapper>
-                  <EditProfileButton onClick={() => editProfile()}>
-                    プロフィールを編集
-                  </EditProfileButton>
-                </ButtonWrapper>
-              ) : isFollowing ? (
-                <ButtonWrapper>
-                  <UnFollowButton
-                    onClick={() => unFollow()}
-                    disabled={isOwnPage}
-                  >
-                    フォロー中
-                  </UnFollowButton>
-                </ButtonWrapper>
-              ) : (
-                <ButtonWrapper>
-                  <FollowButton onClick={() => follow()} disabled={isOwnPage}>
-                    フォロー
-                  </FollowButton>
-                </ButtonWrapper>
-              )}
-            </ProfileUpperSection>
-            <UserName>{userIndicating.userName}</UserName>
-            <ScreenNameComponent>
-              @{userIndicating.screenName}
-            </ScreenNameComponent>
-            <Bio>{userIndicating.bio}</Bio>
-            <UserLocation>⛳{userIndicating.userLocation}</UserLocation>
-            <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
-            <FollowingFollowerWrapper>
-              <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
-              <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
-              <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
-              <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
-            </FollowingFollowerWrapper>
-          </ProfileSection>
-          <Footer />
-        </>
-      )}
+      <Header>
+        <ProfileHeaderContent
+          userDataModel={userIndicating}
+          tweetCount={tweetCount}
+        />
+      </Header>
+      <HeaderImage />
+      <ProfileSection>
+        <ProfileUpperSection>
+          <UserImageSection
+            imageSize={IMAGE_SIZE}
+            userImageURL={userImageURL}
+          />
+          {isOwnPage ? (
+            <ButtonWrapper>
+              <EditProfileButton onClick={() => editProfile()}>
+                プロフィールを編集
+              </EditProfileButton>
+            </ButtonWrapper>
+          ) : isFollowing ? (
+            <ButtonWrapper>
+              <UnFollowButton onClick={() => unFollow()} disabled={isOwnPage}>
+                フォロー中
+              </UnFollowButton>
+            </ButtonWrapper>
+          ) : (
+            <ButtonWrapper>
+              <FollowButton onClick={() => follow()} disabled={isOwnPage}>
+                フォロー
+              </FollowButton>
+            </ButtonWrapper>
+          )}
+        </ProfileUpperSection>
+        <UserName>{userIndicating.userName}</UserName>
+        <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
+        <Bio>{userIndicating.bio}</Bio>
+        <UserLocation>⛳{userIndicating.userLocation}</UserLocation>
+        <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
+        <FollowingFollowerWrapper>
+          <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
+          <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+          <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
+          <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
+        </FollowingFollowerWrapper>
+      </ProfileSection>
+      <Footer />
     </>
   );
 };
