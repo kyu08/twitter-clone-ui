@@ -153,6 +153,7 @@ export const ProfileContainer: React.FC = () => {
     );
   };
 
+  // setUserIndicating
   useEffect(() => {
     (async () => {
       const userGotByScreenName = await UserApplicationService.getUserByScreenName(
@@ -170,7 +171,36 @@ export const ProfileContainer: React.FC = () => {
       setUserIndicating(userGotByScreenName);
       setIsLoading(false);
     })();
-  }, [currentUserDataModel, userIndicatingUserId]);
+  }, []);
+
+  // setIsFollowing
+  useEffect(() => {
+    (async () => {
+      // currentUserId と userIndicatingIs がともに存在するなら処理続行
+      if (!currentUserDataModel?.userId || !userIndicating?.userId) return;
+
+      //  自分のページなら isFollowing のチェックは行わない
+      if (currentUserDataModel?.userId === userIndicating?.userId) {
+        setIsOwnPage(true);
+
+        return;
+      }
+
+      if (!currentUserDataModel) return;
+      const isFollowingResponse = await followApplicationService.isFollowing(
+        currentUserDataModel.userId,
+        userIndicatingUserId,
+      );
+      if (!isFollowingResponse.ok) return;
+      const isFollowingJSON = await isFollowingResponse.json();
+      setIsFollowing(isFollowingJSON);
+    })();
+  }, [currentUserDataModel, userIndicating]);
+
+  if (existUser === false)
+    return <div>存在しないユーザーです(componentつくろう)</div>;
+
+  if (isLoading) return <div>Loaing...(componentつくろう)</div>;
 
   return (
     <>
