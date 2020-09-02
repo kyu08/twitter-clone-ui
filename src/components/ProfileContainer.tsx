@@ -78,9 +78,18 @@ const UserName = styled.span`
   font-size: 20px;
 `;
 
-const ScreenNameComponent = styled.div`
+const ScreenNameComponent = styled.span`
   color: #8899a6;
   font-size: 16px;
+`;
+
+const IsFollowedComponent = styled.span`
+  margin-left: 5px;
+  color: #8899a6;
+  font-size: 13px;
+  background-color: #282c34;
+  border-radius: 5px;
+  padding: 2px 2px;
 `;
 
 const Bio = styled.span`
@@ -232,7 +241,6 @@ export const ProfileContainer: React.FC = () => {
             imageSize={IMAGE_SIZE}
             userImageURL={userImageURL}
           />
-          {followInfo?.isFollowed ? <div>フォローされています</div> : null}
           {isOwnPage ? (
             <ButtonWrapper>
               <EditProfileButton onClick={() => editProfile()}>
@@ -255,6 +263,9 @@ export const ProfileContainer: React.FC = () => {
         </ProfileUpperSection>
         <UserName>{userIndicating.userName}</UserName>
         <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
+        {followInfo?.isFollowed ? (
+          <IsFollowedComponent>フォローされています</IsFollowedComponent>
+        ) : null}
         <Bio>{userIndicating.bio}</Bio>
         <UserLocation>⛳ {userIndicating.userLocation}</UserLocation>
         <CreatedAt>🗓 XXXX年YY月からTwitterを利用しています</CreatedAt>
