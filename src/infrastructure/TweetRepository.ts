@@ -9,8 +9,8 @@ import UserImageURL from '../domain/models/User/Profile/UserImageURL';
 import UserName from '../domain/models/User/Profile/UserName';
 
 export class TweetRepository {
-  fetchTimeline(): Promise<Response> {
-    return fetch(`${hostURL}/home/123`, {
+  fetchTimeline(currentUserId: string): Promise<Response> {
+    return fetch(`${hostURL}/home/${currentUserId}`, {
       mode: 'cors',
     });
   }

@@ -27,7 +27,7 @@ const ProfileUpperSection = styled.div`
 `;
 
 const HeaderImage = styled.div`
-  background-color: darkgreen;
+  background-color: grey;
   width: 100%;
   height: 124px;
 `;
@@ -236,6 +236,7 @@ export const ProfileContainer: React.FC = () => {
       </Header>
       <HeaderImage />
       <ProfileSection>
+        {/* ここから ProfileUpperSection component*/}
         <ProfileUpperSection>
           <UserImageSection
             imageSize={IMAGE_SIZE}
@@ -261,6 +262,7 @@ export const ProfileContainer: React.FC = () => {
             </ButtonWrapper>
           )}
         </ProfileUpperSection>
+        {/* ここまで ProfileUpperSection component*/}
         <UserName>{userIndicating.userName}</UserName>
         <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
         {followInfo?.isFollowed ? (

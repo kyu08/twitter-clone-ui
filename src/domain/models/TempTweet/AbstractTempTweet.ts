@@ -7,7 +7,6 @@ export interface AbstractTempTweetProps {
 }
 
 export abstract class AbstractTempTweet {
-  // todo #192 tempContent にする...?
   readonly tempContent: TempContent;
 
   readonly userId: UserId;

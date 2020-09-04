@@ -10,8 +10,8 @@ export class TweetApplicationService {
 
   static readonly tweetFactory = new TweetFactory();
 
-  static async getTimeLine(): Promise<TweetDataModel[]> {
-    const response = await TweetApplicationService.fetchTimeline().catch(
+  static async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
+    const response = await TweetApplicationService.fetchTimeline(currentUserId).catch(
       (e) => e,
     );
     const resJson = await response.json();
@@ -31,8 +31,8 @@ export class TweetApplicationService {
       .reverse();
   }
 
-  static fetchTimeline(): Promise<Response> {
-    return TweetApplicationService.tweetRepository.fetchTimeline();
+  static fetchTimeline(currentUserId: string): Promise<Response> {
+    return TweetApplicationService.tweetRepository.fetchTimeline(currentUserId);
   }
 
   static postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
