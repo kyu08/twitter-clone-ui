@@ -12,6 +12,7 @@ interface UserProps {
   readonly followingCount: number;
 }
 
+// todo 集約なので private にしよう
 export class User implements IUser {
   readonly followerCount: number;
 

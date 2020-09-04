@@ -13,6 +13,9 @@ export interface IUserRepository {
   returnUserIdByScreenName(screenName: string): string;
   toInstanceUserId(userIdString: string): UserId;
   getUserJson(userId: UserId): Promise<Response>;
-  getUserJsonByScreenName(screenName: ScreenName): Promise<Response>;
+  getUserJsonByScreenName(
+    screenName: ScreenName,
+    currentUserId: UserId,
+  ): Promise<Response>;
   toInstance(props: userFull): User;
 }

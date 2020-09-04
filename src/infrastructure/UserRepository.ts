@@ -47,12 +47,18 @@ export default class UserRepository implements IUserRepository {
     });
   }
 
-  getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
+  getUserJsonByScreenName(
+    screenName: ScreenName,
+    currentUserId: any,
+  ): Promise<Response> {
     const screenNameString = screenName.screenName;
 
-    return fetch(`${hostURL}/user/screenName/${screenNameString}/full`, {
-      mode: 'cors',
-    });
+    return fetch(
+      `${hostURL}/user/screenName/full?screenName=${screenNameString}&currentUserId=${currentUserId}`,
+      {
+        mode: 'cors',
+      },
+    );
   }
 
   // todo 本当はここに認証ロジックおくべきではないんだけど、まだ仕様が未定なのでいったんここに置いておく

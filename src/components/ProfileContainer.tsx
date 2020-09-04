@@ -12,6 +12,9 @@ import UserApplicationService from '../application/UserApplicationService';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { UserDataModel } from '../infrastructure/UserDataModel';
 import { FollowApplicationService } from '../application/FollowApplicationService';
+import UserId from '../domain/models/User/UserId/UserId';
+
+// todo ある程度できたら presentation component を分離していこう
 
 const IMAGE_SIZE = 84;
 
@@ -24,7 +27,7 @@ const ProfileUpperSection = styled.div`
 `;
 
 const HeaderImage = styled.div`
-  background-color: darkgreen;
+  background-color: grey;
   width: 100%;
   height: 124px;
 `;
@@ -75,9 +78,18 @@ const UserName = styled.span`
   font-size: 20px;
 `;
 
-const ScreenNameComponent = styled.div`
+const ScreenNameComponent = styled.span`
   color: #8899a6;
   font-size: 16px;
+`;
+
+const IsFollowedComponent = styled.span`
+  margin-left: 5px;
+  color: #8899a6;
+  font-size: 13px;
+  background-color: #282c34;
+  border-radius: 5px;
+  padding: 2px 2px;
 `;
 
 const Bio = styled.span`
@@ -112,9 +124,14 @@ const FollowDisplayUtil = styled.span`
   margin-left: 10px;
 `;
 
+type FollowInfo = {
+  isFollowing: boolean;
+  isFollowed: boolean;
+};
+
 export const ProfileContainer: React.FC = () => {
   const { screenName: screenNameRequested } = useParams();
-  const [isFollowing, setIsFollowing] = React.useState(false);
+  const [followInfo, setFollowInfo] = React.useState<FollowInfo>();
   const [userIndicating, setUserIndicating] = React.useState();
   const [existUser, setExistUser] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
@@ -123,13 +140,19 @@ export const ProfileContainer: React.FC = () => {
   const store = Store.useStore();
   const currentUserDataModel = store.get('userDataModel');
   const userIndicatingUserId = userIndicating?.userId;
+  const currentUserId = currentUserDataModel?.userId;
   const followApplicationService = new FollowApplicationService();
 
   // todo これ動的にする
   const tweetCount = 123123123;
 
   const toggleIsFollowing = () => {
-    setIsFollowing(!isFollowing);
+    if (!followInfo) return;
+    const followInfoUpdated = {
+      ...followInfo,
+      ...{ isFollowing: !followInfo.isFollowing },
+    };
+    setFollowInfo(followInfoUpdated);
   };
 
   const editProfile = () => {
@@ -137,14 +160,12 @@ export const ProfileContainer: React.FC = () => {
   };
 
   const follow = async () => {
-    const currentUserId = currentUserDataModel?.userId;
     toggleIsFollowing();
     if (!currentUserId) return;
     await followApplicationService.follow(currentUserId, userIndicatingUserId);
   };
 
   const unFollow = async () => {
-    const currentUserId = currentUserDataModel?.userId;
     toggleIsFollowing();
     if (!currentUserId) return;
     await followApplicationService.unFollow(
@@ -153,10 +174,14 @@ export const ProfileContainer: React.FC = () => {
     );
   };
 
+  // setUserIndicating
   useEffect(() => {
     (async () => {
+      if (!currentUserId) return;
       const userGotByScreenName = await UserApplicationService.getUserByScreenName(
+        // todo new するのよくないよね
         new ScreenName(screenNameRequested),
+        new UserId(currentUserId),
       ).catch((e) => e);
       if (!(userGotByScreenName instanceof UserDataModel)) {
         setExistUser(false);
@@ -169,84 +194,91 @@ export const ProfileContainer: React.FC = () => {
       setExistUser(true);
       setUserIndicating(userGotByScreenName);
       setIsLoading(false);
+    })();
+  }, [currentUserId]);
 
-      // setIsFollowing
+  // setIsFollowing
+  useEffect(() => {
+    (async () => {
+      // currentUserId と userIndicatingIs がともに存在するなら処理続行
+      if (!currentUserId || !userIndicatingUserId) return;
+
+      //  自分のページなら isFollowing のチェックは行わない
+      if (currentUserId === userIndicatingUserId) {
+        setIsOwnPage(true);
+
+        return;
+      }
+
       if (!currentUserDataModel) return;
-      const isFollowingResponse = await followApplicationService.isFollowing(
-        currentUserDataModel.userId,
+      const followInfoResponse = await followApplicationService.isFollowing(
+        currentUserId,
         userIndicatingUserId,
       );
-      if (isFollowingResponse.status === 400) return;
-      const isFollowingJSON = await isFollowingResponse.json();
-      setIsFollowing(isFollowingJSON);
-
-      //  set isOwnPage
-      if (currentUserDataModel?.userId === userIndicating?.userId)
-        setIsOwnPage(true);
+      if (!followInfoResponse.ok) return;
+      const followInfoJSON = await followInfoResponse.json();
+      setFollowInfo(followInfoJSON);
     })();
-  }, [currentUserDataModel]);
+  }, [currentUserDataModel, userIndicatingUserId]);
+
+  if (existUser === false)
+    return <div>存在しないユーザーです(componentつくろう)</div>;
+
+  if (isLoading) return <div>Loaing...(componentつくろう)</div>;
 
   return (
     <>
-      {existUser === false ? (
-        <div>存在しないユーザーです(componentつくろう)</div>
-      ) : isLoading ? (
-        <div>Loaing...(componentつくろう)</div>
-      ) : (
-        <>
-          <Header>
-            <ProfileHeaderContent
-              userDataModel={userIndicating}
-              tweetCount={tweetCount}
-            />
-          </Header>
-          <HeaderImage />
-          <ProfileSection>
-            <ProfileUpperSection>
-              <UserImageSection
-                imageSize={IMAGE_SIZE}
-                userImageURL={userImageURL}
-              />
-              {isOwnPage ? (
-                <ButtonWrapper>
-                  <EditProfileButton onClick={() => editProfile()}>
-                    プロフィールを編集
-                  </EditProfileButton>
-                </ButtonWrapper>
-              ) : isFollowing ? (
-                <ButtonWrapper>
-                  <UnFollowButton
-                    onClick={() => unFollow()}
-                    disabled={isOwnPage}
-                  >
-                    フォロー中
-                  </UnFollowButton>
-                </ButtonWrapper>
-              ) : (
-                <ButtonWrapper>
-                  <FollowButton onClick={() => follow()} disabled={isOwnPage}>
-                    フォロー
-                  </FollowButton>
-                </ButtonWrapper>
-              )}
-            </ProfileUpperSection>
-            <UserName>{userIndicating.userName}</UserName>
-            <ScreenNameComponent>
-              @{userIndicating.screenName}
-            </ScreenNameComponent>
-            <Bio>{userIndicating.bio}</Bio>
-            <UserLocation>⛳{userIndicating.userLocation}</UserLocation>
-            <CreatedAt>🗓XXXX年YY月からTwitterを利用しています</CreatedAt>
-            <FollowingFollowerWrapper>
-              <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
-              <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
-              <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
-              <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
-            </FollowingFollowerWrapper>
-          </ProfileSection>
-          <Footer />
-        </>
-      )}
+      <Header>
+        <ProfileHeaderContent
+          userDataModel={userIndicating}
+          tweetCount={tweetCount}
+        />
+      </Header>
+      <HeaderImage />
+      <ProfileSection>
+        {/* ここから ProfileUpperSection component*/}
+        <ProfileUpperSection>
+          <UserImageSection
+            imageSize={IMAGE_SIZE}
+            userImageURL={userImageURL}
+          />
+          {isOwnPage ? (
+            <ButtonWrapper>
+              <EditProfileButton onClick={() => editProfile()}>
+                プロフィールを編集
+              </EditProfileButton>
+            </ButtonWrapper>
+          ) : followInfo?.isFollowing ? (
+            <ButtonWrapper>
+              <UnFollowButton onClick={() => unFollow()} disabled={isOwnPage}>
+                フォロー中
+              </UnFollowButton>
+            </ButtonWrapper>
+          ) : (
+            <ButtonWrapper>
+              <FollowButton onClick={() => follow()} disabled={isOwnPage}>
+                フォロー
+              </FollowButton>
+            </ButtonWrapper>
+          )}
+        </ProfileUpperSection>
+        {/* ここまで ProfileUpperSection component*/}
+        <UserName>{userIndicating.userName}</UserName>
+        <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
+        {followInfo?.isFollowed ? (
+          <IsFollowedComponent>フォローされています</IsFollowedComponent>
+        ) : null}
+        <Bio>{userIndicating.bio}</Bio>
+        <UserLocation>⛳ {userIndicating.userLocation}</UserLocation>
+        <CreatedAt>🗓 XXXX年YY月からTwitterを利用しています</CreatedAt>
+        <FollowingFollowerWrapper>
+          <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
+          <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+          <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
+          <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
+        </FollowingFollowerWrapper>
+      </ProfileSection>
+      <Footer />
     </>
   );
 };
