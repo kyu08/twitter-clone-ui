@@ -8,6 +8,7 @@ export interface UserProps {
   readonly userId: UserId;
   readonly followerCount: number;
   readonly followingCount: number;
+  readonly tweetCount: number;
 }
 
 export interface IUser extends UserProps {

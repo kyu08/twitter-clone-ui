@@ -25,7 +25,15 @@ export class UserDataModel {
 
   readonly followingCount: number;
 
-  constructor({ profile, userId, followerCount, followingCount }: IUser) {
+  readonly tweetCount: number;
+
+  constructor({
+    profile,
+    userId,
+    followerCount,
+    followingCount,
+    tweetCount,
+  }: IUser) {
     const {
       bio,
       birthday,
@@ -53,5 +61,6 @@ export class UserDataModel {
     this.userId = userId.userId;
     this.followerCount = followerCount;
     this.followingCount = followingCount;
+    this.tweetCount = tweetCount;
   }
 }

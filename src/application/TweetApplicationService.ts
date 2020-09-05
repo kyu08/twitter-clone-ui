@@ -11,9 +11,9 @@ export class TweetApplicationService {
   static readonly tweetFactory = new TweetFactory();
 
   static async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
-    const response = await TweetApplicationService.fetchTimeline(currentUserId).catch(
-      (e) => e,
-    );
+    const response = await TweetApplicationService.fetchTimeline(
+      currentUserId,
+    ).catch((e) => e);
     const resJson = await response.json();
 
     return TweetApplicationService.toTweetInstanceArray(resJson);

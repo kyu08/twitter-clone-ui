@@ -44,6 +44,7 @@ export interface IUserProps {
   followerCount: number;
   followingCount: number;
   userId: UserId;
+  tweetCount: number;
 }
 
 const userFactory = ({
@@ -60,6 +61,7 @@ const userFactory = ({
   userName,
   website,
   year,
+  tweetCount,
 }: IUserProps) => {
   const birthday = new Birthday({ day, month, year });
   const profile = new Profile({
@@ -73,7 +75,13 @@ const userFactory = ({
     website,
   });
 
-  return new User({ profile, followerCount, followingCount, userId });
+  return new User({
+    profile,
+    followerCount,
+    followingCount,
+    tweetCount,
+    userId,
+  });
 };
 
 const userA = userFactory({
@@ -90,6 +98,7 @@ const userA = userFactory({
   followerCount: 10,
   followingCount: 13,
   userId: new UserId('e15a1c26-9a65-4f89-91b0-99b2055ae26f'),
+  tweetCount: 1,
 });
 
 const userB = userFactory({
@@ -106,6 +115,7 @@ const userB = userFactory({
   followerCount: 11,
   followingCount: 10000,
   userId: new UserId('bad9996f-c846-4d86-9868-da57e19427f8'),
+  tweetCount: 1,
 });
 
 const userC = userFactory({
@@ -122,6 +132,7 @@ const userC = userFactory({
   followerCount: 11,
   followingCount: 10000,
   userId: new UserId('7e275e25-e12f-408b-b3e7-32a65c1553cc'),
+  tweetCount: 1,
 });
 
 export const inMemoryUserMap: Map<string, IUser> = new Map([

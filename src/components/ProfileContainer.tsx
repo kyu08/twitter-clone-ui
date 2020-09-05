@@ -143,9 +143,6 @@ export const ProfileContainer: React.FC = () => {
   const currentUserId = currentUserDataModel?.userId;
   const followApplicationService = new FollowApplicationService();
 
-  // todo これ動的にする
-  const tweetCount = 123123123;
-
   const toggleIsFollowing = () => {
     if (!followInfo) return;
     const followInfoUpdated = {
@@ -231,7 +228,7 @@ export const ProfileContainer: React.FC = () => {
       <Header>
         <ProfileHeaderContent
           userDataModel={userIndicating}
-          tweetCount={tweetCount}
+          tweetCount={userIndicating.tweetCount}
         />
       </Header>
       <HeaderImage />

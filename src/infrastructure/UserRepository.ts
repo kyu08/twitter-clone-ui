@@ -32,6 +32,7 @@ export type userFull = {
   created_at: string;
   followerCount: number;
   followingCount: number;
+  tweetCount: number;
 };
 
 export default class UserRepository implements IUserRepository {
@@ -118,6 +119,7 @@ export default class UserRepository implements IUserRepository {
     // created_at: createdAt,
     followerCount,
     followingCount,
+    tweetCount,
   }: userFull): User {
     const profileProps = {
       screenName: new ScreenName(screenName),
@@ -143,6 +145,7 @@ export default class UserRepository implements IUserRepository {
       profile,
       followerCount,
       followingCount,
+      tweetCount,
       userId: new UserId(userId),
     });
   }

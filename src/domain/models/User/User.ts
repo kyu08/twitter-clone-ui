@@ -10,6 +10,7 @@ interface UserProps {
   readonly userId: UserId;
   readonly followerCount: number;
   readonly followingCount: number;
+  readonly tweetCount: number;
 }
 
 // todo 集約なので private にしよう
@@ -18,15 +19,24 @@ export class User implements IUser {
 
   readonly followingCount: number;
 
+  readonly tweetCount: number;
+
   readonly profile: Profile;
 
   readonly userId: UserId;
 
   constructor(props: UserProps) {
     ensurePropsContainsNoUndefined<UserProps>(props);
-    const { followerCount, followingCount, profile, userId } = props;
+    const {
+      followerCount,
+      followingCount,
+      tweetCount,
+      profile,
+      userId,
+    } = props;
     this.followerCount = followerCount;
     this.followingCount = followingCount;
+    this.tweetCount = tweetCount;
     this.profile = profile;
     this.userId = userId;
   }
