@@ -28,10 +28,9 @@ export default class UserApplicationService {
 
   static async getUserByScreenName(
     screenName: ScreenName,
-    currentUserId: UserId,
   ): Promise<UserDataModel> {
     const userData = await this.userRepository
-      .getUserJsonByScreenName(screenName, currentUserId)
+      .getUserJsonByScreenName(screenName)
       .catch((e) => e);
     const userJson = await userData.json();
     const user = this.userRepository.toInstance(userJson);

@@ -19,7 +19,7 @@ import Profile from '../domain/models/User/Profile/Profile';
 import { User } from '../domain/models/User/User';
 import { IUser } from '../domain/models/User/IUser';
 
-export type userFull = {
+export type UserPropsDetail = {
   id: string;
   screen_name: string;
   user_name: string;
@@ -48,14 +48,11 @@ export default class UserRepository implements IUserRepository {
     });
   }
 
-  getUserJsonByScreenName(
-    screenName: ScreenName,
-    currentUserId: any,
-  ): Promise<Response> {
+  getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
     const screenNameString = screenName.screenName;
 
     return fetch(
-      `${hostURL}/user/screenName/full?screenName=${screenNameString}&currentUserId=${currentUserId}`,
+      `${hostURL}/user/screenName/full?screenName=${screenNameString}`,
       {
         mode: 'cors',
       },
@@ -106,6 +103,7 @@ export default class UserRepository implements IUserRepository {
   }
 
   // user を復元(インスタンス化)
+  // todo これはやっぱり factory でやるべきだと思う
   toInstance({
     id: userId,
     screen_name: screenName,
@@ -120,7 +118,7 @@ export default class UserRepository implements IUserRepository {
     followerCount,
     followingCount,
     tweetCount,
-  }: userFull): User {
+  }: UserPropsDetail): User {
     const profileProps = {
       screenName: new ScreenName(screenName),
       userName: new UserName(userName),

@@ -178,7 +178,6 @@ export const ProfileContainer: React.FC = () => {
       const userGotByScreenName = await UserApplicationService.getUserByScreenName(
         // todo new するのよくないよね
         new ScreenName(screenNameRequested),
-        new UserId(currentUserId),
       ).catch((e) => e);
       if (!(userGotByScreenName instanceof UserDataModel)) {
         setExistUser(false);
