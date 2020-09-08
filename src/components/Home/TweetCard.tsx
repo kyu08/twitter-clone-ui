@@ -37,7 +37,11 @@ export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
   return (
     <TweetContainer>
       <Tweet>
-        <UserImageSection userImageURL={userImageURL} imageSize={IMAGE_SIZE} />
+        <UserImageSection
+          userImageURL={userImageURL}
+          imageSize={IMAGE_SIZE}
+          screenName={screenName}
+        />
         <div>
           <TweetInformationSection
             userName={userName}

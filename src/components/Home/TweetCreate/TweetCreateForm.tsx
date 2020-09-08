@@ -6,9 +6,35 @@ type Props = {
   userImageURL: string;
   content: string;
   handleChangeContent(e: React.ChangeEvent<HTMLTextAreaElement>): void;
+  screenName: string;
 };
 
 const IMAGE_SIZE = 49;
+
+export const TweetCreateForm: React.FC<Props> = ({
+  content,
+  handleChangeContent,
+  userImageURL,
+  screenName,
+}) => {
+  return (
+    <TweetCreate>
+      <UserImageSection
+        userImageURL={userImageURL}
+        imageSize={IMAGE_SIZE}
+        screenName={screenName}
+      />
+      <RightContainer>
+        <InputElement
+          wrap="soft"
+          value={content}
+          onChange={(e) => handleChangeContent(e)}
+          placeholder="いまどうしてる？"
+        />
+      </RightContainer>
+    </TweetCreate>
+  );
+};
 
 const TweetCreate = styled.div`
   display: flex;
@@ -43,23 +69,3 @@ const InputElement = styled.textarea`
     top: -0.15em;
   }
 `;
-
-export const TweetCreateForm: React.FC<Props> = ({
-  content,
-  handleChangeContent,
-  userImageURL,
-}) => {
-  return (
-    <TweetCreate>
-      <UserImageSection userImageURL={userImageURL} imageSize={IMAGE_SIZE} />
-      <RightContainer>
-        <InputElement
-          wrap="soft"
-          value={content}
-          onChange={(e) => handleChangeContent(e)}
-          placeholder="いまどうしてる？"
-        />
-      </RightContainer>
-    </TweetCreate>
-  );
-};

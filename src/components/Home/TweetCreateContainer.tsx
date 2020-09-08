@@ -18,6 +18,7 @@ export const TweetCreateContainer: React.FC = () => {
   const userImageURL = userDataModel
     ? userDataModel.userImageURL
     : DefaultUserImageURL;
+  const screenName = userDataModel ? userDataModel.screenName : '';
 
   const [content, setContent] = React.useState<string>('');
   const [tempTweetDataModel, setTempTweetDataModel]: [
@@ -69,6 +70,7 @@ export const TweetCreateContainer: React.FC = () => {
         userImageURL={userImageURL}
         content={content}
         handleChangeContent={handleChangeContent}
+        screenName={screenName}
       />
     </>
   );

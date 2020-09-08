@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Header } from './Home/Common/Header';
 import { ProfileHeaderContent } from './Home/Profile/ProfileHeaderContent';
 import { UserImageSection } from './Home/Tweet/UserImageSection';
 import Store from '../Store';
-import { DefaultUserImageURL } from '../util/Util';
+import { DefaultUserImageURL, LinkStyle } from '../util/Util';
 import { Footer } from './Home/Common/Footer';
 import UserApplicationService from '../application/UserApplicationService';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
@@ -129,6 +129,7 @@ export const ProfileContainer: React.FC = () => {
           <UserImageSection
             imageSize={IMAGE_SIZE}
             userImageURL={userImageURL}
+            screenName={userIndicating.screenName}
           />
           {isOwnPage ? (
             <ButtonWrapper>
