@@ -33,6 +33,8 @@ export type UserPropsDetail = {
   followerCount: number;
   followingCount: number;
   tweetCount: number;
+  followingMap: [{ userId: string }, string][];
+  followerMap: [{ userId: string }, string][];
 };
 
 export default class UserRepository implements IUserRepository {
@@ -118,6 +120,8 @@ export default class UserRepository implements IUserRepository {
     followerCount,
     followingCount,
     tweetCount,
+    followerMap: followerMapProp,
+    followingMap: followingMapProp,
   }: UserPropsDetail): User {
     const profileProps = {
       screenName: new ScreenName(screenName),
@@ -139,12 +143,28 @@ export default class UserRepository implements IUserRepository {
     }
     const profile = new Profile(profileProps);
 
+    // todo refactor
+    const followingMapPropInstance: [UserId, Date][] = followingMapProp
+      ? followingMapProp.map((followInfo) => {
+          return [new UserId(followInfo[0].userId), new Date(followInfo[1])];
+        })
+      : [];
+    const followerMapPropInstance: [UserId, Date][] = followerMapProp
+      ? followingMapProp.map((followInfo) => {
+          return [new UserId(followInfo[0].userId), new Date(followInfo[1])];
+        })
+      : [];
+    const followingMap = new Map(followingMapPropInstance);
+    const followerMap = new Map(followerMapPropInstance);
+
     return new User({
       profile,
       followerCount,
       followingCount,
       tweetCount,
       userId: new UserId(userId),
+      followingMap,
+      followerMap,
     });
   }
 }

@@ -1,5 +1,6 @@
 import { IUser } from '../domain/models/User/IUser';
 import { BirthdayProps } from '../domain/models/User/Profile/Birthday';
+import UserId from '../domain/models/User/UserId/UserId';
 
 export class UserDataModel {
   readonly screenName: string;
@@ -29,12 +30,18 @@ export class UserDataModel {
 
   readonly tweetCount: number;
 
+  readonly followingMap: Map<UserId, Date>;
+
+  readonly followerMap: Map<UserId, Date>;
+
   constructor({
     profile,
     userId,
     followerCount,
     followingCount,
     tweetCount,
+    followingMap,
+    followerMap,
   }: IUser) {
     const {
       bio,
@@ -64,5 +71,7 @@ export class UserDataModel {
     this.followerCount = followerCount;
     this.followingCount = followingCount;
     this.tweetCount = tweetCount;
+    this.followingMap = followingMap;
+    this.followerMap = followerMap;
   }
 }

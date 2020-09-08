@@ -9,6 +9,8 @@ export interface UserProps {
   readonly followerCount: number;
   readonly followingCount: number;
   readonly tweetCount: number;
+  readonly followingMap: Map<UserId, Date>;
+  readonly followerMap: Map<UserId, Date>;
 }
 
 export interface IUser extends UserProps {

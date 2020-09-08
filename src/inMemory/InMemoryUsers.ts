@@ -81,6 +81,8 @@ const userFactory = ({
     followingCount,
     tweetCount,
     userId,
+    followingMap: new Map(),
+    followerMap: new Map(),
   });
 };
 
