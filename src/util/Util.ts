@@ -35,3 +35,5 @@ export const deleteFromSet = (
 
   return copy;
 };
+
+export const LinkStyle = { textDecoration: 'none', color: 'white' };

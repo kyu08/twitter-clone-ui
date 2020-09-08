@@ -161,8 +161,13 @@ export const ProfileContainer: React.FC = () => {
         <UserLocation>⛳ {userIndicating.userLocation}</UserLocation>
         <CreatedAt>🗓 XXXX年YY月からTwitterを利用しています</CreatedAt>
         <FollowingFollowerWrapper>
-          <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
-          <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+          <Link
+            to={`/${userIndicating.screenName}/following`}
+            style={LinkStyle}
+          >
+            <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
+            <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
+          </Link>
           <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
           <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
         </FollowingFollowerWrapper>
