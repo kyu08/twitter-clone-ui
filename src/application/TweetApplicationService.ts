@@ -26,7 +26,7 @@ export class TweetApplicationService {
   toTweetInstanceArray(jsonArray: TweetCreateProps[]): TweetDataModel[] {
     return jsonArray
       .map((tweetProps: TweetCreateProps) =>
-        this.tweetRepository.createTweet(tweetProps),
+        this.tweetFactory.createTweet(tweetProps),
       )
       .map((tweet: AbstractTweet) =>
         this.tweetFactory.createTweetDataModel(tweet),
@@ -64,7 +64,7 @@ export class TweetApplicationService {
       userImageURL,
       userName,
     };
-    const tweet = this.tweetRepository.createTweet(props);
+    const tweet = this.tweetFactory.createTweet(props);
 
     return tweet.howLongAgo();
   }

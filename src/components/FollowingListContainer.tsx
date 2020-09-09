@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { stringify } from 'querystring';
 import UserApplicationService from '../application/UserApplicationService';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { UserDataModel } from '../infrastructure/UserDataModel';

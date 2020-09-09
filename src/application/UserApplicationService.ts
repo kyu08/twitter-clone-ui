@@ -26,7 +26,7 @@ export default class UserApplicationService {
       .getUserJson(userId)
       .catch((e) => e);
     const userJson = await userData.json();
-    const user = this.userRepository.toInstance(userJson);
+    const user = this.userFactory.toInstance(userJson);
 
     return this.userFactory.createUserDataModel(user);
   }
@@ -36,7 +36,7 @@ export default class UserApplicationService {
       .getUserJsonByScreenName(screenName)
       .catch((e) => e);
     const userJson = await userData.json();
-    const user = this.userRepository.toInstance(userJson);
+    const user = this.userFactory.toInstance(userJson);
 
     return this.userFactory.createUserDataModel(user);
   }
