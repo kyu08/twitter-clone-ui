@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Header } from './Home/Common/Header';
-import { ProfileHeaderContent } from './Home/Profile/ProfileHeaderContent';
+import { ProfileHeaderContent } from './Profile/ProfileHeaderContent';
 import { UserImageSection } from './Home/Tweet/UserImageSection';
 import Store from '../Store';
 import { DefaultUserImageURL, LinkStyle } from '../util/Util';

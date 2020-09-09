@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { HomeContainer } from './HomeContainer';
 import { LoginContainer } from './LoginContainer';
 import { SignUpContainer } from './SignUpContainer';
-import { TweetCreateContainer } from './Home/TweetCreateContainer';
+import { TweetCreateContainer } from './TweetCreateContainer';
 import { ProfileContainer } from './ProfileContainer';
 import { FollowingListContainer } from './FollowingListContainer';
 
