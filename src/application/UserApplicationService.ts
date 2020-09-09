@@ -41,30 +41,17 @@ export default class UserApplicationService {
     return this.userFactory.createUserDataModel(user);
   }
 
-  // static updateUserName(user: IUser, userNameString: string): void {
-  //   const updatedUser = user.updateUserName(userNameString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateBio(user: IUser, bioString: string): void {
-  //   const updatedUser = user.updateBio(bioString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateWebsite(user: IUser, websiteString: string): void {
-  //   const updatedUser = user.updateWebsite(websiteString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateUserLocation(user: IUser, userLocationString: string): void {
-  //   const updatedUser = user.updateUserLocation(userLocationString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateBirthday(user: IUser, birthdayProps: BirthdayProps): void {
-  //   const updatedUser = user.updateBirthday(birthdayProps);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
+  getFollowerCount(userDataModel: UserDataModel): number {
+    const user = this.userFactory.convertUserDataModelToUser(userDataModel);
+
+    return user.getFollowerCount();
+  }
+
+  getFollowingCount(userDataModel: UserDataModel): number {
+    const user = this.userFactory.convertUserDataModelToUser(userDataModel);
+
+    return user.getFollowingCount();
+  }
 
   isAuthorized(screenName: string, password: string): boolean {
     return this.userRepository.isAuthorized(screenName, password);

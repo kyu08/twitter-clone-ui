@@ -21,12 +21,6 @@ export class UserDataModel {
   readonly userId: string;
 
   // todo 本当は ↓この3つ、 toLocaleString() して string として扱いたいかもしれない?
-  // todo User, UserDataModel に followingList, followerList をもたせる
-  // followerCount, followingCount はメソッドを通して提供する
-  readonly followerCount: number;
-
-  readonly followingCount: number;
-
   readonly tweetCount: number;
 
   readonly followingMap: Map<string, Date>;
@@ -36,8 +30,6 @@ export class UserDataModel {
   constructor({
     profile,
     userId,
-    followerCount,
-    followingCount,
     tweetCount,
     followingMap,
     followerMap,
@@ -67,8 +59,6 @@ export class UserDataModel {
     this.userLocation = userLocation.userLocation;
     this.website = website.website;
     this.userId = userId.userId;
-    this.followerCount = followerCount;
-    this.followingCount = followingCount;
     this.tweetCount = tweetCount;
     this.followingMap = followingMap;
     this.followerMap = followerMap;

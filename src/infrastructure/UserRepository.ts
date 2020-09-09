@@ -30,8 +30,6 @@ export type UserPropsDetail = {
   user_location: string;
   website: string;
   created_at: string;
-  followerCount: number;
-  followingCount: number;
   tweetCount: number;
   followingMap: [string, string][];
   followerMap: [string, string][];
@@ -117,8 +115,6 @@ export default class UserRepository implements IUserRepository {
     user_location: userLocation,
     website,
     // created_at: createdAt,
-    followerCount,
-    followingCount,
     tweetCount,
     followerMap: followerMapProp,
     followingMap: followingMapProp,
@@ -150,7 +146,7 @@ export default class UserRepository implements IUserRepository {
         })
       : [];
     const followerMapPropInstance: [string, Date][] = followerMapProp
-      ? followingMapProp.map((followInfo) => {
+      ? followerMapProp.map((followInfo) => {
           return [followInfo[0], new Date(followInfo[1])];
         })
       : [];
@@ -159,8 +155,6 @@ export default class UserRepository implements IUserRepository {
 
     return new User({
       profile,
-      followerCount,
-      followingCount,
       tweetCount,
       userId: new UserId(userId),
       followingMap,

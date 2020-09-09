@@ -25,8 +25,6 @@ export interface IProps {
   userName: string;
   userImageURL: string;
   website: string;
-  followerCount: number;
-  followingCount: number;
   userId: string;
 }
 
@@ -41,8 +39,6 @@ export interface IUserProps {
   userName: UserName;
   userImageURL: UserImageURL;
   website: Website;
-  followerCount: number;
-  followingCount: number;
   userId: UserId;
   tweetCount: number;
 }
@@ -50,8 +46,6 @@ export interface IUserProps {
 const userFactory = ({
   bio,
   day,
-  followerCount,
-  followingCount,
   headerImageURL,
   month,
   screenName,
@@ -77,8 +71,6 @@ const userFactory = ({
 
   return new User({
     profile,
-    followerCount,
-    followingCount,
     tweetCount,
     userId,
     followingMap: new Map(),
@@ -97,8 +89,6 @@ const userA = userFactory({
   userName: new UserName('kyuushima'),
   userImageURL: new UserImageURL('kyu'),
   website: new Website('kyu08.com'),
-  followerCount: 10,
-  followingCount: 13,
   userId: new UserId('e15a1c26-9a65-4f89-91b0-99b2055ae26f'),
   tweetCount: 1,
 });
@@ -114,8 +104,6 @@ const userB = userFactory({
   userName: new UserName('test_user_1'),
   userImageURL: new UserImageURL('te'),
   website: new Website('testUser1.com'),
-  followerCount: 11,
-  followingCount: 10000,
   userId: new UserId('bad9996f-c846-4d86-9868-da57e19427f8'),
   tweetCount: 1,
 });
@@ -131,8 +119,6 @@ const userC = userFactory({
   userName: new UserName('test_dayo2'),
   userImageURL: new UserImageURL('test2'),
   website: new Website('test2.com'),
-  followerCount: 11,
-  followingCount: 10000,
   userId: new UserId('7e275e25-e12f-408b-b3e7-32a65c1553cc'),
   tweetCount: 1,
 });

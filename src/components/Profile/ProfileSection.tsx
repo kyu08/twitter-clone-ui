@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { UserImageSection } from '../Home/Tweet/UserImageSection';
 import { LinkStyle } from '../../util/Util';
 import { UserDataModel } from '../../infrastructure/UserDataModel';
+import UserApplicationService from '../../application/UserApplicationService';
 
 export type FollowInfo = {
   isFollowing: boolean;
@@ -31,6 +32,7 @@ export const ProfileSection: React.FC<Props> = (props) => {
     follow,
   } = props;
   const IMAGE_SIZE = 84;
+  const userApplicationService = new UserApplicationService();
 
   return (
     <ProfileSectionWrapper>
@@ -70,10 +72,15 @@ export const ProfileSection: React.FC<Props> = (props) => {
       <CreatedAt>🗓 XXXX年YY月からTwitterを利用しています</CreatedAt>
       <FollowingFollowerWrapper>
         <Link to={`/${userIndicating.screenName}/following`} style={LinkStyle}>
-          <FollowCountUtil>{userIndicating.followingCount}</FollowCountUtil>
+          {/* count は ApplicationService 経由で User のメソッドをよぶ */}
+          <FollowCountUtil>
+            {userApplicationService.getFollowingCount(userIndicating)}
+          </FollowCountUtil>
           <FollowDisplayUtil>フォロー中</FollowDisplayUtil>
         </Link>
-        <FollowCountUtil>{userIndicating.followerCount}</FollowCountUtil>
+        <FollowCountUtil>
+          {userApplicationService.getFollowerCount(userIndicating)}
+        </FollowCountUtil>
         <FollowDisplayUtil>フォロワー</FollowDisplayUtil>
       </FollowingFollowerWrapper>
     </ProfileSectionWrapper>
