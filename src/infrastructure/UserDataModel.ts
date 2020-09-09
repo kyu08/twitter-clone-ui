@@ -20,12 +20,20 @@ export class UserDataModel {
 
   readonly userId: string;
 
-  // todo 本当は ↓この3つ、 toLocaleString() して string として扱いたい
-  readonly followerCount: number;
+  // todo 本当は ↓この3つ、 toLocaleString() して string として扱いたいかもしれない?
+  readonly tweetCount: number;
 
-  readonly followingCount: number;
+  readonly followingMap: Map<string, Date>;
 
-  constructor({ profile, userId, followerCount, followingCount }: IUser) {
+  readonly followerMap: Map<string, Date>;
+
+  constructor({
+    profile,
+    userId,
+    tweetCount,
+    followingMap,
+    followerMap,
+  }: IUser) {
     const {
       bio,
       birthday,
@@ -51,7 +59,8 @@ export class UserDataModel {
     this.userLocation = userLocation.userLocation;
     this.website = website.website;
     this.userId = userId.userId;
-    this.followerCount = followerCount;
-    this.followingCount = followingCount;
+    this.tweetCount = tweetCount;
+    this.followingMap = followingMap;
+    this.followerMap = followerMap;
   }
 }

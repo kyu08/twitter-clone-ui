@@ -6,40 +6,43 @@ import { TweetRepository } from '../infrastructure/TweetRepository';
 import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
 
 export class TweetApplicationService {
-  static readonly tweetRepository = new TweetRepository();
+  readonly tweetRepository: TweetRepository;
 
-  static readonly tweetFactory = new TweetFactory();
+  readonly tweetFactory: TweetFactory;
 
-  static async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
-    const response = await TweetApplicationService.fetchTimeline(currentUserId).catch(
-      (e) => e,
-    );
+  constructor() {
+    this.tweetRepository = new TweetRepository();
+    this.tweetFactory = new TweetFactory();
+  }
+
+  async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
+    const response = await this.fetchTimeline(currentUserId).catch((e) => e);
     const resJson = await response.json();
 
-    return TweetApplicationService.toTweetInstanceArray(resJson);
+    return this.toTweetInstanceArray(resJson);
   }
 
   // インスタンス化して逆順にして返す
-  static toTweetInstanceArray(jsonArray: TweetCreateProps[]): TweetDataModel[] {
+  toTweetInstanceArray(jsonArray: TweetCreateProps[]): TweetDataModel[] {
     return jsonArray
       .map((tweetProps: TweetCreateProps) =>
-        TweetApplicationService.tweetRepository.createTweet(tweetProps),
+        this.tweetFactory.createTweet(tweetProps),
       )
       .map((tweet: AbstractTweet) =>
-        TweetApplicationService.tweetFactory.createTweetDataModel(tweet),
+        this.tweetFactory.createTweetDataModel(tweet),
       )
       .reverse();
   }
 
-  static fetchTimeline(currentUserId: string): Promise<Response> {
-    return TweetApplicationService.tweetRepository.fetchTimeline(currentUserId);
+  fetchTimeline(currentUserId: string): Promise<Response> {
+    return this.tweetRepository.fetchTimeline(currentUserId);
   }
 
-  static postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
-    return TweetApplicationService.tweetRepository.postTweet(tweetDataModel);
+  postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
+    return this.tweetRepository.postTweet(tweetDataModel);
   }
 
-  static howLongAgo({
+  howLongAgo({
     content,
     createdAt,
     likeCount,
@@ -61,7 +64,7 @@ export class TweetApplicationService {
       userImageURL,
       userName,
     };
-    const tweet = TweetApplicationService.tweetRepository.createTweet(props);
+    const tweet = this.tweetFactory.createTweet(props);
 
     return tweet.howLongAgo();
   }

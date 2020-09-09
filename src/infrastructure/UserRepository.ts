@@ -1,25 +1,12 @@
 import UserId from '../domain/models/User/UserId/UserId';
 import { hostURL } from '../util/Util';
-// eslint-disable-next-line import/no-cycle
 import { IUserRepository } from '../domain/models/User/IUserRepository';
 import { inMemoryUserMap } from '../inMemory/InMemoryUsers';
 import { ScreenNamePasswordMap } from '../inMemory/InMemoryScreenNamePassword';
-import Bio from '../domain/models/User/Profile/Bio';
-import Day from '../domain/models/User/Profile/Birthday/Day';
-import HeaderImageURL from '../domain/models/User/Profile/HeaderImageURL';
-import Month from '../domain/models/User/Profile/Birthday/Month';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
-import UserImageURL from '../domain/models/User/Profile/UserImageURL';
-import UserLocation from '../domain/models/User/Profile/UserLocation';
-import UserName from '../domain/models/User/Profile/UserName';
-import Website from '../domain/models/User/Profile/Website';
-import Year from '../domain/models/User/Profile/Birthday/Year';
-import Birthday from '../domain/models/User/Profile/Birthday';
-import Profile from '../domain/models/User/Profile/Profile';
-import { User } from '../domain/models/User/User';
 import { IUser } from '../domain/models/User/IUser';
 
-export type userFull = {
+export type UserPropsDetail = {
   id: string;
   screen_name: string;
   user_name: string;
@@ -30,8 +17,9 @@ export type userFull = {
   user_location: string;
   website: string;
   created_at: string;
-  followerCount: number;
-  followingCount: number;
+  tweetCount: number;
+  followingMap: [string, string][];
+  followerMap: [string, string][];
 };
 
 export default class UserRepository implements IUserRepository {
@@ -47,14 +35,11 @@ export default class UserRepository implements IUserRepository {
     });
   }
 
-  getUserJsonByScreenName(
-    screenName: ScreenName,
-    currentUserId: any,
-  ): Promise<Response> {
+  getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
     const screenNameString = screenName.screenName;
 
     return fetch(
-      `${hostURL}/user/screenName/full?screenName=${screenNameString}&currentUserId=${currentUserId}`,
+      `${hostURL}/user/screenName/full?screenName=${screenNameString}`,
       {
         mode: 'cors',
       },
@@ -102,48 +87,5 @@ export default class UserRepository implements IUserRepository {
 
   removeUserIdFromLocalStorage(): void {
     localStorage.removeItem('userId');
-  }
-
-  // user を復元(インスタンス化)
-  toInstance({
-    id: userId,
-    screen_name: screenName,
-    user_name: userName,
-    header_image_url: headerImageURL,
-    user_image_url: userImageURL,
-    bio,
-    birthday: birthdayProp,
-    user_location: userLocation,
-    website,
-    // created_at: createdAt,
-    followerCount,
-    followingCount,
-  }: userFull): User {
-    const profileProps = {
-      screenName: new ScreenName(screenName),
-      userName: new UserName(userName),
-      headerImageURL: new HeaderImageURL(headerImageURL),
-      userImageURL: new UserImageURL(userImageURL),
-      bio: new Bio(bio),
-      userLocation: new UserLocation(userLocation),
-      website: new Website(website),
-    };
-    if (birthdayProp) {
-      const date = new Date(birthdayProp);
-      const year = new Year(date.getFullYear());
-      const month = new Month(date.getMonth() + 1);
-      const day = new Day(date.getDate());
-      Object.assign(profileProps, {
-        birthday: new Birthday({ year, month, day }),
-      });
-    }
-    const profile = new Profile(profileProps);
-
-    return new User({
-      profile,
-      followerCount,
-      followingCount,
-      userId: new UserId(userId),
-    });
   }
 }

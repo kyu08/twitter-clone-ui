@@ -8,70 +8,75 @@ import ScreenName from '../domain/models/User/Profile/ScreenName';
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
-  static readonly userRepository: IUserRepository = new UserRepository();
+  userRepository: IUserRepository;
 
-  static readonly userFactory = new UserFactory();
+  userFactory: UserFactory;
 
-  static getUserIdFromLocalStorage(): UserId | null {
-    return UserApplicationService.userRepository.getUserIdFromLocalStorage();
+  constructor() {
+    this.userRepository = new UserRepository();
+    this.userFactory = new UserFactory();
   }
 
-  static async getCurrentUser(userId: UserId): Promise<UserDataModel> {
+  getUserIdFromLocalStorage(): UserId | null {
+    return this.userRepository.getUserIdFromLocalStorage();
+  }
+
+  async getCurrentUser(userId: UserId): Promise<UserDataModel> {
     const userData = await this.userRepository
       .getUserJson(userId)
       .catch((e) => e);
     const userJson = await userData.json();
-    const user = this.userRepository.toInstance(userJson);
+    const user = this.userFactory.toInstance(userJson);
 
     return this.userFactory.createUserDataModel(user);
   }
 
-  static async getUserByScreenName(
-    screenName: ScreenName,
-    currentUserId: UserId,
-  ): Promise<UserDataModel> {
+  async getUserByScreenName(screenName: ScreenName): Promise<UserDataModel> {
     const userData = await this.userRepository
-      .getUserJsonByScreenName(screenName, currentUserId)
+      .getUserJsonByScreenName(screenName)
       .catch((e) => e);
     const userJson = await userData.json();
-    const user = this.userRepository.toInstance(userJson);
+    const user = this.userFactory.toInstance(userJson);
 
     return this.userFactory.createUserDataModel(user);
   }
 
-  // static updateUserName(user: IUser, userNameString: string): void {
-  //   const updatedUser = user.updateUserName(userNameString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateBio(user: IUser, bioString: string): void {
-  //   const updatedUser = user.updateBio(bioString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateWebsite(user: IUser, websiteString: string): void {
-  //   const updatedUser = user.updateWebsite(websiteString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateUserLocation(user: IUser, userLocationString: string): void {
-  //   const updatedUser = user.updateUserLocation(userLocationString);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
-  //
-  // static updateBirthday(user: IUser, birthdayProps: BirthdayProps): void {
-  //   const updatedUser = user.updateBirthday(birthdayProps);
-  //   UserApplicationService.userRepository.save(updatedUser);
-  // }
+  getFollowerCount(userDataModel: UserDataModel): number {
+    const user = this.userFactory.convertUserDataModelToUser(userDataModel);
 
-  static isAuthorized(screenName: string, password: string): boolean {
+    return user.getFollowerCount();
+  }
+
+  getFollowingCount(userDataModel: UserDataModel): number {
+    const user = this.userFactory.convertUserDataModelToUser(userDataModel);
+
+    return user.getFollowingCount();
+  }
+
+  isFollowed(
+    currentUser: UserDataModel,
+    userIndicating: UserDataModel,
+  ): boolean {
+    const user = this.userFactory.convertUserDataModelToUser(currentUser);
+
+    return user.followerMap.get(userIndicating.userId) !== undefined;
+  }
+
+  isFollowing(
+    currentUser: UserDataModel,
+    userIndicating: UserDataModel,
+  ): boolean {
+    const user = this.userFactory.convertUserDataModelToUser(currentUser);
+
+    return user.followingMap.get(userIndicating.userId) !== undefined;
+  }
+
+  isAuthorized(screenName: string, password: string): boolean {
     return this.userRepository.isAuthorized(screenName, password);
   }
 
-  static returnUserIdByScreenName(screenName: string): UserId {
-    const userIdProp = UserApplicationService.userRepository.returnUserIdByScreenName(
-      screenName,
-    );
+  returnUserIdByScreenName(screenName: string): UserId {
+    const userIdProp = this.userRepository.returnUserIdByScreenName(screenName);
 
     return new UserId(userIdProp);
   }

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserImageSection } from './Tweet/UserImageSection';
 import { UserDataModel } from '../../infrastructure/UserDataModel';
@@ -24,12 +23,11 @@ export const HomeHeaderContent: React.FC<Props> = ({
   return (
     <>
       <ProfileLinkWrapper>
-        <Link to={`/${screenName}`}>
-          <UserImageSection
-            userImageURL={userImageURL}
-            imageSize={IMAGE_SIZE}
-          />
-        </Link>
+        <UserImageSection
+          userImageURL={userImageURL}
+          imageSize={IMAGE_SIZE}
+          screenName={screenName}
+        />
       </ProfileLinkWrapper>
       <button onClick={() => logout()}>Logout</button>
     </>

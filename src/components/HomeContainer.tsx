@@ -14,6 +14,7 @@ export const HomeContainer: React.FC = () => {
   const isLogin = store.get('isLogin');
   const userDataModel = store.get('userDataModel');
   const currentUserId = userDataModel?.userId;
+  const tweetApplicationService = new TweetApplicationService();
 
   const [tweetDataModelArray, setTweetDataModelArray] = React.useState<
     TweetDataModel[]
@@ -22,9 +23,9 @@ export const HomeContainer: React.FC = () => {
   useEffect(() => {
     (async () => {
       if (!currentUserId) return;
-      const tweetInstanceArray = await TweetApplicationService.getTimeLine(
-        currentUserId,
-      ).catch((e) => e);
+      const tweetInstanceArray = await tweetApplicationService
+        .getTimeLine(currentUserId)
+        .catch((e) => e);
       setTweetDataModelArray(tweetInstanceArray);
     })();
   }, [currentUserId]);

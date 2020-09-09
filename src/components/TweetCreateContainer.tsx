@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import { TweetCreateHeaderContent } from './TweetCreate/TweetCreateHeaderContent';
-import { TempTweetApplicationService } from '../../application/TempTweetApplicationService';
+import { TempTweetApplicationService } from '../application/TempTweetApplicationService';
 import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
-import { TempTweetDataModel } from '../../infrastructure/TempTweetDataModel';
-import { Header } from './Common/Header';
-import Store from '../../Store';
-import { TweetApplicationService } from '../../application/TweetApplicationService';
-import { DefaultUserImageURL } from '../../util/Util';
+import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
+import { Header } from './Home/Common/Header';
+import Store from '../Store';
+import { TweetApplicationService } from '../application/TweetApplicationService';
+import { DefaultUserImageURL } from '../util/Util';
 
 export const TweetCreateContainer: React.FC = () => {
   const store = Store.useStore();
@@ -18,6 +18,9 @@ export const TweetCreateContainer: React.FC = () => {
   const userImageURL = userDataModel
     ? userDataModel.userImageURL
     : DefaultUserImageURL;
+  const screenName = userDataModel ? userDataModel.screenName : '';
+  const tempTweetApplicationService = new TempTweetApplicationService();
+  const tweetApplicationService = new TweetApplicationService();
 
   const [content, setContent] = React.useState<string>('');
   const [tempTweetDataModel, setTempTweetDataModel]: [
@@ -30,9 +33,9 @@ export const TweetCreateContainer: React.FC = () => {
 
   const submitTweet = async () => {
     if (!tempTweetDataModel) throw new Error('there is no temp tweet');
-    const response = await TweetApplicationService.postTweet(
-      tempTweetDataModel,
-    ).catch((e) => console.log(e));
+    const response = await tweetApplicationService
+      .postTweet(tempTweetDataModel)
+      .catch((e) => console.log(e));
     console.log(response);
     setHasSubmit(true);
   };
@@ -43,14 +46,14 @@ export const TweetCreateContainer: React.FC = () => {
     if (!userId) throw new Error('ログインしてるはずなのにuserIdがないよ...');
     const contentEntered = e.currentTarget.value;
     setContent(contentEntered);
-    const tempTweetDataModelUpdated = TempTweetApplicationService.getTempTweetDataModel(
+    const tempTweetDataModelUpdated = tempTweetApplicationService.getTempTweetDataModel(
       userId,
       contentEntered,
       tempTweetDataModel,
     );
 
     setCanSubmitTweet(
-      TempTweetApplicationService.canSubmitTweet(tempTweetDataModelUpdated),
+      tempTweetApplicationService.canSubmitTweet(tempTweetDataModelUpdated),
     );
     setTempTweetDataModel(tempTweetDataModelUpdated);
   };
@@ -69,6 +72,7 @@ export const TweetCreateContainer: React.FC = () => {
         userImageURL={userImageURL}
         content={content}
         handleChangeContent={handleChangeContent}
+        screenName={screenName}
       />
     </>
   );

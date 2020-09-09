@@ -14,14 +14,15 @@ export const LoginContainer: React.FC = () => {
   const [screenName, setScreenName] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [isInvalidLogin, setIsInvalidLogin] = React.useState<boolean>(false);
+  const userApplicationService = new UserApplicationService();
 
   const authorize = (screenNameAuth: string, passwordAuth: string): boolean => {
-    return UserApplicationService.isAuthorized(screenNameAuth, passwordAuth);
+    return userApplicationService.isAuthorized(screenNameAuth, passwordAuth);
   };
 
   const login = (): void => {
     const isAuthorized = authorize(screenName, password);
-    const userId = UserApplicationService.returnUserIdByScreenName(screenName);
+    const userId = userApplicationService.returnUserIdByScreenName(screenName);
 
     if (isAuthorized) {
       store.set('userId')(userId);

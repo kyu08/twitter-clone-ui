@@ -8,35 +8,39 @@ import { ensurePropsContainsNoUndefined } from '../../../util/Util';
 interface UserProps {
   readonly profile: Profile;
   readonly userId: UserId;
-  readonly followerCount: number;
-  readonly followingCount: number;
+  readonly tweetCount: number;
+  readonly followingMap: Map<string, Date>;
+  readonly followerMap: Map<string, Date>;
 }
 
 // todo 集約なので private にしよう
 export class User implements IUser {
-  readonly followerCount: number;
-
-  readonly followingCount: number;
+  readonly tweetCount: number;
 
   readonly profile: Profile;
 
   readonly userId: UserId;
 
+  readonly followingMap: Map<string, Date>;
+
+  readonly followerMap: Map<string, Date>;
+
   constructor(props: UserProps) {
     ensurePropsContainsNoUndefined<UserProps>(props);
-    const { followerCount, followingCount, profile, userId } = props;
-    this.followerCount = followerCount;
-    this.followingCount = followingCount;
+    const { tweetCount, profile, userId, followingMap, followerMap } = props;
+    this.tweetCount = tweetCount;
     this.profile = profile;
     this.userId = userId;
+    this.followingMap = followingMap;
+    this.followerMap = followerMap;
   }
 
-  private getFollowerCount(): number {
-    return this.followerCount;
+  getFollowerCount(): number {
+    return this.followerMap.size;
   }
 
-  private getFollowingCount(): number {
-    return this.followingCount;
+  getFollowingCount(): number {
+    return this.followingMap.size;
   }
 
   private getProfile(): Profile {

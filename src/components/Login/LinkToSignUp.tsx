@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { LinkStyle } from '../../util/Util';
 
 const LinkToSignUpWrapper = styled.div`
   text-align: center;
@@ -13,7 +14,7 @@ const LinkToSignUpWrapper = styled.div`
 
 export const LinkToSignUp: React.FC = () => {
   return (
-    <Link to="signup">
+    <Link to="signup" style={LinkStyle}>
       <LinkToSignUpWrapper>アカウント作成</LinkToSignUpWrapper>
     </Link>
   );

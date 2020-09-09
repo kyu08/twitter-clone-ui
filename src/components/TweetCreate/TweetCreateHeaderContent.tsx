@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { GoBackButton } from '../Common/GoBackButton';
+import { GoBackButton } from '../Home/Common/GoBackButton';
 
 type Props = {
   submitTweet(): void;

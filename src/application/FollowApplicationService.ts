@@ -14,11 +14,4 @@ export class FollowApplicationService {
   unFollow(followingUserId: string, followerUserId: string): void {
     this.followRepository.unFollow(followingUserId, followerUserId);
   }
-
-  isFollowing(
-    followingUserId: string,
-    followerUserId: string,
-  ): Promise<Response> {
-    return this.followRepository.isFollowing(followingUserId, followerUserId);
-  }
 }

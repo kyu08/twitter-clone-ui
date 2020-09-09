@@ -6,11 +6,14 @@ import ScreenName from './Profile/ScreenName';
 export interface UserProps {
   readonly profile: Profile;
   readonly userId: UserId;
-  readonly followerCount: number;
-  readonly followingCount: number;
+  readonly tweetCount: number;
+  readonly followingMap: Map<string, Date>;
+  readonly followerMap: Map<string, Date>;
 }
 
 export interface IUser extends UserProps {
+  getFollowerCount(): number;
+  getFollowingCount(): number;
   updateBio(bioString: string): IUser;
   updateBirthday(birthdayProps: BirthdayProps): IUser;
   returnUpdatedInstance<T extends keyof IUser>(key: T, value: IUser[T]): IUser;

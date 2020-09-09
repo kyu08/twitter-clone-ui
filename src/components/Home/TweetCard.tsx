@@ -31,13 +31,18 @@ export const TweetCard: React.FC<Props> = ({ tweetDataModel }) => {
     userImageURL,
     userName,
   } = tweetDataModel;
+  const tweetApplicationService = new TweetApplicationService();
 
-  const howLongAgo = TweetApplicationService.howLongAgo(tweetDataModel);
+  const howLongAgo = tweetApplicationService.howLongAgo(tweetDataModel);
 
   return (
     <TweetContainer>
       <Tweet>
-        <UserImageSection userImageURL={userImageURL} imageSize={IMAGE_SIZE} />
+        <UserImageSection
+          userImageURL={userImageURL}
+          imageSize={IMAGE_SIZE}
+          screenName={screenName}
+        />
         <div>
           <TweetInformationSection
             userName={userName}
