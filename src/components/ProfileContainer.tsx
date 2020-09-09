@@ -112,7 +112,7 @@ export const ProfileContainer: React.FC = () => {
   if (existUser === false)
     return <div>存在しないユーザーです(componentつくろう)</div>;
 
-  if (isLoading) return <div>Loaing...(componentつくろう)</div>;
+  if (isLoading) return <div>Loading...(componentつくろう)</div>;
 
   return (
     <>
@@ -139,15 +139,13 @@ export const ProfileContainer: React.FC = () => {
             </ButtonWrapper>
           ) : followInfo?.isFollowing ? (
             <ButtonWrapper>
-              <UnFollowButton onClick={() => unFollow()} disabled={isOwnPage}>
+              <UnFollowButton onClick={() => unFollow()}>
                 フォロー中
               </UnFollowButton>
             </ButtonWrapper>
           ) : (
             <ButtonWrapper>
-              <FollowButton onClick={() => follow()} disabled={isOwnPage}>
-                フォロー
-              </FollowButton>
+              <FollowButton onClick={() => follow()}>フォロー</FollowButton>
             </ButtonWrapper>
           )}
         </ProfileUpperSection>
