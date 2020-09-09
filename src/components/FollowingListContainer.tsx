@@ -18,10 +18,7 @@ export const FollowingListContainer: React.FC = () => {
   useEffect(() => {
     (async () => {
       const userGotByScreenName = await userApplicationService
-        .getUserByScreenName(
-          // todo new するのよくないよね
-          new ScreenName(screenNameRequested),
-        )
+        .getUserByScreenName(new ScreenName(screenNameRequested))
         .catch((e) => e);
       if (!(userGotByScreenName instanceof UserDataModel)) {
         setExistUser(false);

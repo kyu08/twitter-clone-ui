@@ -5,8 +5,6 @@ import { UserDataModel } from '../infrastructure/UserDataModel';
 import { UserFactory } from '../domain/models/User/UserFactory';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 
-// note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
-// 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
   userRepository: IUserRepository;
 

@@ -13,7 +13,6 @@ interface UserProps {
   readonly followerMap: Map<string, Date>;
 }
 
-// todo 集約なので private にしよう
 export class User implements IUser {
   readonly tweetCount: number;
 
