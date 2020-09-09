@@ -40,9 +40,6 @@ export class User implements IUser {
   }
 
   getFollowingCount(): number {
-    console.log(this.followingMap);
-    console.log(this.followingMap.size);
-
     return this.followingMap.size;
   }
 

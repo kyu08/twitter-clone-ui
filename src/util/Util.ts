@@ -8,6 +8,7 @@ export const DefaultUserImageURL =
   'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';
 
 // 2階層目まで undefined をチェック
+// birthday は optional なので除外
 export const ensurePropsContainsNoUndefined = <T>(props: T) => {
   const values = Object.values(props);
   if (values.includes(undefined)) {
@@ -17,6 +18,7 @@ export const ensurePropsContainsNoUndefined = <T>(props: T) => {
   values.forEach((value) => {
     if (!value) return;
     if (Object.values(value).includes(undefined)) {
+      if (!value.birthday) return;
       console.log(value);
       console.table({ message: '↑↑↑ this property contains undefined.' });
     }

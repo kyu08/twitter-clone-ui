@@ -53,6 +53,24 @@ export default class UserApplicationService {
     return user.getFollowingCount();
   }
 
+  isFollowed(
+    currentUser: UserDataModel,
+    userIndicating: UserDataModel,
+  ): boolean {
+    const user = this.userFactory.convertUserDataModelToUser(currentUser);
+
+    return user.followerMap.get(userIndicating.userId) !== undefined;
+  }
+
+  isFollowing(
+    currentUser: UserDataModel,
+    userIndicating: UserDataModel,
+  ): boolean {
+    const user = this.userFactory.convertUserDataModelToUser(currentUser);
+
+    return user.followingMap.get(userIndicating.userId) !== undefined;
+  }
+
   isAuthorized(screenName: string, password: string): boolean {
     return this.userRepository.isAuthorized(screenName, password);
   }

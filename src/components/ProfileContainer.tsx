@@ -11,14 +11,10 @@ import UserApplicationService from '../application/UserApplicationService';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { UserDataModel } from '../infrastructure/UserDataModel';
 import { FollowApplicationService } from '../application/FollowApplicationService';
-import { FollowInfo, ProfileSection } from './Profile/ProfileSection';
+import { ProfileSection } from './Profile/ProfileSection';
 
 export const ProfileContainer: React.FC = () => {
   const { screenName: screenNameRequested } = useParams();
-  const [followInfo, setFollowInfo] = React.useState<FollowInfo>({
-    isFollowing: false,
-    isFollowed: false,
-  });
   const [userIndicating, setUserIndicating] = React.useState();
   const [existUser, setExistUser] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
@@ -31,27 +27,16 @@ export const ProfileContainer: React.FC = () => {
   const followApplicationService = new FollowApplicationService();
   const userApplicationService = new UserApplicationService();
 
-  const toggleIsFollowing = () => {
-    if (!followInfo) return;
-    const followInfoUpdated: FollowInfo = {
-      ...followInfo,
-      ...{ isFollowing: !followInfo.isFollowing },
-    };
-    setFollowInfo(followInfoUpdated);
-  };
-
   const editProfile = () => {
     console.log('// todo imeplement edit profile.');
   };
 
   const follow = async () => {
-    toggleIsFollowing();
     if (!currentUserId) return;
     await followApplicationService.follow(currentUserId, userIndicatingUserId);
   };
 
   const unFollow = async () => {
-    toggleIsFollowing();
     if (!currentUserId) return;
     await followApplicationService.unFollow(
       currentUserId,
@@ -85,32 +70,20 @@ export const ProfileContainer: React.FC = () => {
 
   // setIsFollowing
   useEffect(() => {
-    (async () => {
-      // currentUserId と userIndicatingIs がともに存在するなら処理続行
-      if (!currentUserId || !userIndicatingUserId) return;
+    // currentUserId と userIndicatingIs がともに存在するなら処理続行
+    if (!currentUserId || !userIndicatingUserId) return;
 
-      //  自分のページなら isFollowing のチェックは行わない
-      if (currentUserId === userIndicatingUserId) {
-        setIsOwnPage(true);
-
-        return;
-      }
-
-      if (!currentUserDataModel) return;
-      const followInfoResponse = await followApplicationService.isFollowing(
-        currentUserId,
-        userIndicatingUserId,
-      );
-      if (!followInfoResponse.ok) return;
-      const followInfoJSON = await followInfoResponse.json();
-      setFollowInfo(followInfoJSON);
-    })();
+    //  自分のページなら isFollowing のチェックは行わない
+    if (currentUserId === userIndicatingUserId) {
+      setIsOwnPage(true);
+    }
   }, [currentUserDataModel, userIndicatingUserId]);
 
   if (existUser === false)
     return <div>存在しないユーザーです(componentつくろう)</div>;
 
-  if (isLoading) return <div>Loading...(componentつくろう)</div>;
+  if (isLoading || !currentUserDataModel)
+    return <div>Loading...(componentつくろう)</div>;
 
   return (
     <>
@@ -125,10 +98,10 @@ export const ProfileContainer: React.FC = () => {
         userImageURL={userImageURL}
         follow={follow}
         editProfile={editProfile}
-        followInfo={followInfo}
         isOwnPage={isOwnPage}
         unFollow={unFollow}
         userIndicating={userIndicating}
+        currentUserDataModel={currentUserDataModel}
       />
       <Footer />
     </>

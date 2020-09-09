@@ -6,17 +6,12 @@ import { LinkStyle } from '../../util/Util';
 import { UserDataModel } from '../../infrastructure/UserDataModel';
 import UserApplicationService from '../../application/UserApplicationService';
 
-export type FollowInfo = {
-  isFollowing: boolean;
-  isFollowed: boolean;
-};
-
 type Props = {
   userImageURL: string;
   isOwnPage: boolean;
   userIndicating: UserDataModel;
+  currentUserDataModel: UserDataModel;
   editProfile(): void;
-  followInfo: FollowInfo;
   unFollow(): Promise<void>;
   follow(): Promise<void>;
 };
@@ -26,8 +21,8 @@ export const ProfileSection: React.FC<Props> = (props) => {
     userImageURL,
     isOwnPage,
     userIndicating,
+    currentUserDataModel,
     editProfile,
-    followInfo,
     unFollow,
     follow,
   } = props;
@@ -49,7 +44,10 @@ export const ProfileSection: React.FC<Props> = (props) => {
               プロフィールを編集
             </EditProfileButton>
           </ButtonWrapper>
-        ) : followInfo?.isFollowing ? (
+        ) : userApplicationService.isFollowing(
+            currentUserDataModel,
+            userIndicating,
+          ) ? (
           <ButtonWrapper>
             <UnFollowButton onClick={() => unFollow()}>
               フォロー中
@@ -64,15 +62,15 @@ export const ProfileSection: React.FC<Props> = (props) => {
       {/* ここまで ProfileUpperSection component*/}
       <UserName>{userIndicating.userName}</UserName>
       <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
-      {followInfo?.isFollowed ? (
-        <IsFollowedComponent>フォローされています</IsFollowedComponent>
-      ) : null}
+      {userApplicationService.isFollowed(
+        currentUserDataModel,
+        userIndicating,
+      ) && <IsFollowedComponent>フォローされています</IsFollowedComponent>}
       <Bio>{userIndicating.bio}</Bio>
       <UserLocation>⛳ {userIndicating.userLocation}</UserLocation>
       <CreatedAt>🗓 XXXX年YY月からTwitterを利用しています</CreatedAt>
       <FollowingFollowerWrapper>
         <Link to={`/${userIndicating.screenName}/following`} style={LinkStyle}>
-          {/* count は ApplicationService 経由で User のメソッドをよぶ */}
           <FollowCountUtil>
             {userApplicationService.getFollowingCount(userIndicating)}
           </FollowCountUtil>

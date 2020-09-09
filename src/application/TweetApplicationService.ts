@@ -10,12 +10,9 @@ export class TweetApplicationService {
 
   readonly tweetFactory: TweetFactory;
 
-  readonly tweetApplicationService: TweetApplicationService;
-
   constructor() {
     this.tweetRepository = new TweetRepository();
     this.tweetFactory = new TweetFactory();
-    this.tweetApplicationService = new TweetApplicationService();
   }
 
   async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
