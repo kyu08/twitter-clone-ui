@@ -8,15 +8,20 @@ import ScreenName from '../domain/models/User/Profile/ScreenName';
 // note ここにロジックは書かない。追加のロジックが必要になったらdomain model, domain service に書こう。
 // 引数を受け取って new Hoge() するとかならOK
 export default class UserApplicationService {
-  static readonly userRepository: IUserRepository = new UserRepository();
+  userRepository: IUserRepository;
 
-  static readonly userFactory = new UserFactory();
+  userFactory: UserFactory;
 
-  static getUserIdFromLocalStorage(): UserId | null {
-    return UserApplicationService.userRepository.getUserIdFromLocalStorage();
+  constructor() {
+    this.userRepository = new UserRepository();
+    this.userFactory = new UserFactory();
   }
 
-  static async getCurrentUser(userId: UserId): Promise<UserDataModel> {
+  getUserIdFromLocalStorage(): UserId | null {
+    return this.userRepository.getUserIdFromLocalStorage();
+  }
+
+  async getCurrentUser(userId: UserId): Promise<UserDataModel> {
     const userData = await this.userRepository
       .getUserJson(userId)
       .catch((e) => e);
@@ -26,9 +31,7 @@ export default class UserApplicationService {
     return this.userFactory.createUserDataModel(user);
   }
 
-  static async getUserByScreenName(
-    screenName: ScreenName,
-  ): Promise<UserDataModel> {
+  async getUserByScreenName(screenName: ScreenName): Promise<UserDataModel> {
     const userData = await this.userRepository
       .getUserJsonByScreenName(screenName)
       .catch((e) => e);
@@ -63,14 +66,12 @@ export default class UserApplicationService {
   //   UserApplicationService.userRepository.save(updatedUser);
   // }
 
-  static isAuthorized(screenName: string, password: string): boolean {
+  isAuthorized(screenName: string, password: string): boolean {
     return this.userRepository.isAuthorized(screenName, password);
   }
 
-  static returnUserIdByScreenName(screenName: string): UserId {
-    const userIdProp = UserApplicationService.userRepository.returnUserIdByScreenName(
-      screenName,
-    );
+  returnUserIdByScreenName(screenName: string): UserId {
+    const userIdProp = this.userRepository.returnUserIdByScreenName(screenName);
 
     return new UserId(userIdProp);
   }

@@ -19,6 +19,8 @@ export const TweetCreateContainer: React.FC = () => {
     ? userDataModel.userImageURL
     : DefaultUserImageURL;
   const screenName = userDataModel ? userDataModel.screenName : '';
+  const tempTweetApplicationService = new TempTweetApplicationService();
+  const tweetApplicationService = new TweetApplicationService();
 
   const [content, setContent] = React.useState<string>('');
   const [tempTweetDataModel, setTempTweetDataModel]: [
@@ -31,9 +33,9 @@ export const TweetCreateContainer: React.FC = () => {
 
   const submitTweet = async () => {
     if (!tempTweetDataModel) throw new Error('there is no temp tweet');
-    const response = await TweetApplicationService.postTweet(
-      tempTweetDataModel,
-    ).catch((e) => console.log(e));
+    const response = await tweetApplicationService
+      .postTweet(tempTweetDataModel)
+      .catch((e) => console.log(e));
     console.log(response);
     setHasSubmit(true);
   };
@@ -44,14 +46,14 @@ export const TweetCreateContainer: React.FC = () => {
     if (!userId) throw new Error('ログインしてるはずなのにuserIdがないよ...');
     const contentEntered = e.currentTarget.value;
     setContent(contentEntered);
-    const tempTweetDataModelUpdated = TempTweetApplicationService.getTempTweetDataModel(
+    const tempTweetDataModelUpdated = tempTweetApplicationService.getTempTweetDataModel(
       userId,
       contentEntered,
       tempTweetDataModel,
     );
 
     setCanSubmitTweet(
-      TempTweetApplicationService.canSubmitTweet(tempTweetDataModelUpdated),
+      tempTweetApplicationService.canSubmitTweet(tempTweetDataModelUpdated),
     );
     setTempTweetDataModel(tempTweetDataModelUpdated);
   };

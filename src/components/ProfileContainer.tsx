@@ -34,6 +34,7 @@ export const ProfileContainer: React.FC = () => {
   const userIndicatingUserId = userIndicating?.userId;
   const currentUserId = currentUserDataModel?.userId;
   const followApplicationService = new FollowApplicationService();
+  const userApplicationService = new UserApplicationService();
 
   const toggleIsFollowing = () => {
     if (!followInfo) return;
@@ -67,10 +68,12 @@ export const ProfileContainer: React.FC = () => {
   useEffect(() => {
     (async () => {
       if (!currentUserId) return;
-      const userGotByScreenName = await UserApplicationService.getUserByScreenName(
-        // todo new するのよくないよね
-        new ScreenName(screenNameRequested),
-      ).catch((e) => e);
+      const userGotByScreenName = await userApplicationService
+        .getUserByScreenName(
+          // todo new するのよくないよね
+          new ScreenName(screenNameRequested),
+        )
+        .catch((e) => e);
       if (!(userGotByScreenName instanceof UserDataModel)) {
         setExistUser(false);
 

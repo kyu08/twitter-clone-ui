@@ -22,8 +22,7 @@ export class TempTweetFactory {
     return new TempTweet({ userId, tempContent });
   }
 
-  // todo static or not
-  static updateTempTweet(
+  updateTempTweet(
     tempTweetDataModel: TempTweetDataModel,
     content: string,
   ): TempTweet {
@@ -35,15 +34,11 @@ export class TempTweetFactory {
     return new TempTweet(props);
   }
 
-  // todo static or not
   updateTempTweetDataModel(
     tempTweetDataModel: TempTweetDataModel,
     content: string,
   ): TempTweetDataModel {
-    const updatedTempTweet = TempTweetFactory.updateTempTweet(
-      tempTweetDataModel,
-      content,
-    );
+    const updatedTempTweet = this.updateTempTweet(tempTweetDataModel, content);
 
     return new TempTweetDataModel(updatedTempTweet);
   }

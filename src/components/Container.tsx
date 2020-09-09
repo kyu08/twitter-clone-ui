@@ -7,16 +7,17 @@ import UserApplicationService from '../application/UserApplicationService';
 export const Container: React.FC = () => {
   const store = Store.useStore();
   const isLogin = store.get('isLogin');
+  const userApplicationService = new UserApplicationService();
 
   useEffect(() => {
     (async () => {
-      const userIdInLocalStorage = UserApplicationService.getUserIdFromLocalStorage();
+      const userIdInLocalStorage = userApplicationService.getUserIdFromLocalStorage();
       if (userIdInLocalStorage === null) return;
       store.set('isLogin')(true);
       store.set('userId')(userIdInLocalStorage);
-      const userDataModel = await UserApplicationService.getCurrentUser(
-        userIdInLocalStorage,
-      ).catch((e) => e);
+      const userDataModel = await userApplicationService
+        .getCurrentUser(userIdInLocalStorage)
+        .catch((e) => e);
       store.set('userDataModel')(userDataModel);
     })();
   }, []);
