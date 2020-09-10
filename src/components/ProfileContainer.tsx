@@ -49,10 +49,7 @@ export const ProfileContainer: React.FC = () => {
     (async () => {
       if (!currentUserId) return;
       const userGotByScreenName = await userApplicationService
-        .getUserByScreenName(
-          // todo new するのよくないかな
-          new ScreenName(screenNameRequested),
-        )
+        .getUserByScreenName(new ScreenName(screenNameRequested))
         .catch((e) => e);
       if (!(userGotByScreenName instanceof UserDataModel)) {
         setExistUser(false);

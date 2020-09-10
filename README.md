@@ -1,4 +1,6 @@
 Twitter の clone app(UI)
+https://www.youtube.com/watch?v=cLUPSaMOzU4
+https://www.youtube.com/watch?v=bGhi5JwzmPM
 
 # やることの流れ
 
