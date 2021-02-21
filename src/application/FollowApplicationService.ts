@@ -1,4 +1,4 @@
-import {  hostURL  } from '../util/Util'
+import { hostURL } from '../util/Util';
 
 export class FollowApplicationService {
   follow(followingUserId: string, followerUserId: string): void {
