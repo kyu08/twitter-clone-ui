@@ -38,7 +38,7 @@ export const ProfileSection: React.FC<Props> = (props) => {
           userImageURL={userImageURL}
           screenName={userIndicating.screenName}
         />
-        /* TODO ここから component として切り出す */
+        {/* TODO ここから component として切り出す */}
         {isOwnPage ? (
           <ButtonWrapper>
             <EditProfileButton onClick={() => editProfile()}>
@@ -59,9 +59,8 @@ export const ProfileSection: React.FC<Props> = (props) => {
             <FollowButton onClick={() => follow()}>フォロー</FollowButton>
           </ButtonWrapper>
         )}
-        /* TODO ここまで component として切り出す */
       </ProfileUpperSection>
-      {/* ここまで ProfileUpperSection component*/}
+        {/* TODO ここから component として切り出す */}
       <UserName>{userIndicating.userName}</UserName>
       <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
       {userApplicationService.isFollowed(
