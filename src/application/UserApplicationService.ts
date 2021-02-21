@@ -1,28 +1,28 @@
 import UserId from '../domain/models/User/UserId/UserId';
-import UserRepository from '../infrastructure/UserRepository';
-import { IUserRepository } from '../domain/models/User/IUserRepository';
 import { UserDataModel } from '../infrastructure/UserDataModel';
 import { UserFactory } from '../domain/models/User/UserFactory';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
+import { hostURL } from '../util/Util';
+import { ScreenNamePasswordMap } from '../inMemory/InMemoryScreenNamePassword';
+import { inMemoryUserMap } from '../inMemory/InMemoryUsers';
+import { IUser } from '../domain/models/User/IUser';
 
 export default class UserApplicationService {
-  userRepository: IUserRepository;
-
   userFactory: UserFactory;
 
   constructor() {
-    this.userRepository = new UserRepository();
     this.userFactory = new UserFactory();
   }
 
   getUserIdFromLocalStorage(): UserId | null {
-    return this.userRepository.getUserIdFromLocalStorage();
+    const userIdInLocalStorage = localStorage.getItem('userId');
+    if (!userIdInLocalStorage) return null;
+
+    return this.toInstanceUserId(userIdInLocalStorage);
   }
 
   async getCurrentUser(userId: UserId): Promise<UserDataModel> {
-    const userData = await this.userRepository
-      .getUserJson(userId)
-      .catch((e) => e);
+    const userData = await this.getUserJson(userId).catch((e) => e);
     const userJson = await userData.json();
     const user = this.userFactory.toInstance(userJson);
 
@@ -30,9 +30,9 @@ export default class UserApplicationService {
   }
 
   async getUserByScreenName(screenName: ScreenName): Promise<UserDataModel> {
-    const userData = await this.userRepository
-      .getUserJsonByScreenName(screenName)
-      .catch((e) => e);
+    const userData = await this.getUserJsonByScreenName(screenName).catch(
+      (e) => e,
+    );
     const userJson = await userData.json();
     const user = this.userFactory.toInstance(userJson);
 
@@ -70,12 +70,61 @@ export default class UserApplicationService {
   }
 
   isAuthorized(screenName: string, password: string): boolean {
-    return this.userRepository.isAuthorized(screenName, password);
+    const passwordExpected = ScreenNamePasswordMap.get(screenName);
+
+    if (passwordExpected === undefined || passwordExpected !== password) {
+      console.log('invalid access.');
+
+      return false;
+    }
+    console.log('logged in.');
+
+    return true;
   }
 
   returnUserIdByScreenName(screenName: string): UserId {
-    const userIdProp = this.userRepository.returnUserIdByScreenName(screenName);
+    let userIdFound;
+    inMemoryUserMap.forEach((user: IUser, userId: string) => {
+      if (user.getScreenName().screenName === screenName) {
+        userIdFound = userId;
+      }
+    });
+    if (!userIdFound) {
+      throw new Error('no user has this screenName.');
+    }
 
-    return new UserId(userIdProp);
+    return new UserId(userIdFound);
+  }
+
+  // kokokara
+  toInstanceUserId(userIdString: string): UserId {
+    return new UserId(userIdString);
+  }
+
+  getUserJson(userId: UserId): Promise<Response> {
+    const userIdString = userId.userId;
+
+    return fetch(`${hostURL}/user/userId/${userIdString}/full`, {
+      mode: 'cors',
+    });
+  }
+
+  getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
+    const screenNameString = screenName.screenName;
+
+    return fetch(
+      `${hostURL}/user/screenName/full?screenName=${screenNameString}`,
+      {
+        mode: 'cors',
+      },
+    );
+  }
+
+  setUserIdToLocalStorage(userId: UserId): void {
+    localStorage.setItem('userId', userId.userId);
+  }
+
+  removeUserIdFromLocalStorage(): void {
+    localStorage.removeItem('userId');
   }
 }
