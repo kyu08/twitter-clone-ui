@@ -14,7 +14,7 @@ import Website from './Profile/Website';
 import Year from './Profile/Birthday/Year';
 import Day from './Profile/Birthday/Day';
 import Month from './Profile/Birthday/Month';
-import { UserPropsDetail } from '../../../infrastructure/UserRepository';
+import { UserPropsDetail } from '../../../application/UserApplicationService';
 
 export class UserFactory {
   createUserDataModel(user: IUser): UserDataModel {

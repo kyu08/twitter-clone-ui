@@ -7,6 +7,21 @@ import { ScreenNamePasswordMap } from '../inMemory/InMemoryScreenNamePassword';
 import { inMemoryUserMap } from '../inMemory/InMemoryUsers';
 import { IUser } from '../domain/models/User/IUser';
 
+export type UserPropsDetail = {
+  id: string;
+  screen_name: string;
+  user_name: string;
+  header_image_url: string;
+  user_image_url: string;
+  bio: string;
+  birthday: string;
+  user_location: string;
+  website: string;
+  created_at: string;
+  tweetCount: number;
+  followingMap: [string, string][];
+  followerMap: [string, string][];
+};
 export default class UserApplicationService {
   userFactory: UserFactory;
 
