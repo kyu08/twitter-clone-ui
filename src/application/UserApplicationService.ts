@@ -1,5 +1,6 @@
 import UserId from '../domain/models/User/UserId/UserId';
 import { UserDataModel } from '../infrastructure/UserDataModel';
+// eslint-disable-next-line import/no-cycle
 import { UserFactory } from '../domain/models/User/UserFactory';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { hostURL } from '../util/Util';
@@ -22,11 +23,35 @@ export type UserPropsDetail = {
   followingMap: [string, string][];
   followerMap: [string, string][];
 };
+
 export default class UserApplicationService {
   userFactory: UserFactory;
 
   constructor() {
     this.userFactory = new UserFactory();
+  }
+
+  private toInstanceUserId(userIdString: string): UserId {
+    return new UserId(userIdString);
+  }
+
+  private getUserJson(userId: UserId): Promise<Response> {
+    const userIdString = userId.userId;
+
+    return fetch(`${hostURL}/user/userId/${userIdString}/full`, {
+      mode: 'cors',
+    });
+  }
+
+  private getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
+    const screenNameString = screenName.screenName;
+
+    return fetch(
+      `${hostURL}/user/screenName/full?screenName=${screenNameString}`,
+      {
+        mode: 'cors',
+      },
+    );
   }
 
   getUserIdFromLocalStorage(): UserId | null {
@@ -109,29 +134,6 @@ export default class UserApplicationService {
     }
 
     return new UserId(userIdFound);
-  }
-
-  toInstanceUserId(userIdString: string): UserId {
-    return new UserId(userIdString);
-  }
-
-  getUserJson(userId: UserId): Promise<Response> {
-    const userIdString = userId.userId;
-
-    return fetch(`${hostURL}/user/userId/${userIdString}/full`, {
-      mode: 'cors',
-    });
-  }
-
-  getUserJsonByScreenName(screenName: ScreenName): Promise<Response> {
-    const screenNameString = screenName.screenName;
-
-    return fetch(
-      `${hostURL}/user/screenName/full?screenName=${screenNameString}`,
-      {
-        mode: 'cors',
-      },
-    );
   }
 
   setUserIdToLocalStorage(userId: UserId): void {
