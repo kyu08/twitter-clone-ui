@@ -24,7 +24,10 @@ export class TweetFactory {
     return new TweetDataModel(tweet);
   }
 
-  // TODO これの引数に TweetDataModel もこれるようにする
+  createTweet(tweetCreateProps: TweetCreateProps): Tweet;
+
+  createTweet(tweetDataModel: TweetDataModel): Tweet;
+
   createTweet({
     content: contentProps,
     replyCount: replyCountProps,
@@ -35,13 +38,16 @@ export class TweetFactory {
     screenName: screenNameProps,
     userImageURL: userImageURLProps,
     userName: userNameProps,
-  }: TweetCreateProps): Tweet {
+  }: TweetCreateProps | TweetDataModel): Tweet {
     const content = new Content(contentProps);
     const replyCount = replyCountProps;
     const likeCount = likeCountProps;
     const retweetCount = retweetCountProps;
     const tweetId = new TweetId(tweetIdProps);
-    const createdAt = new Date(createdAtProps);
+    const createdAt =
+      typeof createdAtProps === 'string'
+        ? new Date(createdAtProps)
+        : createdAtProps;
     const screenName = new ScreenName(screenNameProps);
     const userImageURL = new UserImageURL(userImageURLProps);
     const userName = new UserName(userNameProps);

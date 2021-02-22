@@ -53,30 +53,8 @@ export class TweetApplicationService {
     });
   }
 
-  // TODO ここで DataModel -> Tweet への変換やるのは違くね...?
-  howLongAgo({
-    content,
-    createdAt,
-    likeCount,
-    replyCount,
-    retweetCount,
-    screenName,
-    tweetId,
-    userImageURL,
-    userName,
-  }: TweetDataModel): string {
-    const props = {
-      content,
-      createdAt: String(createdAt),
-      likeCount,
-      replyCount,
-      retweetCount,
-      screenName,
-      tweetId,
-      userImageURL,
-      userName,
-    };
-    const tweet = this.tweetFactory.createTweet(props);
+  howLongAgo(tweetDataModel: TweetDataModel): string {
+    const tweet = this.tweetFactory.createTweet(tweetDataModel);
 
     return tweet.howLongAgo();
   }
