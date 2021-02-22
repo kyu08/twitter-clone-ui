@@ -24,28 +24,6 @@ export type UserPropsDetail = {
   followerMap: [string, string][];
 };
 
-const toInstanceUserId = (userIdString: string): UserId =>
-  new UserId(userIdString);
-
-const getUserJson = (userId: UserId): Promise<Response> => {
-  const userIdString = userId.userId;
-
-  return fetch(`${hostURL}/user/userId/${userIdString}/full`, {
-    mode: 'cors',
-  });
-};
-
-const getUserJsonByScreenName = (screenName: ScreenName): Promise<Response> => {
-  const screenNameString = screenName.screenName;
-
-  return fetch(
-    `${hostURL}/user/screenName/full?screenName=${screenNameString}`,
-    {
-      mode: 'cors',
-    },
-  );
-};
-
 export default class UserApplicationService {
   userFactory: UserFactory;
 
@@ -80,11 +58,11 @@ export default class UserApplicationService {
     const userIdInLocalStorage = localStorage.getItem('userId');
     if (!userIdInLocalStorage) return null;
 
-    return toInstanceUserId(userIdInLocalStorage);
+    return this.toInstanceUserId(userIdInLocalStorage);
   }
 
   async getCurrentUser(userId: UserId): Promise<UserDataModel> {
-    const userData = await getUserJson(userId).catch((e) => e);
+    const userData = await this.getUserJson(userId).catch((e) => e);
     const userJson = await userData.json();
     const user = this.userFactory.toInstance(userJson);
 
@@ -92,7 +70,9 @@ export default class UserApplicationService {
   }
 
   async getUserByScreenName(screenName: ScreenName): Promise<UserDataModel> {
-    const userData = await getUserJsonByScreenName(screenName).catch((e) => e);
+    const userData = await this.getUserJsonByScreenName(screenName).catch(
+      (e) => e,
+    );
     const userJson = await userData.json();
     const user = this.userFactory.toInstance(userJson);
 
