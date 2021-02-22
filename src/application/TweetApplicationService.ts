@@ -1,8 +1,10 @@
-import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 import { TweetDataModel } from '../infrastructure/TweetDataModel';
-import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
+import {
+  TweetFactory,
+  TweetCreateProps,
+} from '../domain/models/Tweet/TweetFactory';
 import { hostURL } from '../util/Util';
 
 // TODO ここでしか使わないメソッドは class の外に出す(外からは使えなくする)

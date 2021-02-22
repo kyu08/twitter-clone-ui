@@ -1,5 +1,6 @@
 import UserId from '../domain/models/User/UserId/UserId';
 import { UserDataModel } from '../infrastructure/UserDataModel';
+// eslint-disable-next-line import/no-cycle
 import { UserFactory } from '../domain/models/User/UserFactory';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { hostURL } from '../util/Util';
@@ -22,6 +23,7 @@ export type UserPropsDetail = {
   followingMap: [string, string][];
   followerMap: [string, string][];
 };
+
 export default class UserApplicationService {
   userFactory: UserFactory;
 

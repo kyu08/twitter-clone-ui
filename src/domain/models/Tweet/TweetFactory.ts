@@ -1,12 +1,23 @@
 import { TweetDataModel } from '../../../infrastructure/TweetDataModel';
 import { AbstractTweet } from './AbstractTweet';
-import { TweetCreateProps } from './ITweetRepository';
 import Tweet from './ConcreteClasses/Tweet';
 import Content from './Content/Content';
 import TweetId from './TweetId/TweetId';
 import ScreenName from '../User/Profile/ScreenName';
 import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
+
+export interface TweetCreateProps {
+  tweetId: string;
+  screenName: string;
+  content: string;
+  replyCount: number;
+  retweetCount: number;
+  likeCount: number;
+  createdAt: string;
+  userImageURL: string;
+  userName: string;
+}
 
 export class TweetFactory {
   createTweetDataModel(tweet: AbstractTweet): TweetDataModel {
