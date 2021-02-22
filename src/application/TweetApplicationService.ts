@@ -5,6 +5,7 @@ import { TweetDataModel } from '../infrastructure/TweetDataModel';
 import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
 import { hostURL } from '../util/Util';
 
+// TODO ここでしか使わないメソッドは class の外に出す(外からは使えなくする)
 export class TweetApplicationService {
   readonly tweetFactory: TweetFactory;
 
@@ -50,6 +51,7 @@ export class TweetApplicationService {
     });
   }
 
+  // TODO ここで DataModel -> Tweet への変換やるのは違くね...?
   howLongAgo({
     content,
     createdAt,

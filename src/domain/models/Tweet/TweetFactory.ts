@@ -13,6 +13,7 @@ export class TweetFactory {
     return new TweetDataModel(tweet);
   }
 
+  // TODO これの引数に TweetDataModel もこれるようにする
   createTweet({
     content: contentProps,
     replyCount: replyCountProps,

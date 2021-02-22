@@ -111,7 +111,6 @@ export default class UserApplicationService {
     return new UserId(userIdFound);
   }
 
-  // kokokara
   toInstanceUserId(userIdString: string): UserId {
     return new UserId(userIdString);
   }
