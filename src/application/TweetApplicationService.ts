@@ -2,16 +2,14 @@ import { TweetCreateProps } from '../domain/models/Tweet/ITweetRepository';
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 import { TweetDataModel } from '../infrastructure/TweetDataModel';
-import { TweetRepository } from '../infrastructure/TweetRepository';
 import { TweetFactory } from '../domain/models/Tweet/TweetFactory';
+import { hostURL } from '../util/Util';
 
+// TODO ここでしか使わないメソッドは class の外に出す(外からは使えなくする)
 export class TweetApplicationService {
-  readonly tweetRepository: TweetRepository;
-
   readonly tweetFactory: TweetFactory;
 
   constructor() {
-    this.tweetRepository = new TweetRepository();
     this.tweetFactory = new TweetFactory();
   }
 
@@ -35,13 +33,25 @@ export class TweetApplicationService {
   }
 
   fetchTimeline(currentUserId: string): Promise<Response> {
-    return this.tweetRepository.fetchTimeline(currentUserId);
+    return fetch(`${hostURL}/home/${currentUserId}`, {
+      mode: 'cors',
+    });
   }
 
   postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
-    return this.tweetRepository.postTweet(tweetDataModel);
+    const tweetData = tweetDataModel.build();
+
+    return fetch(`${hostURL}/tweet`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tweetData),
+    });
   }
 
+  // TODO ここで DataModel -> Tweet への変換やるのは違くね...?
   howLongAgo({
     content,
     createdAt,

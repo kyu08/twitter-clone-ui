@@ -29,6 +29,7 @@ export const TweetCreateContainer: React.FC = () => {
   ] = React.useState<TempTweetDataModel>();
 
   const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
+
   const [canSubmitTweet, setCanSubmitTweet] = React.useState<boolean>(false);
 
   const submitTweet = async () => {
@@ -36,6 +37,7 @@ export const TweetCreateContainer: React.FC = () => {
     const response = await tweetApplicationService
       .postTweet(tempTweetDataModel)
       .catch((e) => console.log(e));
+    // TODO response が error でなければ "tweet を送信しました"的な表示をだす？
     console.log(response);
     setHasSubmit(true);
   };

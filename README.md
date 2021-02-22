@@ -2,6 +2,11 @@ Twitter の clone app(UI)
 https://www.youtube.com/watch?v=cLUPSaMOzU4
 https://www.youtube.com/watch?v=bGhi5JwzmPM
 
+# 起動方法
+```
+npm start // ns
+```
+
 # やることの流れ
 
 - [x]  仕様を決める(どういった機能が欲しいのか)
@@ -23,43 +28,44 @@ https://www.youtube.com/watch?v=bGhi5JwzmPM
 
 ### tweet
 
-- tweet を投稿できる
-- favo れる
-- retweet できる
-- timeline がある
-- reply できる
-- 自分の tweet を削除できる
+- [x] tweet を投稿できる
+- [x] timeline がある
+- [ ] retweet をタイムラインに表示できる
+- [ ] favo れる
+- [ ] retweet できる
+- [ ] reply できる
+- [ ] 自分の tweet を削除できる
 
 ### user
 
-- ログインできる
-- プロフィールページが存在して機能する
-- ユーザー名を編集できる
-- user 画像が設定できる
-- header 画像が設定できる
-- follow できる
-- 自分の follower がみれる
-- 自分の following がみれる
-- bio の表示ができる
-- bio の編集ができる
-- 通知が見れる
+- [ ] ログインできる
+- [ ] 自分の follower がみれる
+- [ ] 自分の following がみれる
+- [ ] プロフィールページが存在して機能する
+- [ ] ユーザー名を編集できる
+- [ ] user 画像が設定できる
+- [ ] header 画像が設定できる
+- [x] follow できる
+- [x] bio の表示ができる
+- [ ] bio の編集ができる
+- [ ] 通知が見れる
 
 ## いつか実装しよう
 
-- 画像の投稿・表示ができる
-- 動画の投稿・再生
-- 下書き機能
-- スレッド機能
-- DM 機能
-- 鍵アカ
-- ブロック機能
+- [ ] 画像の投稿・表示ができる
+- [ ] 動画の投稿・再生
+- [ ] 下書き機能
+- [ ] スレッド機能
+- [ ] DM 機能
+- [ ] 鍵アカ
+- [ ] ブロック機能
 
 # どの辺が技術的挑戦要素？
 
-- UI をちゃんと作る(ネイティブ app の UI を再現する)
-- DDD 実践
-- ちゃんとデプロイもする
-- ちゃんとしたweb app をひととおり自分で作る
-- DB 設計(正規化)
-- TypeScript で API サーバを書く(API 設計)(Scala 学ぶ？)
-- バックエンドも動けば OK じゃなくて拡張性の高い設計をする
+- [ ] UI をちゃんと作る(ネイティブ app の UI を再現する)
+- [ ] DDD 実践
+- [ ] ちゃんとデプロイもする
+- [ ] ちゃんとしたweb app をひととおり自分で作る
+- [x] DB 設計(正規化)
+- [x] TypeScript で API サーバを書く(API 設計)(Scala 学ぶ？)
+- [ ] バックエンドも動けば OK じゃなくて拡張性の高い設計をする
