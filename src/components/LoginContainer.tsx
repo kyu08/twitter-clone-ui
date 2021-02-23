@@ -16,12 +16,11 @@ export const LoginContainer: React.FC = () => {
   const [isInvalidLogin, setIsInvalidLogin] = React.useState<boolean>(false);
   const userApplicationService = new UserApplicationService();
 
-  const authorize = (screenNameAuth: string, passwordAuth: string): boolean => {
-    return userApplicationService.isAuthorized(screenNameAuth, passwordAuth);
-  };
-
   const login = (): void => {
-    const isAuthorized = authorize(screenName, password);
+    const isAuthorized = userApplicationService.isAuthorized(
+      screenName,
+      password,
+    );
     const userId = userApplicationService.returnUserIdByScreenName(screenName);
 
     if (isAuthorized) {

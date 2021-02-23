@@ -54,13 +54,6 @@ export default class UserApplicationService {
     );
   }
 
-  getUserIdFromLocalStorage(): UserId | null {
-    const userIdInLocalStorage = localStorage.getItem('userId');
-    if (!userIdInLocalStorage) return null;
-
-    return this.toInstanceUserId(userIdInLocalStorage);
-  }
-
   async getCurrentUser(userId: UserId): Promise<UserDataModel> {
     const userData = await this.getUserJson(userId).catch((e) => e);
     const userJson = await userData.json();
@@ -109,19 +102,6 @@ export default class UserApplicationService {
     return user.followingMap.get(userIndicating.userId) !== undefined;
   }
 
-  isAuthorized(screenName: string, password: string): boolean {
-    const passwordExpected = ScreenNamePasswordMap.get(screenName);
-
-    if (passwordExpected === undefined || passwordExpected !== password) {
-      console.log('invalid access.');
-
-      return false;
-    }
-    console.log('logged in.');
-
-    return true;
-  }
-
   returnUserIdByScreenName(screenName: string): UserId {
     let userIdFound;
     inMemoryUserMap.forEach((user: IUser, userId: string) => {
@@ -136,11 +116,37 @@ export default class UserApplicationService {
     return new UserId(userIdFound);
   }
 
+  /* ------------------------------------------- */
+  /* methods for authorization                   */
+  /* ------------------------------------------- */
+  isAuthorized(screenName: string, password: string): boolean {
+    const passwordExpected = ScreenNamePasswordMap.get(screenName);
+
+    if (passwordExpected === undefined || passwordExpected !== password) {
+      console.log('invalid access.');
+
+      return false;
+    }
+    console.log('logged in.');
+
+    return true;
+  }
+
+  /* ------------------------------------------- */
+  /* methods for using localStorage              */
+  /* ------------------------------------------- */
   setUserIdToLocalStorage(userId: UserId): void {
     localStorage.setItem('userId', userId.userId);
   }
 
   removeUserIdFromLocalStorage(): void {
     localStorage.removeItem('userId');
+  }
+
+  getUserIdFromLocalStorage(): UserId | null {
+    const userIdInLocalStorage = localStorage.getItem('userId');
+    if (!userIdInLocalStorage) return null;
+
+    return this.toInstanceUserId(userIdInLocalStorage);
   }
 }
