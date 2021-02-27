@@ -7,7 +7,8 @@ import {
 } from '../domain/models/Tweet/TweetFactory';
 import { hostURL } from '../util/Util';
 
-// TODO ここでしか使わないメソッドは class の外に出す(外からは使えなくする)
+// TODO やる
+// TODO ここでしか使わないメソッドは private にする
 export class TweetApplicationService {
   readonly tweetFactory: TweetFactory;
 

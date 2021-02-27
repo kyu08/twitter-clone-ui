@@ -1,27 +1,17 @@
-import { hostURL } from '../util/Util';
+import { FollowRepository } from '../infrastructure/FollowRepository';
 
 export class FollowApplicationService {
+  readonly followRepository: FollowRepository;
+
+  constructor() {
+    this.followRepository = new FollowRepository();
+  }
+
   follow(followingUserId: string, followerUserId: string): void {
-    const followData = { followingUserId, followerUserId };
-    fetch(`${hostURL}/follow`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(followData),
-    });
+    this.followRepository.follow(followingUserId, followerUserId);
   }
 
   unFollow(followingUserId: string, followerUserId: string): void {
-    const followData = { followingUserId, followerUserId };
-    fetch(`${hostURL}/follow`, {
-      method: 'DELETE',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(followData),
-    });
+    this.followRepository.unFollow(followingUserId, followerUserId);
   }
 }
