@@ -1,17 +1,18 @@
 // eslint-disable-next-line import/no-cycle
 import { StoreEffects } from './Store';
-import UserApplicationService from './application/UserApplicationService';
+import { IUserRepository } from './domain/models/User/IUserRepository';
+import UserRepository from './infrastructure/UserRepository';
 
-const userApplicationService = new UserApplicationService();
+const userRepository: IUserRepository = new UserRepository();
 
 const effects: StoreEffects = (store) => {
   store.on('userId').subscribe((userId) => {
     if (!userId) {
-      userApplicationService.removeUserIdFromLocalStorage();
+      userRepository.removeUserIdFromLocalStorage();
 
       return;
     }
-    userApplicationService.setUserIdToLocalStorage(userId);
+    userRepository.setUserIdToLocalStorage(userId);
   });
 
   return store;
