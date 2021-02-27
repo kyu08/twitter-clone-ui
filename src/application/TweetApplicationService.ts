@@ -1,18 +1,21 @@
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 import { TweetDataModel } from '../infrastructure/TweetDataModel';
+import { TweetRepository } from '../infrastructure/TweetRepository';
 import {
-  TweetFactory,
   TweetCreateProps,
+  TweetFactory,
 } from '../domain/models/Tweet/TweetFactory';
-import { hostURL } from '../util/Util';
 
 // TODO やる
 // TODO ここでしか使わないメソッドは private にする
 export class TweetApplicationService {
+  readonly tweetRepository: TweetRepository;
+
   readonly tweetFactory: TweetFactory;
 
   constructor() {
+    this.tweetRepository = new TweetRepository();
     this.tweetFactory = new TweetFactory();
   }
 
@@ -36,22 +39,11 @@ export class TweetApplicationService {
   }
 
   fetchTimeline(currentUserId: string): Promise<Response> {
-    return fetch(`${hostURL}/home/${currentUserId}`, {
-      mode: 'cors',
-    });
+    return this.tweetRepository.fetchTimeline(currentUserId);
   }
 
   postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
-    const tweetData = tweetDataModel.build();
-
-    return fetch(`${hostURL}/tweet`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(tweetData),
-    });
+    return this.tweetRepository.postTweet(tweetDataModel);
   }
 
   howLongAgo(tweetDataModel: TweetDataModel): string {
