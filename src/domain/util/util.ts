@@ -1,15 +1,7 @@
-import UserId from '../domain/models/User/UserId/UserId';
+import UserId from '../models/User/UserId/UserId';
 
 export type TODO<T> = any;
 
-// MEMO used by infrastructure
-export const hostURL = 'http://localhost:3001';
-/* export const hostURL = 'http://3.34.32.57'; */
-
-export const DefaultUserImageURL =
-  'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';
-
-// MEMO used by models
 // 2階層目まで undefined をチェック
 // birthday は optional なので除外
 export const ensurePropsContainsNoUndefined = <T>(props: T) => {
@@ -28,7 +20,6 @@ export const ensurePropsContainsNoUndefined = <T>(props: T) => {
   });
 };
 
-// todo ↓これも
 export const deleteFromSet = (
   copy: Set<UserId>,
   userId: UserId,
@@ -40,5 +31,3 @@ export const deleteFromSet = (
 
   return copy;
 };
-
-export const LinkStyle = { textDecoration: 'none', color: 'white' };

@@ -11,8 +11,8 @@ import { MAX_USER_LOCATION_LENGTH } from '../domain/models/User/Profile/UserLoca
 import { Confirm } from './SignUp/Confirm';
 import { MAX_SCREEN_NAME_LENGTH } from '../domain/models/User/Profile/ScreenName';
 import { MAX_USER_NAME_LENGTH } from '../domain/models/User/Profile/UserName';
-import { TODO } from '../util/Util';
 import Store from '../Store';
+import { TODO } from './util/util';
 
 export const SignUpContainer: React.FC = () => {
   const store = Store.useStore();

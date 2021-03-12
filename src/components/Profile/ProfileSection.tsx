@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserImageSection } from '../Home/Tweet/UserImageSection';
-import { LinkStyle } from '../../util/Util';
 import { ProfileButton } from './ProfileButton';
 import { UserDataModel } from '../../applicationService/DTO/UserDataModel';
 import UserApplicationService from '../../applicationService/UserApplicationService';
+import { LinkStyle } from '../util/util';
 
 type Props = {
   userImageURL: string;

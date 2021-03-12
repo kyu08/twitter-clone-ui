@@ -2,7 +2,7 @@ import * as React from 'react';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import styled from 'styled-components';
 import { Message } from '../Login/Message';
-import { TODO } from '../../util/Util';
+import { TODO } from '../util/util';
 
 type Props = {
   goToNextPage(e: React.MouseEvent<HTMLInputElement>): void;

@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import { Header } from './Home/Common/Header';
 import { ProfileHeaderContent } from './Profile/ProfileHeaderContent';
 import Store from '../Store';
-import { DefaultUserImageURL } from '../util/Util';
 import { Footer } from './Home/Common/Footer';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { ProfileSection } from './Profile/ProfileSection';
 import { FollowApplicationService } from '../applicationService/FollowApplicationService';
 import UserApplicationService from '../applicationService/UserApplicationService';
 import { UserDataModel } from '../applicationService/DTO/UserDataModel';
+import { DefaultUserImageURL } from './util/util';
 
 export const ProfileContainer: React.FC = () => {
   const { screenName: screenNameRequested } = useParams();

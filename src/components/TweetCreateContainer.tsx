@@ -5,10 +5,10 @@ import { TweetCreateHeaderContent } from './TweetCreate/TweetCreateHeaderContent
 import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
 import { Header } from './Home/Common/Header';
 import Store from '../Store';
-import { DefaultUserImageURL } from '../util/Util';
 import { TempTweetDataModel } from '../applicationService/DTO/TempTweetDataModel';
 import { TempTweetApplicationService } from '../applicationService/TempTweetApplicationService';
 import { TweetApplicationService } from '../applicationService/TweetApplicationService';
+import { DefaultUserImageURL } from './util/util';
 
 export const TweetCreateContainer: React.FC = () => {
   const store = Store.useStore();

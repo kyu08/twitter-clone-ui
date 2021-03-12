@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { LinkStyle } from '../../util/Util';
+import { LinkStyle } from '../util/util';
 
 const LinkToSignUpWrapper = styled.div`
   text-align: center;
