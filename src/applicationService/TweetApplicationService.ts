@@ -2,7 +2,7 @@ import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
 import {
   TweetCreateProps,
   TweetFactory,
-} from '../domain/models/Tweet/TweetFactory';
+} from '../domain/factory/tweet/TweetFactory';
 import { TweetDataModel } from './DTO/TweetDataModel';
 import { TempTweetDataModel } from './DTO/TempTweetDataModel';
 import { TweetRepository } from '../infrastructure/repository/TweetRepositoryImpl';

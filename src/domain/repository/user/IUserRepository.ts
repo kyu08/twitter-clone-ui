@@ -1,5 +1,5 @@
-import UserId from './UserId/UserId';
-import ScreenName from './Profile/ScreenName';
+import UserId from '../../models/User/UserId/UserId';
+import ScreenName from '../../models/User/Profile/ScreenName';
 
 export interface IUserRepository {
   isAuthorized(screenName: string, password: string): boolean;

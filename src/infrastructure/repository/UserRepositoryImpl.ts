@@ -4,7 +4,7 @@ import { inMemoryUserMap } from '../../inMemory/InMemoryUsers';
 import { ScreenNamePasswordMap } from '../../inMemory/InMemoryScreenNamePassword';
 import ScreenName from '../../domain/models/User/Profile/ScreenName';
 import { IUser } from '../../domain/models/User/IUser';
-import { IUserRepository } from '../../domain/models/User/IUserRepository';
+import { IUserRepository } from '../../domain/repository/user/IUserRepository';
 
 export type UserPropsDetail = {
   id: string;

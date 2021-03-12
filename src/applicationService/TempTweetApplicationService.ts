@@ -1,4 +1,4 @@
-import { TempTweetFactory } from '../domain/models/TempTweet/TempTweetFactory';
+import { TempTweetFactory } from '../domain/factory/tempTweet/TempTweetFactory';
 import UserId from '../domain/models/User/UserId/UserId';
 import { TempTweetDataModel } from './DTO/TempTweetDataModel';
 

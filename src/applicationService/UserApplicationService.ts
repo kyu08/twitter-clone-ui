@@ -2,7 +2,7 @@ import UserId from '../domain/models/User/UserId/UserId';
 // eslint-disable-next-line import/no-cycle
 import { UserFactory } from '../domain/models/User/UserFactory';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
-import { IUserRepository } from '../domain/models/User/IUserRepository';
+import { IUserRepository } from '../domain/repository/user/IUserRepository';
 import { UserDataModel } from './DTO/UserDataModel';
 import UserRepository from '../infrastructure/repository/UserRepositoryImpl';
 

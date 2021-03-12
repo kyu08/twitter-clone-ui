@@ -1,10 +1,10 @@
-import { AbstractTweet } from './AbstractTweet';
-import Tweet from './ConcreteClasses/Tweet';
-import Content from './Content/Content';
-import TweetId from './TweetId/TweetId';
-import ScreenName from '../User/Profile/ScreenName';
-import UserImageURL from '../User/Profile/UserImageURL';
-import UserName from '../User/Profile/UserName';
+import { AbstractTweet } from '../../models/Tweet/AbstractTweet';
+import Tweet from '../../models/Tweet/ConcreteClasses/Tweet';
+import Content from '../../models/Tweet/Content/Content';
+import TweetId from '../../models/Tweet/TweetId/TweetId';
+import ScreenName from '../../models/User/Profile/ScreenName';
+import UserImageURL from '../../models/User/Profile/UserImageURL';
+import UserName from '../../models/User/Profile/UserName';
 import { TweetDataModel } from '../../../applicationService/DTO/TweetDataModel';
 
 export interface TweetCreateProps {

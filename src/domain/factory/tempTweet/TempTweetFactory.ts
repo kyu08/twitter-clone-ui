@@ -1,6 +1,6 @@
-import { TempTweet } from './ConcreteClasses/TempTweet';
-import TempContent from './TempContent';
-import UserId from '../User/UserId/UserId';
+import { TempTweet } from '../../models/TempTweet/ConcreteClasses/TempTweet';
+import TempContent from '../../models/TempTweet/TempContent';
+import UserId from '../../models/User/UserId/UserId';
 import { TempTweetDataModel } from '../../../applicationService/DTO/TempTweetDataModel';
 
 export class TempTweetFactory {
