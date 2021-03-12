@@ -6,22 +6,6 @@ import { IUser } from '../../domain/models/User/IUser';
 import { IUserRepository } from '../../domain/repository/user/IUserRepository';
 import { hostURL } from '../util/util';
 
-export type UserPropsDetail = {
-  id: string;
-  screen_name: string;
-  user_name: string;
-  header_image_url: string;
-  user_image_url: string;
-  bio: string;
-  birthday: string;
-  user_location: string;
-  website: string;
-  created_at: string;
-  tweetCount: number;
-  followingMap: [string, string][];
-  followerMap: [string, string][];
-};
-
 export default class UserRepositoryImpl implements IUserRepository {
   toInstanceUserId(userIdString: string): UserId {
     return new UserId(userIdString);

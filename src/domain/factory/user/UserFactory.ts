@@ -1,5 +1,4 @@
 import { UserDataModel } from '../../../applicationService/DTO/UserDataModel';
-import { UserPropsDetail } from '../../../infrastructure/repository/UserRepositoryImpl';
 import { User } from '../../models/User/User';
 import UserId from '../../models/User/UserId/UserId';
 import UserImageURL from '../../models/User/Profile/UserImageURL';
@@ -15,6 +14,22 @@ import Website from '../../models/User/Profile/Website';
 import Birthday from '../../models/User/Profile/Birthday';
 import ScreenName from '../../models/User/Profile/ScreenName';
 import UserName from '../../models/User/Profile/UserName';
+
+type UserPropsDetail = {
+  id: string;
+  screen_name: string;
+  user_name: string;
+  header_image_url: string;
+  user_image_url: string;
+  bio: string;
+  birthday: string;
+  user_location: string;
+  website: string;
+  created_at: string;
+  tweetCount: number;
+  followingMap: [string, string][];
+  followerMap: [string, string][];
+};
 
 export class UserFactory {
   createUserDataModel(user: IUser): UserDataModel {
