@@ -5,8 +5,8 @@ import {
 } from '../domain/factory/tweet/TweetFactory';
 import { TweetDataModel } from './DTO/TweetDataModel';
 import { TempTweetDataModel } from './DTO/TempTweetDataModel';
-import { TweetRepository } from '../infrastructure/repository/ITweetRepository';
 import { TempTweetFactory } from '../domain/factory/tempTweet/TempTweetFactory';
+import { TweetRepository } from '../infrastructure/repository/TweetRepositoryImpl';
 
 // TODO やる
 // TODO ここでしか使わないメソッドは private にする
