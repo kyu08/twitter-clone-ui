@@ -5,7 +5,8 @@ import {
 } from '../domain/factory/tweet/TweetFactory';
 import { TweetDataModel } from './DTO/TweetDataModel';
 import { TempTweetDataModel } from './DTO/TempTweetDataModel';
-import { TweetRepository } from '../infrastructure/repository/TweetRepositoryImpl';
+import { TweetRepository } from '../infrastructure/repository/ITweetRepository';
+import { TempTweetFactory } from '../domain/factory/tempTweet/TempTweetFactory';
 
 // TODO やる
 // TODO ここでしか使わないメソッドは private にする
@@ -14,9 +15,12 @@ export class TweetApplicationService {
 
   readonly tweetFactory: TweetFactory;
 
+  readonly tempTweetFactory: TempTweetFactory;
+
   constructor() {
     this.tweetRepository = new TweetRepository();
     this.tweetFactory = new TweetFactory();
+    this.tempTweetFactory = new TempTweetFactory();
   }
 
   async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
@@ -42,8 +46,12 @@ export class TweetApplicationService {
     return this.tweetRepository.fetchTimeline(currentUserId);
   }
 
-  postTweet(tweetDataModel: TempTweetDataModel): Promise<Response> {
-    return this.tweetRepository.postTweet(tweetDataModel);
+  postTweet(tempTweetDataModel: TempTweetDataModel): Promise<Response> {
+    const tempTweet = this.tempTweetFactory.createFromDataModel(
+      tempTweetDataModel,
+    );
+
+    return this.tweetRepository.postTweet(tempTweet);
   }
 
   howLongAgo(tweetDataModel: TweetDataModel): string {

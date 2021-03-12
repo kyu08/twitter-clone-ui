@@ -1,20 +1,20 @@
-import { IUser } from './IUser';
-import { User } from './User';
-import UserId from './UserId/UserId';
-import Profile from './Profile/Profile';
-import Birthday from './Profile/Birthday';
-import ScreenName from './Profile/ScreenName';
-import UserName from './Profile/UserName';
-import HeaderImageURL from './Profile/HeaderImageURL';
-import UserImageURL from './Profile/UserImageURL';
-import Bio from './Profile/Bio';
-import UserLocation from './Profile/UserLocation';
-import Website from './Profile/Website';
-import Year from './Profile/Birthday/Year';
-import Day from './Profile/Birthday/Day';
-import Month from './Profile/Birthday/Month';
 import { UserDataModel } from '../../../applicationService/DTO/UserDataModel';
 import { UserPropsDetail } from '../../../infrastructure/repository/UserRepositoryImpl';
+import { User } from '../../models/User/User';
+import UserId from '../../models/User/UserId/UserId';
+import UserImageURL from '../../models/User/Profile/UserImageURL';
+import Profile from '../../models/User/Profile/Profile';
+import Day from '../../models/User/Profile/Birthday/Day';
+import HeaderImageURL from '../../models/User/Profile/HeaderImageURL';
+import Bio from '../../models/User/Profile/Bio';
+import Month from '../../models/User/Profile/Birthday/Month';
+import { IUser } from '../../models/User/IUser';
+import UserLocation from '../../models/User/Profile/UserLocation';
+import Year from '../../models/User/Profile/Birthday/Year';
+import Website from '../../models/User/Profile/Website';
+import Birthday from '../../models/User/Profile/Birthday';
+import ScreenName from '../../models/User/Profile/ScreenName';
+import UserName from '../../models/User/Profile/UserName';
 
 export class UserFactory {
   createUserDataModel(user: IUser): UserDataModel {

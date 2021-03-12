@@ -1,6 +1,7 @@
 import {
   AbstractTempTweet,
   AbstractTempTweetProps,
+  TempTweetData,
 } from '../AbstractTempTweet';
 import TempContent from '../TempContent';
 import { MAX_TWEET_LENGTH } from '../../Tweet/Content/Content';
@@ -16,6 +17,13 @@ export class TempTweet extends AbstractTempTweet {
     const props = { ...this, ...tempContent };
 
     return new TempTweet(props);
+  }
+
+  build(): TempTweetData {
+    return {
+      tempContent: this.tempContent.tempContent,
+      userId: this.userId.userId,
+    };
   }
 
   canSubmit(): boolean {
