@@ -14,7 +14,7 @@ import Year from './Profile/Birthday/Year';
 import Day from './Profile/Birthday/Day';
 import Month from './Profile/Birthday/Month';
 import { UserDataModel } from '../../../applicationService/DTO/UserDataModel';
-import { UserPropsDetail } from '../../../infrastructure/UserRepository';
+import { UserPropsDetail } from '../../../infrastructure/repository/UserRepositoryImpl';
 
 export class UserFactory {
   createUserDataModel(user: IUser): UserDataModel {

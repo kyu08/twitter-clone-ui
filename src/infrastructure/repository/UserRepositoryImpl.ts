@@ -1,10 +1,10 @@
-import UserId from '../domain/models/User/UserId/UserId';
-import { hostURL } from '../util/Util';
-import { inMemoryUserMap } from '../inMemory/InMemoryUsers';
-import { ScreenNamePasswordMap } from '../inMemory/InMemoryScreenNamePassword';
-import ScreenName from '../domain/models/User/Profile/ScreenName';
-import { IUser } from '../domain/models/User/IUser';
-import { IUserRepository } from '../domain/models/User/IUserRepository';
+import UserId from '../../domain/models/User/UserId/UserId';
+import { hostURL } from '../../util/Util';
+import { inMemoryUserMap } from '../../inMemory/InMemoryUsers';
+import { ScreenNamePasswordMap } from '../../inMemory/InMemoryScreenNamePassword';
+import ScreenName from '../../domain/models/User/Profile/ScreenName';
+import { IUser } from '../../domain/models/User/IUser';
+import { IUserRepository } from '../../domain/models/User/IUserRepository';
 
 export type UserPropsDetail = {
   id: string;

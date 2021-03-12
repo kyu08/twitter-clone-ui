@@ -1,4 +1,4 @@
-import { FollowRepository } from '../infrastructure/FollowRepository';
+import { FollowRepository } from '../infrastructure/repository/FollowRepositoryImpl';
 
 export class FollowApplicationService {
   readonly followRepository: FollowRepository;
