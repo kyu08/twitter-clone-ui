@@ -6,19 +6,21 @@ import {
 import { TweetDataModel } from './DTO/TweetDataModel';
 import { TempTweetDataModel } from './DTO/TempTweetDataModel';
 import { TempTweetFactory } from '../domain/factory/tempTweet/TempTweetFactory';
-import { TweetRepository } from '../infrastructure/repository/TweetRepositoryImpl';
+import { TweetRepositoryImpl } from '../infrastructure/repository/TweetRepositoryImpl';
+import { ITweetRepository } from '../domain/repository/tweet/ITweetRepository';
 
 // TODO やる
 // TODO ここでしか使わないメソッドは private にする
 export class TweetApplicationService {
-  readonly tweetRepository: TweetRepository;
+  readonly tweetRepository: ITweetRepository;
 
   readonly tweetFactory: TweetFactory;
 
   readonly tempTweetFactory: TempTweetFactory;
 
   constructor() {
-    this.tweetRepository = new TweetRepository();
+    // TODO DI したい
+    this.tweetRepository = new TweetRepositoryImpl();
     this.tweetFactory = new TweetFactory();
     this.tempTweetFactory = new TempTweetFactory();
   }

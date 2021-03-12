@@ -3,7 +3,7 @@ import UserId from '../domain/models/User/UserId/UserId';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { IUserRepository } from '../domain/repository/user/IUserRepository';
 import { UserDataModel } from './DTO/UserDataModel';
-import UserRepository from '../infrastructure/repository/UserRepositoryImpl';
+import UserRepositoryImpl from '../infrastructure/repository/UserRepositoryImpl';
 import { UserFactory } from '../domain/factory/user/UserFactory';
 
 // TODO move to 適切な位置
@@ -29,7 +29,8 @@ export default class UserApplicationService {
   userFactory: UserFactory;
 
   constructor() {
-    this.userRepository = new UserRepository();
+    // TODO DI したい
+    this.userRepository = new UserRepositoryImpl();
     this.userFactory = new UserFactory();
   }
 

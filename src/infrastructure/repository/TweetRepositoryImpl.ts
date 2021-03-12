@@ -2,7 +2,7 @@ import { hostURL } from '../../util/Util';
 import { TempTweet } from '../../domain/models/TempTweet/ConcreteClasses/TempTweet';
 import { ITweetRepository } from '../../domain/repository/tweet/ITweetRepository';
 
-export class TweetRepository implements ITweetRepository {
+export class TweetRepositoryImpl implements ITweetRepository {
   fetchTimeline(currentUserId: string): Promise<Response> {
     return fetch(`${hostURL}/home/${currentUserId}`, {
       mode: 'cors',

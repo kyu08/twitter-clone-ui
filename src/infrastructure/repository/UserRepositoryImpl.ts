@@ -22,7 +22,7 @@ export type UserPropsDetail = {
   followerMap: [string, string][];
 };
 
-export default class UserRepository implements IUserRepository {
+export default class UserRepositoryImpl implements IUserRepository {
   toInstanceUserId(userIdString: string): UserId {
     return new UserId(userIdString);
   }

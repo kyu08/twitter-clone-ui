@@ -1,4 +1,4 @@
-import { FollowRepository } from '../infrastructure/repository/FollowRepositoryImpl';
+import { FollowRepositoryImpl } from '../infrastructure/repository/FollowRepositoryImpl';
 import { IFollowRepository } from '../domain/repository/follow/IFollowRepository';
 
 export class FollowApplicationService {
@@ -6,7 +6,7 @@ export class FollowApplicationService {
 
   constructor() {
     // TODO DI したい
-    this.followRepository = new FollowRepository();
+    this.followRepository = new FollowRepositoryImpl();
   }
 
   follow(followingUserId: string, followerUserId: string): void {
