@@ -5,6 +5,7 @@ import { IUserRepository } from '../domain/repository/user/IUserRepository';
 import { UserDataModel } from './DTO/UserDataModel';
 import UserRepositoryImpl from '../infrastructure/repository/UserRepositoryImpl';
 import { UserFactory } from '../domain/factory/user/UserFactory';
+import { UserDataModelFactory } from './DTOFactory/UserDataModelFactory';
 
 // TODO move to 適切な位置
 export type UserPropsDetail = {
@@ -24,14 +25,17 @@ export type UserPropsDetail = {
 };
 
 export default class UserApplicationService {
-  userRepository: IUserRepository;
+  readonly userRepository: IUserRepository;
 
-  userFactory: UserFactory;
+  readonly userFactory: UserFactory;
+
+  readonly userDataModelFactory: UserDataModelFactory;
 
   constructor() {
     // TODO DI したい
     this.userRepository = new UserRepositoryImpl();
     this.userFactory = new UserFactory();
+    this.userDataModelFactory = new UserDataModelFactory();
   }
 
   private toInstanceUserId(userIdString: string): UserId {
@@ -45,7 +49,7 @@ export default class UserApplicationService {
     const userJson = await userData.json();
     const user = this.userFactory.toInstance(userJson);
 
-    return this.userFactory.createUserDataModel(user);
+    return this.userDataModelFactory.createUserDataModel(user);
   }
 
   async getUserByScreenName(screenName: ScreenName): Promise<UserDataModel> {
@@ -55,7 +59,7 @@ export default class UserApplicationService {
     const userJson = await userData.json();
     const user = this.userFactory.toInstance(userJson);
 
-    return this.userFactory.createUserDataModel(user);
+    return this.userDataModelFactory.createUserDataModel(user);
   }
 
   getFollowerCount(userDataModel: UserDataModel): number {

@@ -1,4 +1,3 @@
-import { AbstractTweet } from '../../models/Tweet/AbstractTweet';
 import Tweet from '../../models/Tweet/ConcreteClasses/Tweet';
 import Content from '../../models/Tweet/Content/Content';
 import TweetId from '../../models/Tweet/TweetId/TweetId';
@@ -20,10 +19,6 @@ export interface TweetCreateProps {
 }
 
 export class TweetFactory {
-  createTweetDataModel(tweet: AbstractTweet): TweetDataModel {
-    return new TweetDataModel(tweet);
-  }
-
   createTweet(tweetCreateProps: TweetCreateProps): Tweet;
 
   createTweet(tweetDataModel: TweetDataModel): Tweet;

@@ -32,10 +32,6 @@ type UserPropsDetail = {
 };
 
 export class UserFactory {
-  createUserDataModel(user: IUser): UserDataModel {
-    return new UserDataModel(user);
-  }
-
   convertUserDataModelToUser(userDataModel: UserDataModel): IUser {
     const {
       screenName,

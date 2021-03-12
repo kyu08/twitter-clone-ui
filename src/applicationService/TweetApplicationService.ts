@@ -8,8 +8,8 @@ import { TempTweetDataModel } from './DTO/TempTweetDataModel';
 import { TempTweetFactory } from '../domain/factory/tempTweet/TempTweetFactory';
 import { TweetRepositoryImpl } from '../infrastructure/repository/TweetRepositoryImpl';
 import { ITweetRepository } from '../domain/repository/tweet/ITweetRepository';
+import { TweetDataModelFactory } from './DTOFactory/TweetDataModelFactory';
 
-// TODO やる
 // TODO ここでしか使わないメソッドは private にする
 export class TweetApplicationService {
   readonly tweetRepository: ITweetRepository;
@@ -18,11 +18,14 @@ export class TweetApplicationService {
 
   readonly tempTweetFactory: TempTweetFactory;
 
+  readonly tweetDataModelFactory: TweetDataModelFactory;
+
   constructor() {
     // TODO DI したい
     this.tweetRepository = new TweetRepositoryImpl();
     this.tweetFactory = new TweetFactory();
     this.tempTweetFactory = new TempTweetFactory();
+    this.tweetDataModelFactory = new TweetDataModelFactory();
   }
 
   async getTimeLine(currentUserId: string): Promise<TweetDataModel[]> {
@@ -39,7 +42,7 @@ export class TweetApplicationService {
         this.tweetFactory.createTweet(tweetProps),
       )
       .map((tweet: AbstractTweet) =>
-        this.tweetFactory.createTweetDataModel(tweet),
+        this.tweetDataModelFactory.createTweetDataModel(tweet),
       )
       .reverse();
   }
