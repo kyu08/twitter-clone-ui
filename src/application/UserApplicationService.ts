@@ -6,6 +6,7 @@ import { UserFactory } from '../domain/models/User/UserFactory';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
 import { IUserRepository } from '../domain/models/User/IUserRepository';
 
+// TODO move to 適切な位置
 export type UserPropsDetail = {
   id: string;
   screen_name: string;
