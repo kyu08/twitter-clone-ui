@@ -5,9 +5,9 @@ import { Header } from './Home/Common/Header';
 import { Timeline } from './Home/Timeline';
 import { Footer } from './Home/Common/Footer';
 import Store from '../Store';
-import { TweetApplicationService } from '../application/TweetApplicationService';
 import { HomeHeaderContent } from './Home/HomeHeaderContent';
-import { TweetDataModel } from '../infrastructure/TweetDataModel';
+import { TweetApplicationService } from '../applicationService/TweetApplicationService';
+import { TweetDataModel } from '../applicationService/DTO/TweetDataModel';
 
 export const HomeContainer: React.FC = () => {
   const store = Store.useStore();

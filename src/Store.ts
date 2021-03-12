@@ -2,7 +2,7 @@ import { createConnectedStore, Effects, Store } from 'undux';
 // eslint-disable-next-line import/no-cycle
 import effects from './Effects';
 import UserId from './domain/models/User/UserId/UserId';
-import { UserDataModel } from './infrastructure/UserDataModel';
+import { UserDataModel } from './applicationService/DTO/UserDataModel';
 
 type State = {
   userId?: UserId;

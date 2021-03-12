@@ -1,5 +1,5 @@
 import { hostURL } from '../util/Util';
-import { TempTweetDataModel } from './TempTweetDataModel';
+import { TempTweetDataModel } from '../applicationService/DTO/TempTweetDataModel';
 
 export class TweetRepository {
   fetchTimeline(currentUserId: string): Promise<Response> {

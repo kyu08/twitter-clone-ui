@@ -1,7 +1,7 @@
 import { TempTweet } from './ConcreteClasses/TempTweet';
 import TempContent from './TempContent';
 import UserId from '../User/UserId/UserId';
-import { TempTweetDataModel } from '../../../infrastructure/TempTweetDataModel';
+import { TempTweetDataModel } from '../../../applicationService/DTO/TempTweetDataModel';
 
 export class TempTweetFactory {
   createTempTweetDataModel(

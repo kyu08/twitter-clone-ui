@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import { TweetCreateHeaderContent } from './TweetCreate/TweetCreateHeaderContent';
-import { TempTweetApplicationService } from '../application/TempTweetApplicationService';
 import { TweetCreateForm } from './TweetCreate/TweetCreateForm';
-import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 import { Header } from './Home/Common/Header';
 import Store from '../Store';
-import { TweetApplicationService } from '../application/TweetApplicationService';
 import { DefaultUserImageURL } from '../util/Util';
+import { TempTweetDataModel } from '../applicationService/DTO/TempTweetDataModel';
+import { TempTweetApplicationService } from '../applicationService/TempTweetApplicationService';
+import { TweetApplicationService } from '../applicationService/TweetApplicationService';
 
 export const TweetCreateContainer: React.FC = () => {
   const store = Store.useStore();

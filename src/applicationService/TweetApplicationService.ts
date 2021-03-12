@@ -1,11 +1,11 @@
 import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
-import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
-import { TweetDataModel } from '../infrastructure/TweetDataModel';
 import { TweetRepository } from '../infrastructure/TweetRepository';
 import {
   TweetCreateProps,
   TweetFactory,
 } from '../domain/models/Tweet/TweetFactory';
+import { TweetDataModel } from './DTO/TweetDataModel';
+import { TempTweetDataModel } from './DTO/TempTweetDataModel';
 
 // TODO やる
 // TODO ここでしか使わないメソッドは private にする

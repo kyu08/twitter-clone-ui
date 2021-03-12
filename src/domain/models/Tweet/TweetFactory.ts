@@ -1,4 +1,3 @@
-import { TweetDataModel } from '../../../infrastructure/TweetDataModel';
 import { AbstractTweet } from './AbstractTweet';
 import Tweet from './ConcreteClasses/Tweet';
 import Content from './Content/Content';
@@ -6,6 +5,7 @@ import TweetId from './TweetId/TweetId';
 import ScreenName from '../User/Profile/ScreenName';
 import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
+import { TweetDataModel } from '../../../applicationService/DTO/TweetDataModel';
 
 export interface TweetCreateProps {
   tweetId: string;

@@ -1,4 +1,3 @@
-import { UserDataModel } from '../../../infrastructure/UserDataModel';
 import { IUser } from './IUser';
 import { User } from './User';
 import UserId from './UserId/UserId';
@@ -14,7 +13,8 @@ import Website from './Profile/Website';
 import Year from './Profile/Birthday/Year';
 import Day from './Profile/Birthday/Day';
 import Month from './Profile/Birthday/Month';
-import { UserPropsDetail } from '../../../application/UserApplicationService';
+import { UserDataModel } from '../../../applicationService/DTO/UserDataModel';
+import { UserPropsDetail } from '../../../infrastructure/UserRepository';
 
 export class UserFactory {
   createUserDataModel(user: IUser): UserDataModel {

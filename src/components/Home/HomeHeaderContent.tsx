@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { UserImageSection } from './Tweet/UserImageSection';
-import { UserDataModel } from '../../infrastructure/UserDataModel';
+import { UserDataModel } from '../../applicationService/DTO/UserDataModel';
 
 const IMAGE_SIZE = 30;
 

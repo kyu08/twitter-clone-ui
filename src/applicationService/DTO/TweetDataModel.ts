@@ -1,4 +1,4 @@
-import { AbstractTweet } from '../domain/models/Tweet/AbstractTweet';
+import { AbstractTweet } from '../../domain/models/Tweet/AbstractTweet';
 
 export class TweetDataModel {
   readonly tweetId: string;

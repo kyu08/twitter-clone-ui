@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { Logo } from './Login/Logo';
 import { Message } from './Login/Message';
 import { LoginForm } from './Login/LoginForm';
-import UserApplicationService from '../application/UserApplicationService';
 import Store from '../Store';
 import { AlertMessage } from './Login/AlertMessage';
+import UserApplicationService from '../applicationService/UserApplicationService';
 
 export const LoginContainer: React.FC = () => {
   const store = Store.useStore();

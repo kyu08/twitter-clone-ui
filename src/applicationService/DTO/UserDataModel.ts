@@ -1,5 +1,5 @@
-import { IUser } from '../domain/models/User/IUser';
-import { BirthdayProps } from '../domain/models/User/Profile/Birthday';
+import { BirthdayProps } from '../../domain/models/User/Profile/Birthday';
+import { IUser } from '../../domain/models/User/IUser';
 
 export class UserDataModel {
   readonly screenName: string;

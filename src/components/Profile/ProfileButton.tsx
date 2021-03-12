@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import UserApplicationService from '../../application/UserApplicationService';
-import { UserDataModel } from '../../infrastructure/UserDataModel';
+import { UserDataModel } from '../../applicationService/DTO/UserDataModel';
+import UserApplicationService from '../../applicationService/UserApplicationService';
 
 type Props = {
   isOwnPage: boolean;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { RootComponent } from './RootComponent';
 import Store from '../Store';
-import UserApplicationService from '../application/UserApplicationService';
+import UserApplicationService from '../applicationService/UserApplicationService';
 
 export const Container: React.FC = () => {
   const store = Store.useStore();

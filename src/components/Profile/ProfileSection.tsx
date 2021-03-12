@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserImageSection } from '../Home/Tweet/UserImageSection';
 import { LinkStyle } from '../../util/Util';
-import { UserDataModel } from '../../infrastructure/UserDataModel';
-import UserApplicationService from '../../application/UserApplicationService';
 import { ProfileButton } from './ProfileButton';
+import { UserDataModel } from '../../applicationService/DTO/UserDataModel';
+import UserApplicationService from '../../applicationService/UserApplicationService';
 
 type Props = {
   userImageURL: string;

@@ -3,8 +3,8 @@ import UserId from '../domain/models/User/UserId/UserId';
 export type TODO<T> = any;
 
 // MEMO used by infrastructure
-/* export const hostURL = 'http://localhost:3001'; */
-export const hostURL = 'http://3.34.32.57';
+export const hostURL = 'http://localhost:3001';
+/* export const hostURL = 'http://3.34.32.57'; */
 
 export const DefaultUserImageURL =
   'https://test-kyu08.s3-ap-northeast-1.amazonaws.com/userImage/default-user-image.png';

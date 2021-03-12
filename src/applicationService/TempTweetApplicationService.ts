@@ -1,6 +1,6 @@
 import { TempTweetFactory } from '../domain/models/TempTweet/TempTweetFactory';
-import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
 import UserId from '../domain/models/User/UserId/UserId';
+import { TempTweetDataModel } from './DTO/TempTweetDataModel';
 
 export class TempTweetApplicationService {
   readonly tempTweetFactory: TempTweetFactory;
