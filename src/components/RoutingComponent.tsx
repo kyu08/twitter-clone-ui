@@ -23,7 +23,7 @@ const RootComponentWrapper = styled.div`
 `;
 
 // this is presentation component.
-export const RootComponent: React.FC<Props> = ({ isLogin }) => {
+export const RoutingComponent: React.FC<Props> = ({ isLogin }) => {
   return (
     <RootComponentWrapper>
       <BrowserRouter>

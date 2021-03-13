@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { RootComponent } from './RootComponent';
+import { RoutingComponent } from './RoutingComponent';
 import Store from '../Store';
 import UserApplicationService from '../applicationService/UserApplicationService';
 
@@ -22,5 +22,5 @@ export const Container: React.FC = () => {
     })();
   }, []);
 
-  return <RootComponent isLogin={isLogin} />;
+  return <RoutingComponent isLogin={isLogin} />;
 };
