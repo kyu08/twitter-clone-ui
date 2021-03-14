@@ -6,7 +6,19 @@ export interface AbstractTempTweetProps {
   userId: UserId;
 }
 
-export abstract class AbstractTempTweet {
+type IAbstractTempTweet = {
+  tempContent: TempContent;
+  userId: UserId;
+  changeContent(contentString: string): AbstractTempTweet;
+  build(): TempTweetData;
+};
+
+export type TempTweetData = {
+  tempContent: string;
+  userId: string;
+};
+
+export abstract class AbstractTempTweet implements IAbstractTempTweet {
   readonly tempContent: TempContent;
 
   readonly userId: UserId;
@@ -17,4 +29,6 @@ export abstract class AbstractTempTweet {
   }
 
   abstract changeContent(contentString: string): AbstractTempTweet;
+
+  abstract build(): TempTweetData;
 }

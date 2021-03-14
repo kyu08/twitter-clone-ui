@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import { ILikeSet } from './ILikeMap';
 import UserId from '../User/UserId/UserId';
-import { deleteFromSet } from '../../../util/Util';
 import TweetId from '../Tweet/TweetId/TweetId';
+import { deleteFromSet } from '../../util/util';
 
 export default class LikeSet implements ILikeSet {
   readonly tweetId: TweetId;

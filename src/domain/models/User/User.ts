@@ -3,7 +3,7 @@ import Profile from './Profile/Profile';
 import UserId from './UserId/UserId';
 import { BirthdayProps } from './Profile/Birthday';
 import ScreenName from './Profile/ScreenName';
-import { ensurePropsContainsNoUndefined } from '../../../util/Util';
+import { ensurePropsContainsNoUndefined } from '../../util/util';
 
 interface UserProps {
   readonly profile: Profile;

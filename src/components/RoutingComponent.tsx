@@ -23,7 +23,7 @@ const RootComponentWrapper = styled.div`
 `;
 
 // this is presentation component.
-export const RootComponent: React.FC<Props> = ({ isLogin }) => {
+export const RoutingComponent: React.FC<Props> = ({ isLogin }) => {
   return (
     <RootComponentWrapper>
       <BrowserRouter>
@@ -38,6 +38,7 @@ export const RootComponent: React.FC<Props> = ({ isLogin }) => {
             path="/:screenName/following"
             component={FollowingListContainer}
           />
+          {/* TODO やる */}
           {/* TODO if (isLogin) return <Redirect to ... > みたいな感じでかけるならかきたい */}
           {isLogin ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>

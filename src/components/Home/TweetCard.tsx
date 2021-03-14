@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { UserImageSection } from './Tweet/UserImageSection';
 import { TweetInformationSection } from './Tweet/TweetInformationSection';
 import { TweetContentSection } from './Tweet/TweetContentSection';
-import { TweetDataModel } from '../../infrastructure/TweetDataModel';
-import { TweetApplicationService } from '../../application/TweetApplicationService';
+import { TweetDataModel } from '../../applicationService/DTO/TweetDataModel';
+import { TweetApplicationService } from '../../applicationService/TweetApplicationService';
 
 const IMAGE_SIZE = 49;
 

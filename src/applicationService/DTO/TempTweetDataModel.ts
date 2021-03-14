@@ -1,4 +1,4 @@
-import { AbstractTempTweet } from '../domain/models/TempTweet/AbstractTempTweet';
+import { AbstractTempTweet } from '../../domain/models/TempTweet/AbstractTempTweet';
 
 export type TempTweetData = { user_id: string; content: string };
 

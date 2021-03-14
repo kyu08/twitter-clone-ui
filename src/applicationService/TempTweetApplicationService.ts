@@ -1,11 +1,15 @@
-import { TempTweetFactory } from '../domain/models/TempTweet/TempTweetFactory';
-import { TempTweetDataModel } from '../infrastructure/TempTweetDataModel';
+import { TempTweetFactory } from '../domain/factory/tempTweet/TempTweetFactory';
 import UserId from '../domain/models/User/UserId/UserId';
+import { TempTweetDataModel } from './DTO/TempTweetDataModel';
+import { TempTweetDataModelFactory } from './DTOFactory/TempTweetDataModelFactory';
 
 export class TempTweetApplicationService {
+  readonly tempTweetDataModelFactory: TempTweetDataModelFactory;
+
   readonly tempTweetFactory: TempTweetFactory;
 
   constructor() {
+    this.tempTweetDataModelFactory = new TempTweetDataModelFactory();
     this.tempTweetFactory = new TempTweetFactory();
   }
 
@@ -25,14 +29,17 @@ export class TempTweetApplicationService {
     userId: UserId,
     content: string,
   ): TempTweetDataModel {
-    return this.tempTweetFactory.createTempTweetDataModel(userId, content);
+    return this.tempTweetDataModelFactory.createTempTweetDataModel(
+      userId,
+      content,
+    );
   }
 
   updateTempTweetDataModel(
     tempTweetDataModel: TempTweetDataModel,
     content: string,
   ): TempTweetDataModel {
-    return this.tempTweetFactory.updateTempTweetDataModel(
+    return this.tempTweetDataModelFactory.updateTempTweetDataModel(
       tempTweetDataModel,
       content,
     );

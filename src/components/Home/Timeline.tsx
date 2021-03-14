@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { TweetCard } from './TweetCard';
-import { TweetDataModel } from '../../infrastructure/TweetDataModel';
+import { TweetDataModel } from '../../applicationService/DTO/TweetDataModel';
 
 type Props = {
   tweetDataModelArray: TweetDataModel[];

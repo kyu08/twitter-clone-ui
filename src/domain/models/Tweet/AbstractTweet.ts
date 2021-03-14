@@ -4,7 +4,7 @@ import Content from './Content/Content';
 import ScreenName from '../User/Profile/ScreenName';
 import UserImageURL from '../User/Profile/UserImageURL';
 import UserName from '../User/Profile/UserName';
-import { ensurePropsContainsNoUndefined } from '../../../util/Util';
+import { ensurePropsContainsNoUndefined } from '../../util/util';
 
 export interface AbstractTweetProps {
   tweetId: TweetId;

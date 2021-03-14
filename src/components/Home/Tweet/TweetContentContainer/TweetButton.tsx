@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { TweetButtonIcon } from './TweetButtonIcon';
 import { TweetButtonCount } from './TweetButtonCount';
-import { TODO } from '../../../../util/Util';
+import { TODO } from '../../../util/util';
 
 interface TweetButtonCountProps {
   buttonIcon: TODO<'JSXComponent'>;

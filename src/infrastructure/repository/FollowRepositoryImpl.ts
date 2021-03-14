@@ -1,6 +1,7 @@
-import { hostURL } from '../util/Util';
+import { IFollowRepository } from '../../domain/repository/follow/IFollowRepository';
+import { hostURL } from '../util/util';
 
-export class FollowApplicationService {
+export class FollowRepositoryImpl implements IFollowRepository {
   follow(followingUserId: string, followerUserId: string): void {
     const followData = { followingUserId, followerUserId };
     fetch(`${hostURL}/follow`, {

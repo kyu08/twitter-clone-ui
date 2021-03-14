@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import { IRetweetMap } from './IRetweetMap';
 import UserId from '../User/UserId/UserId';
-import { TODO } from '../../../util/Util';
 import TweetId from '../Tweet/TweetId/TweetId';
+import { TODO } from '../../util/util';
 
 export default class RetweetMap implements IRetweetMap {
   // todo key はプリミティブにした方がいいかも

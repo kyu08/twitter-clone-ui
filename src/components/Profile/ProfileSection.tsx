@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserImageSection } from '../Home/Tweet/UserImageSection';
-import { LinkStyle } from '../../util/Util';
-import { UserDataModel } from '../../infrastructure/UserDataModel';
-import UserApplicationService from '../../application/UserApplicationService';
+import { ProfileButton } from './ProfileButton';
+import { UserDataModel } from '../../applicationService/DTO/UserDataModel';
+import UserApplicationService from '../../applicationService/UserApplicationService';
+import { LinkStyle } from '../util/util';
 
 type Props = {
   userImageURL: string;
@@ -16,6 +17,7 @@ type Props = {
   follow(): Promise<void>;
 };
 
+// TODO JSX もりもりなのでもう少し component として切り出すか...?
 export const ProfileSection: React.FC<Props> = (props) => {
   const {
     userImageURL,
@@ -31,42 +33,29 @@ export const ProfileSection: React.FC<Props> = (props) => {
 
   return (
     <ProfileSectionWrapper>
-      {/* ここから ProfileUpperSection component*/}
       <ProfileUpperSection>
         <UserImageSection
           imageSize={IMAGE_SIZE}
           userImageURL={userImageURL}
           screenName={userIndicating.screenName}
         />
-        {/* TODO ここから component として切り出す */}
-        {isOwnPage ? (
-          <ButtonWrapper>
-            <EditProfileButton onClick={() => editProfile()}>
-              プロフィールを編集
-            </EditProfileButton>
-          </ButtonWrapper>
-        ) : userApplicationService.isFollowing(
-            currentUserDataModel,
-            userIndicating,
-          ) ? (
-          <ButtonWrapper>
-            <UnFollowButton onClick={() => unFollow()}>
-              フォロー中
-            </UnFollowButton>
-          </ButtonWrapper>
-        ) : (
-          <ButtonWrapper>
-            <FollowButton onClick={() => follow()}>フォロー</FollowButton>
-          </ButtonWrapper>
-        )}
+        <ProfileButton
+          isOwnPage={isOwnPage}
+          editProfile={editProfile}
+          follow={follow}
+          unFollow={unFollow}
+          currentUserDataModel={currentUserDataModel}
+          userIndicating={userIndicating}
+        />
       </ProfileUpperSection>
-        {/* TODO ここから component として切り出す */}
       <UserName>{userIndicating.userName}</UserName>
       <ScreenNameComponent>@{userIndicating.screenName}</ScreenNameComponent>
+      {/* TODO component として切り出す */}
       {userApplicationService.isFollowed(
         currentUserDataModel,
         userIndicating,
       ) && <IsFollowedComponent>フォローされています</IsFollowedComponent>}
+      {/* TODO component として切り出す */}
       <Bio>{userIndicating.bio}</Bio>
       <UserLocation>⛳ {userIndicating.userLocation}</UserLocation>
       <CreatedAt>🗓 XXXX年YY月からTwitterを利用しています</CreatedAt>
@@ -99,38 +88,6 @@ const ProfileSectionWrapper = styled.div`
   padding: 10px 15px 10px;
   border-bottom: solid 1px rgb(136, 153, 166);
   word-break: break-all;
-`;
-
-const ButtonUtil = `font-weight: bold;
-  border-radius: 30px;
-  padding: 7px 15px;
-  font-size: 15px;
-  border: solid 1px #1da1f2;
-`;
-
-const EditProfileButton = styled.button`
-  color: #1da1f2;
-  background-color: rgba(0, 0, 0, 0);
-  ${ButtonUtil}
-`;
-
-const FollowButton = styled.button`
-  color: #1da1f2;
-  background-color: rgba(0, 0, 0, 0);
-  ${ButtonUtil}
-`;
-
-const UnFollowButton = styled.button`
-  color: white;
-  border-color: rgba(0, 0, 0, 0);
-  background-color: #1da1f2;
-  ${ButtonUtil}
-`;
-
-const ButtonWrapper = styled.div`
-  margin-top: 50px;
-  margin-left: auto;
-  padding: 0 20px;
 `;
 
 const UserName = styled.span`

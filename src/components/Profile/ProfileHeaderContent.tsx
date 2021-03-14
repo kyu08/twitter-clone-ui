@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { GoBackButton } from '../Home/Common/GoBackButton';
-import { UserDataModel } from '../../infrastructure/UserDataModel';
+import { UserDataModel } from '../../applicationService/DTO/UserDataModel';
 
 type Props = {
   userDataModel: UserDataModel;

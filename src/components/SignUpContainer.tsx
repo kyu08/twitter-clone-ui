@@ -11,8 +11,8 @@ import { MAX_USER_LOCATION_LENGTH } from '../domain/models/User/Profile/UserLoca
 import { Confirm } from './SignUp/Confirm';
 import { MAX_SCREEN_NAME_LENGTH } from '../domain/models/User/Profile/ScreenName';
 import { MAX_USER_NAME_LENGTH } from '../domain/models/User/Profile/UserName';
-import { TODO } from '../util/Util';
 import Store from '../Store';
+import { TODO } from './util/util';
 
 export const SignUpContainer: React.FC = () => {
   const store = Store.useStore();
@@ -87,9 +87,11 @@ export const SignUpContainer: React.FC = () => {
     return d <= lastDay(m, y);
   };
 
+  // MEMO isValidHoge はあくまでエラーメッセージコンポーネントを表示するためのフラグなのでここで改めて判定する必要がある。
+  // TODO ここでやるべきではない
+  // TODO やる
+  // TODO わかりずらいので説明変数を使おう
   const judgeCanGoNextPage = ({
-    // isValidHoge はあくまでエラーメッセージコンポーネントを表示するためのフラグなのでここで改めて判定する必要がある。
-    // todo ここでやるべきではない
     isRightUserName = userName.length > 0 &&
       userName.length <= MAX_USER_NAME_LENGTH,
     isRightScreenName = screenName.length > 0 &&

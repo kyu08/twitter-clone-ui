@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import UserApplicationService from '../application/UserApplicationService';
 import ScreenName from '../domain/models/User/Profile/ScreenName';
-import { UserDataModel } from '../infrastructure/UserDataModel';
+import UserApplicationService from '../applicationService/UserApplicationService';
+import { UserDataModel } from '../applicationService/DTO/UserDataModel';
 
-// todo ここでデータを取得したら list を作ってくれるコンポーネントにデータを渡す。
+// ここでデータを取得したら list を作ってくれるコンポーネントにデータを渡す。
 export const FollowingListContainer: React.FC = () => {
   const [userIndicating, setUserIndicating] = React.useState();
   const [existUser, setExistUser] = React.useState();
