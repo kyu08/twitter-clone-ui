@@ -4,7 +4,7 @@ https://www.youtube.com/watch?v=bGhi5JwzmPM
 
 # 起動方法
 ```
-npm start // ns
+npm start
 ```
 
 # やることの流れ
